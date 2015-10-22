@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "fmltutor",
+  "name": "FML Tutor",
+  "description": "A Minecraft 1.8 Forge Mod Loader Tutorial by ustc_zzzz.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "url": "https://github.com/ustc-zzzz/fmltutor/wiki",
+  "updateUrl": "https://github.com/ustc-zzzz/fmltutor/tags",
+  "authorList": ["ustc_zzzz"],
+  "credits": "Notch, Cpw, etc.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
