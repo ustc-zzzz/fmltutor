@@ -1,6 +1,7 @@
 package com.github.ustc_zzzz.fmltutor.crafting;
 
 import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
+import com.github.ustc_zzzz.fmltutor.common.ConfigLoader;
 import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
 
 import net.minecraft.init.Blocks;
@@ -43,7 +44,7 @@ public class CraftingLoader
             @Override
             public int getBurnTime(ItemStack fuel)
             {
-                return Items.diamond != fuel.getItem() ? 0 : 12800;
+                return Items.diamond != fuel.getItem() ? 0 : Math.max(0, ConfigLoader.diamondBurnTime) * 20;
             }
         });
     }
