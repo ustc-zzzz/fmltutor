@@ -29,6 +29,10 @@ public class CraftingLoader
         {
                 "##", "##", '#', Blocks.vine
         });
+        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstonePickaxe), new Object[]
+        {
+                "###", " * ", " * ", '#', Items.redstone, '*', Items.stick
+        });
         GameRegistry.addShapelessRecipe(new ItemStack(Blocks.vine, 4), BlockLoader.grassBlock);
     }
 
