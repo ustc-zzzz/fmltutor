@@ -2,6 +2,11 @@ item.goldenEgg.name=金蛋
 item.redstonePickaxe.name=红石镐
 item.redstoneApple.name=红石苹果
 
+item.redstoneHelmet.name=红石头盔
+item.redstoneChestplate.name=红石胸甲
+item.redstoneLeggings.name=红石护腿
+item.redstoneBoots.name=红石靴子
+
 tile.grassBlock.name=草块
 
 itemGroup.fmltutor=FML教程

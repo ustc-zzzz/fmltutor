@@ -2,6 +2,11 @@ item.goldenEgg.name=Golden Egg
 item.redstonePickaxe.name=Redstone Pickaxe
 item.redstoneApple.name=Redstone Apple
 
+item.redstoneHelmet.name=Redstone Helmet
+item.redstoneChestplate.name=Redstone Chestplate
+item.redstoneLeggings.name=Redstone Leggings
+item.redstoneBoots.name=Redstone Boots
+
 tile.grassBlock.name=Grass Block
 
 itemGroup.fmltutor=FML Tutor

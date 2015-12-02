@@ -37,6 +37,22 @@ public class CraftingLoader
         {
                 "###", "#*#", "###", '#', Items.redstone, '*', Items.apple
         });
+        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneHelmet), new Object[]
+        {
+                "###", "# #", '#', Items.redstone
+        });
+        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneChestplate), new Object[]
+        {
+                "# #", "###", "###", '#', Items.redstone
+        });
+        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneLeggings), new Object[]
+        {
+                "###", "# #", "# #", '#', Items.redstone
+        });
+        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneBoots), new Object[]
+        {
+                "# #", "# #", '#', Items.redstone
+        });
         GameRegistry.addShapelessRecipe(new ItemStack(Blocks.vine, 4), BlockLoader.grassBlock);
     }
 
