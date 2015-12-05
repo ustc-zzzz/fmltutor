@@ -10,3 +10,5 @@ item.redstoneBoots.name=红石靴子
 tile.grassBlock.name=草块
 
 itemGroup.fmltutor=FML教程
+
+death.attack.byPig=%s被猪弄死了！

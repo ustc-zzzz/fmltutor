@@ -2,10 +2,15 @@ package com.github.ustc_zzzz.fmltutor.common;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
@@ -20,6 +25,23 @@ public class EventLoader
     {
         MinecraftForge.EVENT_BUS.register(this);
         EventLoader.EVENT_BUS.register(this);
+    }
+
+    @SubscribeEvent
+    public void onEntityInteract(EntityInteractEvent event)
+    {
+        EntityPlayer player = event.entityPlayer;
+        if (player.isServerWorld() && event.target instanceof EntityPig)
+        {
+            EntityPig pig = (EntityPig) event.target;
+            ItemStack stack = player.getCurrentEquippedItem();
+            if (stack != null && (stack.getItem() == Items.wheat || stack.getItem() == Items.wheat_seeds))
+            {
+                player.attackEntityFrom((new DamageSource("byPig")).setDifficultyScaled().setExplosion(), 8.0F);
+                player.worldObj.createExplosion(pig, pig.posX, pig.posY, pig.posZ, 2.0F, false);
+                pig.setDead();
+            }
+        }
     }
 
     @SubscribeEvent
