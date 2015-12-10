@@ -12,6 +12,8 @@ public class ConfigLoader
 
     public static int diamondBurnTime;
 
+    public static int enchantmentFireBurn;
+
     public ConfigLoader(FMLPreInitializationEvent event)
     {
         logger = event.getModLog();
@@ -28,6 +30,9 @@ public class ConfigLoader
         
         comment = "How many seconds can a diamond burn in a furnace. ";
         diamondBurnTime = config.get(Configuration.CATEGORY_GENERAL, "diamondBurnTime", 640, comment).getInt();
+
+        comment = "Fire burn enchantment id. ";
+        enchantmentFireBurn = config.get(Configuration.CATEGORY_GENERAL, "enchantmentFireBurn", 36, comment).getInt();
 
         config.save();
         logger.info("Finished loading config. ");

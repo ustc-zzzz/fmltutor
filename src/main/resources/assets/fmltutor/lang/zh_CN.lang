@@ -12,3 +12,5 @@ tile.grassBlock.name=草块
 itemGroup.fmltutor=FML教程
 
 death.attack.byPig=%s被猪弄死了！
+
+enchantment.fireBurn=火焰灼烧

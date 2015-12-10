@@ -1,17 +1,24 @@
 package com.github.ustc_zzzz.fmltutor.common;
 
+import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
+
+import net.minecraft.block.Block;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -72,6 +79,44 @@ public class EventLoader
             BlockPos pos = event.pos;
             Entity tnt = new EntityTNTPrimed(event.world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, null);
             event.world.spawnEntityInWorld(tnt);
+        }
+    }
+
+    @SubscribeEvent
+    public void onBlockHarvestDrops(BlockEvent.HarvestDropsEvent event)
+    {
+        if (!event.world.isRemote && event.harvester != null)
+        {
+            ItemStack itemStack = event.harvester.getHeldItem();
+            if (EnchantmentHelper.getEnchantmentLevel(EnchantmentLoader.fireBurn.effectId, itemStack) > 0
+                    && itemStack.getItem() != Items.shears)
+            {
+                for (int i = 0; i < event.drops.size(); ++i)
+                {
+                    ItemStack stack = event.drops.get(i);
+                    ItemStack newStack = FurnaceRecipes.instance().getSmeltingResult(stack);
+                    if (newStack != null)
+                    {
+                        newStack = newStack.copy();
+                        newStack.stackSize = stack.stackSize;
+                        event.drops.set(i, newStack);
+                    }
+                    else if (stack != null)
+                    {
+                        Block block = Block.getBlockFromItem(stack.getItem());
+                        boolean b = (block == null);
+                        if (!b && (block.isFlammable(event.world, event.pos, EnumFacing.DOWN)
+                                || block.isFlammable(event.world, event.pos, EnumFacing.EAST)
+                                || block.isFlammable(event.world, event.pos, EnumFacing.NORTH)
+                                || block.isFlammable(event.world, event.pos, EnumFacing.SOUTH)
+                                || block.isFlammable(event.world, event.pos, EnumFacing.UP)
+                                || block.isFlammable(event.world, event.pos, EnumFacing.WEST)))
+                        {
+                            event.drops.remove(i);
+                        }
+                    }
+                }
+            }
         }
     }
 
