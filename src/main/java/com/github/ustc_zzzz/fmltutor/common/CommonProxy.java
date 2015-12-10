@@ -5,6 +5,7 @@ import com.github.ustc_zzzz.fmltutor.crafting.CraftingLoader;
 import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
 import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
 import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -18,6 +19,7 @@ public class CommonProxy
         new CreativeTabsLoader(event);
         new ItemLoader(event);
         new BlockLoader(event);
+        new PotionLoader(event);
     }
 
     public void init(FMLInitializationEvent event)
