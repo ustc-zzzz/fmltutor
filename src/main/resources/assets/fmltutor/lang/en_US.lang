@@ -16,3 +16,9 @@ death.attack.byPig=%s was dead because of a pig!
 enchantment.fireBurn=Fire Burning
 
 potion.fallProtection=Fall Protection
+
+key.fmltutor.showTime=Show Time
+
+key.categories.fmltutor=FML Tutor
+
+chat.fmltutor.time=The total world time is: %s. 

@@ -19,6 +19,7 @@ public class ClientProxy extends CommonProxy
     public void init(FMLInitializationEvent event)
     {
         super.init(event);
+        new KeyLoader();
     }
 
     @Override

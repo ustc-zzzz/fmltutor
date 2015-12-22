@@ -1,9 +1,11 @@
 package com.github.ustc_zzzz.fmltutor.common;
 
+import com.github.ustc_zzzz.fmltutor.client.KeyLoader;
 import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
 import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityTNTPrimed;
@@ -14,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
@@ -25,7 +28,10 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EventLoader
 {
@@ -140,6 +146,18 @@ public class EventLoader
                     event.ammount = 0;
                 }
             }
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void onKeyInput(InputEvent.KeyInputEvent event)
+    {
+        if (KeyLoader.showTime.isPressed())
+        {
+            EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+            World world = Minecraft.getMinecraft().theWorld;
+            player.addChatMessage(new ChatComponentTranslation("chat.fmltutor.time", world.getTotalWorldTime()));
         }
     }
 

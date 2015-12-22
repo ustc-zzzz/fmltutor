@@ -16,3 +16,9 @@ death.attack.byPig=%s被猪弄死了！
 enchantment.fireBurn=火焰灼烧
 
 potion.fallProtection=摔落保护
+
+key.fmltutor.showTime=显示时间
+
+key.categories.fmltutor=FML教程
+
+chat.fmltutor.time=现在时间为：%s。
