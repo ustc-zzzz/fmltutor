@@ -22,3 +22,10 @@ key.fmltutor.showTime=Show Time
 key.categories.fmltutor=FML Tutor
 
 chat.fmltutor.time=The total world time is: %s. 
+
+achievement.fmltutor.worseThanPig=Worse Than Pig
+achievement.fmltutor.worseThanPig.desc=Die from inappropriate food for the pig
+achievement.fmltutor.buildGrassBlock=Grass Block
+achievement.fmltutor.buildGrassBlock.desc=Build a grass block
+achievement.fmltutor.explosionFromGrassBlock=Grass Block Explosion
+achievement.fmltutor.explosionFromGrassBlock.desc=Make an explosion of grass block by the click

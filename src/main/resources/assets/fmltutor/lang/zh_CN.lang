@@ -22,3 +22,10 @@ key.fmltutor.showTime=显示时间
 key.categories.fmltutor=FML教程
 
 chat.fmltutor.time=现在时间为：%s。
+
+achievement.fmltutor.worseThanPig=人不如猪
+achievement.fmltutor.worseThanPig.desc=因为提供给猪错误的饲料而死
+achievement.fmltutor.buildGrassBlock=草块
+achievement.fmltutor.buildGrassBlock.desc=制作一个草块
+achievement.fmltutor.explosionFromGrassBlock=草块爆炸
+achievement.fmltutor.explosionFromGrassBlock.desc=通过点击草块使草块爆炸

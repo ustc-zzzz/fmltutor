@@ -1,5 +1,7 @@
 package com.github.ustc_zzzz.fmltutor.common;
 
+import com.github.ustc_zzzz.fmltutor.achievement.AchievementLoader;
+import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
 import com.github.ustc_zzzz.fmltutor.client.KeyLoader;
 import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
 import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
@@ -12,6 +14,7 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.potion.PotionEffect;
@@ -21,6 +24,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -88,6 +92,7 @@ public class EventLoader
             BlockPos pos = event.pos;
             Entity tnt = new EntityTNTPrimed(event.world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, null);
             event.world.spawnEntityInWorld(tnt);
+            event.entityPlayer.triggerAchievement(AchievementLoader.explosionFromGrassBlock);
         }
     }
 
@@ -146,6 +151,24 @@ public class EventLoader
                     event.ammount = 0;
                 }
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void onLivingDeath(LivingDeathEvent event)
+    {
+        if (event.entityLiving instanceof EntityPlayer && event.source.getDamageType().equals("byPig"))
+        {
+            ((EntityPlayer) event.entityLiving).triggerAchievement(AchievementLoader.worseThanPig);
+        }
+    }
+
+    @SubscribeEvent
+    public void onPlayerItemCrafted(PlayerEvent.ItemCraftedEvent event)
+    {
+        if (event.crafting.getItem() == Item.getItemFromBlock(BlockLoader.grassBlock))
+        {
+            event.player.triggerAchievement(AchievementLoader.buildGrassBlock);
         }
     }
 

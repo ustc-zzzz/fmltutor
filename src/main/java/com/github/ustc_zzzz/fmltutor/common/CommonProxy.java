@@ -1,5 +1,6 @@
 package com.github.ustc_zzzz.fmltutor.common;
 
+import com.github.ustc_zzzz.fmltutor.achievement.AchievementLoader;
 import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
 import com.github.ustc_zzzz.fmltutor.crafting.CraftingLoader;
 import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
@@ -26,6 +27,7 @@ public class CommonProxy
     {
         new CraftingLoader();
         new EnchantmentLoader();
+        new AchievementLoader();
         new EventLoader();
     }
 
