@@ -29,3 +29,6 @@ achievement.fmltutor.buildGrassBlock=Grass Block
 achievement.fmltutor.buildGrassBlock.desc=Build a grass block
 achievement.fmltutor.explosionFromGrassBlock=Grass Block Explosion
 achievement.fmltutor.explosionFromGrassBlock.desc=Make an explosion of grass block by the click
+
+commands.position.usage=/position [player]
+commands.position.success=The position of %1$s is %2$s in world %3$s

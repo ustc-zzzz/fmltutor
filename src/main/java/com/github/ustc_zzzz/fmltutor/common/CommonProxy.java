@@ -2,6 +2,7 @@ package com.github.ustc_zzzz.fmltutor.common;
 
 import com.github.ustc_zzzz.fmltutor.achievement.AchievementLoader;
 import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
+import com.github.ustc_zzzz.fmltutor.command.CommandLoader;
 import com.github.ustc_zzzz.fmltutor.crafting.CraftingLoader;
 import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
 import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
@@ -11,6 +12,7 @@ import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 public class CommonProxy
 {
@@ -34,5 +36,10 @@ public class CommonProxy
     public void postInit(FMLPostInitializationEvent event)
     {
 
+    }
+
+    public void serverStarting(FMLServerStartingEvent event)
+    {
+        new CommandLoader(event);
     }
 }
