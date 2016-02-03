@@ -166,6 +166,7 @@ public class EventLoader
     @SubscribeEvent
     public void onPlayerItemCrafted(PlayerEvent.ItemCraftedEvent event)
     {
+        event.player.worldObj.playSoundAtEntity(event.player, "fmltutor:fmltutor.test", 1.0F, 1.0F);
         if (event.crafting.getItem() == Item.getItemFromBlock(BlockLoader.grassBlock))
         {
             event.player.triggerAchievement(AchievementLoader.buildGrassBlock);

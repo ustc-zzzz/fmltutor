@@ -1,0 +1,8 @@
+{
+    "fmltutor.test": {
+    	"category": "player", 
+    	"sounds": [ 
+    		"fmltutor" 
+    	] 
+    }
+}
