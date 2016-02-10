@@ -8,6 +8,7 @@ import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
 import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
 import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
 import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
+import com.github.ustc_zzzz.fmltutor.worldgen.WorldGeneratorLoader;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -31,6 +32,7 @@ public class CommonProxy
         new EnchantmentLoader();
         new AchievementLoader();
         new EventLoader();
+        new WorldGeneratorLoader();
     }
 
     public void postInit(FMLPostInitializationEvent event)
