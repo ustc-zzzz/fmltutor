@@ -9,6 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.IFuelHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class CraftingLoader
 {
@@ -21,37 +22,37 @@ public class CraftingLoader
 
     private static void registerRecipe()
     {
-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.goldenEgg), new Object[]
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.goldenEgg), new Object[]
         {
-                "###", "#*#", "###", '#', Items.gold_ingot, '*', Items.egg
-        });
+                "###", "#*#", "###", '#', "ingotGold", '*', Items.egg
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.redstonePickaxe), new Object[]
+        {
+                "###", " * ", " * ", '#', "dustRedstone", '*', "stickWood"
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.redstoneApple), new Object[]
+        {
+                "###", "#*#", "###", '#', "dustRedstone", '*', Items.apple
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.redstoneHelmet), new Object[]
+        {
+                "###", "# #", '#', "dustRedstone"
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.redstoneChestplate), new Object[]
+        {
+                "# #", "###", "###", '#', "dustRedstone"
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.redstoneLeggings), new Object[]
+        {
+                "###", "# #", "# #", '#', "dustRedstone"
+        }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.redstoneBoots), new Object[]
+        {
+                "# #", "# #", '#', "dustRedstone"
+        }));
         GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.grassBlock), new Object[]
         {
                 "##", "##", '#', Blocks.vine
-        });
-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstonePickaxe), new Object[]
-        {
-                "###", " * ", " * ", '#', Items.redstone, '*', Items.stick
-        });
-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneApple), new Object[]
-        {
-                "###", "#*#", "###", '#', Items.redstone, '*', Items.apple
-        });
-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneHelmet), new Object[]
-        {
-                "###", "# #", '#', Items.redstone
-        });
-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneChestplate), new Object[]
-        {
-                "# #", "###", "###", '#', Items.redstone
-        });
-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneLeggings), new Object[]
-        {
-                "###", "# #", "# #", '#', Items.redstone
-        });
-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneBoots), new Object[]
-        {
-                "# #", "# #", '#', Items.redstone
         });
         GameRegistry.addShapelessRecipe(new ItemStack(Blocks.vine, 4), BlockLoader.grassBlock);
     }

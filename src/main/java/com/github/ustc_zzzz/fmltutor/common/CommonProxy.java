@@ -23,6 +23,7 @@ public class CommonProxy
         new CreativeTabsLoader(event);
         new ItemLoader(event);
         new BlockLoader(event);
+        new OreDictionaryLoader(event);
         new PotionLoader(event);
     }
 
