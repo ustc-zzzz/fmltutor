@@ -1,6 +1,7 @@
 package com.github.ustc_zzzz.fmltutor.client;
 
 import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
+import com.github.ustc_zzzz.fmltutor.fluid.FluidLoader;
 import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
 
 public class ItemRenderLoader
@@ -9,5 +10,6 @@ public class ItemRenderLoader
     {
         ItemLoader.registerRenders();
         BlockLoader.registerRenders();
+        FluidLoader.registerRenders();
     }
 }

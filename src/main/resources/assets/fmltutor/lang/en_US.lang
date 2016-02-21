@@ -8,6 +8,7 @@ item.redstoneLeggings.name=Redstone Leggings
 item.redstoneBoots.name=Redstone Boots
 
 tile.grassBlock.name=Grass Block
+tile.fluidMercury.name=Mercury
 
 itemGroup.fmltutor=FML Tutor
 
@@ -32,3 +33,5 @@ achievement.fmltutor.explosionFromGrassBlock.desc=Make an explosion of grass blo
 
 commands.position.usage=/position [player]
 commands.position.success=The position of %1$s is %2$s in world %3$s
+
+fluid.mercury=Mercury

@@ -8,6 +8,7 @@ item.redstoneLeggings.name=红石护腿
 item.redstoneBoots.name=红石靴子
 
 tile.grassBlock.name=草块
+tile.fluidMercury.name=水银
 
 itemGroup.fmltutor=FML教程
 
@@ -32,3 +33,5 @@ achievement.fmltutor.explosionFromGrassBlock.desc=通过点击草块使草块爆
 
 commands.position.usage=/position [玩家]
 commands.position.success=玩家 %1$s 处于名为 %3$s 的世界，其坐标为 %2$s
+
+fluid.mercury=水银

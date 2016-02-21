@@ -12,10 +12,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockLoader
 {
     public static Block grassBlock = new BlockGrassBlock();
+    public static Block fluidMercury = new BlockFluidMercury();
 
     public BlockLoader(FMLPreInitializationEvent event)
     {
         register(grassBlock, "grass_block");
+        register(fluidMercury, "fluid_mercury");
     }
 
     @SideOnly(Side.CLIENT)

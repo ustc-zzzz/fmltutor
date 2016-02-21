@@ -6,6 +6,7 @@ import com.github.ustc_zzzz.fmltutor.command.CommandLoader;
 import com.github.ustc_zzzz.fmltutor.crafting.CraftingLoader;
 import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
 import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
+import com.github.ustc_zzzz.fmltutor.fluid.FluidLoader;
 import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
 import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
 import com.github.ustc_zzzz.fmltutor.worldgen.WorldGeneratorLoader;
@@ -21,6 +22,7 @@ public class CommonProxy
     {
         new ConfigLoader(event);
         new CreativeTabsLoader(event);
+        new FluidLoader(event);
         new ItemLoader(event);
         new BlockLoader(event);
         new OreDictionaryLoader(event);
