@@ -7,6 +7,7 @@ import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
 import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -27,9 +28,16 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
+import net.minecraftforge.event.entity.player.FillBucketEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.fluids.BlockFluidBase;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -170,6 +178,21 @@ public class EventLoader
         if (event.crafting.getItem() == Item.getItemFromBlock(BlockLoader.grassBlock))
         {
             event.player.triggerAchievement(AchievementLoader.buildGrassBlock);
+        }
+    }
+
+    @SubscribeEvent
+    public void onFillBucket(FillBucketEvent event)
+    {
+        BlockPos blockpos = event.target.getBlockPos();
+        IBlockState blockState = event.world.getBlockState(blockpos);
+        Fluid fluid = FluidRegistry.lookupFluidForBlock(blockState.getBlock());
+        if (fluid != null && new Integer(0).equals(blockState.getValue(BlockFluidBase.LEVEL)))
+        {
+            FluidStack fluidStack = new FluidStack(fluid, FluidContainerRegistry.BUCKET_VOLUME);
+            event.world.setBlockToAir(blockpos);
+            event.result = FluidContainerRegistry.fillFluidContainer(fluidStack, event.current);
+            event.setResult(Result.ALLOW);
         }
     }
 

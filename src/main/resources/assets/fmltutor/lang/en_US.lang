@@ -7,6 +7,8 @@ item.redstoneChestplate.name=Redstone Chestplate
 item.redstoneLeggings.name=Redstone Leggings
 item.redstoneBoots.name=Redstone Boots
 
+item.bucketMercury.name=Mercury Bucket
+
 tile.grassBlock.name=Grass Block
 tile.fluidMercury.name=Mercury
 
