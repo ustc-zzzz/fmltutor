@@ -4,6 +4,8 @@ import com.github.ustc_zzzz.fmltutor.achievement.AchievementLoader;
 import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
 import com.github.ustc_zzzz.fmltutor.client.KeyLoader;
 import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
+import com.github.ustc_zzzz.fmltutor.entity.EntityGoldenChicken;
+import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
 import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
 
 import net.minecraft.block.Block;
@@ -11,6 +13,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
@@ -97,6 +100,16 @@ public class EventLoader
     {
         if (!event.world.isRemote)
         {
+            ItemStack heldItem = event.entityPlayer.getHeldItem();
+            if (ItemLoader.goldenEgg.equals(heldItem.getItem()))
+            {
+                EntityLiving entityLiving = new EntityGoldenChicken(event.world);
+                BlockPos pos = event.pos;
+                entityLiving.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+                --heldItem.stackSize;
+                event.world.spawnEntityInWorld(entityLiving);
+                return;
+            }
             BlockPos pos = event.pos;
             Entity tnt = new EntityTNTPrimed(event.world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, null);
             event.world.spawnEntityInWorld(tnt);

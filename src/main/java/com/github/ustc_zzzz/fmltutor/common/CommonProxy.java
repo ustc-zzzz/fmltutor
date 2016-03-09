@@ -6,6 +6,7 @@ import com.github.ustc_zzzz.fmltutor.command.CommandLoader;
 import com.github.ustc_zzzz.fmltutor.crafting.CraftingLoader;
 import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
 import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
+import com.github.ustc_zzzz.fmltutor.entity.EntityLoader;
 import com.github.ustc_zzzz.fmltutor.fluid.FluidLoader;
 import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
 import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
@@ -27,6 +28,7 @@ public class CommonProxy
         new BlockLoader(event);
         new OreDictionaryLoader(event);
         new PotionLoader(event);
+        new EntityLoader(event);
     }
 
     public void init(FMLInitializationEvent event)
