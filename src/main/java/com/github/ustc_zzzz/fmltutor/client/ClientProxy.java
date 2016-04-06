@@ -1,5 +1,6 @@
 package com.github.ustc_zzzz.fmltutor.client;
 
+import com.github.ustc_zzzz.fmltutor.client.entity.EntityRenderLoader;
 import com.github.ustc_zzzz.fmltutor.common.CommonProxy;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -13,6 +14,7 @@ public class ClientProxy extends CommonProxy
     {
         super.preInit(event);
         new ItemRenderLoader();
+        new EntityRenderLoader();
     }
 
     @Override
