@@ -39,3 +39,5 @@ commands.position.success=The position of %1$s is %2$s in world %3$s
 fluid.mercury=Mercury
 
 entity.fmltutor.GoldenChicken.name=Golden Chicken
+
+attribute.name.fmltutor.GoldenChicken.wingSpeed=Wing Speed

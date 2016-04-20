@@ -1,5 +1,7 @@
 package com.github.ustc_zzzz.fmltutor.client.entity.model;
 
+import com.github.ustc_zzzz.fmltutor.entity.EntityGoldenChicken;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -62,6 +64,12 @@ public class ModelGoldenChicken extends ModelBase
         this.leftWing.render(scale);
     }
 
+    protected float getWingSpeed(Entity entity, float rotateFloat)
+    {
+        return (float) (((EntityGoldenChicken) entity).getEntityAttribute(EntityGoldenChicken.wingSpeed)
+                .getAttributeValue() * rotateFloat);
+    }
+
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float rotateFloat, float rotateYaw,
             float rotatePitch, float scale, Entity entity)
@@ -75,7 +83,7 @@ public class ModelGoldenChicken extends ModelBase
         this.body.rotateAngleX = (float) (Math.PI / 2.0D);
         this.rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.leftLeg.rotateAngleX = -MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.rightWing.rotateAngleZ = 1.5F * rotateFloat;
-        this.leftWing.rotateAngleZ = -1.5F * rotateFloat;
+        this.rightWing.rotateAngleZ = this.getWingSpeed(entity, rotateFloat);
+        this.leftWing.rotateAngleZ = -this.getWingSpeed(entity, rotateFloat);
     }
 }
