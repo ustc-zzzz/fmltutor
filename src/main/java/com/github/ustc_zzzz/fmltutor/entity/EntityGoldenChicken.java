@@ -6,6 +6,8 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
 import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class EntityGoldenChicken extends EntityChicken
@@ -17,6 +19,38 @@ public class EntityGoldenChicken extends EntityChicken
     {
         super(worldIn);
         this.setSize(1.2F, 1.8F);
+    }
+
+    @Override
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.dataWatcher.addObject(16, new Byte((byte) 0));
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound tagCompound)
+    {
+        super.writeEntityToNBT(tagCompound);
+        tagCompound.setByte("WingSpeedMultiplier", this.dataWatcher.getWatchableObjectByte(16));
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound tagCompund)
+    {
+        super.readEntityFromNBT(tagCompund);
+        this.dataWatcher.updateObject(16, tagCompund.getByte("WingSpeedMultiplier"));
+    }
+
+    @Override
+    public boolean interact(EntityPlayer player)
+    {
+        if (!super.interact(player))
+        {
+            byte b = this.dataWatcher.getWatchableObjectByte(16);
+            this.dataWatcher.updateObject(16, new Byte((byte) ((b + 1) % 5)));
+        }
+        return true;
     }
 
     @Override

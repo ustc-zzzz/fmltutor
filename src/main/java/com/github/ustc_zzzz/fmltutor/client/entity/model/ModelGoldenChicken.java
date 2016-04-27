@@ -66,8 +66,22 @@ public class ModelGoldenChicken extends ModelBase
 
     protected float getWingSpeed(Entity entity, float rotateFloat)
     {
-        return (float) (((EntityGoldenChicken) entity).getEntityAttribute(EntityGoldenChicken.wingSpeed)
+        float wingSpeed = (float) (((EntityGoldenChicken) entity).getEntityAttribute(EntityGoldenChicken.wingSpeed)
                 .getAttributeValue() * rotateFloat);
+        switch (entity.getDataWatcher().getWatchableObjectByte(16))
+        {
+        case 4:
+            return wingSpeed / 2;
+        case 3:
+            return wingSpeed / 4;
+        case 2:
+            return wingSpeed * 4;
+        case 1:
+            return wingSpeed * 2;
+        case 0:
+        default:
+            return wingSpeed;
+        }
     }
 
     @Override
