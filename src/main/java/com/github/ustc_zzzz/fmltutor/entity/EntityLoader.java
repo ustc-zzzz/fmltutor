@@ -3,6 +3,7 @@ package com.github.ustc_zzzz.fmltutor.entity;
 import com.github.ustc_zzzz.fmltutor.FMLTutor;
 import com.github.ustc_zzzz.fmltutor.client.entity.EntityRenderFactory;
 import com.github.ustc_zzzz.fmltutor.client.entity.render.RenderGoldenChicken;
+import com.github.ustc_zzzz.fmltutor.client.entity.render.RenderGoldenEgg;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
@@ -25,6 +26,7 @@ public class EntityLoader
         registerEntityEgg(EntityGoldenChicken.class, 0xffff66, 0x660000);
         registerEntitySpawn(EntityGoldenChicken.class, 8, 2, 4, EnumCreatureType.CREATURE, BiomeGenBase.plains,
                 BiomeGenBase.desert);
+        registerEntity(EntityGoldenEgg.class, "GoldenEgg", 64, 10, true);
     }
 
     private static void registerEntityEgg(Class<? extends Entity> entityClass, int eggPrimary, int eggSecondary)
@@ -53,6 +55,7 @@ public class EntityLoader
     public static void registerRenders()
     {
         registerEntityRender(EntityGoldenChicken.class, RenderGoldenChicken.class);
+        registerEntityRender(EntityGoldenEgg.class, RenderGoldenEgg.class);
     }
 
     @SideOnly(Side.CLIENT)
