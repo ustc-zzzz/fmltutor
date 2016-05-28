@@ -10,11 +10,14 @@ import net.minecraft.entity.ai.attributes.RangedAttribute;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 public class EntityGoldenChicken extends EntityChicken
 {
@@ -113,16 +116,22 @@ public class EntityGoldenChicken extends EntityChicken
                         entityPos.getZ() - 1, entityPos.getX() + 2, entityPos.getY() + 1, entityPos.getZ() + 2);
                 for (Object e : entity.worldObj.getEntitiesWithinAABB(EntityItem.class, aabb))
                 {
-                    ItemStack stack = ((EntityItem) e).getEntityItem();
+                    ItemStack stack = ((EntityItem) e).getEntityItem().copy();
                     Block block = Block.getBlockFromItem(stack.getItem());
                     if (block != null)
                     {
                         entity.setLocationAndAngles(entity.posX, entity.posY + 1, entity.posZ, entity.rotationYaw,
                                 entity.rotationPitch);
-                        entity.worldObj.setBlockState(entityPos, block.getDefaultState());
-                        if (--stack.stackSize <= 0)
+                        EntityPlayerMP player = FakePlayerLoader.getFakePlayer((WorldServer) entity.worldObj).get();
+                        player.theItemInWorldManager.activateBlockOrUseItem(player, entity.worldObj, stack, entityPos,
+                                EnumFacing.DOWN, 0.0F, 0.0F, 0.0F);
+                        if (stack.stackSize <= 0)
                         {
                             ((EntityItem) e).setDead();
+                        }
+                        else
+                        {
+                            ((EntityItem) e).setEntityItemStack(stack);
                         }
                     }
                 }
