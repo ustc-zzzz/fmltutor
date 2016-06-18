@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "burning=false,facing=east,material=gold": { "model": "fmltutor:gold_furnace", "y": 90, "uvlock": true },
+        "burning=true,facing=east,material=gold": { "model": "fmltutor:gold_furnace_burning", "y": 90, "uvlock": true },
+        "burning=false,facing=north,material=gold": { "model": "fmltutor:gold_furnace" },
+        "burning=true,facing=north,material=gold": { "model": "fmltutor:gold_furnace_burning" },
+        "burning=false,facing=south,material=gold": { "model": "fmltutor:gold_furnace", "y": 180, "uvlock": true },
+        "burning=true,facing=south,material=gold": { "model": "fmltutor:gold_furnace_burning", "y": 180, "uvlock": true },
+        "burning=false,facing=west,material=gold": { "model": "fmltutor:gold_furnace", "y": 270, "uvlock": true },
+        "burning=true,facing=west,material=gold": { "model": "fmltutor:gold_furnace_burning", "y": 270, "uvlock": true },
+        "burning=false,facing=east,material=iron": { "model": "fmltutor:iron_furnace", "y": 90, "uvlock": true },
+        "burning=true,facing=east,material=iron": { "model": "fmltutor:iron_furnace_burning", "y": 90, "uvlock": true },
+        "burning=false,facing=north,material=iron": { "model": "fmltutor:iron_furnace" },
+        "burning=true,facing=north,material=iron": { "model": "fmltutor:iron_furnace_burning" },
+        "burning=false,facing=south,material=iron": { "model": "fmltutor:iron_furnace", "y": 180, "uvlock": true },
+        "burning=true,facing=south,material=iron": { "model": "fmltutor:iron_furnace_burning", "y": 180, "uvlock": true },
+        "burning=false,facing=west,material=iron": { "model": "fmltutor:iron_furnace", "y": 270, "uvlock": true },
+        "burning=true,facing=west,material=iron": { "model": "fmltutor:iron_furnace_burning", "y": 270, "uvlock": true }
+    }
+}

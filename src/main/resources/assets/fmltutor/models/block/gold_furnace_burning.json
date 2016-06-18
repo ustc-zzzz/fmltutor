@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "fmltutor:blocks/gold_furnace_side",
+        "front": "fmltutor:blocks/gold_furnace_burning",
+        "side": "fmltutor:blocks/gold_furnace_side"
+    }
+}

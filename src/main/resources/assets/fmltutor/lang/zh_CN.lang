@@ -12,6 +12,9 @@ item.bucketMercury.name=水银桶
 tile.grassBlock.name=草块
 tile.fluidMercury.name=水银
 
+tile.metalFurnace.iron.name=铁炉
+tile.metalFurnace.gold.name=金炉
+
 itemGroup.fmltutor=FML教程
 
 death.attack.byPig=%s被猪弄死了！

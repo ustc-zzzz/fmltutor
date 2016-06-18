@@ -12,6 +12,9 @@ item.bucketMercury.name=Mercury Bucket
 tile.grassBlock.name=Grass Block
 tile.fluidMercury.name=Mercury
 
+tile.metalFurnace.iron.name=Iron Furnace
+tile.metalFurnace.gold.name=Gold Furnace
+
 itemGroup.fmltutor=FML Tutor
 
 death.attack.byPig=%s was dead because of a pig! 
