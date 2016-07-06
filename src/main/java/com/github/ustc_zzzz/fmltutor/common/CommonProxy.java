@@ -11,6 +11,7 @@ import com.github.ustc_zzzz.fmltutor.entity.FakePlayerLoader;
 import com.github.ustc_zzzz.fmltutor.fluid.FluidLoader;
 import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
 import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
+import com.github.ustc_zzzz.fmltutor.tileentity.TileEntityLoader;
 import com.github.ustc_zzzz.fmltutor.worldgen.WorldGeneratorLoader;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -30,6 +31,7 @@ public class CommonProxy
         new OreDictionaryLoader(event);
         new PotionLoader(event);
         new EntityLoader(event);
+        new TileEntityLoader(event);
     }
 
     public void init(FMLInitializationEvent event)
