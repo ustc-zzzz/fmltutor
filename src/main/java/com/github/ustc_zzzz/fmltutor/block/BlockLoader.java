@@ -3,6 +3,8 @@ package com.github.ustc_zzzz.fmltutor.block;
 import com.github.ustc_zzzz.fmltutor.FMLTutor;
 import com.google.common.base.Function;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.statemap.IStateMapper;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -38,6 +40,9 @@ public class BlockLoader
     @SideOnly(Side.CLIENT)
     public static void registerRenders()
     {
+        registerStateMapper(metalFurnace,
+                new StateMap.Builder().withName(BlockMetalFurnace.MATERIAL).withSuffix("_furnace").build());
+
         registerRender(grassBlock);
         registerRender(metalFurnace, 0, FMLTutor.MODID + ":" + "iron_furnace");
         registerRender(metalFurnace, 8, FMLTutor.MODID + ":" + "gold_furnace");
@@ -53,6 +58,12 @@ public class BlockLoader
     private static void register(Block block, String name)
     {
         GameRegistry.registerBlock(block.setRegistryName(name));
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void registerStateMapper(Block block, IStateMapper mapper)
+    {
+        ModelLoader.setCustomStateMapper(block, mapper);
     }
 
     @SideOnly(Side.CLIENT)
