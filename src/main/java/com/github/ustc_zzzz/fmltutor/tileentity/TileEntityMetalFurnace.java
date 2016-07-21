@@ -16,6 +16,8 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class TileEntityMetalFurnace extends TileEntity implements ITickable
 {
+    protected double rotationDegree = 0;
+
     protected int burnTime = 0;
 
     protected ItemStackHandler upInventory = new ItemStackHandler();
@@ -103,5 +105,25 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable
                 this.worldObj.setBlockState(pos, state.withProperty(BlockMetalFurnace.BURNING, Boolean.FALSE));
             }
         }
+        else
+        {
+            IBlockState blockState = this.worldObj.getBlockState(this.pos);
+            boolean burning = blockState.getProperties().containsKey(BlockMetalFurnace.BURNING)
+                    && blockState.getValue(BlockMetalFurnace.BURNING).booleanValue();
+            if (burning || this.rotationDegree > 0)
+            {
+                this.rotationDegree += 11.25;
+                if (this.rotationDegree >= 360.0)
+                {
+                    this.rotationDegree -= 360.0;
+                }
+                this.worldObj.markBlockRangeForRenderUpdate(this.pos, this.pos);
+            }
+        }
+    }
+
+    public float getRotation()
+    {
+        return (float) (this.rotationDegree * Math.PI / 180);
     }
 }

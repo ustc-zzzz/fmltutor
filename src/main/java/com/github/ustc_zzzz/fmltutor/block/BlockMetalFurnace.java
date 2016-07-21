@@ -2,12 +2,16 @@ package com.github.ustc_zzzz.fmltutor.block;
 
 import java.util.List;
 
+import javax.vecmath.Matrix4f;
+
 import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
 import com.github.ustc_zzzz.fmltutor.tileentity.TileEntityMetalFurnace;
+import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
@@ -23,7 +27,14 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.TRSRTransformation;
+import net.minecraftforge.client.model.obj.OBJModel;
+import net.minecraftforge.client.model.obj.OBJModel.OBJState;
+import net.minecraftforge.common.property.ExtendedBlockState;
+import net.minecraftforge.common.property.IExtendedBlockState;
+import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -69,6 +80,18 @@ public class BlockMetalFurnace extends BlockContainer
         this.setCreativeTab(CreativeTabsLoader.tabFMLTutor);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH)
                 .withProperty(BURNING, Boolean.FALSE).withProperty(MATERIAL, EnumMaterial.IRON));
+    }
+
+    @Override
+    public boolean isFullCube()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
     }
 
     @Override
@@ -128,9 +151,27 @@ public class BlockMetalFurnace extends BlockContainer
     }
 
     @Override
+    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        IExtendedBlockState oldState = (IExtendedBlockState) state;
+        TRSRTransformation transform = new TRSRTransformation(state.getValue(BlockMetalFurnace.FACING));
+        TileEntity te = world.getTileEntity(pos);
+        if (te instanceof TileEntityMetalFurnace)
+        {
+            Matrix4f matrix = new Matrix4f();
+            matrix.rotY(((TileEntityMetalFurnace) te).getRotation());
+            transform = TRSRTransformation.blockCenterToCorner(new TRSRTransformation(matrix)).compose(transform);
+        }
+        OBJState objState = new OBJState(Lists.newArrayList(OBJModel.Group.ALL), true, transform);
+        return oldState.withProperty(OBJModel.OBJProperty.instance, objState);
+    }
+
+    @Override
     protected BlockState createBlockState()
     {
-        return new BlockState(this, FACING, BURNING, MATERIAL);
+        return new ExtendedBlockState(this, new IProperty<?>[]
+        { FACING, BURNING, MATERIAL }, new IUnlistedProperty<?>[]
+        { OBJModel.OBJProperty.instance });
     }
 
     @Override

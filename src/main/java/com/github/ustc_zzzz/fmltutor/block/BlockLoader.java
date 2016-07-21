@@ -11,6 +11,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMultiTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameData;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -40,8 +41,10 @@ public class BlockLoader
     @SideOnly(Side.CLIENT)
     public static void registerRenders()
     {
-        registerStateMapper(metalFurnace,
-                new StateMap.Builder().withName(BlockMetalFurnace.MATERIAL).withSuffix("_furnace").build());
+        OBJLoader.instance.addDomain(FMLTutor.MODID);
+
+        registerStateMapper(metalFurnace, new StateMap.Builder().withName(BlockMetalFurnace.MATERIAL)
+                .withSuffix("_furnace").ignore(BlockMetalFurnace.FACING).build());
 
         registerRender(grassBlock);
         registerRender(metalFurnace, 0, FMLTutor.MODID + ":" + "iron_furnace");
