@@ -10,6 +10,8 @@ import com.github.ustc_zzzz.fmltutor.client.KeyLoader;
 import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
 import com.github.ustc_zzzz.fmltutor.entity.EntityGoldenChicken;
 import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+import com.github.ustc_zzzz.fmltutor.network.MessagePositionHistory;
+import com.github.ustc_zzzz.fmltutor.network.NetworkLoader;
 import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
 
 import net.minecraft.block.Block;
@@ -21,6 +23,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,16 +32,19 @@ import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
@@ -229,6 +235,19 @@ public class EventLoader
             EntityPlayer player = Minecraft.getMinecraft().thePlayer;
             World world = Minecraft.getMinecraft().theWorld;
             player.addChatMessage(new ChatComponentTranslation("chat.fmltutor.time", world.getTotalWorldTime()));
+
+            if (player.hasCapability(CapabilityLoader.positionHistory, null))
+            {
+                player.addChatMessage(new ChatComponentTranslation("commands.position.history"));
+                IPositionHistory histories = player.getCapability(CapabilityLoader.positionHistory, null);
+                for (Vec3 vec3 : histories.getHistories())
+                {
+                    if (vec3 != null)
+                    {
+                        player.addChatMessage(new ChatComponentText(vec3.toString()));
+                    }
+                }
+            }
         }
     }
 
@@ -239,6 +258,27 @@ public class EventLoader
         {
             ICapabilitySerializable<NBTTagCompound> provider = new CapabilityPositionHistory.ProviderPlayer();
             event.addCapability(new ResourceLocation(FMLTutor.MODID + ":" + "position_history"), provider);
+        }
+    }
+
+    @SubscribeEvent
+    public void onEntityJoinWorld(EntityJoinWorldEvent event)
+    {
+        if (!event.world.isRemote && event.entity instanceof EntityPlayer)
+        {
+            EntityPlayerMP player = (EntityPlayerMP) event.entity;
+            if (player.hasCapability(CapabilityLoader.positionHistory, null))
+            {
+                MessagePositionHistory message = new MessagePositionHistory();
+
+                IPositionHistory histories = player.getCapability(CapabilityLoader.positionHistory, null);
+                IStorage<IPositionHistory> storage = CapabilityLoader.positionHistory.getStorage();
+
+                message.nbt = new NBTTagCompound();
+                message.nbt.setTag("histories", storage.writeNBT(CapabilityLoader.positionHistory, histories, null));
+
+                NetworkLoader.instance.sendTo(message, player);
+            }
         }
     }
 

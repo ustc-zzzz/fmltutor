@@ -4,17 +4,21 @@ import java.util.List;
 
 import com.github.ustc_zzzz.fmltutor.capability.CapabilityLoader;
 import com.github.ustc_zzzz.fmltutor.capability.IPositionHistory;
+import com.github.ustc_zzzz.fmltutor.network.MessagePositionHistory;
+import com.github.ustc_zzzz.fmltutor.network.NetworkLoader;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.Vec3;
+import net.minecraftforge.common.capabilities.Capability.IStorage;
 
 public class CommandPosition extends CommandBase
 {
@@ -61,6 +65,14 @@ public class CommandPosition extends CommandBase
                     }
                 }
                 histories.pushHistory(pos);
+
+                MessagePositionHistory message = new MessagePositionHistory();
+                IStorage<IPositionHistory> storage = CapabilityLoader.positionHistory.getStorage();
+
+                message.nbt = new NBTTagCompound();
+                message.nbt.setTag("histories", storage.writeNBT(CapabilityLoader.positionHistory, histories, null));
+
+                NetworkLoader.instance.sendTo(message, entityPlayerMP);
             }
 
             sender.addChatMessage(new ChatComponentTranslation("commands.position.success", entityPlayerMP.getName(),

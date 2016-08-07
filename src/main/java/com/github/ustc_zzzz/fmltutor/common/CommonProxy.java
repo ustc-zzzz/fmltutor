@@ -11,6 +11,7 @@ import com.github.ustc_zzzz.fmltutor.entity.EntityLoader;
 import com.github.ustc_zzzz.fmltutor.entity.FakePlayerLoader;
 import com.github.ustc_zzzz.fmltutor.fluid.FluidLoader;
 import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+import com.github.ustc_zzzz.fmltutor.network.NetworkLoader;
 import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
 import com.github.ustc_zzzz.fmltutor.tileentity.TileEntityLoader;
 import com.github.ustc_zzzz.fmltutor.worldgen.WorldGeneratorLoader;
@@ -34,6 +35,7 @@ public class CommonProxy
         new PotionLoader(event);
         new EntityLoader(event);
         new TileEntityLoader(event);
+        new NetworkLoader(event);
     }
 
     public void init(FMLInitializationEvent event)
