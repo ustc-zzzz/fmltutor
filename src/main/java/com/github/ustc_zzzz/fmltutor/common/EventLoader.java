@@ -1,7 +1,11 @@
 package com.github.ustc_zzzz.fmltutor.common;
 
+import com.github.ustc_zzzz.fmltutor.FMLTutor;
 import com.github.ustc_zzzz.fmltutor.achievement.AchievementLoader;
 import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
+import com.github.ustc_zzzz.fmltutor.capability.CapabilityLoader;
+import com.github.ustc_zzzz.fmltutor.capability.CapabilityPositionHistory;
+import com.github.ustc_zzzz.fmltutor.capability.IPositionHistory;
 import com.github.ustc_zzzz.fmltutor.client.KeyLoader;
 import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
 import com.github.ustc_zzzz.fmltutor.entity.EntityGoldenChicken;
@@ -21,13 +25,20 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.Capability.IStorage;
+import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
@@ -218,6 +229,29 @@ public class EventLoader
             EntityPlayer player = Minecraft.getMinecraft().thePlayer;
             World world = Minecraft.getMinecraft().theWorld;
             player.addChatMessage(new ChatComponentTranslation("chat.fmltutor.time", world.getTotalWorldTime()));
+        }
+    }
+
+    @SubscribeEvent
+    public void onAttachCapabilitiesEntity(AttachCapabilitiesEvent.Entity event)
+    {
+        if (event.getEntity() instanceof EntityPlayer)
+        {
+            ICapabilitySerializable<NBTTagCompound> provider = new CapabilityPositionHistory.ProviderPlayer();
+            event.addCapability(new ResourceLocation(FMLTutor.MODID + ":" + "position_history"), provider);
+        }
+    }
+
+    @SubscribeEvent
+    public void onPlayerClone(net.minecraftforge.event.entity.player.PlayerEvent.Clone event)
+    {
+        Capability<IPositionHistory> capability = CapabilityLoader.positionHistory;
+        IStorage<IPositionHistory> storage = capability.getStorage();
+
+        if (event.original.hasCapability(capability, null) && event.entityPlayer.hasCapability(capability, null))
+        {
+            NBTBase nbt = storage.writeNBT(capability, event.original.getCapability(capability, null), null);
+            storage.readNBT(capability, event.entityPlayer.getCapability(capability, null), null, nbt);
         }
     }
 

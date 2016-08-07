@@ -37,6 +37,7 @@ achievement.fmltutor.explosionFromGrassBlock=草块爆炸
 achievement.fmltutor.explosionFromGrassBlock.desc=通过点击草块使草块爆炸
 
 commands.position.usage=/position [玩家]
+commands.position.history=位置查询历史：
 commands.position.success=玩家 %1$s 处于名为 %3$s 的世界，其坐标为 %2$s
 
 fluid.mercury=水银

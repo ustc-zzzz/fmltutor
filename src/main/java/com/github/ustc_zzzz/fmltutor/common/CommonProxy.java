@@ -2,6 +2,7 @@ package com.github.ustc_zzzz.fmltutor.common;
 
 import com.github.ustc_zzzz.fmltutor.achievement.AchievementLoader;
 import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
+import com.github.ustc_zzzz.fmltutor.capability.CapabilityLoader;
 import com.github.ustc_zzzz.fmltutor.command.CommandLoader;
 import com.github.ustc_zzzz.fmltutor.crafting.CraftingLoader;
 import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
@@ -24,6 +25,7 @@ public class CommonProxy
     public void preInit(FMLPreInitializationEvent event)
     {
         new ConfigLoader(event);
+        new CapabilityLoader(event);
         new CreativeTabsLoader(event);
         new FluidLoader(event);
         new ItemLoader(event);

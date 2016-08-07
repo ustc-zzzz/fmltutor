@@ -2,6 +2,9 @@ package com.github.ustc_zzzz.fmltutor.command;
 
 import java.util.List;
 
+import com.github.ustc_zzzz.fmltutor.capability.CapabilityLoader;
+import com.github.ustc_zzzz.fmltutor.capability.IPositionHistory;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -9,6 +12,7 @@ import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.Vec3;
 
@@ -44,6 +48,21 @@ public class CommandPosition extends CommandBase
             EntityPlayerMP entityPlayerMP = args.length > 0 ? CommandBase.getPlayer(sender, args[0])
                     : CommandBase.getCommandSenderAsPlayer(sender);
             Vec3 pos = entityPlayerMP.getPositionVector();
+
+            if (entityPlayerMP == sender && entityPlayerMP.hasCapability(CapabilityLoader.positionHistory, null))
+            {
+                sender.addChatMessage(new ChatComponentTranslation("commands.position.history"));
+                IPositionHistory histories = entityPlayerMP.getCapability(CapabilityLoader.positionHistory, null);
+                for (Vec3 vec3 : histories.getHistories())
+                {
+                    if (vec3 != null)
+                    {
+                        sender.addChatMessage(new ChatComponentText(vec3.toString()));
+                    }
+                }
+                histories.pushHistory(pos);
+            }
+
             sender.addChatMessage(new ChatComponentTranslation("commands.position.success", entityPlayerMP.getName(),
                     pos, entityPlayerMP.worldObj.provider.getDimensionName()));
         }
