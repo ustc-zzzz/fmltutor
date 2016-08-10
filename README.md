@@ -10,7 +10,7 @@ Welcome to the fmltutor wiki!
 
 ## 目录
 
-<https://ustc-zzzz.gitbooks.io/fmltutor/content/HOME.md>
+<https://ustc-zzzz.gitbooks.io/fmltutor/content/HOME.html>
 
 ## 版权声明
 
