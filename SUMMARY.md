@@ -1,5 +1,7 @@
 # Summary
 
+* [介绍](README.md)
+
 * [目录](HOME.md)
 
 * [0 绪论](0-绪论.md)
@@ -47,6 +49,7 @@
     * [3.3.1 Capability系统与已有实体附加属性](3.3.1-Capability系统与已有实体附加属性.md)
     * [3.3.2 使用SimpleImpl同步数据](3.3.2-使用SimpleImpl同步数据.md)
     * [3.3.3 世界附加数据存储](3.3.3-世界附加数据存储.md)
+    * [3.4.1 GUI界面简介和IGuiHandler](3.4.1-GUI界面简介和IGuiHandler.md)
 
 * 附录
     * [附录A 事件列表](附录A-事件列表.md)
