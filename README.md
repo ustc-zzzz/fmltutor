@@ -84,9 +84,9 @@ Welcome to the fmltutor wiki!
 * [使用SimpleImpl同步数据](3.3.2-使用SimpleImpl同步数据.md)
 * [世界附加数据存储](3.3.3-世界附加数据存储.md)
 
-#### 3.4 GUI
+#### 3.4 [GUI](#34-GUI)
 
-* [GUI界面简介和IGuiHandler](3.4.1-GUI界面简介和IGuiHandler.md)
+* GUI界面简介和IGuiHandler
 * 为方块或物品添加GUI
 * GUI与容器的数据同步
 
