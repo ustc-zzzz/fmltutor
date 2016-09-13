@@ -133,7 +133,7 @@ Welcome to the fmltutor wiki!
 </a>进行许可。
 
 转载请附上本作品链接：
-<https://ustc-zzzz.gitbooks.io/fmltutor/content/>
+<https://fmltutor.ustc-zzzz.net/>
 
 另外，本作品同时提供[源代码](https://github.com/ustc-zzzz/fmltutor/tags)，所有源代码使用[MIT协议](https://github.com/ustc-zzzz/fmltutor/blob/master/LICENSE)开源。
 
