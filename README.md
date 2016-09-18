@@ -86,9 +86,10 @@ Welcome to the fmltutor wiki!
 
 #### 3.4 [GUI](#34-GUI)
 
-* GUI界面简介和IGuiHandler
-* 为方块或物品添加GUI
-* GUI与容器的数据同步
+* [创建一个新的GUI界面](3.4.1-创建一个新的GUI界面.md)
+* GUI界面的个性化与物品槽的添加
+* GUI中物品槽的交互
+* GUI中的数据同步
 
 ### 4 高级部分
 
