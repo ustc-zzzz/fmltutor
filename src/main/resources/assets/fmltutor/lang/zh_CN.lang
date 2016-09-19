@@ -47,3 +47,5 @@ fluid.mercury=水银
 entity.fmltutor.GoldenChicken.name=黄金鸡
 
 attribute.name.fmltutor.GoldenChicken.wingSpeed=翅膀振速
+
+container.fmltutor.demo=FML教程示例GUI

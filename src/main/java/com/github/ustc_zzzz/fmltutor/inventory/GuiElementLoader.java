@@ -23,7 +23,7 @@ public class GuiElementLoader implements IGuiHandler
         switch (ID)
         {
         case GUI_DEMO:
-            return new ContainerDemo();
+            return new ContainerDemo(player);
         default:
             return null;
         }
@@ -35,7 +35,7 @@ public class GuiElementLoader implements IGuiHandler
         switch (ID)
         {
         case GUI_DEMO:
-            return new GuiContainerDemo(new ContainerDemo());
+            return new GuiContainerDemo(new ContainerDemo(player));
         default:
             return null;
         }

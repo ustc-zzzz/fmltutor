@@ -47,3 +47,5 @@ fluid.mercury=Mercury
 entity.fmltutor.GoldenChicken.name=Golden Chicken
 
 attribute.name.fmltutor.GoldenChicken.wingSpeed=Wing Speed
+
+container.fmltutor.demo=FMLTutor GUI Demo
