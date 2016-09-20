@@ -84,7 +84,7 @@ Welcome to the fmltutor wiki!
 * [使用SimpleImpl同步数据](3.3.2-使用SimpleImpl同步数据.md)
 * [世界附加数据存储](3.3.3-世界附加数据存储.md)
 
-#### 3.4 [GUI](#34-GUI)
+#### 3.4 [GUI](#34-gui)
 
 * [创建一个新的GUI界面](3.4.1-创建一个新的GUI界面.md)
 * [GUI界面的个性化与物品槽的添加](3.4.2-GUI界面的个性化与物品槽的添加.md)
