@@ -1,5 +1,7 @@
 package com.github.ustc_zzzz.fmltutor.client.gui;
 
+import java.io.IOException;
+
 import com.github.ustc_zzzz.fmltutor.FMLTutor;
 import com.github.ustc_zzzz.fmltutor.inventory.ContainerDemo;
 import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
@@ -9,6 +11,8 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,11 +27,14 @@ public class GuiContainerDemo extends GuiContainer
     private static final int BUTTON_UP = 0;
     private static final int BUTTON_DOWN = 1;
 
+    private Slot ironSlot;
+
     public GuiContainerDemo(ContainerDemo inventorySlotsIn)
     {
         super(inventorySlotsIn);
         this.xSize = 176;
         this.ySize = 133;
+        this.ironSlot = inventorySlotsIn.getIronSlot();
     }
 
     @Override
@@ -81,6 +88,28 @@ public class GuiContainerDemo extends GuiContainer
                 }
             }
         });
+    }
+
+    @Override
+    protected void actionPerformed(GuiButton button) throws IOException
+    {
+        ItemStack stack = this.ironSlot.getStack();
+        int amount = stack == null ? 0 : stack.stackSize;
+
+        switch (button.id)
+        {
+        case BUTTON_DOWN:
+            amount = (amount + 64) % 65;
+            break;
+        case BUTTON_UP:
+            amount = (amount + 1) % 65;
+            break;
+        default:
+            super.actionPerformed(button);
+            return;
+        }
+
+        this.ironSlot.putStack(amount == 0 ? null : new ItemStack(Items.iron_ingot, amount));
     }
 
     @Override
