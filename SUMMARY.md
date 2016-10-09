@@ -54,4 +54,5 @@
     * [附录A 事件列表](附录A-事件列表.md)
     * [附录B 配置Gradle的一些小技巧](附录B-配置Gradle的一些小技巧.md)
     * [附录C 混淆与反射](附录C-混淆与反射.md)
+    * [附录D 使用AccessTransformers](附录D-使用AccessTransformers.md)
 
