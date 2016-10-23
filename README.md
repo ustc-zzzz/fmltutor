@@ -137,5 +137,5 @@ Welcome to the fmltutor wiki!
 转载请附上本作品链接：
 <https://fmltutor.ustc-zzzz.net/>
 
-另外，本作品同时提供[源代码](https://github.com/ustc-zzzz/fmltutor/tags)，所有源代码使用[MIT协议](https://github.com/ustc-zzzz/fmltutor/blob/master/LICENSE)开源。
+另外，本作品同时提供[源代码](https://github.com/ustc-zzzz/fmltutor/tree/master)，所有源代码使用[MIT协议](https://github.com/ustc-zzzz/fmltutor/blob/master/LICENSE)开源。
 

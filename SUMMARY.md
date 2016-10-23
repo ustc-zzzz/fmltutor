@@ -1,5 +1,7 @@
 # Summary
 
+* [源代码仓库（记得Star哦）](https://github.com/ustc-zzzz/fmltutor/tree/master)
+
 * [目录](README.md)
 
 * [0 绪论](0-绪论.md)
