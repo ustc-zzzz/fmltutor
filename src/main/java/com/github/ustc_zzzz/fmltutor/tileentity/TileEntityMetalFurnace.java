@@ -81,16 +81,7 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable
             {
                 this.worldObj.setBlockState(pos, state.withProperty(BlockMetalFurnace.BURNING, Boolean.TRUE));
 
-                int burnTotalTime = 200;
-                switch (state.getValue(BlockMetalFurnace.MATERIAL))
-                {
-                case IRON:
-                    burnTotalTime = 150;
-                    break;
-                case GOLD:
-                    burnTotalTime = 100;
-                    break;
-                }
+                int burnTotalTime = this.getTotalBurnTime();
 
                 if (++this.burnTime >= burnTotalTime)
                 {
@@ -125,5 +116,24 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable
     public float getRotation()
     {
         return (float) (this.rotationDegree * Math.PI / 180);
+    }
+
+    public int getBurnTime()
+    {
+        return this.burnTime;
+    }
+
+    public int getTotalBurnTime()
+    {
+        IBlockState state = this.worldObj.getBlockState(this.pos);
+        switch (state.getValue(BlockMetalFurnace.MATERIAL))
+        {
+        case GOLD:
+            return 100;
+        case IRON:
+            return 150;
+        default:
+            return 200;
+        }
     }
 }

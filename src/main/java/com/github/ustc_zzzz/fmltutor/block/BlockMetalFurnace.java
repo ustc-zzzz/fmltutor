@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.vecmath.Matrix4f;
 
+import com.github.ustc_zzzz.fmltutor.FMLTutor;
 import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
+import com.github.ustc_zzzz.fmltutor.inventory.GuiElementLoader;
 import com.github.ustc_zzzz.fmltutor.tileentity.TileEntityMetalFurnace;
 import com.google.common.collect.Lists;
 
@@ -24,7 +26,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.IBlockAccess;
@@ -100,11 +101,8 @@ public class BlockMetalFurnace extends BlockContainer
     {
         if (!worldIn.isRemote)
         {
-            TileEntityMetalFurnace te = (TileEntityMetalFurnace) worldIn.getTileEntity(pos);
-            IItemHandler up = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-            IItemHandler down = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
-            String msg = String.format("Up: %s, Down: %s", up.getStackInSlot(0), down.getStackInSlot(0));
-            playerIn.addChatComponentMessage(new ChatComponentText(msg));
+            int id = GuiElementLoader.GUI_METAL_FURNACE;
+            playerIn.openGui(FMLTutor.instance, id, worldIn, pos.getX(), pos.getY(), pos.getZ());
         }
         return true;
     }
