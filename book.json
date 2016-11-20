@@ -2,8 +2,8 @@
     "plugins": ["theme-default@1.0.5", "addcssjs"],
     "pluginsConfig": {
         "addcssjs": {
-            "js": ["book.js"],
-            "css": ["book.css"]
+            "js": ["resources/book.js"],
+            "css": ["resources/book.css"]
         }
     }
 }
