@@ -1,3 +1,9 @@
 {
-    "plugins": ["theme-default@1.0.5"]
+    "plugins": ["theme-default@1.0.5", "addcssjs"],
+    "pluginsConfig": {
+        "addcssjs": {
+            "js": ["book.js"],
+            "css": ["book.css"]
+        }
+    }
 }
