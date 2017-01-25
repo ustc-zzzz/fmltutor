@@ -1109,7 +1109,7 @@
 
 #### [F] FMLNetworkEvent.ClientConnectedToServerEvent extends FMLNetworkEvent &lt;INetHandlerPlayClient&gt;
 
-当FML客户端连接到服务端时触发。
+当FML客户端发送连接服务端的请求时触发。
 
 常量：
 
@@ -1156,7 +1156,7 @@
 
 #### [F] FMLNetworkEvent.ServerConnectionFromClientEvent extends FMLNetworkEvent &lt;INetHandlerPlayServer&gt;
 
-当FML服务端连接到客户端时触发。
+当FML服务端收到客户端连接的请求时触发。
 
 常量：
 
