@@ -117,8 +117,8 @@ Welcome to the fmltutor wiki!
 * [配置Gradle的一些小技巧](附录B-配置Gradle的一些小技巧.md)
 * [混淆与反射](附录C-混淆与反射.md)
 * [使用AccessTransformers](附录D-使用AccessTransformers.md)
+* [使用Scala编写Mod](附录E-使用Scala编写Mod.md)
 * 使用Git管理项目
-* 使用Scala编写Mod
 * 与其他Mod协作
 
 ## 版权声明
