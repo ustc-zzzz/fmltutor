@@ -1,0 +1,385 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Sun, 6 Nov 2016 18:38:02 +0800
+Subject: v3.4.4
+
+---
+ .../fmltutor/block/BlockMetalFurnace.java          |  10 +-
+ .../fmltutor/client/gui/GuiMetalFurnace.java       |  45 +++++++
+ .../fmltutor/inventory/ContainerMetalFurnace.java  | 150 +++++++++++++++++++++
+ .../fmltutor/inventory/GuiElementLoader.java       |   7 +
+ .../tileentity/TileEntityMetalFurnace.java         |  30 +++--
+ .../textures/gui/container/gui_metal_furnace.png   | Bin 0 -> 1558 bytes
+ 6 files changed, 226 insertions(+), 16 deletions(-)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiMetalFurnace.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerMetalFurnace.java
+ create mode 100644 src/main/resources/assets/fmltutor/textures/gui/container/gui_metal_furnace.png
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java
+index 9c2c80d..acca45f 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java
+@@ -4,7 +4,9 @@ import java.util.List;
+ 
+ import javax.vecmath.Matrix4f;
+ 
++import com.github.ustc_zzzz.fmltutor.FMLTutor;
+ import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
++import com.github.ustc_zzzz.fmltutor.inventory.GuiElementLoader;
+ import com.github.ustc_zzzz.fmltutor.tileentity.TileEntityMetalFurnace;
+ import com.google.common.collect.Lists;
+ 
+@@ -24,7 +26,6 @@ import net.minecraft.item.Item;
+ import net.minecraft.item.ItemStack;
+ import net.minecraft.tileentity.TileEntity;
+ import net.minecraft.util.BlockPos;
+-import net.minecraft.util.ChatComponentText;
+ import net.minecraft.util.EnumFacing;
+ import net.minecraft.util.IStringSerializable;
+ import net.minecraft.world.IBlockAccess;
+@@ -100,11 +101,8 @@ public class BlockMetalFurnace extends BlockContainer
+     {
+         if (!worldIn.isRemote)
+         {
+-            TileEntityMetalFurnace te = (TileEntityMetalFurnace) worldIn.getTileEntity(pos);
+-            IItemHandler up = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
+-            IItemHandler down = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
+-            String msg = String.format("Up: %s, Down: %s", up.getStackInSlot(0), down.getStackInSlot(0));
+-            playerIn.addChatComponentMessage(new ChatComponentText(msg));
++            int id = GuiElementLoader.GUI_METAL_FURNACE;
++            playerIn.openGui(FMLTutor.instance, id, worldIn, pos.getX(), pos.getY(), pos.getZ());
+         }
+         return true;
+     }
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiMetalFurnace.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiMetalFurnace.java
+new file mode 100644
+index 0000000..b131e9b
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiMetalFurnace.java
+@@ -0,0 +1,45 @@
++package com.github.ustc_zzzz.fmltutor.client.gui;
++
++import com.github.ustc_zzzz.fmltutor.FMLTutor;
++import com.github.ustc_zzzz.fmltutor.inventory.ContainerMetalFurnace;
++
++import net.minecraft.client.gui.inventory.GuiContainer;
++import net.minecraft.client.renderer.GlStateManager;
++import net.minecraft.util.ResourceLocation;
++import net.minecraftforge.fml.relauncher.Side;
++import net.minecraftforge.fml.relauncher.SideOnly;
++
++@SideOnly(Side.CLIENT)
++public class GuiMetalFurnace extends GuiContainer
++{
++    private static final String TEXTURE_PATH = FMLTutor.MODID + ":" + "textures/gui/container/gui_metal_furnace.png";
++    private static final ResourceLocation TEXTURE = new ResourceLocation(TEXTURE_PATH);
++
++    protected ContainerMetalFurnace inventory;
++
++    private int totalBurnTime;
++
++    public GuiMetalFurnace(ContainerMetalFurnace inventorySlotsIn)
++    {
++        super(inventorySlotsIn);
++        this.xSize = 176;
++        this.ySize = 156;
++        this.inventory = inventorySlotsIn;
++        this.totalBurnTime = inventorySlotsIn.getTotalBurnTime();
++    }
++
++    @Override
++    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
++    {
++        GlStateManager.color(1.0F, 1.0F, 1.0F);
++
++        this.mc.getTextureManager().bindTexture(TEXTURE);
++        int offsetX = (this.width - this.xSize) / 2, offsetY = (this.height - this.ySize) / 2;
++
++        this.drawTexturedModalRect(offsetX, offsetY, 0, 0, this.xSize, this.ySize);
++
++        int burnTime = this.inventory.getBurnTime();
++        int textureWidth = 1 + (int) Math.ceil(22.0 * burnTime / this.totalBurnTime);
++        this.drawTexturedModalRect(offsetX + 79, offsetY + 30, 0, 156, textureWidth, 17);
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerMetalFurnace.java b/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerMetalFurnace.java
+new file mode 100644
+index 0000000..306d120
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerMetalFurnace.java
+@@ -0,0 +1,150 @@
++package com.github.ustc_zzzz.fmltutor.inventory;
++
++import com.github.ustc_zzzz.fmltutor.tileentity.TileEntityMetalFurnace;
++
++import net.minecraft.entity.player.EntityPlayer;
++import net.minecraft.inventory.Container;
++import net.minecraft.inventory.ICrafting;
++import net.minecraft.inventory.Slot;
++import net.minecraft.item.ItemStack;
++import net.minecraft.tileentity.TileEntity;
++import net.minecraft.util.EnumFacing;
++import net.minecraftforge.fml.relauncher.Side;
++import net.minecraftforge.fml.relauncher.SideOnly;
++import net.minecraftforge.items.CapabilityItemHandler;
++import net.minecraftforge.items.IItemHandler;
++import net.minecraftforge.items.SlotItemHandler;
++
++public class ContainerMetalFurnace extends Container
++{
++    private IItemHandler upItems;
++    private IItemHandler downItems;
++
++    protected TileEntityMetalFurnace tileEntity;
++
++    protected int burnTime = 0;
++
++    public ContainerMetalFurnace(EntityPlayer player, TileEntity tileEntity)
++    {
++        super();
++
++        this.upItems = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
++        this.downItems = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
++
++        this.addSlotToContainer(new SlotItemHandler(this.upItems, 0, 56, 30));
++        this.addSlotToContainer(new SlotItemHandler(this.downItems, 0, 110, 30)
++        {
++            @Override
++            public boolean isItemValid(ItemStack stack)
++            {
++                return false;
++            }
++        });
++
++        for (int i = 0; i < 3; ++i)
++        {
++            for (int j = 0; j < 9; ++j)
++            {
++                this.addSlotToContainer(new Slot(player.inventory, j + i * 9 + 9, 8 + j * 18, 74 + i * 18));
++            }
++        }
++
++        for (int i = 0; i < 9; ++i)
++        {
++            this.addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, 132));
++        }
++
++        this.tileEntity = (TileEntityMetalFurnace) tileEntity;
++    }
++
++    @Override
++    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
++    {
++        Slot slot = inventorySlots.get(index);
++
++        if (slot == null || !slot.getHasStack())
++        {
++            return null;
++        }
++
++        ItemStack newStack = slot.getStack(), oldStack = newStack.copy();
++
++        boolean isMerged = false;
++
++        if (index == 0 || index == 1)
++        {
++            isMerged = mergeItemStack(newStack, 2, 38, true);
++        }
++        else if (index >= 2 && index < 29)
++        {
++            isMerged = mergeItemStack(newStack, 0, 1, false) || mergeItemStack(newStack, 29, 38, false);
++        }
++        else if (index >= 29 && index < 38)
++        {
++            isMerged = mergeItemStack(newStack, 0, 1, false) || mergeItemStack(newStack, 2, 29, false);
++        }
++
++        if (!isMerged)
++        {
++            return null;
++        }
++
++        if (newStack.stackSize == 0)
++        {
++            slot.putStack(null);
++        }
++        else
++        {
++            slot.onSlotChanged();
++        }
++
++        slot.onPickupFromSlot(playerIn, newStack);
++
++        return oldStack;
++    }
++
++    @Override
++    public boolean canInteractWith(EntityPlayer playerIn)
++    {
++        return playerIn.getDistanceSq(this.tileEntity.getPos()) <= 64;
++    }
++
++    @Override
++    public void detectAndSendChanges()
++    {
++        super.detectAndSendChanges();
++
++        this.burnTime = tileEntity.getBurnTime();
++
++        for (ICrafting i : this.crafters)
++        {
++            i.sendProgressBarUpdate(this, 0, this.burnTime);
++        }
++    }
++
++    @SideOnly(Side.CLIENT)
++    @Override
++    public void updateProgressBar(int id, int data)
++    {
++        super.updateProgressBar(id, data);
++
++        switch (id)
++        {
++        case 0:
++            this.burnTime = data;
++            break;
++        default:
++            break;
++        }
++    }
++
++    public int getBurnTime()
++    {
++        return this.burnTime;
++    }
++
++    public int getTotalBurnTime()
++    {
++        return this.tileEntity.getTotalBurnTime();
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java
+index 0921052..a33a52e 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java
+@@ -2,8 +2,10 @@ package com.github.ustc_zzzz.fmltutor.inventory;
+ 
+ import com.github.ustc_zzzz.fmltutor.FMLTutor;
+ import com.github.ustc_zzzz.fmltutor.client.gui.GuiContainerDemo;
++import com.github.ustc_zzzz.fmltutor.client.gui.GuiMetalFurnace;
+ 
+ import net.minecraft.entity.player.EntityPlayer;
++import net.minecraft.util.BlockPos;
+ import net.minecraft.world.World;
+ import net.minecraftforge.fml.common.network.IGuiHandler;
+ import net.minecraftforge.fml.common.network.NetworkRegistry;
+@@ -11,6 +13,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
+ public class GuiElementLoader implements IGuiHandler
+ {
+     public static final int GUI_DEMO = 1;
++    public static final int GUI_METAL_FURNACE = 2;
+ 
+     public GuiElementLoader()
+     {
+@@ -24,6 +27,8 @@ public class GuiElementLoader implements IGuiHandler
+         {
+         case GUI_DEMO:
+             return new ContainerDemo(player);
++        case GUI_METAL_FURNACE:
++            return new ContainerMetalFurnace(player, world.getTileEntity(new BlockPos(x, y, z)));
+         default:
+             return null;
+         }
+@@ -36,6 +41,8 @@ public class GuiElementLoader implements IGuiHandler
+         {
+         case GUI_DEMO:
+             return new GuiContainerDemo(new ContainerDemo(player));
++        case GUI_METAL_FURNACE:
++            return new GuiMetalFurnace(new ContainerMetalFurnace(player, world.getTileEntity(new BlockPos(x, y, z))));
+         default:
+             return null;
+         }
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java b/src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java
+index 2bc7c17..b665d70 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java
+@@ -81,16 +81,7 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable
+             {
+                 this.worldObj.setBlockState(pos, state.withProperty(BlockMetalFurnace.BURNING, Boolean.TRUE));
+ 
+-                int burnTotalTime = 200;
+-                switch (state.getValue(BlockMetalFurnace.MATERIAL))
+-                {
+-                case IRON:
+-                    burnTotalTime = 150;
+-                    break;
+-                case GOLD:
+-                    burnTotalTime = 100;
+-                    break;
+-                }
++                int burnTotalTime = this.getTotalBurnTime();
+ 
+                 if (++this.burnTime >= burnTotalTime)
+                 {
+@@ -126,4 +117,23 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable
+     {
+         return (float) (this.rotationDegree * Math.PI / 180);
+     }
++
++    public int getBurnTime()
++    {
++        return this.burnTime;
++    }
++
++    public int getTotalBurnTime()
++    {
++        IBlockState state = this.worldObj.getBlockState(this.pos);
++        switch (state.getValue(BlockMetalFurnace.MATERIAL))
++        {
++        case GOLD:
++            return 100;
++        case IRON:
++            return 150;
++        default:
++            return 200;
++        }
++    }
+ }
+diff --git a/src/main/resources/assets/fmltutor/textures/gui/container/gui_metal_furnace.png b/src/main/resources/assets/fmltutor/textures/gui/container/gui_metal_furnace.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..b9dc458f1d24b25ab1797c0afa159f7f2cc21f47
+GIT binary patch
+literal 1558
+zcmb_bX;4#F6u$3~gc!EO35JFx5uMaJp`a5BW|Tw>6Q~eYQ7Baep)LgxBU>$bl}gmA
+z#IY457{k(0!xDs|?1C-e$S%qztCXcN0ck*p1n8sw>5LtxKYH)nIp?1F&N|<@;4R>r
+z5U2zIfQh>s&ldm)RUv@Kp&~fuP6R4&p?ml|u(EpP)wi#qmNn6Cfu{g4ty_Ii+12A3
+z)MzMl_jENJHp1eW+y5+oL<0bu<IdaVAK#}Ls1|J4XMr1TBT<kt$k)y_3aP6P*p)4}
+z3`(4oFg&S0rZC)CK4ssN+kNuM3bIY%cmBWQvis|D9X^X#_+rawctoq#?RppI%;T_{
+z?upD9o79)P%-hX!dO1&uFO^;!U6`LZIH=F6Z;XtL+<uWXGmx*#QxGU=&cUh^0hZ$K
+zd$BS4+}>B+j;6}6tv4p$1_A$hL-WKeW)pvXbV*P{!^r7pyR(v(B1(m?j|He4`}_Ny
+zHVgZDdjr)PO?`d6t2rqLO>;hPE<IBay2Hkc_DhM)@k%4V<i%H`%Jj{-PS|$+Y{1e$
+z(%T36MrjUw3<A|CgcR3S2<>RrP20wH6+n29a=4~vK74jzU|BWYXjb)5G_T}Xv!L3d
+zl$E%Xi;JnH-er}vk33qY;uu`uP&Oj^?fHa82M@EzHK{KKytHCZiUCaw!^ohtb?FCM
+zQew>FDxg%&q3KD$xK%Ut=FCP1TAzJYlf7(Rrt|W(WCpOfC{6`KJIj@ulD^sMyFYU?
+z9ZZ(%+LLCOwP~VpPY%tze`rOhklZ&HBhHn9c40AzRMJD|Q!n<Uo?3^NVbNyt$52H9
+zv*~fMy2b0E>5|AK1D3oY+cxDx2$2Zr7!1He5O4{3or&dkI{VrGRK4XAppRTd0P>ZU
+zl~p=iE0NCW_4@k6#l=M!yp^{^c;3}{LiCYw3Xnu=jeuL34hu3kBjc$S3%0`@9X_Mf
+z1X)~^;f*Y3`xbi;ls1u&bIbl>=qI-bQV+&uYEfQWo|o^5<&ChsDI*2cjK84P0vCWm
+zhybEvxM)2KI3^sMf7H%66hrs7!eF?HOTYnZ5noa>`>9g51tv1+fW^Us7BiTuO$P1y
+z)i29&vJ**=@qNfLO0ESMor#x74;arS93lWb-~s>xB0vDZ0Q%oc^1kU`0Liaajt17&
+z*4vh`39`nqv7gzhs>&<VK6*JwuLhoES5jJ9n(B^rid}<iA%8Fd7dT<)0KrsO(73V*
+zAF}J{!R#w+Vdo}Wg+gI#EBm@Cgik+R;eESiLp#b{9xpgJxOq7xumK<P24)><v^<^B
+zb#H@Y+xvC@vpZ;*i1xVlFdB+|P&|e@ux~2E_;NEU)O-M8sN-`4o$OdlG46vip#v+J
+z2)Jj}_*}untD+ssDLm#&G^XFX<nd|yD3FGbFQBNN#bL)Sv9)UKkw=9ORIGxqlYRef
+z487+2Z?<+HN>CF#rhCkL-Z|0BM>v}O7tVJaVJV&z3!~T9lel~L<`fjz@skIOKu@+p
+z@p9RNJNELaxM^@u)(}~DhuNg6=46KVN^hH%FfAjaqV5-Ss@O-n?yg*ZE--j1B((Fc
+zhhMRsefGJf>mYT_Lavl;EF=_7o+B1{@6Pjp*etArH9&bMR~`qEj+*XFYlQKuD99KI
+zPd|rHjMrws&FC69RWL7OYuE9?bYz!StEEUqBGHf$_FFs>SaN@^btqz|{9`|qj~8&r
+wxR__a)$Y!Q<hu18C^se1;7Ahq-w$Fo$04}fu-r*$FkKDq?keCFx`dql3%+$u7XSbN
+
+literal 0
+HcmV?d00001
+
+-- 
+2.11.0
+

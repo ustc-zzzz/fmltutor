@@ -1,0 +1,174 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Sat, 24 Oct 2015 15:22:44 +0800
+Subject: v1.3
+
+---
+ .../ustc_zzzz/fmltutor/client/ClientProxy.java     |   1 +
+ .../fmltutor/client/ItemRenderLoader.java          |  11 ++++++
+ .../ustc_zzzz/fmltutor/common/CommonProxy.java     |   4 ++-
+ .../ustc_zzzz/fmltutor/item/ItemGoldenEgg.java     |  12 +++++++
+ .../github/ustc_zzzz/fmltutor/item/ItemLoader.java |  38 +++++++++++++++++++++
+ .../assets/fmltutor/models/item/golden_egg.json    |  18 ++++++++++
+ .../assets/fmltutor/textures/items/golden_egg.png  | Bin 0 -> 287 bytes
+ 7 files changed, 83 insertions(+), 1 deletion(-)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
+ create mode 100644 src/main/resources/assets/fmltutor/models/item/golden_egg.json
+ create mode 100644 src/main/resources/assets/fmltutor/textures/items/golden_egg.png
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java
+index 98a8914..9f6c94f 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java
+@@ -12,6 +12,7 @@ public class ClientProxy extends CommonProxy
+     public void preInit(FMLPreInitializationEvent event)
+     {
+         super.preInit(event);
++        new ItemRenderLoader();
+     }
+ 
+     @Override
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java
+new file mode 100644
+index 0000000..6b3a6d7
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java
+@@ -0,0 +1,11 @@
++package com.github.ustc_zzzz.fmltutor.client;
++
++import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
++
++public class ItemRenderLoader
++{
++    public ItemRenderLoader()
++    {
++        ItemLoader.registerRenders();
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+index c8ba597..399fd96 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+@@ -1,5 +1,7 @@
+ package com.github.ustc_zzzz.fmltutor.common;
+ 
++import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
++
+ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+@@ -8,7 +10,7 @@ public class CommonProxy
+ {
+     public void preInit(FMLPreInitializationEvent event)
+     {
+-
++        new ItemLoader(event);
+     }
+ 
+     public void init(FMLInitializationEvent event)
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java
+new file mode 100644
+index 0000000..725889a
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java
+@@ -0,0 +1,12 @@
++package com.github.ustc_zzzz.fmltutor.item;
++
++import net.minecraft.item.Item;
++
++public class ItemGoldenEgg extends Item
++{
++    public ItemGoldenEgg()
++    {
++        super();
++        this.setUnlocalizedName("goldenEgg");
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
+new file mode 100644
+index 0000000..0128ecb
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
+@@ -0,0 +1,38 @@
++package com.github.ustc_zzzz.fmltutor.item;
++
++import net.minecraft.client.resources.model.ModelResourceLocation;
++import net.minecraft.item.Item;
++import net.minecraftforge.client.model.ModelLoader;
++import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
++import net.minecraftforge.fml.common.registry.GameData;
++import net.minecraftforge.fml.common.registry.GameRegistry;
++import net.minecraftforge.fml.relauncher.Side;
++import net.minecraftforge.fml.relauncher.SideOnly;
++
++public class ItemLoader
++{
++    public static Item goldenEgg = new ItemGoldenEgg();
++
++    public ItemLoader(FMLPreInitializationEvent event)
++    {
++        register(goldenEgg, "golden_egg");
++    }
++
++    @SideOnly(Side.CLIENT)
++    public static void registerRenders()
++    {
++        registerRender(goldenEgg);
++    }
++
++    private static void register(Item item, String name)
++    {
++        GameRegistry.registerItem(item, name);
++    }
++
++    @SideOnly(Side.CLIENT)
++    private static void registerRender(Item item)
++    {
++        String name = GameData.getItemRegistry().getNameForObject(item).toString();
++        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(name, "inventory"));
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/models/item/golden_egg.json b/src/main/resources/assets/fmltutor/models/item/golden_egg.json
+new file mode 100644
+index 0000000..7906f68
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/item/golden_egg.json
+@@ -0,0 +1,18 @@
++{
++    "parent": "builtin/generated",
++    "textures": {
++        "layer0": "fmltutor:items/golden_egg"
++    },
++    "display": {
++        "thirdperson": {
++            "rotation": [ -90, 0, 0 ],
++            "translation": [ 0, 1, -2 ],
++            "scale": [ 0.55, 0.55, 0.55 ]
++        },
++        "firstperson": {
++            "rotation": [ 0, -135, 25 ],
++            "translation": [ 0, 4, 2 ],
++            "scale": [ 1.7, 1.7, 1.7 ]
++        }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/textures/items/golden_egg.png b/src/main/resources/assets/fmltutor/textures/items/golden_egg.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..1267217ec0fb3353fa33d28c177f54a10a720087
+GIT binary patch
+literal 287
+zcmeAS@N?(olHy`uVBq!ia0vp^0wB!61|;P_|4#%`Y)RhkE)4%caKYZ?lYt_f1s;*b
+z3=G`DAk4@xYmNj^kiEpy*OmP~mjtT>N7bs0+(4l<o-U3d7N?UFB(6Mo6W92^SpCx<
+zb??VF_cHz8Umx-5|KrO${{P@fI=C$IbOqO(^T*yETd?Th0T4cLV8grmqJQFUDPMh#
+z?C9vd&AVJi*zWd4M-LAH=3U`4G<Y-Al5&qf<$ATVp|P>?;q~jWPoxvx{Av7nuGcq0
+zR8e|Q+F2{MCo7J8IMm<&Ilx4qNK|<jgHD5!Q&Yf^>uVy918q3aFmHlH;mjVn`!A$c
+avN7ym>8;Cu@~#8W-3*?telF{r5}E+;fp=#B
+
+literal 0
+HcmV?d00001
+
+-- 
+2.11.0
+

@@ -1,0 +1,261 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Tue, 20 Sep 2016 05:44:44 +0800
+Subject: v3.4.2
+
+---
+ .../fmltutor/client/gui/GuiContainerDemo.java      |  85 ++++++++++++++++++++-
+ .../fmltutor/inventory/ContainerDemo.java          |  31 +++++++-
+ .../fmltutor/inventory/GuiElementLoader.java       |   4 +-
+ src/main/resources/assets/fmltutor/lang/en_US.lang |   2 +
+ src/main/resources/assets/fmltutor/lang/zh_CN.lang |   2 +
+ .../fmltutor/textures/gui/container/gui_demo.png   | Bin 0 -> 1627 bytes
+ 6 files changed, 119 insertions(+), 5 deletions(-)
+ create mode 100644 src/main/resources/assets/fmltutor/textures/gui/container/gui_demo.png
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java
+index 366a951..b1e3cf8 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java
+@@ -1,28 +1,109 @@
+ package com.github.ustc_zzzz.fmltutor.client.gui;
+ 
++import com.github.ustc_zzzz.fmltutor.FMLTutor;
+ import com.github.ustc_zzzz.fmltutor.inventory.ContainerDemo;
++import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+ 
++import net.minecraft.client.Minecraft;
++import net.minecraft.client.gui.GuiButton;
+ import net.minecraft.client.gui.inventory.GuiContainer;
++import net.minecraft.client.renderer.GlStateManager;
++import net.minecraft.client.resources.I18n;
++import net.minecraft.item.ItemStack;
++import net.minecraft.util.ResourceLocation;
+ import net.minecraftforge.fml.relauncher.Side;
+ import net.minecraftforge.fml.relauncher.SideOnly;
+ 
+ @SideOnly(Side.CLIENT)
+ public class GuiContainerDemo extends GuiContainer
+ {
++    private static final String TEXTURE_PATH = FMLTutor.MODID + ":" + "textures/gui/container/gui_demo.png";
++    private static final ResourceLocation TEXTURE = new ResourceLocation(TEXTURE_PATH);
++
++    private static final int BUTTON_UP = 0;
++    private static final int BUTTON_DOWN = 1;
++
+     public GuiContainerDemo(ContainerDemo inventorySlotsIn)
+     {
+         super(inventorySlotsIn);
++        this.xSize = 176;
++        this.ySize = 133;
++    }
++
++    @Override
++    public void initGui()
++    {
++        super.initGui();
++        int offsetX = (this.width - this.xSize) / 2, offsetY = (this.height - this.ySize) / 2;
++        this.buttonList.add(new GuiButton(BUTTON_UP, offsetX + 153, offsetY + 17, 15, 10, "")
++        {
++            @Override
++            public void drawButton(Minecraft mc, int mouseX, int mouseY)
++            {
++                if (this.visible)
++                {
++                    GlStateManager.color(1.0F, 1.0F, 1.0F);
++
++                    mc.getTextureManager().bindTexture(TEXTURE);
++                    int x = mouseX - this.xPosition, y = mouseY - this.yPosition;
++
++                    if (x >= 0 && y >= 0 && x < this.width && y < this.height)
++                    {
++                        this.drawTexturedModalRect(this.xPosition, this.yPosition, 1, 146, this.width, this.height);
++                    }
++                    else
++                    {
++                        this.drawTexturedModalRect(this.xPosition, this.yPosition, 1, 134, this.width, this.height);
++                    }
++                }
++            }
++        });
++        this.buttonList.add(new GuiButton(BUTTON_DOWN, offsetX + 153, offsetY + 29, 15, 10, "")
++        {
++            @Override
++            public void drawButton(Minecraft mc, int mouseX, int mouseY)
++            {
++                if (this.visible)
++                {
++                    GlStateManager.color(1.0F, 1.0F, 1.0F);
++
++                    mc.getTextureManager().bindTexture(TEXTURE);
++                    int x = mouseX - this.xPosition, y = mouseY - this.yPosition;
++
++                    if (x >= 0 && y >= 0 && x < this.width && y < this.height)
++                    {
++                        this.drawTexturedModalRect(this.xPosition, this.yPosition, 20, 146, this.width, this.height);
++                    }
++                    else
++                    {
++                        this.drawTexturedModalRect(this.xPosition, this.yPosition, 20, 134, this.width, this.height);
++                    }
++                }
++            }
++        });
+     }
+ 
+     @Override
+     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+     {
+-        // TODO
++        GlStateManager.color(1.0F, 1.0F, 1.0F);
++
++        this.mc.getTextureManager().bindTexture(TEXTURE);
++        int offsetX = (this.width - this.xSize) / 2, offsetY = (this.height - this.ySize) / 2;
++
++        this.drawTexturedModalRect(offsetX, offsetY, 0, 0, this.xSize, this.ySize);
+     }
+ 
+     @Override
+     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
+     {
+-        // TODO
++        this.drawVerticalLine(30, 19, 36, 0xFF000000);
++        this.drawHorizontalLine(8, 167, 43, 0xFF000000);
++
++        String title = I18n.format("container.fmltutor.demo");
++        this.fontRendererObj.drawString(title, (this.xSize - this.fontRendererObj.getStringWidth(title)) / 2, 6, 0x404040);
++
++        ItemStack item = new ItemStack(ItemLoader.goldenEgg);
++        this.itemRender.renderItemAndEffectIntoGUI(item, 8, 20);
+     }
+ }
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java b/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java
+index dc4b991..f4bb3f1 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java
+@@ -4,13 +4,42 @@ import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+ 
+ import net.minecraft.entity.player.EntityPlayer;
+ import net.minecraft.inventory.Container;
++import net.minecraft.inventory.Slot;
+ import net.minecraft.item.ItemStack;
++import net.minecraftforge.items.ItemStackHandler;
++import net.minecraftforge.items.SlotItemHandler;
+ 
+ public class ContainerDemo extends Container
+ {
+-    public ContainerDemo()
++    private ItemStackHandler items = new ItemStackHandler(4);
++
++    public ContainerDemo(EntityPlayer player)
+     {
+         super();
++
++        for (int i = 0; i < 4; ++i)
++        {
++            this.addSlotToContainer(new SlotItemHandler(items, i, 38 + i * 32, 20));
++        }
++
++        for (int i = 0; i < 3; ++i)
++        {
++            for (int j = 0; j < 9; ++j)
++            {
++                this.addSlotToContainer(new Slot(player.inventory, j + i * 9 + 9, 8 + j * 18, 51 + i * 18));
++            }
++        }
++
++        for (int i = 0; i < 9; ++i)
++        {
++            this.addSlotToContainer(new Slot(player.inventory, i, 8 + i * 18, 109));
++        }
++    }
++
++    @Override
++    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
++    {
++        return null;
+     }
+ 
+     @Override
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java
+index c056067..0921052 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java
+@@ -23,7 +23,7 @@ public class GuiElementLoader implements IGuiHandler
+         switch (ID)
+         {
+         case GUI_DEMO:
+-            return new ContainerDemo();
++            return new ContainerDemo(player);
+         default:
+             return null;
+         }
+@@ -35,7 +35,7 @@ public class GuiElementLoader implements IGuiHandler
+         switch (ID)
+         {
+         case GUI_DEMO:
+-            return new GuiContainerDemo(new ContainerDemo());
++            return new GuiContainerDemo(new ContainerDemo(player));
+         default:
+             return null;
+         }
+diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
+index 3ab825f..3f01ff9 100644
+--- a/src/main/resources/assets/fmltutor/lang/en_US.lang
++++ b/src/main/resources/assets/fmltutor/lang/en_US.lang
+@@ -47,3 +47,5 @@ fluid.mercury=Mercury
+ entity.fmltutor.GoldenChicken.name=Golden Chicken
+ 
+ attribute.name.fmltutor.GoldenChicken.wingSpeed=Wing Speed
++
++container.fmltutor.demo=FMLTutor GUI Demo
+diff --git a/src/main/resources/assets/fmltutor/lang/zh_CN.lang b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+index 8d25504..4ef5c00 100644
+--- a/src/main/resources/assets/fmltutor/lang/zh_CN.lang
++++ b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+@@ -47,3 +47,5 @@ fluid.mercury=水银
+ entity.fmltutor.GoldenChicken.name=黄金鸡
+ 
+ attribute.name.fmltutor.GoldenChicken.wingSpeed=翅膀振速
++
++container.fmltutor.demo=FML教程示例GUI
+diff --git a/src/main/resources/assets/fmltutor/textures/gui/container/gui_demo.png b/src/main/resources/assets/fmltutor/textures/gui/container/gui_demo.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..bdcd7ecc787d1f73923d65504b7346b785e95c5b
+GIT binary patch
+literal 1627
+zcmcIheLT~79RF^fCKrYXJ6m#;hv-W36vq(Nrktrx47KH{oH-9uZBm&-q?3n;>ZDh!
+zS-PggmWMcQMm4I%xoVs8d|4(ByWe{C-_`wh-|y@D`g~rW*Z1@Oyx;Fnb|B7g<qDG(
+z0DzVL+p&89fI%q?Ak?7{ns}WA1@*`sepsMT-m2!B^H4=IVf#J`0NM|f57u}tb^<DD
+zB>C_1(HPOxN9e7dt|>$Vpf>7{{qFnJ=MzKtSpBrsycu#?pI+AnJG16SmS_9pfyc@A
+zTEiEtU)$N9?3Q3&?r#5KH#I)pwuCw>p;FxD?jgoZbq^Wo*~~X&xv-hhAFR%AT~jIO
+zFnMlu=+QihRJL5$9@0#IQ}9%E{zz9Ci>x3AoH%?QtD5*NSxSEXYxG-&W9M4BH!Ss?
+zB#-HJnaO1OV6j*G6D$hakn{?)D$oU<O0l0$stUS&7OzbXH@p6wD-;SFlPAg+Dq9!G
+z4^;}5K;D%wR{rglj0Hu@Tz=4h!6+xtjYGO*fDjULHH_7yFm9$<T4giBSc5r?db&zb
+zM0~uRxw%Q6@B2-;|AtcKS$?8OwESu*mUn;Hl1e6bqA0!YouXV?4LGR7TlZE*9UmVr
+ziR!&8mD>c@06GA0fB=}!Bp9#-h5!zkXKrc~42rN9qqI9V&rUpGA`aq^64U`?mnaiI
+ziom1;--r%Vif=`f4`%SoCV4{A<KVi0sJ;)`Ro*IyI93M%{UzOt9CiH~rleMv8r6H9
+zQiphL@>x2cm?G%AAjW@SY~ZCqa_3w@->Qr%2GnHmaYuBDF%{W&gC{YF=<N^AC=CR+
+zG>8U-W=HZ9=M6YlwJ&V&<8op3nx24ed@z_uS>cg2!?tz^>b$|j!IY-bOI;VO&|=2+
+zLW?)m(J`-DbIo8DJv}{l)Pvg8c*jsfboYy=)-OF1yP0m>_1NpU_gO6Q)*y&XOPhZo
+zSd1>S^h+LjL4xTcJhAN!WI^v@htttvRBHOA2D+wdRsUfuN0gUiWba$OC!0_!<6EV;
+zRIDosIA`&D-&|}D#n2%GBsC2k=7{>=B$=CE865M0{>x;t#+0crnia0l;#RRXS~^m<
+zpJ`ZZA8sa3OPPG({G*}6Ht%r6?UoiZBr+fEG5P1f5sn~9LnIQho0=B*6PzPMF7IrK
+zJ7Ey;Mh_1(63HiRy0q;$byUC7Elp1t<7jSfUDVxo*^e9_7l-<pHzDHS-L*=1>pidS
+zXZkV;rt-Q2wZh2Q*s&*VwZfRq7x|DscQ~B2=8+W2yRnMm9y8cFFVHPcgxDWVe#B@q
+z8plz3Pb3fu#}y=&Fs4HyA<+hE@Rj8X@BXu3xaGJhg+f`<N)spERVc=%TS7N<3Ts2~
+zs7q2?VlFIod2zn9CE=-5>a4XIZLfC5nB)#hWI=$Y1vZ^nIl`J9UzlL^WX=t`ks+^n
+zk^x^VHuT<XkgXlzWm_lVmw*K_q5|g>P<>ZElXY4?&0e)5r>HSeERD)CD-X8j%ec!U
+zbvUxZ31-EITk6so3_*JOQho!%?LJpe$E^A7R6P=j-gXCvD(8P#;#5Z|3`ZVZ4XG(p
+z%kAXl(4XPvr<c1g(*z9-Tf*+6<u_V2^245e2)qq!?IyWf6ao)z^aV0<@BX@39Vxz$
+z?_!b>C-vxoq}71Rx%ZJLA`~daLz$LJ<!?trxw`h@PWYeXmHh7H>4!OUNVaL7(Nt74
+zTTijfA&+_QhC6WU`?xdWF$p_s0n*_;sG{z?)ut&y?g-Dqe}gMi+lc|CDO1bYT&`QD
+z4wXQg6Td17C*YKBVrc$l*G^N{6coeTPN@W1z`_52cCr;PpJDtdv4ON$InCb(hrQ`V
+GJoyhP-hqe!
+
+literal 0
+HcmV?d00001
+
+-- 
+2.11.0
+

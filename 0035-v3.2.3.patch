@@ -1,0 +1,244 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Fri, 15 Jul 2016 23:08:51 +0800
+Subject: v3.2.3
+
+---
+ .../ustc_zzzz/fmltutor/block/BlockLoader.java      | 11 ++++++++++
+ .../assets/fmltutor/blockstates/gold_furnace.json  | 25 ++++++++++++++++++++++
+ .../assets/fmltutor/blockstates/iron_furnace.json  | 25 ++++++++++++++++++++++
+ .../assets/fmltutor/blockstates/metal_furnace.json | 20 -----------------
+ .../assets/fmltutor/models/block/gold_furnace.json |  8 -------
+ .../models/block/gold_furnace_burning.json         |  8 -------
+ .../assets/fmltutor/models/block/iron_furnace.json |  8 -------
+ .../models/block/iron_furnace_burning.json         |  8 -------
+ .../assets/fmltutor/models/item/gold_furnace.json  | 10 ---------
+ .../assets/fmltutor/models/item/iron_furnace.json  | 10 ---------
+ 10 files changed, 61 insertions(+), 72 deletions(-)
+ create mode 100644 src/main/resources/assets/fmltutor/blockstates/gold_furnace.json
+ create mode 100644 src/main/resources/assets/fmltutor/blockstates/iron_furnace.json
+ delete mode 100644 src/main/resources/assets/fmltutor/blockstates/metal_furnace.json
+ delete mode 100644 src/main/resources/assets/fmltutor/models/block/gold_furnace.json
+ delete mode 100644 src/main/resources/assets/fmltutor/models/block/gold_furnace_burning.json
+ delete mode 100644 src/main/resources/assets/fmltutor/models/block/iron_furnace.json
+ delete mode 100644 src/main/resources/assets/fmltutor/models/block/iron_furnace_burning.json
+ delete mode 100644 src/main/resources/assets/fmltutor/models/item/gold_furnace.json
+ delete mode 100644 src/main/resources/assets/fmltutor/models/item/iron_furnace.json
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
+index 06c6af4..cd8952c 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
+@@ -4,6 +4,8 @@ import com.github.ustc_zzzz.fmltutor.FMLTutor;
+ import com.google.common.base.Function;
+ 
+ import net.minecraft.block.Block;
++import net.minecraft.client.renderer.block.statemap.IStateMapper;
++import net.minecraft.client.renderer.block.statemap.StateMap;
+ import net.minecraft.client.resources.model.ModelResourceLocation;
+ import net.minecraft.item.Item;
+ import net.minecraft.item.ItemBlock;
+@@ -40,6 +42,9 @@ public class BlockLoader
+     @SideOnly(Side.CLIENT)
+     public static void registerRenders()
+     {
++        registerStateMapper(metalFurnace,
++                new StateMap.Builder().withName(BlockMetalFurnace.MATERIAL).withSuffix("_furnace").build());
++
+         registerRender(grassBlock);
+         registerRender(metalFurnace, 0, "iron_furnace");
+         registerRender(metalFurnace, 8, "gold_furnace");
+@@ -58,6 +63,12 @@ public class BlockLoader
+     }
+ 
+     @SideOnly(Side.CLIENT)
++    private static void registerStateMapper(Block block, IStateMapper mapper)
++    {
++        ModelLoader.setCustomStateMapper(block, mapper);
++    }
++
++    @SideOnly(Side.CLIENT)
+     private static void registerRender(Block block, int meta, String name)
+     {
+         Item item = Item.getItemFromBlock(block);
+diff --git a/src/main/resources/assets/fmltutor/blockstates/gold_furnace.json b/src/main/resources/assets/fmltutor/blockstates/gold_furnace.json
+new file mode 100644
+index 0000000..947716f
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/blockstates/gold_furnace.json
+@@ -0,0 +1,25 @@
++{
++    "forge_marker": 1,
++    "defaults": {
++        "model": "orientable",
++        "textures": {
++            "top": "fmltutor:blocks/gold_furnace_side",
++            "side": "fmltutor:blocks/gold_furnace_side"
++        }
++    },
++    "variants": {
++        "inventory": [{
++             "textures": { "front": "fmltutor:blocks/gold_furnace" }
++        }],
++        "burning": {
++            "true": { "textures": { "front": "fmltutor:blocks/gold_furnace_burning" } },
++            "false": { "textures": { "front": "fmltutor:blocks/gold_furnace" } }
++        },
++        "facing": {
++            "east": { "y": 90, "uvlock": true },
++            "north": {},
++            "south": { "y": 180, "uvlock": true },
++            "west": { "y": 270, "uvlock": true }
++        }
++    }
++}
+\ No newline at end of file
+diff --git a/src/main/resources/assets/fmltutor/blockstates/iron_furnace.json b/src/main/resources/assets/fmltutor/blockstates/iron_furnace.json
+new file mode 100644
+index 0000000..55a1281
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/blockstates/iron_furnace.json
+@@ -0,0 +1,25 @@
++{
++    "forge_marker": 1,
++    "defaults": {
++        "model": "orientable",
++        "textures": {
++            "top": "fmltutor:blocks/iron_furnace_side",
++            "side": "fmltutor:blocks/iron_furnace_side"
++        }
++    },
++    "variants": {
++        "inventory": [{
++             "textures": { "front": "fmltutor:blocks/iron_furnace" }
++        }],
++        "burning": {
++            "true": { "textures": { "front": "fmltutor:blocks/iron_furnace_burning" } },
++            "false": { "textures": { "front": "fmltutor:blocks/iron_furnace" } }
++        },
++        "facing": {
++            "east": { "y": 90, "uvlock": true },
++            "north": {},
++            "south": { "y": 180, "uvlock": true },
++            "west": { "y": 270, "uvlock": true }
++        }
++    }
++}
+\ No newline at end of file
+diff --git a/src/main/resources/assets/fmltutor/blockstates/metal_furnace.json b/src/main/resources/assets/fmltutor/blockstates/metal_furnace.json
+deleted file mode 100644
+index 75210bb..0000000
+--- a/src/main/resources/assets/fmltutor/blockstates/metal_furnace.json
++++ /dev/null
+@@ -1,20 +0,0 @@
+-{
+-    "variants": {
+-        "burning=false,facing=east,material=gold": { "model": "fmltutor:gold_furnace", "y": 90, "uvlock": true },
+-        "burning=true,facing=east,material=gold": { "model": "fmltutor:gold_furnace_burning", "y": 90, "uvlock": true },
+-        "burning=false,facing=north,material=gold": { "model": "fmltutor:gold_furnace" },
+-        "burning=true,facing=north,material=gold": { "model": "fmltutor:gold_furnace_burning" },
+-        "burning=false,facing=south,material=gold": { "model": "fmltutor:gold_furnace", "y": 180, "uvlock": true },
+-        "burning=true,facing=south,material=gold": { "model": "fmltutor:gold_furnace_burning", "y": 180, "uvlock": true },
+-        "burning=false,facing=west,material=gold": { "model": "fmltutor:gold_furnace", "y": 270, "uvlock": true },
+-        "burning=true,facing=west,material=gold": { "model": "fmltutor:gold_furnace_burning", "y": 270, "uvlock": true },
+-        "burning=false,facing=east,material=iron": { "model": "fmltutor:iron_furnace", "y": 90, "uvlock": true },
+-        "burning=true,facing=east,material=iron": { "model": "fmltutor:iron_furnace_burning", "y": 90, "uvlock": true },
+-        "burning=false,facing=north,material=iron": { "model": "fmltutor:iron_furnace" },
+-        "burning=true,facing=north,material=iron": { "model": "fmltutor:iron_furnace_burning" },
+-        "burning=false,facing=south,material=iron": { "model": "fmltutor:iron_furnace", "y": 180, "uvlock": true },
+-        "burning=true,facing=south,material=iron": { "model": "fmltutor:iron_furnace_burning", "y": 180, "uvlock": true },
+-        "burning=false,facing=west,material=iron": { "model": "fmltutor:iron_furnace", "y": 270, "uvlock": true },
+-        "burning=true,facing=west,material=iron": { "model": "fmltutor:iron_furnace_burning", "y": 270, "uvlock": true }
+-    }
+-}
+diff --git a/src/main/resources/assets/fmltutor/models/block/gold_furnace.json b/src/main/resources/assets/fmltutor/models/block/gold_furnace.json
+deleted file mode 100644
+index 0c9fdb1..0000000
+--- a/src/main/resources/assets/fmltutor/models/block/gold_furnace.json
++++ /dev/null
+@@ -1,8 +0,0 @@
+-{
+-    "parent": "block/orientable",
+-    "textures": {
+-        "top": "fmltutor:blocks/gold_furnace_side",
+-        "front": "fmltutor:blocks/gold_furnace",
+-        "side": "fmltutor:blocks/gold_furnace_side"
+-    }
+-}
+diff --git a/src/main/resources/assets/fmltutor/models/block/gold_furnace_burning.json b/src/main/resources/assets/fmltutor/models/block/gold_furnace_burning.json
+deleted file mode 100644
+index a2d8da5..0000000
+--- a/src/main/resources/assets/fmltutor/models/block/gold_furnace_burning.json
++++ /dev/null
+@@ -1,8 +0,0 @@
+-{
+-    "parent": "block/orientable",
+-    "textures": {
+-        "top": "fmltutor:blocks/gold_furnace_side",
+-        "front": "fmltutor:blocks/gold_furnace_burning",
+-        "side": "fmltutor:blocks/gold_furnace_side"
+-    }
+-}
+diff --git a/src/main/resources/assets/fmltutor/models/block/iron_furnace.json b/src/main/resources/assets/fmltutor/models/block/iron_furnace.json
+deleted file mode 100644
+index 050c314..0000000
+--- a/src/main/resources/assets/fmltutor/models/block/iron_furnace.json
++++ /dev/null
+@@ -1,8 +0,0 @@
+-{
+-    "parent": "block/orientable",
+-    "textures": {
+-        "top": "fmltutor:blocks/iron_furnace_side",
+-        "front": "fmltutor:blocks/iron_furnace",
+-        "side": "fmltutor:blocks/iron_furnace_side"
+-    }
+-}
+diff --git a/src/main/resources/assets/fmltutor/models/block/iron_furnace_burning.json b/src/main/resources/assets/fmltutor/models/block/iron_furnace_burning.json
+deleted file mode 100644
+index 14f60e0..0000000
+--- a/src/main/resources/assets/fmltutor/models/block/iron_furnace_burning.json
++++ /dev/null
+@@ -1,8 +0,0 @@
+-{
+-    "parent": "block/orientable",
+-    "textures": {
+-        "top": "fmltutor:blocks/iron_furnace_side",
+-        "front": "fmltutor:blocks/iron_furnace_burning",
+-        "side": "fmltutor:blocks/iron_furnace_side"
+-    }
+-}
+diff --git a/src/main/resources/assets/fmltutor/models/item/gold_furnace.json b/src/main/resources/assets/fmltutor/models/item/gold_furnace.json
+deleted file mode 100644
+index e40e952..0000000
+--- a/src/main/resources/assets/fmltutor/models/item/gold_furnace.json
++++ /dev/null
+@@ -1,10 +0,0 @@
+-{
+-    "parent": "fmltutor:block/gold_furnace",
+-    "display": {
+-        "thirdperson": {
+-            "rotation": [ 10, -45, 170 ],
+-            "translation": [ 0, 1.5, -2.75 ],
+-            "scale": [ 0.375, 0.375, 0.375 ]
+-        }
+-    }
+-}
+diff --git a/src/main/resources/assets/fmltutor/models/item/iron_furnace.json b/src/main/resources/assets/fmltutor/models/item/iron_furnace.json
+deleted file mode 100644
+index 7a08352..0000000
+--- a/src/main/resources/assets/fmltutor/models/item/iron_furnace.json
++++ /dev/null
+@@ -1,10 +0,0 @@
+-{
+-    "parent": "fmltutor:block/iron_furnace",
+-    "display": {
+-        "thirdperson": {
+-            "rotation": [ 10, -45, 170 ],
+-            "translation": [ 0, 1.5, -2.75 ],
+-            "scale": [ 0.375, 0.375, 0.375 ]
+-        }
+-    }
+-}
+-- 
+2.11.0
+

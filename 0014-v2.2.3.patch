@@ -1,0 +1,433 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Wed, 2 Dec 2015 17:02:54 +0800
+Subject: v2.2.3
+
+---
+ .../fmltutor/crafting/CraftingLoader.java          |  16 ++++++
+ .../github/ustc_zzzz/fmltutor/item/ItemLoader.java |  16 ++++++
+ .../ustc_zzzz/fmltutor/item/ItemRedstoneArmor.java |  59 +++++++++++++++++++++
+ src/main/resources/assets/fmltutor/lang/en_US.lang |   5 ++
+ src/main/resources/assets/fmltutor/lang/zh_CN.lang |   5 ++
+ .../fmltutor/models/item/redstone_boots.json       |  18 +++++++
+ .../fmltutor/models/item/redstone_chestplate.json  |  18 +++++++
+ .../fmltutor/models/item/redstone_helmet.json      |  18 +++++++
+ .../fmltutor/models/item/redstone_leggings.json    |  18 +++++++
+ .../fmltutor/textures/items/redstone_boots.png     | Bin 0 -> 273 bytes
+ .../textures/items/redstone_chestplate.png         | Bin 0 -> 330 bytes
+ .../fmltutor/textures/items/redstone_helmet.png    | Bin 0 -> 266 bytes
+ .../fmltutor/textures/items/redstone_leggings.png  | Bin 0 -> 257 bytes
+ .../textures/models/armor/redstone_layer_1.png     | Bin 0 -> 1711 bytes
+ .../textures/models/armor/redstone_layer_2.png     | Bin 0 -> 879 bytes
+ 15 files changed, 173 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstoneArmor.java
+ create mode 100644 src/main/resources/assets/fmltutor/models/item/redstone_boots.json
+ create mode 100644 src/main/resources/assets/fmltutor/models/item/redstone_chestplate.json
+ create mode 100644 src/main/resources/assets/fmltutor/models/item/redstone_helmet.json
+ create mode 100644 src/main/resources/assets/fmltutor/models/item/redstone_leggings.json
+ create mode 100644 src/main/resources/assets/fmltutor/textures/items/redstone_boots.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/items/redstone_chestplate.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/items/redstone_helmet.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/items/redstone_leggings.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/models/armor/redstone_layer_1.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/models/armor/redstone_layer_2.png
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
+index b49c6d5..58a00af 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
+@@ -37,6 +37,22 @@ public class CraftingLoader
+         {
+                 "###", "#*#", "###", '#', Items.redstone, '*', Items.apple
+         });
++        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneHelmet), new Object[]
++        {
++                "###", "# #", '#', Items.redstone
++        });
++        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneChestplate), new Object[]
++        {
++                "# #", "###", "###", '#', Items.redstone
++        });
++        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneLeggings), new Object[]
++        {
++                "###", "# #", "# #", '#', Items.redstone
++        });
++        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneBoots), new Object[]
++        {
++                "# #", "# #", '#', Items.redstone
++        });
+         GameRegistry.addShapelessRecipe(new ItemStack(Blocks.vine, 4), BlockLoader.grassBlock);
+     }
+ 
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
+index ac6535d..4c42718 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
+@@ -2,6 +2,7 @@ package com.github.ustc_zzzz.fmltutor.item;
+ 
+ import net.minecraft.client.resources.model.ModelResourceLocation;
+ import net.minecraft.item.Item;
++import net.minecraft.item.ItemArmor;
+ import net.minecraft.item.ItemFood;
+ import net.minecraft.item.ItemPickaxe;
+ import net.minecraftforge.client.model.ModelLoader;
+@@ -17,11 +18,21 @@ public class ItemLoader
+     public static ItemPickaxe redstonePickaxe = new ItemRedstonePickaxe();
+     public static ItemFood redstoneApple = new ItemRedstoneApple();
+ 
++    public static ItemArmor redstoneHelmet = new ItemRedstoneArmor.Helmet();
++    public static ItemArmor redstoneChestplate = new ItemRedstoneArmor.Chestplate();
++    public static ItemArmor redstoneLeggings = new ItemRedstoneArmor.Leggings();
++    public static ItemArmor redstoneBoots = new ItemRedstoneArmor.Boots();
++
+     public ItemLoader(FMLPreInitializationEvent event)
+     {
+         register(goldenEgg, "golden_egg");
+         register(redstonePickaxe, "redstone_pickaxe");
+         register(redstoneApple, "redstone_apple");
++
++        register(redstoneHelmet, "redstone_helmet");
++        register(redstoneChestplate, "redstone_chestplate");
++        register(redstoneLeggings, "redstone_leggings");
++        register(redstoneBoots, "redstone_boots");
+     }
+ 
+     @SideOnly(Side.CLIENT)
+@@ -30,6 +41,11 @@ public class ItemLoader
+         registerRender(goldenEgg);
+         registerRender(redstonePickaxe);
+         registerRender(redstoneApple);
++
++        registerRender(redstoneHelmet);
++        registerRender(redstoneChestplate);
++        registerRender(redstoneLeggings);
++        registerRender(redstoneBoots);
+     }
+ 
+     private static void register(Item item, String name)
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstoneArmor.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstoneArmor.java
+new file mode 100644
+index 0000000..04a1160
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstoneArmor.java
+@@ -0,0 +1,59 @@
++package com.github.ustc_zzzz.fmltutor.item;
++
++import com.github.ustc_zzzz.fmltutor.FMLTutor;
++import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
++
++import net.minecraft.item.ItemArmor;
++import net.minecraftforge.common.util.EnumHelper;
++
++public class ItemRedstoneArmor extends ItemArmor
++{
++    public static final ItemArmor.ArmorMaterial REDSTONE_ARMOR = EnumHelper.addArmorMaterial("REDSTONE",
++            FMLTutor.MODID + ":" + "redstone", 10, new int[]
++            { 2, 6, 4, 2 }, 10);
++
++    public ItemRedstoneArmor(int armorType)
++    {
++        super(REDSTONE_ARMOR, REDSTONE_ARMOR.ordinal(), armorType);
++    }
++
++    public static class Helmet extends ItemRedstoneArmor
++    {
++        public Helmet()
++        {
++            super(0);
++            this.setUnlocalizedName("redstoneHelmet");
++            this.setCreativeTab(CreativeTabsLoader.tabFMLTutor);
++        }
++    }
++
++    public static class Chestplate extends ItemRedstoneArmor
++    {
++        public Chestplate()
++        {
++            super(1);
++            this.setUnlocalizedName("redstoneChestplate");
++            this.setCreativeTab(CreativeTabsLoader.tabFMLTutor);
++        }
++    }
++
++    public static class Leggings extends ItemRedstoneArmor
++    {
++        public Leggings()
++        {
++            super(2);
++            this.setUnlocalizedName("redstoneLeggings");
++            this.setCreativeTab(CreativeTabsLoader.tabFMLTutor);
++        }
++    }
++
++    public static class Boots extends ItemRedstoneArmor
++    {
++        public Boots()
++        {
++            super(3);
++            this.setUnlocalizedName("redstoneBoots");
++            this.setCreativeTab(CreativeTabsLoader.tabFMLTutor);
++        }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
+index 62efed8..b0325ae 100644
+--- a/src/main/resources/assets/fmltutor/lang/en_US.lang
++++ b/src/main/resources/assets/fmltutor/lang/en_US.lang
+@@ -2,6 +2,11 @@ item.goldenEgg.name=Golden Egg
+ item.redstonePickaxe.name=Redstone Pickaxe
+ item.redstoneApple.name=Redstone Apple
+ 
++item.redstoneHelmet.name=Redstone Helmet
++item.redstoneChestplate.name=Redstone Chestplate
++item.redstoneLeggings.name=Redstone Leggings
++item.redstoneBoots.name=Redstone Boots
++
+ tile.grassBlock.name=Grass Block
+ 
+ itemGroup.fmltutor=FML Tutor
+diff --git a/src/main/resources/assets/fmltutor/lang/zh_CN.lang b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+index f2447d9..c9aceec 100644
+--- a/src/main/resources/assets/fmltutor/lang/zh_CN.lang
++++ b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+@@ -2,6 +2,11 @@ item.goldenEgg.name=金蛋
+ item.redstonePickaxe.name=红石镐
+ item.redstoneApple.name=红石苹果
+ 
++item.redstoneHelmet.name=红石头盔
++item.redstoneChestplate.name=红石胸甲
++item.redstoneLeggings.name=红石护腿
++item.redstoneBoots.name=红石靴子
++
+ tile.grassBlock.name=草块
+ 
+ itemGroup.fmltutor=FML教程
+diff --git a/src/main/resources/assets/fmltutor/models/item/redstone_boots.json b/src/main/resources/assets/fmltutor/models/item/redstone_boots.json
+new file mode 100644
+index 0000000..5904c27
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/item/redstone_boots.json
+@@ -0,0 +1,18 @@
++{
++    "parent": "builtin/generated",
++    "textures": {
++        "layer0": "fmltutor:items/redstone_boots"
++    },
++    "display": {
++        "thirdperson": {
++            "rotation": [ 0, 90, -35 ],
++            "translation": [ 0, 1.25, -3.5 ],
++            "scale": [ 0.85, 0.85, 0.85 ]
++        },
++        "firstperson": {
++            "rotation": [ 0, -135, 25 ],
++            "translation": [ 0, 4, 2 ],
++            "scale": [ 1.7, 1.7, 1.7 ]
++        }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/models/item/redstone_chestplate.json b/src/main/resources/assets/fmltutor/models/item/redstone_chestplate.json
+new file mode 100644
+index 0000000..24f4272
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/item/redstone_chestplate.json
+@@ -0,0 +1,18 @@
++{
++    "parent": "builtin/generated",
++    "textures": {
++        "layer0": "fmltutor:items/redstone_chestplate"
++    },
++    "display": {
++        "thirdperson": {
++            "rotation": [ 0, 90, -35 ],
++            "translation": [ 0, 1.25, -3.5 ],
++            "scale": [ 0.85, 0.85, 0.85 ]
++        },
++        "firstperson": {
++            "rotation": [ 0, -135, 25 ],
++            "translation": [ 0, 4, 2 ],
++            "scale": [ 1.7, 1.7, 1.7 ]
++        }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/models/item/redstone_helmet.json b/src/main/resources/assets/fmltutor/models/item/redstone_helmet.json
+new file mode 100644
+index 0000000..2592618
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/item/redstone_helmet.json
+@@ -0,0 +1,18 @@
++{
++    "parent": "builtin/generated",
++    "textures": {
++        "layer0": "fmltutor:items/redstone_helmet"
++    },
++    "display": {
++        "thirdperson": {
++            "rotation": [ 0, 90, -35 ],
++            "translation": [ 0, 1.25, -3.5 ],
++            "scale": [ 0.85, 0.85, 0.85 ]
++        },
++        "firstperson": {
++            "rotation": [ 0, -135, 25 ],
++            "translation": [ 0, 4, 2 ],
++            "scale": [ 1.7, 1.7, 1.7 ]
++        }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/models/item/redstone_leggings.json b/src/main/resources/assets/fmltutor/models/item/redstone_leggings.json
+new file mode 100644
+index 0000000..ba38185
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/item/redstone_leggings.json
+@@ -0,0 +1,18 @@
++{
++    "parent": "builtin/generated",
++    "textures": {
++        "layer0": "fmltutor:items/redstone_leggings"
++    },
++    "display": {
++        "thirdperson": {
++            "rotation": [ 0, 90, -35 ],
++            "translation": [ 0, 1.25, -3.5 ],
++            "scale": [ 0.85, 0.85, 0.85 ]
++        },
++        "firstperson": {
++            "rotation": [ 0, -135, 25 ],
++            "translation": [ 0, 4, 2 ],
++            "scale": [ 1.7, 1.7, 1.7 ]
++        }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/textures/items/redstone_boots.png b/src/main/resources/assets/fmltutor/textures/items/redstone_boots.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..4faaa34ccc7018a177cceb464ef381d9c6cca92c
+GIT binary patch
+literal 273
+zcmeAS@N?(olHy`uVBq!ia0vp^0wB!61|;P_|4#%`Y)RhkE)4%caKYZ?lYt_f1s;*b
+z3=G`DAk4@xYmNj^kiEpy*OmP~w;YF|ip=xnHb9|yo-U3d7N?UFBtA6=#vYj0`_{gv
+z_QQ33x0ob@11;++w=Pz8Rx&p~e0YC-AWvJTwt?~g<CzT1KoA}x61M!2&~bwYw>PCm
+zh&~cZUt}V%GQGi8`u6{|o6{eMzDZ3xR&eSlt7_Pc3C{n4ig<4O%{{bAGE&CUEMkLZ
+z#*Z(Z4-eko-*cky|A+VY|MNufw5y9esc^s6!*k&>gI=jK4+Fze9;YMzUJ-ggmoj*|
+L`njxgN@xNAZx3X2
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/items/redstone_chestplate.png b/src/main/resources/assets/fmltutor/textures/items/redstone_chestplate.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..c9acbebd22d341fab3c2fee46246faf89fa00bea
+GIT binary patch
+literal 330
+zcmeAS@N?(olHy`uVBq!ia0vp^0wB!61|;P_|4#%`Y)RhkE)4%caKYZ?lYt_f1s;*b
+z3=G`DAk4@xYmNj^kiEpy*OmP~w;YEdi+X4K7ogB}PZ!4!i_>QVH*z%_i0m<$w6N)c
+z{14G}lRQt{JG!?1(flowyLV^5oV9+#>ct7{ihJ~WXP8BC%T@(f?A%@c-uA)!37n2I
+z1-5Mc=l0^$oO6Y5CgkotU3{u#LCfct`WsrJypDfJ>)9Ttt17iN@SE+{V;c^*2W4`x
+zJ}B5ZK~%T#Cd+Yy7O&tp-AoJx>$TP|xG2RC@XdA^%k{z(1`k`$=%bhU-kj;Z77!no
+zn=ZfB@Qn$NJnQFoeFtwnd;U>ec#YunBj@<GaqUT;qx^8rDUDku`>!9E_2bq0NAn*r
+YzADImv0Os79q2^{Pgg&ebxsLQ019D>RR910
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/items/redstone_helmet.png b/src/main/resources/assets/fmltutor/textures/items/redstone_helmet.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..0d7dedcc9f4025e1f161a28c7b35b6aa159f25a9
+GIT binary patch
+literal 266
+zcmeAS@N?(olHy`uVBq!ia0vp^0wB!61|;P_|4#%`Y)RhkE)4%caKYZ?lYt_f1s;*b
+z3=G`DAk4@xYmNj^kiEpy*OmP~w;YFo^6VMR_kcpvJzX3_EKVmUNPKD#oV~zS`gVQJ
+zBlh~ghXT$w`F_rFcjq~K+iz}C#gFgr|FhTsUnFs;#n(7IM1&cL+Z1_gYIwNLocUiU
+z)xfh)H@Yp!TJJ!UckzpVe+&K{-d`^%_2b6|sfMep3x9t%j`{tWy>I`&|K~4!cq#mm
+zZ35E<sSh9C$A9wOlAip#U+xkQ5CF}JIO@*G%*?Q6zD1qXevuBK6B#^R{an^LB{Ts5
+Der{!S
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/items/redstone_leggings.png b/src/main/resources/assets/fmltutor/textures/items/redstone_leggings.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..086e05c429198181496d4f29313448c03157e847
+GIT binary patch
+literal 257
+zcmeAS@N?(olHy`uVBq!ia0vp^0wB!61|;P_|4#%`Y)RhkE)4%caKYZ?lYt_f1s;*b
+z3=G`DAk4@xYmNj^kiEpy*OmP~w;YE7hq=nHc|f5)PZ!4!i_^&o5*Y_N^b*b=`zAlX
+zt$Bal!WW5-*Z17ID7gGt?s7jvn?Jw5|8L%3|FF#<G5Cb2=+OhBqOMcKBMLm%Xlgh-
+zte!bDG4yzgfAQhv{ye<%?H-mg3hQ;Y`OlY-`}6noj|cDLkNu3_KPiu4W5N{%9kv|n
+xQm%9@l^No1Zr=E3|L3>(xpvjam`5Ru3@d(`-D%y?u@~qv22WQ%mvv4FO#lg3VX*)J
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/models/armor/redstone_layer_1.png b/src/main/resources/assets/fmltutor/textures/models/armor/redstone_layer_1.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..b5964be8aca22a39c3ca059785f072c8b8e61059
+GIT binary patch
+literal 1711
+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
+FV1j&1Nd^D_
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/models/armor/redstone_layer_2.png b/src/main/resources/assets/fmltutor/textures/models/armor/redstone_layer_2.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..2261e695edca5b15575a5a96f3334ae2cb6230ce
+GIT binary patch
+literal 879
+zcmV-#1CacQP)<h;3K|Lk000e1NJLTq002M$001Be1^@s6qMd$(00006VoOIv0RI60
+z0RN!9r;`8x010qNS#tmY4#NNd4#NS*Z>VGd000McNliru-wXl;04Q@iOThpD0{lrt
+zK~!ko?Uv1M)JhPAzi#)q#~CI+zC%y|2??>{8IV|H!!l36f(K&98?fbRB7_u)gdqx<
+z{E{EdbUf|ux{Dqh1y%?J-OTmb*e<tZ*Qu&=3R<*i(V|6*7A;z|XwjlYix&SksGkET
+zuV0I@7V;crEh}%|s(B_r{}M5V{KX5hwKd}L@!WU7F9hg*pLlS9%5(I}%G?uReh$cF
+zLfG3wuC5U8=U)SkHa0|M8ER<>U6#oCIpjIw989O6H4*|`U4c#wqxyaH@-k9Yl<(f%
+zX^k+tEYYj0C~FBjJ75giU;sea*+IO=JbQ**To4WqL2LBtD#S?K-@p4BAkL+#W?8EA
+z>|R+5#-NG<Wi9%_gY-@*RF<V~(0UFupsrK0&|D=1WHKS1o&pdD15~GjDhlNCG7)18
+zO5J^jH0Jqpbgzfhb&5=<NL3|5Ivt3y=>k<0=;h_615{Dm{SgSCKNBx6k*c~*+*+Dt
+zs3@SW3443Q(TI9$3kd<0=ksBMs@F@&#)w{6Xfz<6oe|H@Qp_04lPA<bJUmPSIT}%a
+z{W=F4V9a$jwMM)rPA2KG+a(+wk&VZM@t8OoB^{_LFa}+goV<A>QdMMw0pZ&>;^`^6
+zEK~Q)G(wz%JSQF>qZb!Zy&mEm;yphKpo#)z(pu8&Ak!)TynlbILSy1+gm(^c4%O)p
+z4h~X+v)Rw?-^YLah%QUi(h{oEL1rVPiUM(t?yFaX-Cg3z3E87Z*!A`117SD>W00yM
+z-n)l5hh1N%-r6Dzhe!z6moIPpR2U8csK0!<{SFv>`0z&zA8l-i-`qr5dqW%Q?QN**
+zWR>3Eu*`aU8}Xj-{d+nC_)njbxX!wO7}Fy5w^!lcR?)IdqvIU$;sWIyeseRqMXz_g
+zV%Ieyl15`@spj!xh>@_ni(Xhr1kUt_Ja0t#KTUv~pQF~+peQg8A0i>37Z(xlQ&o!s
+z^Ykgih>XXL%_^-?-EMLq=a8x*?C+zjP3M8w@83EB{{mY_UFYdNJ@)_r002ovPDHLk
+FV1g&}j~D;|
+
+literal 0
+HcmV?d00001
+
+-- 
+2.11.0
+

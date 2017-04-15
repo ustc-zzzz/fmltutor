@@ -1,0 +1,181 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Sun, 18 Sep 2016 23:47:03 +0800
+Subject: v3.4.1
+
+---
+ .../fmltutor/client/gui/GuiContainerDemo.java      | 28 ++++++++++++++
+ .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  2 +
+ .../fmltutor/inventory/ContainerDemo.java          | 21 +++++++++++
+ .../fmltutor/inventory/GuiElementLoader.java       | 43 ++++++++++++++++++++++
+ .../ustc_zzzz/fmltutor/item/ItemGoldenEgg.java     |  9 +++++
+ 5 files changed, 103 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java
+new file mode 100644
+index 0000000..366a951
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java
+@@ -0,0 +1,28 @@
++package com.github.ustc_zzzz.fmltutor.client.gui;
++
++import com.github.ustc_zzzz.fmltutor.inventory.ContainerDemo;
++
++import net.minecraft.client.gui.inventory.GuiContainer;
++import net.minecraftforge.fml.relauncher.Side;
++import net.minecraftforge.fml.relauncher.SideOnly;
++
++@SideOnly(Side.CLIENT)
++public class GuiContainerDemo extends GuiContainer
++{
++    public GuiContainerDemo(ContainerDemo inventorySlotsIn)
++    {
++        super(inventorySlotsIn);
++    }
++
++    @Override
++    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
++    {
++        // TODO
++    }
++
++    @Override
++    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
++    {
++        // TODO
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+index ecdd428..3bb0b7b 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+@@ -10,6 +10,7 @@ import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
+ import com.github.ustc_zzzz.fmltutor.entity.EntityLoader;
+ import com.github.ustc_zzzz.fmltutor.entity.FakePlayerLoader;
+ import com.github.ustc_zzzz.fmltutor.fluid.FluidLoader;
++import com.github.ustc_zzzz.fmltutor.inventory.GuiElementLoader;
+ import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+ import com.github.ustc_zzzz.fmltutor.network.NetworkLoader;
+ import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
+@@ -46,6 +47,7 @@ public class CommonProxy
+         new EventLoader();
+         new WorldGeneratorLoader();
+         new FakePlayerLoader();
++        new GuiElementLoader();
+     }
+ 
+     public void postInit(FMLPostInitializationEvent event)
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java b/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java
+new file mode 100644
+index 0000000..dc4b991
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java
+@@ -0,0 +1,21 @@
++package com.github.ustc_zzzz.fmltutor.inventory;
++
++import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
++
++import net.minecraft.entity.player.EntityPlayer;
++import net.minecraft.inventory.Container;
++import net.minecraft.item.ItemStack;
++
++public class ContainerDemo extends Container
++{
++    public ContainerDemo()
++    {
++        super();
++    }
++
++    @Override
++    public boolean canInteractWith(EntityPlayer playerIn)
++    {
++        return new ItemStack(ItemLoader.goldenEgg).isItemEqual(playerIn.getCurrentEquippedItem());
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java
+new file mode 100644
+index 0000000..c056067
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java
+@@ -0,0 +1,43 @@
++package com.github.ustc_zzzz.fmltutor.inventory;
++
++import com.github.ustc_zzzz.fmltutor.FMLTutor;
++import com.github.ustc_zzzz.fmltutor.client.gui.GuiContainerDemo;
++
++import net.minecraft.entity.player.EntityPlayer;
++import net.minecraft.world.World;
++import net.minecraftforge.fml.common.network.IGuiHandler;
++import net.minecraftforge.fml.common.network.NetworkRegistry;
++
++public class GuiElementLoader implements IGuiHandler
++{
++    public static final int GUI_DEMO = 1;
++
++    public GuiElementLoader()
++    {
++        NetworkRegistry.INSTANCE.registerGuiHandler(FMLTutor.instance, this);
++    }
++
++    @Override
++    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
++    {
++        switch (ID)
++        {
++        case GUI_DEMO:
++            return new ContainerDemo();
++        default:
++            return null;
++        }
++    }
++
++    @Override
++    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
++    {
++        switch (ID)
++        {
++        case GUI_DEMO:
++            return new GuiContainerDemo(new ContainerDemo());
++        default:
++            return null;
++        }
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java
+index 7289db4..81963b1 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java
+@@ -1,11 +1,14 @@
+ package com.github.ustc_zzzz.fmltutor.item;
+ 
++import com.github.ustc_zzzz.fmltutor.FMLTutor;
+ import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
+ import com.github.ustc_zzzz.fmltutor.entity.EntityGoldenEgg;
++import com.github.ustc_zzzz.fmltutor.inventory.GuiElementLoader;
+ 
+ import net.minecraft.entity.player.EntityPlayer;
+ import net.minecraft.item.Item;
+ import net.minecraft.item.ItemStack;
++import net.minecraft.util.BlockPos;
+ import net.minecraft.world.World;
+ 
+ public class ItemGoldenEgg extends Item
+@@ -26,6 +29,12 @@ public class ItemGoldenEgg extends Item
+         }
+         if (!worldIn.isRemote)
+         {
++            if (playerIn.isSneaking())
++            {
++                BlockPos pos = playerIn.getPosition();
++                int id = GuiElementLoader.GUI_DEMO;
++                playerIn.openGui(FMLTutor.instance, id, worldIn, pos.getX(), pos.getY(), pos.getZ());
++            }
+             worldIn.spawnEntityInWorld(new EntityGoldenEgg(worldIn, playerIn));
+         }
+         return itemStackIn;
+-- 
+2.11.0
+

@@ -1,0 +1,243 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Thu, 10 Dec 2015 17:38:19 +0800
+Subject: v2.3.2
+
+---
+ .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  2 +
+ .../ustc_zzzz/fmltutor/common/ConfigLoader.java    |  5 +++
+ .../ustc_zzzz/fmltutor/common/EventLoader.java     | 44 +++++++++++++++++++
+ .../fmltutor/enchantment/EnchantmentFireBurn.java  | 50 ++++++++++++++++++++++
+ .../fmltutor/enchantment/EnchantmentLoader.java    | 25 +++++++++++
+ src/main/resources/assets/fmltutor/lang/en_US.lang |  2 +
+ src/main/resources/assets/fmltutor/lang/zh_CN.lang |  2 +
+ 7 files changed, 130 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/enchantment/EnchantmentFireBurn.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/enchantment/EnchantmentLoader.java
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+index 551c35d..4a71118 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+@@ -3,6 +3,7 @@ package com.github.ustc_zzzz.fmltutor.common;
+ import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
+ import com.github.ustc_zzzz.fmltutor.crafting.CraftingLoader;
+ import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
++import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
+ import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+ 
+ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+@@ -22,6 +23,7 @@ public class CommonProxy
+     public void init(FMLInitializationEvent event)
+     {
+         new CraftingLoader();
++        new EnchantmentLoader();
+         new EventLoader();
+     }
+ 
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/ConfigLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/ConfigLoader.java
+index 16488aa..dbd3022 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/ConfigLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/ConfigLoader.java
+@@ -12,6 +12,8 @@ public class ConfigLoader
+ 
+     public static int diamondBurnTime;
+ 
++    public static int enchantmentFireBurn;
++
+     public ConfigLoader(FMLPreInitializationEvent event)
+     {
+         logger = event.getModLog();
+@@ -29,6 +31,9 @@ public class ConfigLoader
+         comment = "How many seconds can a diamond burn in a furnace. ";
+         diamondBurnTime = config.get(Configuration.CATEGORY_GENERAL, "diamondBurnTime", 640, comment).getInt();
+ 
++        comment = "Fire burn enchantment id. ";
++        enchantmentFireBurn = config.get(Configuration.CATEGORY_GENERAL, "enchantmentFireBurn", 36, comment).getInt();
++
+         config.save();
+         logger.info("Finished loading config. ");
+     }
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
+index 1c4bd03..6b94a71 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
+@@ -1,17 +1,24 @@
+ package com.github.ustc_zzzz.fmltutor.common;
+ 
++import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
++
++import net.minecraft.block.Block;
++import net.minecraft.enchantment.EnchantmentHelper;
+ import net.minecraft.entity.Entity;
+ import net.minecraft.entity.item.EntityTNTPrimed;
+ import net.minecraft.entity.passive.EntityPig;
+ import net.minecraft.entity.player.EntityPlayer;
+ import net.minecraft.init.Items;
+ import net.minecraft.item.ItemStack;
++import net.minecraft.item.crafting.FurnaceRecipes;
+ import net.minecraft.util.BlockPos;
+ import net.minecraft.util.DamageSource;
++import net.minecraft.util.EnumFacing;
+ import net.minecraft.world.World;
+ import net.minecraftforge.common.MinecraftForge;
+ import net.minecraftforge.event.entity.player.EntityInteractEvent;
+ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
++import net.minecraftforge.event.world.BlockEvent;
+ import net.minecraftforge.fml.common.eventhandler.Cancelable;
+ import net.minecraftforge.fml.common.eventhandler.EventBus;
+ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+@@ -75,6 +82,43 @@ public class EventLoader
+         }
+     }
+ 
++    @SubscribeEvent
++    public void onBlockHarvestDrops(BlockEvent.HarvestDropsEvent event)
++    {
++        if (!event.world.isRemote && event.harvester != null)
++        {
++            ItemStack itemStack = event.harvester.getHeldItem();
++            if (EnchantmentHelper.getEnchantmentLevel(EnchantmentLoader.fireBurn.effectId, itemStack) > 0
++                    && itemStack.getItem() != Items.shears)
++            {
++                for (ItemStack stack : event.drops)
++                {
++                    ItemStack newStack = FurnaceRecipes.instance().getSmeltingResult(stack);
++                    if (newStack != null)
++                    {
++                        newStack = newStack.copy();
++                        newStack.stackSize = stack.stackSize;
++                        event.drops.set(event.drops.indexOf(stack), newStack);
++                    }
++                    else if (stack != null)
++                    {
++                        Block block = Block.getBlockFromItem(stack.getItem());
++                        boolean b = (block == null);
++                        if (!b && (block.isFlammable(event.world, event.pos, EnumFacing.DOWN)
++                                || block.isFlammable(event.world, event.pos, EnumFacing.EAST)
++                                || block.isFlammable(event.world, event.pos, EnumFacing.NORTH)
++                                || block.isFlammable(event.world, event.pos, EnumFacing.SOUTH)
++                                || block.isFlammable(event.world, event.pos, EnumFacing.UP)
++                                || block.isFlammable(event.world, event.pos, EnumFacing.WEST)))
++                        {
++                            event.drops.remove(stack);
++                        }
++                    }
++                }
++            }
++        }
++    }
++
+     @Cancelable
+     public static class PlayerRightClickGrassBlockEvent extends net.minecraftforge.event.entity.player.PlayerEvent
+     {
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/enchantment/EnchantmentFireBurn.java b/src/main/java/com/github/ustc_zzzz/fmltutor/enchantment/EnchantmentFireBurn.java
+new file mode 100644
+index 0000000..c871397
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/enchantment/EnchantmentFireBurn.java
+@@ -0,0 +1,50 @@
++package com.github.ustc_zzzz.fmltutor.enchantment;
++
++import com.github.ustc_zzzz.fmltutor.FMLTutor;
++import com.github.ustc_zzzz.fmltutor.common.ConfigLoader;
++
++import net.minecraft.enchantment.Enchantment;
++import net.minecraft.enchantment.EnumEnchantmentType;
++import net.minecraft.init.Items;
++import net.minecraft.item.ItemStack;
++import net.minecraft.util.ResourceLocation;
++
++public class EnchantmentFireBurn extends Enchantment
++{
++    public EnchantmentFireBurn()
++    {
++        super(ConfigLoader.enchantmentFireBurn, new ResourceLocation(FMLTutor.MODID + ":" + "fire_burn"), 1,
++                EnumEnchantmentType.DIGGER);
++        this.setName("fireBurn");
++    }
++
++    @Override
++    public int getMinEnchantability(int enchantmentLevel)
++    {
++        return 15;
++    }
++
++    @Override
++    public int getMaxEnchantability(int enchantmentLevel)
++    {
++        return super.getMinEnchantability(enchantmentLevel) + 50;
++    }
++
++    @Override
++    public int getMaxLevel()
++    {
++        return 1;
++    }
++
++    @Override
++    public boolean canApplyTogether(Enchantment ench)
++    {
++        return super.canApplyTogether(ench) && ench.effectId != silkTouch.effectId && ench.effectId != fortune.effectId;
++    }
++
++    @Override
++    public boolean canApply(ItemStack stack)
++    {
++        return stack.getItem() == Items.shears ? true : super.canApply(stack);
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/enchantment/EnchantmentLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/enchantment/EnchantmentLoader.java
+new file mode 100644
+index 0000000..26aa135
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/enchantment/EnchantmentLoader.java
+@@ -0,0 +1,25 @@
++package com.github.ustc_zzzz.fmltutor.enchantment;
++
++import com.github.ustc_zzzz.fmltutor.common.ConfigLoader;
++
++import net.minecraft.enchantment.Enchantment;
++
++public class EnchantmentLoader
++{
++    public static Enchantment fireBurn;
++
++    public EnchantmentLoader()
++    {
++        try
++        {
++            fireBurn = new EnchantmentFireBurn();
++            Enchantment.addToBookList(fireBurn);
++        }
++        catch (Exception e)
++        {
++            ConfigLoader.logger().error(
++                    "Duplicate or illegal enchantment id: {}, the registry of class '{}' will be skipped. ",
++                    ConfigLoader.enchantmentFireBurn, EnchantmentFireBurn.class.getName());
++        }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
+index d7d3310..69e0ec9 100644
+--- a/src/main/resources/assets/fmltutor/lang/en_US.lang
++++ b/src/main/resources/assets/fmltutor/lang/en_US.lang
+@@ -12,3 +12,5 @@ tile.grassBlock.name=Grass Block
+ itemGroup.fmltutor=FML Tutor
+ 
+ death.attack.byPig=%s was dead because of a pig! 
++
++enchantment.fireBurn=Fire Burning
+diff --git a/src/main/resources/assets/fmltutor/lang/zh_CN.lang b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+index 00ee50c..03ac8b1 100644
+--- a/src/main/resources/assets/fmltutor/lang/zh_CN.lang
++++ b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+@@ -12,3 +12,5 @@ tile.grassBlock.name=草块
+ itemGroup.fmltutor=FML教程
+ 
+ death.attack.byPig=%s被猪弄死了！
++
++enchantment.fireBurn=火焰灼烧
+-- 
+2.11.0
+

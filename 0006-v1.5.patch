@@ -1,0 +1,155 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Mon, 26 Oct 2015 16:26:32 +0800
+Subject: v1.5
+
+---
+ .../ustc_zzzz/fmltutor/block/BlockGrassBlock.java  |   2 ++
+ .../ustc_zzzz/fmltutor/common/CommonProxy.java     |   2 ++
+ .../fmltutor/creativetab/CreativeTabsFMLTutor.java |  27 +++++++++++++++++++++
+ .../fmltutor/creativetab/CreativeTabsLoader.java   |  14 +++++++++++
+ .../ustc_zzzz/fmltutor/item/ItemGoldenEgg.java     |   3 +++
+ .../container/creative_inventory/tab_fmltutor.png  | Bin 0 -> 1161 bytes
+ 6 files changed, 48 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/creativetab/CreativeTabsFMLTutor.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/creativetab/CreativeTabsLoader.java
+ create mode 100644 src/main/resources/assets/minecraft/textures/gui/container/creative_inventory/tab_fmltutor.png
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java
+index b0f1363..a0657d1 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java
+@@ -2,6 +2,7 @@ package com.github.ustc_zzzz.fmltutor.block;
+ 
+ import net.minecraft.block.Block;
+ import net.minecraft.block.material.Material;
++import net.minecraft.creativetab.CreativeTabs;
+ 
+ public class BlockGrassBlock extends Block
+ {
+@@ -11,5 +12,6 @@ public class BlockGrassBlock extends Block
+         this.setUnlocalizedName("grassBlock");
+         this.setHardness(0.5F);
+         this.setStepSound(soundTypeGrass);
++        this.setCreativeTab(CreativeTabs.tabBlock);
+     }
+ }
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+index e0f715c..22a7a12 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+@@ -1,6 +1,7 @@
+ package com.github.ustc_zzzz.fmltutor.common;
+ 
+ import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
++import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
+ import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+ 
+ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+@@ -11,6 +12,7 @@ public class CommonProxy
+ {
+     public void preInit(FMLPreInitializationEvent event)
+     {
++        new CreativeTabsLoader(event);
+         new ItemLoader(event);
+         new BlockLoader(event);
+     }
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/creativetab/CreativeTabsFMLTutor.java b/src/main/java/com/github/ustc_zzzz/fmltutor/creativetab/CreativeTabsFMLTutor.java
+new file mode 100644
+index 0000000..23128b9
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/creativetab/CreativeTabsFMLTutor.java
+@@ -0,0 +1,27 @@
++package com.github.ustc_zzzz.fmltutor.creativetab;
++
++import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
++
++import net.minecraft.creativetab.CreativeTabs;
++import net.minecraft.item.Item;
++
++public class CreativeTabsFMLTutor extends CreativeTabs
++{
++    public CreativeTabsFMLTutor()
++    {
++        super("fmltutor");
++        this.setBackgroundImageName("fmltutor.png");
++    }
++
++    @Override
++    public Item getTabIconItem()
++    {
++        return ItemLoader.goldenEgg;
++    }
++
++    @Override
++    public boolean hasSearchBar()
++    {
++        return true;
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/creativetab/CreativeTabsLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/creativetab/CreativeTabsLoader.java
+new file mode 100644
+index 0000000..d9f2a74
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/creativetab/CreativeTabsLoader.java
+@@ -0,0 +1,14 @@
++package com.github.ustc_zzzz.fmltutor.creativetab;
++
++import net.minecraft.creativetab.CreativeTabs;
++import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
++
++public class CreativeTabsLoader
++{
++    public static CreativeTabs tabFMLTutor;
++
++    public CreativeTabsLoader(FMLPreInitializationEvent event)
++    {
++        tabFMLTutor = new CreativeTabsFMLTutor();
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java
+index 725889a..f6e10db 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java
+@@ -1,5 +1,7 @@
+ package com.github.ustc_zzzz.fmltutor.item;
+ 
++import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
++
+ import net.minecraft.item.Item;
+ 
+ public class ItemGoldenEgg extends Item
+@@ -8,5 +10,6 @@ public class ItemGoldenEgg extends Item
+     {
+         super();
+         this.setUnlocalizedName("goldenEgg");
++        this.setCreativeTab(CreativeTabsLoader.tabFMLTutor);
+     }
+ }
+diff --git a/src/main/resources/assets/minecraft/textures/gui/container/creative_inventory/tab_fmltutor.png b/src/main/resources/assets/minecraft/textures/gui/container/creative_inventory/tab_fmltutor.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..e50530a7a9d4e53c6df334eb5b106677020995af
+GIT binary patch
+literal 1161
+zcmeAS@N?(olHy`uVBq!ia0y~yU<5K5893O0R7}x|G$6&6<n8Xl@E-&h>|H(?D8gCb
+z5n0T@z;_UY8Fx&~ehU<2FY)wsWq-gX!^X$&y6yo70|Segr;B4q#jUq@_XbJ_iZoo@
+zEobVmNG`)6R3qkj&)q}Ewk%*-n&&Y4Hg81813^)N0|Gl6o;OU~m|B_gCE~)bdBF!#
+zx7gobQ}*D}k;y_6{6BwY)A*U!c=B?3`Txlu-sR8wl+CiK^7%9M&0nkL{(8CnChvi-
+zU$?GqG7;-`b#Yk}wpwH9l4_wDE-rWOe-{+|_~C=)xpOfh=L;);-gT6?kz>~Vv&Q(u
+zo0ng*UnN@?R_;B+da7X8y6)Mt`}vMIyaxpW3xfcI1A@^o@$>A4scD-dOJbipC@@H#
+zeJ;I!*{T214c*=OSM8VN-hT1>o=kDyyv@IlI~<Rh{`(on0eiU}QnA-v?|*+bqxj35
+zTK~xNb6@v&{d=OSz`>xv(7?dJ#DJY~;H1?K{sp<W#Um?I`z+_oQ&T#1_pX+b+<)62
+zdeV(&EL$yqn=$P@;xu9PYJEY$jWPG!G?#v4`7m8L;P5f&;;iR4o;;StX9LJq2O~44
+znZ{j~Jcr#Biroy4yDc!UV!AP}LCWmjj9}~IZVK1}0Uj*ifSI&W@Wh<JGl>!qlYmaT
+zD16`>%asiukIlJdX~tB^j>CUouY){4p{Lj3Sx*w*;SFGuHVVGzoyV|EeL-8V`LiqM
+zfW})RM*-Y+C<7Ef4JkP+M(HBO62}hqIuvx}uzV5)$6G_X^$(#7VF|^4iRa#hCB$hm
+z+y;iuwP;Z2aJ|tc96H;WW&=ZKy{Wl$bff3lu!I93rzqTgT%R_%BV*a+@2Q)AK4@^b
+zq~7rC&!5SQ9lcIJ%{}s%`(sI&eMzC^gs*lQs`sDXPx*7<!25VcbcZ7)D{`bz(j_?t
+hVA@Y7BNLv~G3>8A+a)3{0V-P<JYD@<);T3K0RRr<QY-)f
+
+literal 0
+HcmV?d00001
+
+-- 
+2.11.0
+

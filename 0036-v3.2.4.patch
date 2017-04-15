@@ -1,0 +1,1280 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Thu, 21 Jul 2016 16:43:18 +0800
+Subject: v3.2.4
+
+---
+ .../ustc_zzzz/fmltutor/block/BlockLoader.java      |   7 +-
+ .../fmltutor/block/BlockMetalFurnace.java          |  43 +-
+ .../tileentity/TileEntityMetalFurnace.java         |  22 +
+ .../assets/fmltutor/blockstates/gold_furnace.json  |  24 +-
+ .../assets/fmltutor/blockstates/iron_furnace.json  |  24 +-
+ .../assets/fmltutor/models/block/metal_furnace.mtl |   1 +
+ .../assets/fmltutor/models/block/metal_furnace.obj | 650 +++++++++++++++++++++
+ .../fmltutor/textures/blocks/gold_furnace.png      | Bin 802 -> 0 bytes
+ .../textures/blocks/gold_furnace_burning.png       | Bin 842 -> 0 bytes
+ .../blocks/gold_furnace_burning_texture.png        | Bin 0 -> 2744 bytes
+ .../fmltutor/textures/blocks/gold_furnace_side.png | Bin 628 -> 0 bytes
+ .../textures/blocks/gold_furnace_texture.png       | Bin 0 -> 2652 bytes
+ .../fmltutor/textures/blocks/iron_furnace.png      | Bin 655 -> 0 bytes
+ .../textures/blocks/iron_furnace_burning.png       | Bin 722 -> 0 bytes
+ .../blocks/iron_furnace_burning_texture.png        | Bin 0 -> 1906 bytes
+ .../fmltutor/textures/blocks/iron_furnace_side.png | Bin 516 -> 0 bytes
+ .../textures/blocks/iron_furnace_texture.png       | Bin 0 -> 1826 bytes
+ 17 files changed, 738 insertions(+), 33 deletions(-)
+ create mode 100644 src/main/resources/assets/fmltutor/models/block/metal_furnace.mtl
+ create mode 100644 src/main/resources/assets/fmltutor/models/block/metal_furnace.obj
+ delete mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace.png
+ delete mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_burning.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_burning_texture.png
+ delete mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_side.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_texture.png
+ delete mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace.png
+ delete mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_burning.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_burning_texture.png
+ delete mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_side.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_texture.png
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
+index cd8952c..6595f69 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
+@@ -13,6 +13,7 @@ import net.minecraft.item.ItemMultiTexture;
+ import net.minecraft.item.ItemStack;
+ import net.minecraft.util.ResourceLocation;
+ import net.minecraftforge.client.model.ModelLoader;
++import net.minecraftforge.client.model.obj.OBJLoader;
+ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+ import net.minecraftforge.fml.common.registry.GameData;
+ import net.minecraftforge.fml.common.registry.GameRegistry;
+@@ -42,8 +43,10 @@ public class BlockLoader
+     @SideOnly(Side.CLIENT)
+     public static void registerRenders()
+     {
+-        registerStateMapper(metalFurnace,
+-                new StateMap.Builder().withName(BlockMetalFurnace.MATERIAL).withSuffix("_furnace").build());
++        OBJLoader.instance.addDomain(FMLTutor.MODID);
++
++        registerStateMapper(metalFurnace, new StateMap.Builder().withName(BlockMetalFurnace.MATERIAL)
++                .withSuffix("_furnace").ignore(BlockMetalFurnace.FACING).build());
+ 
+         registerRender(grassBlock);
+         registerRender(metalFurnace, 0, "iron_furnace");
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java
+index 4db4b85..9c2c80d 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java
+@@ -2,12 +2,16 @@ package com.github.ustc_zzzz.fmltutor.block;
+ 
+ import java.util.List;
+ 
++import javax.vecmath.Matrix4f;
++
+ import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
+ import com.github.ustc_zzzz.fmltutor.tileentity.TileEntityMetalFurnace;
++import com.google.common.collect.Lists;
+ 
+ import net.minecraft.block.Block;
+ import net.minecraft.block.BlockContainer;
+ import net.minecraft.block.material.Material;
++import net.minecraft.block.properties.IProperty;
+ import net.minecraft.block.properties.PropertyBool;
+ import net.minecraft.block.properties.PropertyDirection;
+ import net.minecraft.block.properties.PropertyEnum;
+@@ -23,7 +27,14 @@ import net.minecraft.util.BlockPos;
+ import net.minecraft.util.ChatComponentText;
+ import net.minecraft.util.EnumFacing;
+ import net.minecraft.util.IStringSerializable;
++import net.minecraft.world.IBlockAccess;
+ import net.minecraft.world.World;
++import net.minecraftforge.client.model.TRSRTransformation;
++import net.minecraftforge.client.model.obj.OBJModel;
++import net.minecraftforge.client.model.obj.OBJModel.OBJState;
++import net.minecraftforge.common.property.ExtendedBlockState;
++import net.minecraftforge.common.property.IExtendedBlockState;
++import net.minecraftforge.common.property.IUnlistedProperty;
+ import net.minecraftforge.fml.relauncher.Side;
+ import net.minecraftforge.fml.relauncher.SideOnly;
+ import net.minecraftforge.items.CapabilityItemHandler;
+@@ -72,6 +83,18 @@ public class BlockMetalFurnace extends BlockContainer
+     }
+ 
+     @Override
++    public boolean isFullCube()
++    {
++        return false;
++    }
++
++    @Override
++    public boolean isOpaqueCube()
++    {
++        return false;
++    }
++
++    @Override
+     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+             EnumFacing side, float hitX, float hitY, float hitZ)
+     {
+@@ -128,9 +151,27 @@ public class BlockMetalFurnace extends BlockContainer
+     }
+ 
+     @Override
++    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos)
++    {
++        IExtendedBlockState oldState = (IExtendedBlockState) state;
++        TRSRTransformation transform = new TRSRTransformation(state.getValue(BlockMetalFurnace.FACING));
++        TileEntity te = world.getTileEntity(pos);
++        if (te instanceof TileEntityMetalFurnace)
++        {
++            Matrix4f matrix = new Matrix4f();
++            matrix.rotY(((TileEntityMetalFurnace) te).getRotation());
++            transform = TRSRTransformation.blockCenterToCorner(new TRSRTransformation(matrix)).compose(transform);
++        }
++        OBJState objState = new OBJState(Lists.newArrayList(OBJModel.Group.ALL), true, transform);
++        return oldState.withProperty(OBJModel.OBJProperty.instance, objState);
++    }
++
++    @Override
+     protected BlockState createBlockState()
+     {
+-        return new BlockState(this, FACING, BURNING, MATERIAL);
++        return new ExtendedBlockState(this, new IProperty<?>[]
++        { FACING, BURNING, MATERIAL }, new IUnlistedProperty<?>[]
++        { OBJModel.OBJProperty.instance });
+     }
+ 
+     @Override
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java b/src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java
+index 35fa2bd..2bc7c17 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java
+@@ -16,6 +16,8 @@ import net.minecraftforge.items.ItemStackHandler;
+ 
+ public class TileEntityMetalFurnace extends TileEntity implements ITickable
+ {
++    protected double rotationDegree = 0;
++
+     protected int burnTime = 0;
+ 
+     protected ItemStackHandler upInventory = new ItemStackHandler();
+@@ -103,5 +105,25 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable
+                 this.worldObj.setBlockState(pos, state.withProperty(BlockMetalFurnace.BURNING, Boolean.FALSE));
+             }
+         }
++        else
++        {
++            IBlockState blockState = this.worldObj.getBlockState(this.pos);
++            boolean burning = blockState.getProperties().containsKey(BlockMetalFurnace.BURNING)
++                    && blockState.getValue(BlockMetalFurnace.BURNING).booleanValue();
++            if (burning || this.rotationDegree > 0)
++            {
++                this.rotationDegree += 11.25;
++                if (this.rotationDegree >= 360.0)
++                {
++                    this.rotationDegree -= 360.0;
++                }
++                this.worldObj.markBlockRangeForRenderUpdate(this.pos, this.pos);
++            }
++        }
++    }
++
++    public float getRotation()
++    {
++        return (float) (this.rotationDegree * Math.PI / 180);
+     }
+ }
+diff --git a/src/main/resources/assets/fmltutor/blockstates/gold_furnace.json b/src/main/resources/assets/fmltutor/blockstates/gold_furnace.json
+index 947716f..b8993ac 100644
+--- a/src/main/resources/assets/fmltutor/blockstates/gold_furnace.json
++++ b/src/main/resources/assets/fmltutor/blockstates/gold_furnace.json
+@@ -1,25 +1,19 @@
+ {
+     "forge_marker": 1,
+     "defaults": {
+-        "model": "orientable",
+-        "textures": {
+-            "top": "fmltutor:blocks/gold_furnace_side",
+-            "side": "fmltutor:blocks/gold_furnace_side"
+-        }
++        "model": "fmltutor:metal_furnace.obj"
+     },
+     "variants": {
+         "inventory": [{
+-             "textures": { "front": "fmltutor:blocks/gold_furnace" }
++            "textures": { "#cylinder": "fmltutor:blocks/gold_furnace_texture" }
+         }],
+         "burning": {
+-            "true": { "textures": { "front": "fmltutor:blocks/gold_furnace_burning" } },
+-            "false": { "textures": { "front": "fmltutor:blocks/gold_furnace" } }
+-        },
+-        "facing": {
+-            "east": { "y": 90, "uvlock": true },
+-            "north": {},
+-            "south": { "y": 180, "uvlock": true },
+-            "west": { "y": 270, "uvlock": true }
++            "true": {
++                "textures": { "#cylinder": "fmltutor:blocks/gold_furnace_burning_texture" }
++            },
++            "false": {
++                "textures": { "#cylinder": "fmltutor:blocks/gold_furnace_texture" }
++            }
+         }
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/src/main/resources/assets/fmltutor/blockstates/iron_furnace.json b/src/main/resources/assets/fmltutor/blockstates/iron_furnace.json
+index 55a1281..bbaa10d 100644
+--- a/src/main/resources/assets/fmltutor/blockstates/iron_furnace.json
++++ b/src/main/resources/assets/fmltutor/blockstates/iron_furnace.json
+@@ -1,25 +1,19 @@
+ {
+     "forge_marker": 1,
+     "defaults": {
+-        "model": "orientable",
+-        "textures": {
+-            "top": "fmltutor:blocks/iron_furnace_side",
+-            "side": "fmltutor:blocks/iron_furnace_side"
+-        }
++        "model": "fmltutor:metal_furnace.obj"
+     },
+     "variants": {
+         "inventory": [{
+-             "textures": { "front": "fmltutor:blocks/iron_furnace" }
++            "textures": { "#cylinder": "fmltutor:blocks/iron_furnace_texture" }
+         }],
+         "burning": {
+-            "true": { "textures": { "front": "fmltutor:blocks/iron_furnace_burning" } },
+-            "false": { "textures": { "front": "fmltutor:blocks/iron_furnace" } }
+-        },
+-        "facing": {
+-            "east": { "y": 90, "uvlock": true },
+-            "north": {},
+-            "south": { "y": 180, "uvlock": true },
+-            "west": { "y": 270, "uvlock": true }
++            "true": {
++                "textures": { "#cylinder": "fmltutor:blocks/iron_furnace_burning_texture" }
++            },
++            "false": {
++                "textures": { "#cylinder": "fmltutor:blocks/iron_furnace_texture" }
++            }
+         }
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/src/main/resources/assets/fmltutor/models/block/metal_furnace.mtl b/src/main/resources/assets/fmltutor/models/block/metal_furnace.mtl
+new file mode 100644
+index 0000000..329a962
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/block/metal_furnace.mtl
+@@ -0,0 +1 @@
++newmtl cylinder
+diff --git a/src/main/resources/assets/fmltutor/models/block/metal_furnace.obj b/src/main/resources/assets/fmltutor/models/block/metal_furnace.obj
+new file mode 100644
+index 0000000..cf0868a
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/block/metal_furnace.obj
+@@ -0,0 +1,650 @@
++# made by ustc_zzzz
++mtllib models/block/metal_furnace.mtl
++v 0.500000 1.000000 0.500000
++v 0.500000 1.000000 1.000000
++v 0.549009 1.000000 0.997592
++v 0.597545 1.000000 0.990393
++v 0.645142 1.000000 0.978470
++v 0.691342 1.000000 0.961940
++v 0.735698 1.000000 0.940961
++v 0.777785 1.000000 0.915735
++v 0.817197 1.000000 0.886505
++v 0.853553 1.000000 0.853553
++v 0.886505 1.000000 0.817197
++v 0.915735 1.000000 0.777785
++v 0.940961 1.000000 0.735698
++v 0.961940 1.000000 0.691342
++v 0.978470 1.000000 0.645142
++v 0.990393 1.000000 0.597545
++v 0.997592 1.000000 0.549009
++v 1.000000 1.000000 0.500000
++v 0.997592 1.000000 0.450991
++v 0.990393 1.000000 0.402455
++v 0.978470 1.000000 0.354858
++v 0.961940 1.000000 0.308658
++v 0.940961 1.000000 0.264302
++v 0.915735 1.000000 0.222215
++v 0.886505 1.000000 0.182803
++v 0.853553 1.000000 0.146447
++v 0.817197 1.000000 0.113495
++v 0.777785 1.000000 0.084265
++v 0.735698 1.000000 0.059039
++v 0.691342 1.000000 0.038060
++v 0.645142 1.000000 0.021530
++v 0.597545 1.000000 0.009607
++v 0.549009 1.000000 0.002408
++v 0.500000 1.000000 0.000000
++v 0.450991 1.000000 0.002408
++v 0.402455 1.000000 0.009607
++v 0.354858 1.000000 0.021530
++v 0.308658 1.000000 0.038060
++v 0.264302 1.000000 0.059039
++v 0.222215 1.000000 0.084265
++v 0.182803 1.000000 0.113495
++v 0.146447 1.000000 0.146447
++v 0.113495 1.000000 0.182803
++v 0.084265 1.000000 0.222215
++v 0.059039 1.000000 0.264302
++v 0.038060 1.000000 0.308658
++v 0.021530 1.000000 0.354858
++v 0.009607 1.000000 0.402455
++v 0.002408 1.000000 0.450991
++v 0.000000 1.000000 0.500000
++v 0.002408 1.000000 0.549009
++v 0.009607 1.000000 0.597545
++v 0.021530 1.000000 0.645142
++v 0.038060 1.000000 0.691342
++v 0.059039 1.000000 0.735698
++v 0.084265 1.000000 0.777785
++v 0.113495 1.000000 0.817197
++v 0.146447 1.000000 0.853553
++v 0.182803 1.000000 0.886505
++v 0.222215 1.000000 0.915735
++v 0.264302 1.000000 0.940961
++v 0.308658 1.000000 0.961940
++v 0.354858 1.000000 0.978470
++v 0.402455 1.000000 0.990393
++v 0.450991 1.000000 0.997592
++v 0.500000 0.000000 0.500000
++v 0.500000 0.000000 1.000000
++v 0.549009 0.000000 0.997592
++v 0.597545 0.000000 0.990393
++v 0.645142 0.000000 0.978470
++v 0.691342 0.000000 0.961940
++v 0.735698 0.000000 0.940961
++v 0.777785 0.000000 0.915735
++v 0.817197 0.000000 0.886505
++v 0.853553 0.000000 0.853553
++v 0.886505 0.000000 0.817197
++v 0.915735 0.000000 0.777785
++v 0.940961 0.000000 0.735698
++v 0.961940 0.000000 0.691342
++v 0.978470 0.000000 0.645142
++v 0.990393 0.000000 0.597545
++v 0.997592 0.000000 0.549009
++v 1.000000 0.000000 0.500000
++v 0.997592 0.000000 0.450991
++v 0.990393 0.000000 0.402455
++v 0.978470 0.000000 0.354858
++v 0.961940 0.000000 0.308658
++v 0.940961 0.000000 0.264302
++v 0.915735 0.000000 0.222215
++v 0.886505 0.000000 0.182803
++v 0.853553 0.000000 0.146447
++v 0.817197 0.000000 0.113495
++v 0.777785 0.000000 0.084265
++v 0.735698 0.000000 0.059039
++v 0.691342 0.000000 0.038060
++v 0.645142 0.000000 0.021530
++v 0.597545 0.000000 0.009607
++v 0.549009 0.000000 0.002408
++v 0.500000 0.000000 0.000000
++v 0.450991 0.000000 0.002408
++v 0.402455 0.000000 0.009607
++v 0.354858 0.000000 0.021530
++v 0.308658 0.000000 0.038060
++v 0.264302 0.000000 0.059039
++v 0.222215 0.000000 0.084265
++v 0.182803 0.000000 0.113495
++v 0.146447 0.000000 0.146447
++v 0.113495 0.000000 0.182803
++v 0.084265 0.000000 0.222215
++v 0.059039 0.000000 0.264302
++v 0.038060 0.000000 0.308658
++v 0.021530 0.000000 0.354858
++v 0.009607 0.000000 0.402455
++v 0.002408 0.000000 0.450991
++v 0.000000 0.000000 0.500000
++v 0.002408 0.000000 0.549009
++v 0.009607 0.000000 0.597545
++v 0.021530 0.000000 0.645142
++v 0.038060 0.000000 0.691342
++v 0.059039 0.000000 0.735698
++v 0.084265 0.000000 0.777785
++v 0.113495 0.000000 0.817197
++v 0.146447 0.000000 0.853553
++v 0.182803 0.000000 0.886505
++v 0.222215 0.000000 0.915735
++v 0.264302 0.000000 0.940961
++v 0.308658 0.000000 0.961940
++v 0.354858 0.000000 0.978470
++v 0.402455 0.000000 0.990393
++v 0.450991 0.000000 0.997592
++vt 0.000000 0.500000
++vt 0.015625 0.500000
++vt 0.031250 0.500000
++vt 0.046875 0.500000
++vt 0.062500 0.500000
++vt 0.078125 0.500000
++vt 0.093750 0.500000
++vt 0.109375 0.500000
++vt 0.125000 0.500000
++vt 0.140625 0.500000
++vt 0.156250 0.500000
++vt 0.171875 0.500000
++vt 0.187500 0.500000
++vt 0.203125 0.500000
++vt 0.218750 0.500000
++vt 0.234375 0.500000
++vt 0.250000 0.500000
++vt 0.265625 0.500000
++vt 0.281250 0.500000
++vt 0.296875 0.500000
++vt 0.312500 0.500000
++vt 0.328125 0.500000
++vt 0.343750 0.500000
++vt 0.359375 0.500000
++vt 0.375000 0.500000
++vt 0.390625 0.500000
++vt 0.406250 0.500000
++vt 0.421875 0.500000
++vt 0.437500 0.500000
++vt 0.453125 0.500000
++vt 0.468750 0.500000
++vt 0.484375 0.500000
++vt 0.500000 0.500000
++vt 0.515625 0.500000
++vt 0.531250 0.500000
++vt 0.546875 0.500000
++vt 0.562500 0.500000
++vt 0.578125 0.500000
++vt 0.593750 0.500000
++vt 0.609375 0.500000
++vt 0.625000 0.500000
++vt 0.640625 0.500000
++vt 0.656250 0.500000
++vt 0.671875 0.500000
++vt 0.687500 0.500000
++vt 0.703125 0.500000
++vt 0.718750 0.500000
++vt 0.734375 0.500000
++vt 0.750000 0.500000
++vt 0.765625 0.500000
++vt 0.781250 0.500000
++vt 0.796875 0.500000
++vt 0.812500 0.500000
++vt 0.828125 0.500000
++vt 0.843750 0.500000
++vt 0.859375 0.500000
++vt 0.875000 0.500000
++vt 0.890625 0.500000
++vt 0.906250 0.500000
++vt 0.921875 0.500000
++vt 0.937500 0.500000
++vt 0.953125 0.500000
++vt 0.968750 0.500000
++vt 0.984375 0.500000
++vt 1.000000 0.500000
++vt 0.000000 1.000000
++vt 0.015625 1.000000
++vt 0.031250 1.000000
++vt 0.046875 1.000000
++vt 0.062500 1.000000
++vt 0.078125 1.000000
++vt 0.093750 1.000000
++vt 0.109375 1.000000
++vt 0.125000 1.000000
++vt 0.140625 1.000000
++vt 0.156250 1.000000
++vt 0.171875 1.000000
++vt 0.187500 1.000000
++vt 0.203125 1.000000
++vt 0.218750 1.000000
++vt 0.234375 1.000000
++vt 0.250000 1.000000
++vt 0.265625 1.000000
++vt 0.281250 1.000000
++vt 0.296875 1.000000
++vt 0.312500 1.000000
++vt 0.328125 1.000000
++vt 0.343750 1.000000
++vt 0.359375 1.000000
++vt 0.375000 1.000000
++vt 0.390625 1.000000
++vt 0.406250 1.000000
++vt 0.421875 1.000000
++vt 0.437500 1.000000
++vt 0.453125 1.000000
++vt 0.468750 1.000000
++vt 0.484375 1.000000
++vt 0.500000 1.000000
++vt 0.515625 1.000000
++vt 0.531250 1.000000
++vt 0.546875 1.000000
++vt 0.562500 1.000000
++vt 0.578125 1.000000
++vt 0.593750 1.000000
++vt 0.609375 1.000000
++vt 0.625000 1.000000
++vt 0.640625 1.000000
++vt 0.656250 1.000000
++vt 0.671875 1.000000
++vt 0.687500 1.000000
++vt 0.703125 1.000000
++vt 0.718750 1.000000
++vt 0.734375 1.000000
++vt 0.750000 1.000000
++vt 0.765625 1.000000
++vt 0.781250 1.000000
++vt 0.796875 1.000000
++vt 0.812500 1.000000
++vt 0.828125 1.000000
++vt 0.843750 1.000000
++vt 0.859375 1.000000
++vt 0.875000 1.000000
++vt 0.890625 1.000000
++vt 0.906250 1.000000
++vt 0.921875 1.000000
++vt 0.937500 1.000000
++vt 0.953125 1.000000
++vt 0.968750 1.000000
++vt 0.984375 1.000000
++vt 1.000000 1.000000
++vt 0.250000 0.250000
++vt 0.250000 0.500000
++vt 0.274504 0.498796
++vt 0.298773 0.495196
++vt 0.322571 0.489235
++vt 0.345671 0.480970
++vt 0.367849 0.470480
++vt 0.388893 0.457867
++vt 0.408598 0.443253
++vt 0.426777 0.426777
++vt 0.443253 0.408598
++vt 0.457867 0.388893
++vt 0.470480 0.367849
++vt 0.480970 0.345671
++vt 0.489235 0.322571
++vt 0.495196 0.298773
++vt 0.498796 0.274504
++vt 0.500000 0.250000
++vt 0.498796 0.225496
++vt 0.495196 0.201227
++vt 0.489235 0.177429
++vt 0.480970 0.154329
++vt 0.470480 0.132151
++vt 0.457867 0.111107
++vt 0.443253 0.091402
++vt 0.426777 0.073223
++vt 0.408598 0.056747
++vt 0.388893 0.042133
++vt 0.367849 0.029520
++vt 0.345671 0.019030
++vt 0.322571 0.010765
++vt 0.298773 0.004804
++vt 0.274504 0.001204
++vt 0.250000 0.000000
++vt 0.225496 0.001204
++vt 0.201227 0.004804
++vt 0.177429 0.010765
++vt 0.154329 0.019030
++vt 0.132151 0.029520
++vt 0.111107 0.042133
++vt 0.091402 0.056747
++vt 0.073223 0.073223
++vt 0.056747 0.091402
++vt 0.042133 0.111107
++vt 0.029520 0.132151
++vt 0.019030 0.154329
++vt 0.010765 0.177429
++vt 0.004804 0.201227
++vt 0.001204 0.225496
++vt 0.000000 0.250000
++vt 0.001204 0.274504
++vt 0.004804 0.298773
++vt 0.010765 0.322571
++vt 0.019030 0.345671
++vt 0.029520 0.367849
++vt 0.042133 0.388893
++vt 0.056747 0.408598
++vt 0.073223 0.426777
++vt 0.091402 0.443253
++vt 0.111107 0.457867
++vt 0.132151 0.470480
++vt 0.154329 0.480970
++vt 0.177429 0.489235
++vt 0.201227 0.495196
++vt 0.225496 0.498796
++vt 0.750000 0.250000
++vt 0.750000 0.500000
++vt 0.774504 0.498796
++vt 0.798773 0.495196
++vt 0.822571 0.489235
++vt 0.845671 0.480970
++vt 0.867849 0.470480
++vt 0.888893 0.457867
++vt 0.908598 0.443253
++vt 0.926777 0.426777
++vt 0.943253 0.408598
++vt 0.957867 0.388893
++vt 0.970480 0.367849
++vt 0.980970 0.345671
++vt 0.989235 0.322571
++vt 0.995196 0.298773
++vt 0.998796 0.274504
++vt 1.000000 0.250000
++vt 0.998796 0.225496
++vt 0.995196 0.201227
++vt 0.989235 0.177429
++vt 0.980970 0.154329
++vt 0.970480 0.132151
++vt 0.957867 0.111107
++vt 0.943253 0.091402
++vt 0.926777 0.073223
++vt 0.908598 0.056747
++vt 0.888893 0.042133
++vt 0.867849 0.029520
++vt 0.845671 0.019030
++vt 0.822571 0.010765
++vt 0.798773 0.004804
++vt 0.774504 0.001204
++vt 0.750000 0.000000
++vt 0.725496 0.001204
++vt 0.701227 0.004804
++vt 0.677429 0.010765
++vt 0.654329 0.019030
++vt 0.632151 0.029520
++vt 0.611107 0.042133
++vt 0.591402 0.056747
++vt 0.573223 0.073223
++vt 0.556747 0.091402
++vt 0.542133 0.111107
++vt 0.529520 0.132151
++vt 0.519030 0.154329
++vt 0.510765 0.177429
++vt 0.504804 0.201227
++vt 0.501204 0.225496
++vt 0.500000 0.250000
++vt 0.501204 0.274504
++vt 0.504804 0.298773
++vt 0.510765 0.322571
++vt 0.519030 0.345671
++vt 0.529520 0.367849
++vt 0.542133 0.388893
++vt 0.556747 0.408598
++vt 0.573223 0.426777
++vt 0.591402 0.443253
++vt 0.611107 0.457867
++vt 0.632151 0.470480
++vt 0.654329 0.480970
++vt 0.677429 0.489235
++vt 0.701227 0.495196
++vt 0.725496 0.498796
++g cylinder
++usemtl cylinder
++f 1/131 2/132 3/133
++f 1/131 3/133 4/134
++f 1/131 4/134 5/135
++f 1/131 5/135 6/136
++f 1/131 6/136 7/137
++f 1/131 7/137 8/138
++f 1/131 8/138 9/139
++f 1/131 9/139 10/140
++f 1/131 10/140 11/141
++f 1/131 11/141 12/142
++f 1/131 12/142 13/143
++f 1/131 13/143 14/144
++f 1/131 14/144 15/145
++f 1/131 15/145 16/146
++f 1/131 16/146 17/147
++f 1/131 17/147 18/148
++f 1/131 18/148 19/149
++f 1/131 19/149 20/150
++f 1/131 20/150 21/151
++f 1/131 21/151 22/152
++f 1/131 22/152 23/153
++f 1/131 23/153 24/154
++f 1/131 24/154 25/155
++f 1/131 25/155 26/156
++f 1/131 26/156 27/157
++f 1/131 27/157 28/158
++f 1/131 28/158 29/159
++f 1/131 29/159 30/160
++f 1/131 30/160 31/161
++f 1/131 31/161 32/162
++f 1/131 32/162 33/163
++f 1/131 33/163 34/164
++f 1/131 34/164 35/165
++f 1/131 35/165 36/166
++f 1/131 36/166 37/167
++f 1/131 37/167 38/168
++f 1/131 38/168 39/169
++f 1/131 39/169 40/170
++f 1/131 40/170 41/171
++f 1/131 41/171 42/172
++f 1/131 42/172 43/173
++f 1/131 43/173 44/174
++f 1/131 44/174 45/175
++f 1/131 45/175 46/176
++f 1/131 46/176 47/177
++f 1/131 47/177 48/178
++f 1/131 48/178 49/179
++f 1/131 49/179 50/180
++f 1/131 50/180 51/181
++f 1/131 51/181 52/182
++f 1/131 52/182 53/183
++f 1/131 53/183 54/184
++f 1/131 54/184 55/185
++f 1/131 55/185 56/186
++f 1/131 56/186 57/187
++f 1/131 57/187 58/188
++f 1/131 58/188 59/189
++f 1/131 59/189 60/190
++f 1/131 60/190 61/191
++f 1/131 61/191 62/192
++f 1/131 62/192 63/193
++f 1/131 63/193 64/194
++f 1/131 64/194 65/195
++f 1/131 65/195 2/132
++f 66/196 68/198 67/197
++f 66/196 69/199 68/198
++f 66/196 70/200 69/199
++f 66/196 71/201 70/200
++f 66/196 72/202 71/201
++f 66/196 73/203 72/202
++f 66/196 74/204 73/203
++f 66/196 75/205 74/204
++f 66/196 76/206 75/205
++f 66/196 77/207 76/206
++f 66/196 78/208 77/207
++f 66/196 79/209 78/208
++f 66/196 80/210 79/209
++f 66/196 81/211 80/210
++f 66/196 82/212 81/211
++f 66/196 83/213 82/212
++f 66/196 84/214 83/213
++f 66/196 85/215 84/214
++f 66/196 86/216 85/215
++f 66/196 87/217 86/216
++f 66/196 88/218 87/217
++f 66/196 89/219 88/218
++f 66/196 90/220 89/219
++f 66/196 91/221 90/220
++f 66/196 92/222 91/221
++f 66/196 93/223 92/222
++f 66/196 94/224 93/223
++f 66/196 95/225 94/224
++f 66/196 96/226 95/225
++f 66/196 97/227 96/226
++f 66/196 98/228 97/227
++f 66/196 99/229 98/228
++f 66/196 100/230 99/229
++f 66/196 101/231 100/230
++f 66/196 102/232 101/231
++f 66/196 103/233 102/232
++f 66/196 104/234 103/233
++f 66/196 105/235 104/234
++f 66/196 106/236 105/235
++f 66/196 107/237 106/236
++f 66/196 108/238 107/237
++f 66/196 109/239 108/238
++f 66/196 110/240 109/239
++f 66/196 111/241 110/240
++f 66/196 112/242 111/241
++f 66/196 113/243 112/242
++f 66/196 114/244 113/243
++f 66/196 115/245 114/244
++f 66/196 116/246 115/245
++f 66/196 117/247 116/246
++f 66/196 118/248 117/247
++f 66/196 119/249 118/248
++f 66/196 120/250 119/249
++f 66/196 121/251 120/250
++f 66/196 122/252 121/251
++f 66/196 123/253 122/252
++f 66/196 124/254 123/253
++f 66/196 125/255 124/254
++f 66/196 126/256 125/255
++f 66/196 127/257 126/256
++f 66/196 128/258 127/257
++f 66/196 129/259 128/258
++f 66/196 130/260 129/259
++f 66/196 67/197 130/260
++f 2/1 67/66 3/2
++f 68/67 3/2 67/66
++f 3/2 68/67 4/3
++f 69/68 4/3 68/67
++f 4/3 69/68 5/4
++f 70/69 5/4 69/68
++f 5/4 70/69 6/5
++f 71/70 6/5 70/69
++f 6/5 71/70 7/6
++f 72/71 7/6 71/70
++f 7/6 72/71 8/7
++f 73/72 8/7 72/71
++f 8/7 73/72 9/8
++f 74/73 9/8 73/72
++f 9/8 74/73 10/9
++f 75/74 10/9 74/73
++f 10/9 75/74 11/10
++f 76/75 11/10 75/74
++f 11/10 76/75 12/11
++f 77/76 12/11 76/75
++f 12/11 77/76 13/12
++f 78/77 13/12 77/76
++f 13/12 78/77 14/13
++f 79/78 14/13 78/77
++f 14/13 79/78 15/14
++f 80/79 15/14 79/78
++f 15/14 80/79 16/15
++f 81/80 16/15 80/79
++f 16/15 81/80 17/16
++f 82/81 17/16 81/80
++f 17/16 82/81 18/17
++f 83/82 18/17 82/81
++f 18/17 83/82 19/18
++f 84/83 19/18 83/82
++f 19/18 84/83 20/19
++f 85/84 20/19 84/83
++f 20/19 85/84 21/20
++f 86/85 21/20 85/84
++f 21/20 86/85 22/21
++f 87/86 22/21 86/85
++f 22/21 87/86 23/22
++f 88/87 23/22 87/86
++f 23/22 88/87 24/23
++f 89/88 24/23 88/87
++f 24/23 89/88 25/24
++f 90/89 25/24 89/88
++f 25/24 90/89 26/25
++f 91/90 26/25 90/89
++f 26/25 91/90 27/26
++f 92/91 27/26 91/90
++f 27/26 92/91 28/27
++f 93/92 28/27 92/91
++f 28/27 93/92 29/28
++f 94/93 29/28 93/92
++f 29/28 94/93 30/29
++f 95/94 30/29 94/93
++f 30/29 95/94 31/30
++f 96/95 31/30 95/94
++f 31/30 96/95 32/31
++f 97/96 32/31 96/95
++f 32/31 97/96 33/32
++f 98/97 33/32 97/96
++f 33/32 98/97 34/33
++f 99/98 34/33 98/97
++f 34/33 99/98 35/34
++f 100/99 35/34 99/98
++f 35/34 100/99 36/35
++f 101/100 36/35 100/99
++f 36/35 101/100 37/36
++f 102/101 37/36 101/100
++f 37/36 102/101 38/37
++f 103/102 38/37 102/101
++f 38/37 103/102 39/38
++f 104/103 39/38 103/102
++f 39/38 104/103 40/39
++f 105/104 40/39 104/103
++f 40/39 105/104 41/40
++f 106/105 41/40 105/104
++f 41/40 106/105 42/41
++f 107/106 42/41 106/105
++f 42/41 107/106 43/42
++f 108/107 43/42 107/106
++f 43/42 108/107 44/43
++f 109/108 44/43 108/107
++f 44/43 109/108 45/44
++f 110/109 45/44 109/108
++f 45/44 110/109 46/45
++f 111/110 46/45 110/109
++f 46/45 111/110 47/46
++f 112/111 47/46 111/110
++f 47/46 112/111 48/47
++f 113/112 48/47 112/111
++f 48/47 113/112 49/48
++f 114/113 49/48 113/112
++f 49/48 114/113 50/49
++f 115/114 50/49 114/113
++f 50/49 115/114 51/50
++f 116/115 51/50 115/114
++f 51/50 116/115 52/51
++f 117/116 52/51 116/115
++f 52/51 117/116 53/52
++f 118/117 53/52 117/116
++f 53/52 118/117 54/53
++f 119/118 54/53 118/117
++f 54/53 119/118 55/54
++f 120/119 55/54 119/118
++f 55/54 120/119 56/55
++f 121/120 56/55 120/119
++f 56/55 121/120 57/56
++f 122/121 57/56 121/120
++f 57/56 122/121 58/57
++f 123/122 58/57 122/121
++f 58/57 123/122 59/58
++f 124/123 59/58 123/122
++f 59/58 124/123 60/59
++f 125/124 60/59 124/123
++f 60/59 125/124 61/60
++f 126/125 61/60 125/124
++f 61/60 126/125 62/61
++f 127/126 62/61 126/125
++f 62/61 127/126 63/62
++f 128/127 63/62 127/126
++f 63/62 128/127 64/63
++f 129/128 64/63 128/127
++f 64/63 129/128 65/64
++f 130/129 65/64 129/128
++f 65/64 130/129 2/65
++f 67/130 2/65 130/129
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace.png b/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace.png
+deleted file mode 100644
+index 7e085d879dc3777ab00e36c98bdf86686cf41dd9..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 802
+zcmV+-1Ks?IP)<h;3K|Lk000e1NJLTq000mG000mO1^@s6AM^iV00006VoOIv0RI60
+z0RN!9r;`8x010qNS#tmY3ljhU3ljkVnw%H_000McNliru;06&44Ixda;|~A;0<TF#
+zK~y-)Et6euR8<&8*ZZEm&xf6&7DijCmPVum)5dUPM2Pw;j5o$#;1BcCcnxuYKpH~A
+zN1CR@GQpNkd*RHK_H@oUd+*na@&lf%m8?AS{Ex4V1nR(7N>(|1nWIi18P+7c3b86N
+z=g2Y#;>py}PDZ#3i;FC;UBOa|xIpxVIz!dKgwPt9DC!}l2xg?vp_(|DfRhqfsBqaF
+zF(xtqIU*rohBzSxLwzE%me4kcZ|S-jXpK_^fEW|1!uIx<H~;Q4o^+6ue!t?Zj$D|F
+ztgbkgFBgb<G6yC#4g-}VL>GBI++lNb#O`hlz!#tQI6Rm!9M+uH4Y$6X=g#eqSY4?w
+zQ%rIcNkmhU?X&e{#P0T#6e3Oxr;(kVDNWn4xKy&WbH?h`4N~T4qJjx7N+c#Q6Y!3_
+z@?86>qOKDsCmkE>JtosY-3HVfrVW}RxpfdDP9&jHLYz^S%5Oh^!sX>PkOd$EBBmuV
+zi;SlO#5!VVu+$-%a7qS2@Wnj0zyFxWPb!YzZ2>Tub^zpFDN7~Km3}d%>sl-ZBm|sN
+z;#~z&P!ttE+*!it0}&))VjzZzp%|8oBK9E8P=A1f9JD&u^;f|HFJFwg_xB!1!sklc
+z1b+Il&&K+t_swV6tRtK>ILJUenDXM~hzAeekmt(%`-jZVI*Kv_GfJ;K8jSevW{>MD
+z71q|ICg2bQ>3II^kcW@nG8pWGfOA4`&SMyu@z<ZPu^2fy>ha|-pP{Kk&2UJI$&|sv
+zf4Fz|Ef+6V%=bLJA9ih|$c5Rvz^pblpC0r3uh)?FKO`j_G)OvT{YFk~K4j_B5)mPE
+z=Vx-6U@2jz0&UB1uO@~*cDhFl0q3%Y=`d$)q2tP}3QOl?wS>h8D4ENc3nfYc-^`O&
+gH%WEPr4L^5KlLqP3t~==$p8QV07*qoM6N<$f-E9t`~Uy|
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_burning.png b/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_burning.png
+deleted file mode 100644
+index 41d400eaae5db90a45304310436931751356d513..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 842
+zcmV-Q1GW5#P)<h;3K|Lk000e1NJLTq000mG000mO1^@s6AM^iV00006VoOIv0RI60
+z0RN!9r;`8x010qNS#tmY3ljhU3ljkVnw%H_000McNliru;06&44J||-uOt8f0@q1I
+zK~y-)1;I;iRaF>(;rCl>?aMi*)z;Rw#5URs8qylW#28IbQ3ejwk+%?a#*8>|?8v$C
+z2M{K7Lev`nfFnsvm>EbZry79*YFm0aJ^Spv*ZMx6M{cg4F%(>YtmANHAS-iR5Ku!$
+zN|_05QDPzBeLyXcg+O!g4`F<Ej-|ClQml~>X}uA0BLu*N(NM{}BNRf63CxI1LkPzG
+z0|-)rPLve+7)=w&03Y@+1Wd_-BQ-{r8+q1JS0nOnOFgQ<4GGQxK+{A*aBOZqp}+k%
+zher|AF*Q|EkCd@aWO*^;h38A0FL2&4IU!&W{C_xqimkhw+_>?Wet!tS!hDa14=V26
+zt2i0fyz$yNZ=RcEWvPp*LoLT4N}B|=9d6%zO#k*F8WTYb?-Kp~5p~ltJ6Ce+PQ}Vg
+zXGzX;TnU&Ek|dIXO9ELS?_``_DXA)Ba1wcWZH&XCNYzFp8Ri<iDqSBz6G23AQj(ex
+zdG5IM`7HAbYakPV2NLE=l27a({EAphQ;#rhab5`yk2XSg>}lRPKgDmqmqY|O<akg6
+zkOfasc&b5SrrbqG4UUA@L<myS?Tmr+C<^8LTeBDr2q20{0BJC(alDGD(d|q^I>BZ4
+z36O&;foC8)1y=BIC*%4LS3#64cQke6<Bz^z{<#WhKm#_~r#Y$#;6WC^GIkz4#l}xp
+z$uh@R|DI#}WS8aMG=C0v`Q_(pkXk-`|4U}Z_poLTZT`abCRagvJlHAO*to)b+snMW
+zxd<1*If09?)Sc$SomDRMUt#^qcf?B3s=}EOkQS33KW==_<wtK*eRfFF$l!R7XQOdE
+zzl(ez%v^)ubH3J3P!Bkds1l$>bimq~oaXf-(&+<41XYDkL2e1Gfqbi^Ka5ccJ}zLx
+z0VzhD_leQLBr6jwZhfC}%P784x_6DvS);tJbhd<E4!w?0tUn>^tP;YDOm|BD2jD+b
+UX}`1l3;+NC07*qoM6N<$f-W~}-T(jq
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_burning_texture.png b/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_burning_texture.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..6bccdc751b0074ffd706bd690c1eada2b289c28b
+GIT binary patch
+literal 2744
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_side.png b/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_side.png
+deleted file mode 100644
+index 9e776309dfcf3c7c96e4992d5cc1fd83841ae233..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 628
+zcmV-)0*n2LP)<h;3K|Lk000e1NJLTq000mG000mO1^@s6AM^iV00006VoOIv0RI60
+z0RN!9r;`8x010qNS#tmY3ljhU3ljkVnw%H_000McNliru;06&43^vzbSBU@s0s%=x
+zK~y-)J(A0cR9O&3*N!-uW>pS)qD?o5I1wE934U__j-Q|++Tf!qGw;18Vmr9iO%M<e
+z@5R=Kf8JS!7;wA~@@{ZA9f=`mqphKY&nGwxG7m%^fWh|tGvklH|Kj=USA;gmiSCSL
+z>;?-N=zuiPh(<2#jeozxh&#v^_jH>GVViA!!syA8uz`uZf>+kLAXbPABLaZ`o4ZYB
+zg92Iz=rYNIv|^haNyIa(E5i-$FPJ|uAL&}ik<dkG;1+?XGT2DQ4edbrjG<_Vr0Wy;
+z_;dgHbN~d=bQMN00yttDvXKCbQ7UFZm&nr*0j`N6>24yx1dCUcJ4?-mIiV&)YBEkw
+zkT3LQ1wheg$AeOgF>!+kLWMnPHxVRhp*YiRe15}!V7qtsG-F8)*JRv8-!_)Zg4d0K
+zPq>e?_O4)s^Gm8Gk)~`Ejb&2cHrgilr{enM8v~9I_xriWx8RAQfx@v12RGr3kT4+M
+z=-Wy^E(|*{gQpCN1eu5e7j%J}Oz`c>_V9?81+NReOoqZJCUosH2oQ+IwQrY;`t<<U
+z2eyY_^g21ngv~%J%@4}8D=rhYh=7QuwqmXeTz;VC%Ag=j+NhghFQ|W#6wytx!}Ka_
+z?S(FSUEp@3*9~f4R@+2hKfJf_&Y+EZkJGyfMG%>s=Omx%dN#E+l=%&!BW-wP;y|we
+O0000<MNUMnLSTYu#uRG+
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_texture.png b/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_texture.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..ae6165858732bd3cccecfa28c68a78d05d49597f
+GIT binary patch
+literal 2652
+zcmYLL3pf+%8&^wnoef8BbCyf^%PlEp#@dFdFp^6&QH-Htb9QLSsOGLxxs4%36lKcY
+zsoegGO~>t!BxQ3?H23*)a?bzxp7(p7=Y77*^Zwr7@BO}bCkI<;31tZp5fN#e9maXf
+z`)r%o-mUp_#&2d@Zm;igTa3u&_Fy$Uy0aA#zhvhTE+Qf+w{5#bvT_u+f<Q9vBo_Dy
+z2m-)lr{(9LZ!Md^VNj>2gEQX8Q&q6w*_&;tlq2FX*S+0g5KY(~)oK`QbY2g9pF#M;
+za4gO&)}2l-5Q}$XDBLPL20M>yM>f0&h|EIw_IrnP+UHc11rj0<xf753me;&oy*Hi+
+zSN?Qs_<SE^YoF<Wm^H|}6bzh?Eg1Qwe~OBR0^eVNa_XqbzY4}y)KdaOAZ_w(_AR6i
+zX4L5NC=*cCE>yWo2&a7o8u8qCJ%d5ih33C_pYL>EsP8xpxg9I!XlOLoaP4t_GMg1N
+zUmx-vRex43O1m{xi1-lyn?dcS(ymOprvu6#=2Z1u9;Kze%dfe-DV6tjl0!W!K5(Gz
+zNXnR2u&DlW$+c)i?rAyWl<L-`&!eB3eb@4uV*lRShM<r6=;enzVW_edi|>II9x<!k
+z#Ho{kh5AE~Z$~X54^-n9Bxj?AAb*LVqoP_Xwlo4p)G=YqYLAq5GT5a`4(DW>RMPTi
+zN}IzU9^wN*nX0|d5pqp>g97Dp56q^??n9zgIdnF}%=k3y&;eb+rSh61@9%#-4KZXG
+zlX%K^puM*^jYEo99Y_&TDW%=BlfIS*Nz*O<D*uHX=l=D)6Zo8OO9!5=sXe)0R!AAn
+z(D{A7Uc11*0BfXPT3;)>=!`vMKR{{ON@;uB3_dNz=-I;&F)i2B=27-#m{Ky|FDX#P
+zYJ&W@H4d9N7uOwzEs@0~CmARVZ6;kifzp2j(>Q&l%nlr6lGN5)C{{GOLfz;tPmWE1
+zsb8<KbB1>vA!vLf^j_W{1y|4-2}E3sN}P$dv3|(9=aTlFHcwKMyXTqhmz%**zcFR}
+zGVQ<D#ZWm1dlT%?f-j6u$5tNb8>Q6rq(WM{H-MjSv<R#;U@lHWx_0T#cRhj}Y-$Z9
+zlU$S2PT6ZhAJ(`!`X97mPbxv+%bJslw)PM_hNkFN^=?9R$toIXB3hMAuYb84>Fb70
+z(Asroi26|xFDbxzS3_Q(mKtk&=J*g{mc-MRyH(#j7O6h8d*8nqhG-&6ZTMQmdz=%c
+zt;AP#<L#(W_e*P+FW!g4!QhXn1}6%wu0KfBH1`btSu#tA9J8Tn@E23CHus=K!WgIN
+zUP#nuyz;H~YUhJliFVe>1^SlevY_~4G&k`sTVtwaizM5i^lAJ07NVeMmdmc)hNL}f
+zLzr0IRZ%CKENbf8nWbVoF=Yz6{U<aW(tn@Xsr0bn#u8^=q5I7f9=98nYbIDL%2U}E
+z33rf6kQga!X|82!sP}(~m<0dkM1kA=UiBS*;JE@ri*-qkW1L<scOa$_#HP@ng3wBl
+zaK4S;4H7q2aRam%o}^zrc#OAst}|!m3GF;Se#6&@)YMNLv0@P)d<rQEwN6}Y1gt?H
+zuMoe#`MxsIMX=W`5(p9Na|`8HDy&AIAL%3j_48R8Jx0-5<1(GB9meoytV!DZ>55j+
+zB83Z-BU8*g#9dDlC*pFmvI-e+oG&XI(3x|m^nCP2QKf2;Q;2Q&(lb4T3t$sVyFTOQ
+z5_z#krrqd0DZSAA*5lGcB?}+?))sPiSOs3Bv#J2bk_>O3AuTqg!qw$wle~1ZtJ)0%
+zfzv#J$lEil+V`%THtUN-r;w-9-s+fYo3}GwC=I~#6*}?pr2}*HIlnrc{ZsUh_rIDw
+zyIA`+ocZ_JFI>3qG%~KM!Ian(F2xH#FV6c$DJuj>Lz4jKr1<03CINlOV&K&e^|)-k
+z*>wlHN@_%h=A^sF{z<qpKK*i-T{OqiQJk}CVi}<luSn0p7jA6Qgew*qy2Zot^4}%;
+z24lKFha*_!a%_s(tC)wNMKY^Mj!Xs@!D34Auk!=c4u@yprEJXyoqWkrBp2PHo+{F*
+z${GqO-AwqQ^1(gorW)4t%$dcNQN}uL?PNlzfj6Qv{jkqVDHrRb^Q5y29I<x!o-hfC
+zZ29VX2_}>{9p`Dw?He7T#U5fGmrXA&{PSdi2$2`pAmzS1&YVrj4@96gTPY87v+GnB
+zxxC@m6-v+RYHHd96IHb~Uq7j2%U|#kE_<i=hq@d)d^u1*pzEJ2=x4#~h>GW;$;@kt
+zA6w(4LEIjcIzS)F=UbzJy??Qou`R)BGJ@_j)yOa^w!{L)Czv_n-w`qU)Ks087gtI0
+z(lgWVsT#9(N4#1E{;!iz5w!zDEj`9_D*=1XO9Vy9H{-?F5ufQ@jLiqDaE7wKDTP%8
+zfI>CZ_@yxsAaXb>Gj={{yd~H+-nGebiMGC9%Z5|d)C|Zym#A}Up?bQha#7elyVurO
+zOXKS6t9K_5<A{G+8ebGe0>Uk}h0#^^qO0s7h)wpVkkhEv7Qk9_?mO|#U4;dbiE6!<
+z3>p_Qob5|4mb)xgzKqsT`Yqt)iH{m60EJTL^>nry(GiwqWAaNunmOm67Q}i9c*68x
+zGFjzs2I1V^zpD&}vZD7Y!;x&G_cU&2e3m(_tFGF@+9mTvf8o-cx91opKr24d2`y1;
+z37;7;?$8!Q&0=IPWYRa8pK^FVTetk423X&qxcJ_~5m)Y7A3T5zoPr*b*@nCArcMk?
+zW;lnHSt+#^d-&CV&YqawT-3m75w22>=CkO9OkGKzE8m0?{fu0@fR3KAwl4&V5iSV1
+zkoA8}(fb^lrO=!MbFoiTWPS|op%2)IN<;a)9Yng{D(1Q6P%lik<q@&d9d|8ozCV8S
+zv#Cg=dhyb#k)7~|`Tn|E)Kb%ry;v(lKm1j={WK>^xbp;ahr~TCs*c}c1jLz=g}pLa
+zaOChcFq!O*2CkZOyJA8?wef!H*!1sjmN3R6UPUeQ$;no-YtY#nNaKS89JUN^ffHI8
+z{e|=D2%anXtL4dvngf2vcAJjua7De<yPmrxE(gBgYaWF-<pWWUdct}n$0obm0+rz?
+ztDE_tc}e0pl?)-(UL4CF(HUK(>+t8>bR#{GF^xItVI8{3BU87d$7u9bDkhJxma-a!
+ztho|1?XZdaH;+8V{Egi^8utG|VU@-TnIgK@`<%{8Gg*0K&P23{ZE25?RPGegdeT9+
+zDBUwEp`#^>r01F$>N0a_xIgwi$lNPawkmkIsQIm{-ujC7)l^Jy<4;M=x^X2XJT3AK
+z4|wBW|IVLe>6tAyTw;qrp%x};>~MN02z_}8XP+K<oTn50S5r~Cb5Ph9<rx)%cDzC(
+zdcfLPDsg6l_LgUG=U16>FdD(a3g%aFrktM;Elm-Yl^}ntGhLjv{(&MmtOMrhF(3N>
+E0F^rd)Bpeg
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace.png b/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace.png
+deleted file mode 100644
+index d3ec730f2f0dc5c631381091e27a7ca6df7ae305..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 655
+zcmV;A0&x9_P)<h;3K|Lk000e1NJLTq000mG000mO0ssI2kdbIM00009a7bBm000XU
+z000XU0RWnu7ytkO2XskIMF-#p5eyAB&U<Fa0006mNkl<ZD9=q&O-n055Ulyyuny6P
+zyQ>HF5Q2gSArM5!f60IJBpwAp6cs^&L}A&35Y&sC{YWOeGwoq`^7__vPjyvIv8$`A
+zx~>^xN-3q3l#($<M9w)O1c0(E8Dq{l&N*XDYOPOCPyc!$1Y-<9RaKmG&bf0AfM1wS
+zr?P39wrzzFZQJ?*002@-=bVSI)+(i}wE$#M6sy(B1Egs>pU?9=7eegp>=<J<Ha3zZ
+z+1=eGA|fiwQg*xDD2j;a<KrVu(=5w~Xn%h{%d#|0m&@g7G&(;&KRi4nBCR#|vR13r
+z^Yioj`@1p5E1u0}P17Vv^7i)D@ArwQX&L~ss;auKg%HLV0E5B67_(R`j*gD<Jojv?
+zsxrnn=gP8_TI)EDt+i1UO(v6rg9FaFSMTlm{QT5fODO?#yIsi`D~duXH5?8fA0P8P
+z2e4Qy04Sw8olX!0y<QK1cU%@lVXgI^jz%Nzsdw;?=g-fNe_vIV+}zxZqR3w-qUm&c
+zb92+SZ4d<O^?E!W4+aDLt1t{DW2`Jo0I#pF_xJZf5L{nh8)G`14gk*i?d|Q^+1c^&
+zu}747p4W9fo6Vk{p6>4M{8AW(L<HdS@)AH%6nlGnob$S_<<{0#k|Y-w7Y`2)aU5%{
+z{q?44yar>;%gf95_O`V)3`6NZyx;FHm&-Vg|5yA+eLkQ2Xc3WIuh&_Y1wn9fa^lB6
+pHcBa<a{#?w@9XR9`}@0X+h5xNTx=J8UKs!Y002ovPDHLkV1oW6C(!@^
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_burning.png b/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_burning.png
+deleted file mode 100644
+index 06f03b9dc41dd712fe462346de1a39628201c23b..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 722
+zcmV;@0xkWCP)<h;3K|Lk000e1NJLTq000mG000mO0ssI2kdbIM00009a7bBm000XU
+z000XU0RWnu7ytkO2XskIMF-#p5eyCow1_n^0007UNkl<ZD9<I4PfHt76vgj-@6JqS
+z@&_{{R+L(iWLGE%B7TQ1ibw^!^gDD_x@y0N1&d&|euVDa2<f6jN(=^J+(<Jsd6}1Y
+z=e;gwea?Y%&JS;IZ<SJr=y{&!c|?SW&N*iGecw4(6a^wyRVAfFL~1sh2L}htEQD~*
+zd7dYw1b{5dq?AO&%m7da#^bRt#;n)tTBxeZT5F6k#sonC073}g_W>XbLjV8(%JaM|
+zOQjSMO{dex$HzR+rIg)n*BH}iG`6<3wzs#HQr6m{D5%|TZ*Fb^z-%^~OeWLm)H%1a
+zv-9xqFq_R*tJUG*VH8DsdwbT}D2hZ~w=B#1`}-tGwARi!Ywct*F~;=!{Uk{SgMqbH
+zDFpzuTrQPT%&fHrfWcs(wa)W=I2>kKrnRoEWmy_yilU%qv)S+WtE!6Q_~PPXcXw9^
+z0RYxoL<E2|O`|9RfJURy>2wGYvn&h4@aX91?(VKO6-5C6MCAK^p6A_e7XW<U7eY|Y
+zr7TM+<?->c5CRc<y&fV8A+**T8ym~zl9`!VDMg)5r`PM%un;j#)0>-{8uNO+K07;$
+z<G8+onS&r8M6Bn&yu6G?Bj5KwFBX$LAGX_ni()hy0l?|$X&lF%=Q-y@5Cq1UG)=Fs
+zuRlINf0)nV9E1>X4ue+f<mu_;>FM(FQYlscNv&2Zj^nGVtFKzCPgvP1&$G=6vey~D
+z$5%fc5q)#+U#rE;VHlEgt}M&_{r&RIFEcQRV6B5Qz%jbF0N;Usn^j{arL3yTIVYGo
+z%Q7P3A1wb!@kPpn<U5i#<Rv5}Nssu_EEbFTe9p}O0jDW<SdN0Dc>n+a07*qoM6N<$
+Eg4_N`8~^|S
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_burning_texture.png b/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_burning_texture.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..040f45dd41ce96eabc9b3b5a3197de8fa3d08372
+GIT binary patch
+literal 1906
+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
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_side.png b/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_side.png
+deleted file mode 100644
+index 8f6cfe94f1bad2144acf46acb5166621225b9714..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+HcmV?d00001
+
+literal 516
+zcmV+f0{i`mP)<h;3K|Lk000e1NJLTq000mG000mO1^@s6AM^iV00006VoOIv0RI60
+z0RN!9r;`8x010qNS#tmY3ljhU3ljkVnw%H_000McNliru;06&44Hy!wYX<-T0g*{W
+zK~y-)U6b9ef<O#}zrtcr5M!b~gYSRqgBV{!V3EJ}T%2qp?iJZ7)6Ps+9*>6&!+?lT
+z6a__55JEsiFf#zm3=yI4dql+VvMeLib<O>LM?{<iKve;lrpbu_uQM}VuNPsSXUvRs
+zUCFYHWm){^R4gK!yHpDh+P3BM`Jk$p8LCQ_WtbTu1pgKh#&JYdS=SX2q3gPT3Fq_K
+zS=V(X&vVykX2cjVGY*HthVXbi5=4Yy7*N%Xaex!1(Z3CK34Pzw_q_w@gb@7B%oxYf
+zu{2%VwuGvxxZQ57>x!x}O_O&ATyI&HZe+r$s`{4@V?<Tm$UM)T@HdS#Wx~Sy{bm>j
+z=6MF7C<=Evr4mA597m7P%qYu}zV8W5({Q<5Hd~j>OQZmGU9&99#^kE12mo!{I`F$V
+z--&$hNowX2eosmvk;WJuQ&o1m9Wh42>2%_Hy}Ir^&o@pl%R-EirfD_}M1=i*Pf%65
+zuJgRpsNdZa+3#aAGr}}YJfBb3^t~)*=C3m?)#vlsnEeN}I7Wd*afmhm0000<MNUMn
+GLSTaCXx@AP
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_texture.png b/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_texture.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..f6857aa0a62f7868325f2d77e3e56f8543d19b86
+GIT binary patch
+literal 1826
+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
+BZZiM?
+
+literal 0
+HcmV?d00001
+
+-- 
+2.11.0
+

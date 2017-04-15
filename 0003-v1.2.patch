@@ -1,0 +1,132 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Thu, 22 Oct 2015 22:28:37 +0800
+Subject: v1.2
+
+---
+ .../com/github/ustc_zzzz/fmltutor/FMLTutor.java    | 46 ++++++++++++++++++++++
+ .../ustc_zzzz/fmltutor/client/ClientProxy.java     | 28 +++++++++++++
+ .../ustc_zzzz/fmltutor/common/CommonProxy.java     | 23 +++++++++++
+ 3 files changed, 97 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java b/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java
+new file mode 100644
+index 0000000..e1f0b19
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java
+@@ -0,0 +1,46 @@
++package com.github.ustc_zzzz.fmltutor;
++
++import com.github.ustc_zzzz.fmltutor.common.CommonProxy;
++
++import net.minecraftforge.fml.common.Mod;
++import net.minecraftforge.fml.common.Mod.EventHandler;
++import net.minecraftforge.fml.common.Mod.Instance;
++import net.minecraftforge.fml.common.SidedProxy;
++import net.minecraftforge.fml.common.event.FMLInitializationEvent;
++import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
++import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
++
++/**
++ * @author ustc_zzzz
++ */
++@Mod(modid = FMLTutor.MODID, name = FMLTutor.NAME, version = FMLTutor.VERSION, acceptedMinecraftVersions = "1.8.9")
++public class FMLTutor
++{
++    public static final String MODID = "fmltutor";
++    public static final String NAME = "FML Tutor";
++    public static final String VERSION = "1.0.0";
++
++    @Instance(FMLTutor.MODID)
++    public static FMLTutor instance;
++
++    @SidedProxy(clientSide = "com.github.ustc_zzzz.fmltutor.client.ClientProxy", serverSide = "com.github.ustc_zzzz.fmltutor.common.CommonProxy")
++    public static CommonProxy proxy;
++
++    @EventHandler
++    public void preInit(FMLPreInitializationEvent event)
++    {
++        proxy.preInit(event);
++    }
++
++    @EventHandler
++    public void init(FMLInitializationEvent event)
++    {
++        proxy.init(event);
++    }
++
++    @EventHandler
++    public void postInit(FMLPostInitializationEvent event)
++    {
++        proxy.postInit(event);
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java
+new file mode 100644
+index 0000000..98a8914
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java
+@@ -0,0 +1,28 @@
++package com.github.ustc_zzzz.fmltutor.client;
++
++import com.github.ustc_zzzz.fmltutor.common.CommonProxy;
++
++import net.minecraftforge.fml.common.event.FMLInitializationEvent;
++import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
++import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
++
++public class ClientProxy extends CommonProxy
++{
++    @Override
++    public void preInit(FMLPreInitializationEvent event)
++    {
++        super.preInit(event);
++    }
++
++    @Override
++    public void init(FMLInitializationEvent event)
++    {
++        super.init(event);
++    }
++
++    @Override
++    public void postInit(FMLPostInitializationEvent event)
++    {
++        super.postInit(event);
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+new file mode 100644
+index 0000000..c8ba597
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+@@ -0,0 +1,23 @@
++package com.github.ustc_zzzz.fmltutor.common;
++
++import net.minecraftforge.fml.common.event.FMLInitializationEvent;
++import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
++import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
++
++public class CommonProxy
++{
++    public void preInit(FMLPreInitializationEvent event)
++    {
++
++    }
++
++    public void init(FMLInitializationEvent event)
++    {
++
++    }
++
++    public void postInit(FMLPostInitializationEvent event)
++    {
++
++    }
++}
+-- 
+2.11.0
+

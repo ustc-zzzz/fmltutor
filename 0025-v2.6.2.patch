@@ -1,0 +1,200 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Mon, 22 Feb 2016 19:27:59 +0800
+Subject: v2.6.2
+
+---
+ .../ustc_zzzz/fmltutor/common/EventLoader.java     |  23 +++++++++++++++++++++
+ .../ustc_zzzz/fmltutor/item/ItemBucketMercury.java |  23 +++++++++++++++++++++
+ .../github/ustc_zzzz/fmltutor/item/ItemLoader.java |   6 ++++++
+ src/main/resources/assets/fmltutor/lang/en_US.lang |   2 ++
+ src/main/resources/assets/fmltutor/lang/zh_CN.lang |   2 ++
+ .../fmltutor/models/item/bucket_mercury.json       |  18 ++++++++++++++++
+ .../fmltutor/textures/items/bucket_mercury.png     | Bin 0 -> 431 bytes
+ 7 files changed, 74 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemBucketMercury.java
+ create mode 100644 src/main/resources/assets/fmltutor/models/item/bucket_mercury.json
+ create mode 100644 src/main/resources/assets/fmltutor/textures/items/bucket_mercury.png
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
+index b7abed8..1652726 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
+@@ -7,6 +7,7 @@ import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
+ import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
+ 
+ import net.minecraft.block.Block;
++import net.minecraft.block.state.IBlockState;
+ import net.minecraft.client.Minecraft;
+ import net.minecraft.enchantment.EnchantmentHelper;
+ import net.minecraft.entity.Entity;
+@@ -27,9 +28,16 @@ import net.minecraftforge.common.MinecraftForge;
+ import net.minecraftforge.event.entity.living.LivingDeathEvent;
+ import net.minecraftforge.event.entity.living.LivingHurtEvent;
+ import net.minecraftforge.event.entity.player.EntityInteractEvent;
++import net.minecraftforge.event.entity.player.FillBucketEvent;
+ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+ import net.minecraftforge.event.world.BlockEvent;
++import net.minecraftforge.fluids.BlockFluidBase;
++import net.minecraftforge.fluids.Fluid;
++import net.minecraftforge.fluids.FluidContainerRegistry;
++import net.minecraftforge.fluids.FluidRegistry;
++import net.minecraftforge.fluids.FluidStack;
+ import net.minecraftforge.fml.common.eventhandler.Cancelable;
++import net.minecraftforge.fml.common.eventhandler.Event.Result;
+ import net.minecraftforge.fml.common.eventhandler.EventBus;
+ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+ import net.minecraftforge.fml.common.gameevent.InputEvent;
+@@ -172,6 +180,21 @@ public class EventLoader
+         }
+     }
+ 
++    @SubscribeEvent
++    public void onFillBucket(FillBucketEvent event)
++    {
++        BlockPos blockpos = event.target.getBlockPos();
++        IBlockState blockState = event.world.getBlockState(blockpos);
++        Fluid fluid = FluidRegistry.lookupFluidForBlock(blockState.getBlock());
++        if (fluid != null && new Integer(0).equals(blockState.getValue(BlockFluidBase.LEVEL)))
++        {
++            FluidStack fluidStack = new FluidStack(fluid, FluidContainerRegistry.BUCKET_VOLUME);
++            event.world.setBlockToAir(blockpos);
++            event.result = FluidContainerRegistry.fillFluidContainer(fluidStack, event.current);
++            event.setResult(Result.ALLOW);
++        }
++    }
++
+     @SideOnly(Side.CLIENT)
+     @SubscribeEvent
+     public void onKeyInput(InputEvent.KeyInputEvent event)
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemBucketMercury.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemBucketMercury.java
+new file mode 100644
+index 0000000..912faa8
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemBucketMercury.java
+@@ -0,0 +1,23 @@
++package com.github.ustc_zzzz.fmltutor.item;
++
++import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
++import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
++import com.github.ustc_zzzz.fmltutor.fluid.FluidLoader;
++
++import net.minecraft.init.Items;
++import net.minecraft.item.ItemBucket;
++import net.minecraft.item.ItemStack;
++import net.minecraftforge.fluids.FluidContainerRegistry;
++
++public class ItemBucketMercury extends ItemBucket
++{
++    public ItemBucketMercury()
++    {
++        super(BlockLoader.fluidMercury);
++        this.setContainerItem(Items.bucket);
++        this.setUnlocalizedName("bucketMercury");
++        this.setCreativeTab(CreativeTabsLoader.tabFMLTutor);
++        FluidContainerRegistry.registerFluidContainer(FluidLoader.fluidMercury, new ItemStack(this),
++                FluidContainerRegistry.EMPTY_BUCKET);
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
+index 4c42718..2fe53f0 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
+@@ -23,6 +23,8 @@ public class ItemLoader
+     public static ItemArmor redstoneLeggings = new ItemRedstoneArmor.Leggings();
+     public static ItemArmor redstoneBoots = new ItemRedstoneArmor.Boots();
+ 
++    public static Item bucketMercury = new ItemBucketMercury();
++
+     public ItemLoader(FMLPreInitializationEvent event)
+     {
+         register(goldenEgg, "golden_egg");
+@@ -33,6 +35,8 @@ public class ItemLoader
+         register(redstoneChestplate, "redstone_chestplate");
+         register(redstoneLeggings, "redstone_leggings");
+         register(redstoneBoots, "redstone_boots");
++
++        register(bucketMercury, "bucket_mercury");
+     }
+ 
+     @SideOnly(Side.CLIENT)
+@@ -46,6 +50,8 @@ public class ItemLoader
+         registerRender(redstoneChestplate);
+         registerRender(redstoneLeggings);
+         registerRender(redstoneBoots);
++
++        registerRender(bucketMercury);
+     }
+ 
+     private static void register(Item item, String name)
+diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
+index dc941b0..7355cd2 100644
+--- a/src/main/resources/assets/fmltutor/lang/en_US.lang
++++ b/src/main/resources/assets/fmltutor/lang/en_US.lang
+@@ -7,6 +7,8 @@ item.redstoneChestplate.name=Redstone Chestplate
+ item.redstoneLeggings.name=Redstone Leggings
+ item.redstoneBoots.name=Redstone Boots
+ 
++item.bucketMercury.name=Mercury Bucket
++
+ tile.grassBlock.name=Grass Block
+ tile.fluidMercury.name=Mercury
+ 
+diff --git a/src/main/resources/assets/fmltutor/lang/zh_CN.lang b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+index cacb1a9..667e60a 100644
+--- a/src/main/resources/assets/fmltutor/lang/zh_CN.lang
++++ b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+@@ -7,6 +7,8 @@ item.redstoneChestplate.name=红石胸甲
+ item.redstoneLeggings.name=红石护腿
+ item.redstoneBoots.name=红石靴子
+ 
++item.bucketMercury.name=水银桶
++
+ tile.grassBlock.name=草块
+ tile.fluidMercury.name=水银
+ 
+diff --git a/src/main/resources/assets/fmltutor/models/item/bucket_mercury.json b/src/main/resources/assets/fmltutor/models/item/bucket_mercury.json
+new file mode 100644
+index 0000000..ee715d9
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/item/bucket_mercury.json
+@@ -0,0 +1,18 @@
++{
++    "parent": "builtin/generated",
++    "textures": {
++        "layer0": "fmltutor:items/bucket_mercury"
++    },
++    "display": {
++        "thirdperson": {
++            "rotation": [ -90, 0, 0 ],
++            "translation": [ 0, 1, -3 ],
++            "scale": [ 0.55, 0.55, 0.55 ]
++        },
++        "firstperson": {
++            "rotation": [ 0, -135, 25 ],
++            "translation": [ 0, 4, 2 ],
++            "scale": [ 1.7, 1.7, 1.7 ]
++        }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/textures/items/bucket_mercury.png b/src/main/resources/assets/fmltutor/textures/items/bucket_mercury.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..bec2f13709e57fadf0d666e1dcc97e222f76c178
+GIT binary patch
+literal 431
+zcmV;g0Z{&lP)<h;3K|Lk000e1NJLTq000mG000mO1^@s6AM^iV00006VoOIv0RI60
+z0RN!9r;`8x010qNS#tmY3ljhU3ljkVnw%H_000McNliru-~ts60V{Z}pyU7m0X#`W
+zK~y-)#gj3r!axv)zeob2MZ^RvyAX1MT*E`;09HZp1cHgju&@fGu}hOOO<IZGU|C3!
+zMnPZmT!JP%iwFMIFgx?_x3jzOZE0Oe-}fKScs`%2e3B$@^?Fxh6h-K|j$s%8+-^5U
+zqY=R4)kteMZ?{{n*DLq?oylZ^ZQB3{A!wS0>2!)=7z9B;Q4|`$ppCj(tr(BTIF5s5
+zSqLEjux%UDG?7vg1VR51(llkUSOBo!@2Trrtu2>J0KzaNj^l2Fx~@sn6hIk0bvPWj
+zTrM1s$9{sRiRXFjb~}c{p~?#(sH%$ITlk&qW3$-+Fq_RN%Tg6umc{veCeL#<z)k{y
+z)9Hlgc>t7UiIfs4W#>a0eEQ;C*ZtcdNfK?nUMq^Ws;YX!?<L5xOvQcZAOD56UU&Z&
+Z{Qy5ueWm{FpDq9Z002ovPDHLkV1ja3v>*Tg
+
+literal 0
+HcmV?d00001
+
+-- 
+2.11.0
+

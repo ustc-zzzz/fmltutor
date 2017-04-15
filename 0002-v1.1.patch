@@ -1,0 +1,85 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Thu, 22 Oct 2015 14:54:55 +0800
+Subject: v1.1
+
+---
+ build.gradle                                         |  7 ++++---
+ src/main/java/com/example/examplemod/ExampleMod.java | 20 --------------------
+ src/main/resources/mcmod.info                        | 14 +++++++-------
+ 3 files changed, 11 insertions(+), 30 deletions(-)
+ delete mode 100644 src/main/java/com/example/examplemod/ExampleMod.java
+
+diff --git a/build.gradle b/build.gradle
+index 8b83723..93e4862 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -20,9 +20,10 @@ plugins {
+     id "net.minecraftforge.gradle.forge" version "2.0.2"
+ }
+ */
+-version = "1.0"
+-group= "com.yourname.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+-archivesBaseName = "modid"
++
++version = "1.0.0"
++group = "com.github.ustc_zzzz"
++archivesBaseName = "fmltutor"
+ 
+ minecraft {
+     version = "1.8.9-11.15.1.1722"
+diff --git a/src/main/java/com/example/examplemod/ExampleMod.java b/src/main/java/com/example/examplemod/ExampleMod.java
+deleted file mode 100644
+index 82123bc..0000000
+--- a/src/main/java/com/example/examplemod/ExampleMod.java
++++ /dev/null
+@@ -1,20 +0,0 @@
+-package com.example.examplemod;
+-
+-import net.minecraft.init.Blocks;
+-import net.minecraftforge.fml.common.Mod;
+-import net.minecraftforge.fml.common.Mod.EventHandler;
+-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+-
+-@Mod(modid = ExampleMod.MODID, version = ExampleMod.VERSION)
+-public class ExampleMod
+-{
+-    public static final String MODID = "examplemod";
+-    public static final String VERSION = "1.0";
+-    
+-    @EventHandler
+-    public void init(FMLInitializationEvent event)
+-    {
+-		// some example code
+-        System.out.println("DIRT BLOCK >> "+Blocks.dirt.getUnlocalizedName());
+-    }
+-}
+diff --git a/src/main/resources/mcmod.info b/src/main/resources/mcmod.info
+index f480667..e25ddbd 100644
+--- a/src/main/resources/mcmod.info
++++ b/src/main/resources/mcmod.info
+@@ -1,14 +1,14 @@
+ [
+ {
+-  "modid": "examplemod",
+-  "name": "Example Mod",
+-  "description": "Example placeholder mod.",
++  "modid": "fmltutor",
++  "name": "FML Tutor",
++  "description": "A Minecraft 1.8 Forge Mod Loader Tutorial by ustc_zzzz.",
+   "version": "${version}",
+   "mcversion": "${mcversion}",
+-  "url": "",
+-  "updateUrl": "",
+-  "authorList": ["ExampleDude"],
+-  "credits": "The Forge and FML guys, for making this example",
++  "url": "https://github.com/ustc-zzzz/fmltutor/wiki",
++  "updateUrl": "https://github.com/ustc-zzzz/fmltutor/tags",
++  "authorList": ["ustc_zzzz"],
++  "credits": "Notch, Cpw, etc.",
+   "logoFile": "",
+   "screenshots": [],
+   "dependencies": []
+-- 
+2.11.0
+

@@ -1,0 +1,170 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Thu, 26 Nov 2015 20:12:55 +0800
+Subject: v2.2.2
+
+---
+ .../fmltutor/crafting/CraftingLoader.java          |   4 +++
+ .../github/ustc_zzzz/fmltutor/item/ItemLoader.java |   4 +++
+ .../ustc_zzzz/fmltutor/item/ItemRedstoneApple.java |  33 +++++++++++++++++++++
+ src/main/resources/assets/fmltutor/lang/en_US.lang |   1 +
+ src/main/resources/assets/fmltutor/lang/zh_CN.lang |   1 +
+ .../fmltutor/models/item/redstone_apple.json       |  18 +++++++++++
+ .../fmltutor/textures/items/redstone_apple.png     | Bin 0 -> 304 bytes
+ 7 files changed, 61 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstoneApple.java
+ create mode 100644 src/main/resources/assets/fmltutor/models/item/redstone_apple.json
+ create mode 100644 src/main/resources/assets/fmltutor/textures/items/redstone_apple.png
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
+index af7e525..b49c6d5 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
+@@ -33,6 +33,10 @@ public class CraftingLoader
+         {
+                 "###", " * ", " * ", '#', Items.redstone, '*', Items.stick
+         });
++        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneApple), new Object[]
++        {
++                "###", "#*#", "###", '#', Items.redstone, '*', Items.apple
++        });
+         GameRegistry.addShapelessRecipe(new ItemStack(Blocks.vine, 4), BlockLoader.grassBlock);
+     }
+ 
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
+index 090ffe4..ac6535d 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
+@@ -2,6 +2,7 @@ package com.github.ustc_zzzz.fmltutor.item;
+ 
+ import net.minecraft.client.resources.model.ModelResourceLocation;
+ import net.minecraft.item.Item;
++import net.minecraft.item.ItemFood;
+ import net.minecraft.item.ItemPickaxe;
+ import net.minecraftforge.client.model.ModelLoader;
+ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+@@ -14,11 +15,13 @@ public class ItemLoader
+ {
+     public static Item goldenEgg = new ItemGoldenEgg();
+     public static ItemPickaxe redstonePickaxe = new ItemRedstonePickaxe();
++    public static ItemFood redstoneApple = new ItemRedstoneApple();
+ 
+     public ItemLoader(FMLPreInitializationEvent event)
+     {
+         register(goldenEgg, "golden_egg");
+         register(redstonePickaxe, "redstone_pickaxe");
++        register(redstoneApple, "redstone_apple");
+     }
+ 
+     @SideOnly(Side.CLIENT)
+@@ -26,6 +29,7 @@ public class ItemLoader
+     {
+         registerRender(goldenEgg);
+         registerRender(redstonePickaxe);
++        registerRender(redstoneApple);
+     }
+ 
+     private static void register(Item item, String name)
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstoneApple.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstoneApple.java
+new file mode 100644
+index 0000000..ca5d1c6
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstoneApple.java
+@@ -0,0 +1,33 @@
++package com.github.ustc_zzzz.fmltutor.item;
++
++import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
++
++import net.minecraft.entity.player.EntityPlayer;
++import net.minecraft.item.ItemFood;
++import net.minecraft.item.ItemStack;
++import net.minecraft.potion.Potion;
++import net.minecraft.potion.PotionEffect;
++import net.minecraft.world.World;
++
++public class ItemRedstoneApple extends ItemFood
++{
++    public ItemRedstoneApple()
++    {
++        super(4, 0.6F, false);
++        this.setAlwaysEdible();
++        this.setUnlocalizedName("redstoneApple");
++        this.setCreativeTab(CreativeTabsLoader.tabFMLTutor);
++        this.setPotionEffect(Potion.absorption.id, 10, 1, 1.0F);
++    }
++
++    @Override
++    public void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player)
++    {
++        if (!worldIn.isRemote)
++        {
++            player.addPotionEffect(new PotionEffect(Potion.saturation.id, 200, 1));
++            player.addExperience(10);
++        }
++        super.onFoodEaten(stack, worldIn, player);
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
+index d4f5fdc..62efed8 100644
+--- a/src/main/resources/assets/fmltutor/lang/en_US.lang
++++ b/src/main/resources/assets/fmltutor/lang/en_US.lang
+@@ -1,5 +1,6 @@
+ item.goldenEgg.name=Golden Egg
+ item.redstonePickaxe.name=Redstone Pickaxe
++item.redstoneApple.name=Redstone Apple
+ 
+ tile.grassBlock.name=Grass Block
+ 
+diff --git a/src/main/resources/assets/fmltutor/lang/zh_CN.lang b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+index ed39a1e..f2447d9 100644
+--- a/src/main/resources/assets/fmltutor/lang/zh_CN.lang
++++ b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+@@ -1,5 +1,6 @@
+ item.goldenEgg.name=金蛋
+ item.redstonePickaxe.name=红石镐
++item.redstoneApple.name=红石苹果
+ 
+ tile.grassBlock.name=草块
+ 
+diff --git a/src/main/resources/assets/fmltutor/models/item/redstone_apple.json b/src/main/resources/assets/fmltutor/models/item/redstone_apple.json
+new file mode 100644
+index 0000000..322df04
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/item/redstone_apple.json
+@@ -0,0 +1,18 @@
++{
++    "parent": "builtin/generated",
++    "textures": {
++        "layer0": "fmltutor:items/redstone_apple"
++    },
++    "display": {
++        "thirdperson": {
++            "rotation": [ 0, 90, -35 ],
++            "translation": [ 0, 1.25, -3.5 ],
++            "scale": [ 0.85, 0.85, 0.85 ]
++        },
++        "firstperson": {
++            "rotation": [ 0, -135, 25 ],
++            "translation": [ 0, 4, 2 ],
++            "scale": [ 1.7, 1.7, 1.7 ]
++        }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/textures/items/redstone_apple.png b/src/main/resources/assets/fmltutor/textures/items/redstone_apple.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..216c49837535f33fb3a508636508eba5563366a6
+GIT binary patch
+literal 304
+zcmeAS@N?(olHy`uVBq!ia0vp^0wB!61|;P_|4#%`Y)RhkE)4%caKYZ?lYt_f1s;*b
+z3=G`DAk4@xYmNj^kiEpy*OmP~w-mdSVRK2|6`;^wPZ!4!i_?39H}W<c2-tk~pUkSH
+zt#>D&qHWD1(;FvN2P|LW+kB%z&2j!I4h}xQ37>kOZuk3MUeER~aGFO@{!zgXiDe7{
+z)ed1?{(^Uo2c~*%a7pTX5_Wxuz{41kj4kti$*Xr9sN_|A@Wi$a=<MtJ;(az}CcTvL
+zdd|S0{$4yi$SI}&fcxz{rbTn!n7$KTFRl4(ezS>ru{rxR52>~Hd1g0XkA9GUW7Fc>
+tlFD-pgABco+T7jz|EN{zN)e_5+<x`m|K^|TngH|&gQu&X%Q~loCIC5&asmJV
+
+literal 0
+HcmV?d00001
+
+-- 
+2.11.0
+

@@ -1,0 +1,585 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Sat, 18 Jun 2016 17:35:51 +0800
+Subject: v3.2.1
+
+---
+ .../ustc_zzzz/fmltutor/block/BlockLoader.java      |  38 ++++++-
+ .../fmltutor/block/BlockMetalFurnace.java          | 121 +++++++++++++++++++++
+ .../fmltutor/crafting/CraftingLoader.java          |   8 ++
+ .../github/ustc_zzzz/fmltutor/item/ItemLoader.java |  14 ++-
+ .../assets/fmltutor/blockstates/metal_furnace.json |  20 ++++
+ src/main/resources/assets/fmltutor/lang/en_US.lang |   3 +
+ src/main/resources/assets/fmltutor/lang/zh_CN.lang |   3 +
+ .../assets/fmltutor/models/block/gold_furnace.json |   8 ++
+ .../models/block/gold_furnace_burning.json         |   8 ++
+ .../assets/fmltutor/models/block/iron_furnace.json |   8 ++
+ .../models/block/iron_furnace_burning.json         |   8 ++
+ .../assets/fmltutor/models/item/gold_furnace.json  |  10 ++
+ .../assets/fmltutor/models/item/iron_furnace.json  |  10 ++
+ .../fmltutor/textures/blocks/gold_furnace.png      | Bin 0 -> 802 bytes
+ .../textures/blocks/gold_furnace_burning.png       | Bin 0 -> 842 bytes
+ .../fmltutor/textures/blocks/gold_furnace_side.png | Bin 0 -> 628 bytes
+ .../fmltutor/textures/blocks/iron_furnace.png      | Bin 0 -> 655 bytes
+ .../textures/blocks/iron_furnace_burning.png       | Bin 0 -> 722 bytes
+ .../fmltutor/textures/blocks/iron_furnace_side.png | Bin 0 -> 516 bytes
+ 19 files changed, 254 insertions(+), 5 deletions(-)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java
+ create mode 100644 src/main/resources/assets/fmltutor/blockstates/metal_furnace.json
+ create mode 100644 src/main/resources/assets/fmltutor/models/block/gold_furnace.json
+ create mode 100644 src/main/resources/assets/fmltutor/models/block/gold_furnace_burning.json
+ create mode 100644 src/main/resources/assets/fmltutor/models/block/iron_furnace.json
+ create mode 100644 src/main/resources/assets/fmltutor/models/block/iron_furnace_burning.json
+ create mode 100644 src/main/resources/assets/fmltutor/models/item/gold_furnace.json
+ create mode 100644 src/main/resources/assets/fmltutor/models/item/iron_furnace.json
+ create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_burning.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_side.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_burning.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_side.png
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
+index f463398..06c6af4 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
+@@ -1,8 +1,15 @@
+ package com.github.ustc_zzzz.fmltutor.block;
+ 
++import com.github.ustc_zzzz.fmltutor.FMLTutor;
++import com.google.common.base.Function;
++
+ import net.minecraft.block.Block;
+ import net.minecraft.client.resources.model.ModelResourceLocation;
+ import net.minecraft.item.Item;
++import net.minecraft.item.ItemBlock;
++import net.minecraft.item.ItemMultiTexture;
++import net.minecraft.item.ItemStack;
++import net.minecraft.util.ResourceLocation;
+ import net.minecraftforge.client.model.ModelLoader;
+ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+ import net.minecraftforge.fml.common.registry.GameData;
+@@ -14,17 +21,35 @@ public class BlockLoader
+ {
+     public static Block grassBlock = new BlockGrassBlock();
+     public static Block fluidMercury = new BlockFluidMercury();
++    public static Block metalFurnace = new BlockMetalFurnace();
+ 
+     public BlockLoader(FMLPreInitializationEvent event)
+     {
+         register(grassBlock, "grass_block");
+         register(fluidMercury, "fluid_mercury");
++        register(metalFurnace, new ItemMultiTexture(metalFurnace, metalFurnace, new Function<ItemStack, String>()
++        {
++            @Override
++            public String apply(ItemStack input)
++            {
++                return BlockMetalFurnace.EnumMaterial.values()[input.getMetadata() >> 3].getName();
++            }
++        }), "metal_furnace");
+     }
+ 
+     @SideOnly(Side.CLIENT)
+     public static void registerRenders()
+     {
+         registerRender(grassBlock);
++        registerRender(metalFurnace, 0, "iron_furnace");
++        registerRender(metalFurnace, 8, "gold_furnace");
++    }
++
++    private static void register(Block block, ItemBlock itemBlock, String name)
++    {
++        GameRegistry.registerBlock(block, null, name);
++        GameRegistry.registerItem(itemBlock, name);
++        GameData.getBlockItemMap().put(block, itemBlock);
+     }
+ 
+     private static void register(Block block, String name)
+@@ -33,10 +58,17 @@ public class BlockLoader
+     }
+ 
+     @SideOnly(Side.CLIENT)
+-    private static void registerRender(Block block)
++    private static void registerRender(Block block, int meta, String name)
+     {
+         Item item = Item.getItemFromBlock(block);
+-        String name = GameData.getBlockRegistry().getNameForObject(block).toString();
+-        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(name, "inventory"));
++        ResourceLocation location = new ResourceLocation(FMLTutor.MODID, name);
++        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(location, "inventory"));
++        ModelLoader.registerItemVariants(item, location);
++    }
++
++    @SideOnly(Side.CLIENT)
++    private static void registerRender(Block block)
++    {
++        registerRender(block, 0, GameData.getBlockRegistry().getNameForObject(block).getResourcePath());
+     }
+ }
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java
+new file mode 100644
+index 0000000..57deadf
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java
+@@ -0,0 +1,121 @@
++package com.github.ustc_zzzz.fmltutor.block;
++
++import java.util.List;
++
++import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
++
++import net.minecraft.block.Block;
++import net.minecraft.block.material.Material;
++import net.minecraft.block.properties.PropertyBool;
++import net.minecraft.block.properties.PropertyDirection;
++import net.minecraft.block.properties.PropertyEnum;
++import net.minecraft.block.state.BlockState;
++import net.minecraft.block.state.IBlockState;
++import net.minecraft.creativetab.CreativeTabs;
++import net.minecraft.entity.EntityLivingBase;
++import net.minecraft.entity.player.EntityPlayer;
++import net.minecraft.item.Item;
++import net.minecraft.item.ItemStack;
++import net.minecraft.util.BlockPos;
++import net.minecraft.util.EnumFacing;
++import net.minecraft.util.IStringSerializable;
++import net.minecraft.world.World;
++import net.minecraftforge.fml.relauncher.Side;
++import net.minecraftforge.fml.relauncher.SideOnly;
++
++public class BlockMetalFurnace extends Block
++{
++    public static enum EnumMaterial implements IStringSerializable
++    {
++        IRON("iron"), GOLD("gold");
++
++        private String name;
++
++        private EnumMaterial(String material)
++        {
++            this.name = material;
++        }
++
++        @Override
++        public String getName()
++        {
++            return this.name;
++        }
++
++        @Override
++        public String toString()
++        {
++            return this.name;
++        }
++    }
++
++    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
++    public static final PropertyBool BURNING = PropertyBool.create("burning");
++    public static final PropertyEnum<EnumMaterial> MATERIAL = PropertyEnum.create("material", EnumMaterial.class);
++
++    public BlockMetalFurnace()
++    {
++        super(Material.iron);
++        this.setUnlocalizedName("metalFurnace");
++        this.setHardness(2.5F);
++        this.setStepSound(Block.soundTypeMetal);
++        this.setCreativeTab(CreativeTabsLoader.tabFMLTutor);
++        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH)
++                .withProperty(BURNING, Boolean.FALSE).withProperty(MATERIAL, EnumMaterial.IRON));
++    }
++
++    @Override
++    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
++            EnumFacing side, float hitX, float hitY, float hitZ)
++    {
++        worldIn.setBlockState(pos, state.cycleProperty(BURNING));
++        return true;
++    }
++
++    @Override
++    public int damageDropped(IBlockState state)
++    {
++        return state.getValue(MATERIAL).ordinal() << 3;
++    }
++
++    @Override
++    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ,
++            int meta, EntityLivingBase placer)
++    {
++        IBlockState origin = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
++        return origin.withProperty(FACING, placer.getHorizontalFacing().getOpposite());
++    }
++
++    @Override
++    @SideOnly(Side.CLIENT)
++    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
++    {
++        list.add(new ItemStack(itemIn, 1, 0));
++        list.add(new ItemStack(itemIn, 1, 8));
++    }
++
++    @Override
++    public IBlockState getStateFromMeta(int meta)
++    {
++        EnumFacing facing = EnumFacing.getHorizontal(meta & 3);
++        Boolean burning = Boolean.valueOf((meta & 4) != 0);
++        EnumMaterial material = EnumMaterial.values()[meta >> 3];
++        return this.getDefaultState().withProperty(FACING, facing).withProperty(BURNING, burning).withProperty(MATERIAL,
++                material);
++    }
++
++    @Override
++    public int getMetaFromState(IBlockState state)
++    {
++        int facing = state.getValue(FACING).getHorizontalIndex();
++        int burning = state.getValue(BURNING).booleanValue() ? 4 : 0;
++        int material = state.getValue(MATERIAL).ordinal() << 3;
++        return facing | burning | material;
++    }
++
++    @Override
++    protected BlockState createBlockState()
++    {
++        return new BlockState(this, FACING, BURNING, MATERIAL);
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
+index e3cd605..69c0f4c 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
+@@ -50,6 +50,14 @@ public class CraftingLoader
+         {
+                 "# #", "# #", '#', "dustRedstone"
+         }));
++        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.metalFurnace, 1, 0), new Object[]
++        {
++                "###", "# #", "###", '#', "blockIron"
++        }));
++        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockLoader.metalFurnace, 1, 8), new Object[]
++        {
++                "###", "# #", "###", '#', "blockGold"
++        }));
+         GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.grassBlock), new Object[]
+         {
+                 "##", "##", '#', Blocks.vine
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
+index 2fe53f0..2dbb38f 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
+@@ -1,10 +1,13 @@
+ package com.github.ustc_zzzz.fmltutor.item;
+ 
++import com.github.ustc_zzzz.fmltutor.FMLTutor;
++
+ import net.minecraft.client.resources.model.ModelResourceLocation;
+ import net.minecraft.item.Item;
+ import net.minecraft.item.ItemArmor;
+ import net.minecraft.item.ItemFood;
+ import net.minecraft.item.ItemPickaxe;
++import net.minecraft.util.ResourceLocation;
+ import net.minecraftforge.client.model.ModelLoader;
+ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+ import net.minecraftforge.fml.common.registry.GameData;
+@@ -60,9 +63,16 @@ public class ItemLoader
+     }
+ 
+     @SideOnly(Side.CLIENT)
++    private static void registerRender(Item item, int meta, String name)
++    {
++        ResourceLocation location = new ResourceLocation(FMLTutor.MODID, name);
++        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(location, "inventory"));
++        ModelLoader.registerItemVariants(item, location);
++    }
++
++    @SideOnly(Side.CLIENT)
+     private static void registerRender(Item item)
+     {
+-        String name = GameData.getItemRegistry().getNameForObject(item).toString();
+-        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(name, "inventory"));
++        registerRender(item, 0, GameData.getItemRegistry().getNameForObject(item).getResourcePath());
+     }
+ }
+diff --git a/src/main/resources/assets/fmltutor/blockstates/metal_furnace.json b/src/main/resources/assets/fmltutor/blockstates/metal_furnace.json
+new file mode 100644
+index 0000000..75210bb
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/blockstates/metal_furnace.json
+@@ -0,0 +1,20 @@
++{
++    "variants": {
++        "burning=false,facing=east,material=gold": { "model": "fmltutor:gold_furnace", "y": 90, "uvlock": true },
++        "burning=true,facing=east,material=gold": { "model": "fmltutor:gold_furnace_burning", "y": 90, "uvlock": true },
++        "burning=false,facing=north,material=gold": { "model": "fmltutor:gold_furnace" },
++        "burning=true,facing=north,material=gold": { "model": "fmltutor:gold_furnace_burning" },
++        "burning=false,facing=south,material=gold": { "model": "fmltutor:gold_furnace", "y": 180, "uvlock": true },
++        "burning=true,facing=south,material=gold": { "model": "fmltutor:gold_furnace_burning", "y": 180, "uvlock": true },
++        "burning=false,facing=west,material=gold": { "model": "fmltutor:gold_furnace", "y": 270, "uvlock": true },
++        "burning=true,facing=west,material=gold": { "model": "fmltutor:gold_furnace_burning", "y": 270, "uvlock": true },
++        "burning=false,facing=east,material=iron": { "model": "fmltutor:iron_furnace", "y": 90, "uvlock": true },
++        "burning=true,facing=east,material=iron": { "model": "fmltutor:iron_furnace_burning", "y": 90, "uvlock": true },
++        "burning=false,facing=north,material=iron": { "model": "fmltutor:iron_furnace" },
++        "burning=true,facing=north,material=iron": { "model": "fmltutor:iron_furnace_burning" },
++        "burning=false,facing=south,material=iron": { "model": "fmltutor:iron_furnace", "y": 180, "uvlock": true },
++        "burning=true,facing=south,material=iron": { "model": "fmltutor:iron_furnace_burning", "y": 180, "uvlock": true },
++        "burning=false,facing=west,material=iron": { "model": "fmltutor:iron_furnace", "y": 270, "uvlock": true },
++        "burning=true,facing=west,material=iron": { "model": "fmltutor:iron_furnace_burning", "y": 270, "uvlock": true }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
+index 15b1b54..c3c4952 100644
+--- a/src/main/resources/assets/fmltutor/lang/en_US.lang
++++ b/src/main/resources/assets/fmltutor/lang/en_US.lang
+@@ -12,6 +12,9 @@ item.bucketMercury.name=Mercury Bucket
+ tile.grassBlock.name=Grass Block
+ tile.fluidMercury.name=Mercury
+ 
++tile.metalFurnace.iron.name=Iron Furnace
++tile.metalFurnace.gold.name=Gold Furnace
++
+ itemGroup.fmltutor=FML Tutor
+ 
+ death.attack.byPig=%s was dead because of a pig! 
+diff --git a/src/main/resources/assets/fmltutor/lang/zh_CN.lang b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+index 553beee..df2fc3e 100644
+--- a/src/main/resources/assets/fmltutor/lang/zh_CN.lang
++++ b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+@@ -12,6 +12,9 @@ item.bucketMercury.name=水银桶
+ tile.grassBlock.name=草块
+ tile.fluidMercury.name=水银
+ 
++tile.metalFurnace.iron.name=铁炉
++tile.metalFurnace.gold.name=金炉
++
+ itemGroup.fmltutor=FML教程
+ 
+ death.attack.byPig=%s被猪弄死了！
+diff --git a/src/main/resources/assets/fmltutor/models/block/gold_furnace.json b/src/main/resources/assets/fmltutor/models/block/gold_furnace.json
+new file mode 100644
+index 0000000..0c9fdb1
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/block/gold_furnace.json
+@@ -0,0 +1,8 @@
++{
++    "parent": "block/orientable",
++    "textures": {
++        "top": "fmltutor:blocks/gold_furnace_side",
++        "front": "fmltutor:blocks/gold_furnace",
++        "side": "fmltutor:blocks/gold_furnace_side"
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/models/block/gold_furnace_burning.json b/src/main/resources/assets/fmltutor/models/block/gold_furnace_burning.json
+new file mode 100644
+index 0000000..a2d8da5
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/block/gold_furnace_burning.json
+@@ -0,0 +1,8 @@
++{
++    "parent": "block/orientable",
++    "textures": {
++        "top": "fmltutor:blocks/gold_furnace_side",
++        "front": "fmltutor:blocks/gold_furnace_burning",
++        "side": "fmltutor:blocks/gold_furnace_side"
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/models/block/iron_furnace.json b/src/main/resources/assets/fmltutor/models/block/iron_furnace.json
+new file mode 100644
+index 0000000..050c314
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/block/iron_furnace.json
+@@ -0,0 +1,8 @@
++{
++    "parent": "block/orientable",
++    "textures": {
++        "top": "fmltutor:blocks/iron_furnace_side",
++        "front": "fmltutor:blocks/iron_furnace",
++        "side": "fmltutor:blocks/iron_furnace_side"
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/models/block/iron_furnace_burning.json b/src/main/resources/assets/fmltutor/models/block/iron_furnace_burning.json
+new file mode 100644
+index 0000000..14f60e0
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/block/iron_furnace_burning.json
+@@ -0,0 +1,8 @@
++{
++    "parent": "block/orientable",
++    "textures": {
++        "top": "fmltutor:blocks/iron_furnace_side",
++        "front": "fmltutor:blocks/iron_furnace_burning",
++        "side": "fmltutor:blocks/iron_furnace_side"
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/models/item/gold_furnace.json b/src/main/resources/assets/fmltutor/models/item/gold_furnace.json
+new file mode 100644
+index 0000000..e40e952
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/item/gold_furnace.json
+@@ -0,0 +1,10 @@
++{
++    "parent": "fmltutor:block/gold_furnace",
++    "display": {
++        "thirdperson": {
++            "rotation": [ 10, -45, 170 ],
++            "translation": [ 0, 1.5, -2.75 ],
++            "scale": [ 0.375, 0.375, 0.375 ]
++        }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/models/item/iron_furnace.json b/src/main/resources/assets/fmltutor/models/item/iron_furnace.json
+new file mode 100644
+index 0000000..7a08352
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/item/iron_furnace.json
+@@ -0,0 +1,10 @@
++{
++    "parent": "fmltutor:block/iron_furnace",
++    "display": {
++        "thirdperson": {
++            "rotation": [ 10, -45, 170 ],
++            "translation": [ 0, 1.5, -2.75 ],
++            "scale": [ 0.375, 0.375, 0.375 ]
++        }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace.png b/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..7e085d879dc3777ab00e36c98bdf86686cf41dd9
+GIT binary patch
+literal 802
+zcmV+-1Ks?IP)<h;3K|Lk000e1NJLTq000mG000mO1^@s6AM^iV00006VoOIv0RI60
+z0RN!9r;`8x010qNS#tmY3ljhU3ljkVnw%H_000McNliru;06&44Ixda;|~A;0<TF#
+zK~y-)Et6euR8<&8*ZZEm&xf6&7DijCmPVum)5dUPM2Pw;j5o$#;1BcCcnxuYKpH~A
+zN1CR@GQpNkd*RHK_H@oUd+*na@&lf%m8?AS{Ex4V1nR(7N>(|1nWIi18P+7c3b86N
+z=g2Y#;>py}PDZ#3i;FC;UBOa|xIpxVIz!dKgwPt9DC!}l2xg?vp_(|DfRhqfsBqaF
+zF(xtqIU*rohBzSxLwzE%me4kcZ|S-jXpK_^fEW|1!uIx<H~;Q4o^+6ue!t?Zj$D|F
+ztgbkgFBgb<G6yC#4g-}VL>GBI++lNb#O`hlz!#tQI6Rm!9M+uH4Y$6X=g#eqSY4?w
+zQ%rIcNkmhU?X&e{#P0T#6e3Oxr;(kVDNWn4xKy&WbH?h`4N~T4qJjx7N+c#Q6Y!3_
+z@?86>qOKDsCmkE>JtosY-3HVfrVW}RxpfdDP9&jHLYz^S%5Oh^!sX>PkOd$EBBmuV
+zi;SlO#5!VVu+$-%a7qS2@Wnj0zyFxWPb!YzZ2>Tub^zpFDN7~Km3}d%>sl-ZBm|sN
+z;#~z&P!ttE+*!it0}&))VjzZzp%|8oBK9E8P=A1f9JD&u^;f|HFJFwg_xB!1!sklc
+z1b+Il&&K+t_swV6tRtK>ILJUenDXM~hzAeekmt(%`-jZVI*Kv_GfJ;K8jSevW{>MD
+z71q|ICg2bQ>3II^kcW@nG8pWGfOA4`&SMyu@z<ZPu^2fy>ha|-pP{Kk&2UJI$&|sv
+zf4Fz|Ef+6V%=bLJA9ih|$c5Rvz^pblpC0r3uh)?FKO`j_G)OvT{YFk~K4j_B5)mPE
+z=Vx-6U@2jz0&UB1uO@~*cDhFl0q3%Y=`d$)q2tP}3QOl?wS>h8D4ENc3nfYc-^`O&
+gH%WEPr4L^5KlLqP3t~==$p8QV07*qoM6N<$f-E9t`~Uy|
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_burning.png b/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_burning.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..41d400eaae5db90a45304310436931751356d513
+GIT binary patch
+literal 842
+zcmV-Q1GW5#P)<h;3K|Lk000e1NJLTq000mG000mO1^@s6AM^iV00006VoOIv0RI60
+z0RN!9r;`8x010qNS#tmY3ljhU3ljkVnw%H_000McNliru;06&44J||-uOt8f0@q1I
+zK~y-)1;I;iRaF>(;rCl>?aMi*)z;Rw#5URs8qylW#28IbQ3ejwk+%?a#*8>|?8v$C
+z2M{K7Lev`nfFnsvm>EbZry79*YFm0aJ^Spv*ZMx6M{cg4F%(>YtmANHAS-iR5Ku!$
+zN|_05QDPzBeLyXcg+O!g4`F<Ej-|ClQml~>X}uA0BLu*N(NM{}BNRf63CxI1LkPzG
+z0|-)rPLve+7)=w&03Y@+1Wd_-BQ-{r8+q1JS0nOnOFgQ<4GGQxK+{A*aBOZqp}+k%
+zher|AF*Q|EkCd@aWO*^;h38A0FL2&4IU!&W{C_xqimkhw+_>?Wet!tS!hDa14=V26
+zt2i0fyz$yNZ=RcEWvPp*LoLT4N}B|=9d6%zO#k*F8WTYb?-Kp~5p~ltJ6Ce+PQ}Vg
+zXGzX;TnU&Ek|dIXO9ELS?_``_DXA)Ba1wcWZH&XCNYzFp8Ri<iDqSBz6G23AQj(ex
+zdG5IM`7HAbYakPV2NLE=l27a({EAphQ;#rhab5`yk2XSg>}lRPKgDmqmqY|O<akg6
+zkOfasc&b5SrrbqG4UUA@L<myS?Tmr+C<^8LTeBDr2q20{0BJC(alDGD(d|q^I>BZ4
+z36O&;foC8)1y=BIC*%4LS3#64cQke6<Bz^z{<#WhKm#_~r#Y$#;6WC^GIkz4#l}xp
+z$uh@R|DI#}WS8aMG=C0v`Q_(pkXk-`|4U}Z_poLTZT`abCRagvJlHAO*to)b+snMW
+zxd<1*If09?)Sc$SomDRMUt#^qcf?B3s=}EOkQS33KW==_<wtK*eRfFF$l!R7XQOdE
+zzl(ez%v^)ubH3J3P!Bkds1l$>bimq~oaXf-(&+<41XYDkL2e1Gfqbi^Ka5ccJ}zLx
+z0VzhD_leQLBr6jwZhfC}%P784x_6DvS);tJbhd<E4!w?0tUn>^tP;YDOm|BD2jD+b
+UX}`1l3;+NC07*qoM6N<$f-W~}-T(jq
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_side.png b/src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_side.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..9e776309dfcf3c7c96e4992d5cc1fd83841ae233
+GIT binary patch
+literal 628
+zcmV-)0*n2LP)<h;3K|Lk000e1NJLTq000mG000mO1^@s6AM^iV00006VoOIv0RI60
+z0RN!9r;`8x010qNS#tmY3ljhU3ljkVnw%H_000McNliru;06&43^vzbSBU@s0s%=x
+zK~y-)J(A0cR9O&3*N!-uW>pS)qD?o5I1wE934U__j-Q|++Tf!qGw;18Vmr9iO%M<e
+z@5R=Kf8JS!7;wA~@@{ZA9f=`mqphKY&nGwxG7m%^fWh|tGvklH|Kj=USA;gmiSCSL
+z>;?-N=zuiPh(<2#jeozxh&#v^_jH>GVViA!!syA8uz`uZf>+kLAXbPABLaZ`o4ZYB
+zg92Iz=rYNIv|^haNyIa(E5i-$FPJ|uAL&}ik<dkG;1+?XGT2DQ4edbrjG<_Vr0Wy;
+z_;dgHbN~d=bQMN00yttDvXKCbQ7UFZm&nr*0j`N6>24yx1dCUcJ4?-mIiV&)YBEkw
+zkT3LQ1wheg$AeOgF>!+kLWMnPHxVRhp*YiRe15}!V7qtsG-F8)*JRv8-!_)Zg4d0K
+zPq>e?_O4)s^Gm8Gk)~`Ejb&2cHrgilr{enM8v~9I_xriWx8RAQfx@v12RGr3kT4+M
+z=-Wy^E(|*{gQpCN1eu5e7j%J}Oz`c>_V9?81+NReOoqZJCUosH2oQ+IwQrY;`t<<U
+z2eyY_^g21ngv~%J%@4}8D=rhYh=7QuwqmXeTz;VC%Ag=j+NhghFQ|W#6wytx!}Ka_
+z?S(FSUEp@3*9~f4R@+2hKfJf_&Y+EZkJGyfMG%>s=Omx%dN#E+l=%&!BW-wP;y|we
+O0000<MNUMnLSTYu#uRG+
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace.png b/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..d3ec730f2f0dc5c631381091e27a7ca6df7ae305
+GIT binary patch
+literal 655
+zcmV;A0&x9_P)<h;3K|Lk000e1NJLTq000mG000mO0ssI2kdbIM00009a7bBm000XU
+z000XU0RWnu7ytkO2XskIMF-#p5eyAB&U<Fa0006mNkl<ZD9=q&O-n055Ulyyuny6P
+zyQ>HF5Q2gSArM5!f60IJBpwAp6cs^&L}A&35Y&sC{YWOeGwoq`^7__vPjyvIv8$`A
+zx~>^xN-3q3l#($<M9w)O1c0(E8Dq{l&N*XDYOPOCPyc!$1Y-<9RaKmG&bf0AfM1wS
+zr?P39wrzzFZQJ?*002@-=bVSI)+(i}wE$#M6sy(B1Egs>pU?9=7eegp>=<J<Ha3zZ
+z+1=eGA|fiwQg*xDD2j;a<KrVu(=5w~Xn%h{%d#|0m&@g7G&(;&KRi4nBCR#|vR13r
+z^Yioj`@1p5E1u0}P17Vv^7i)D@ArwQX&L~ss;auKg%HLV0E5B67_(R`j*gD<Jojv?
+zsxrnn=gP8_TI)EDt+i1UO(v6rg9FaFSMTlm{QT5fODO?#yIsi`D~duXH5?8fA0P8P
+z2e4Qy04Sw8olX!0y<QK1cU%@lVXgI^jz%Nzsdw;?=g-fNe_vIV+}zxZqR3w-qUm&c
+zb92+SZ4d<O^?E!W4+aDLt1t{DW2`Jo0I#pF_xJZf5L{nh8)G`14gk*i?d|Q^+1c^&
+zu}747p4W9fo6Vk{p6>4M{8AW(L<HdS@)AH%6nlGnob$S_<<{0#k|Y-w7Y`2)aU5%{
+z{q?44yar>;%gf95_O`V)3`6NZyx;FHm&-Vg|5yA+eLkQ2Xc3WIuh&_Y1wn9fa^lB6
+pHcBa<a{#?w@9XR9`}@0X+h5xNTx=J8UKs!Y002ovPDHLkV1oW6C(!@^
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_burning.png b/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_burning.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..06f03b9dc41dd712fe462346de1a39628201c23b
+GIT binary patch
+literal 722
+zcmV;@0xkWCP)<h;3K|Lk000e1NJLTq000mG000mO0ssI2kdbIM00009a7bBm000XU
+z000XU0RWnu7ytkO2XskIMF-#p5eyCow1_n^0007UNkl<ZD9<I4PfHt76vgj-@6JqS
+z@&_{{R+L(iWLGE%B7TQ1ibw^!^gDD_x@y0N1&d&|euVDa2<f6jN(=^J+(<Jsd6}1Y
+z=e;gwea?Y%&JS;IZ<SJr=y{&!c|?SW&N*iGecw4(6a^wyRVAfFL~1sh2L}htEQD~*
+zd7dYw1b{5dq?AO&%m7da#^bRt#;n)tTBxeZT5F6k#sonC073}g_W>XbLjV8(%JaM|
+zOQjSMO{dex$HzR+rIg)n*BH}iG`6<3wzs#HQr6m{D5%|TZ*Fb^z-%^~OeWLm)H%1a
+zv-9xqFq_R*tJUG*VH8DsdwbT}D2hZ~w=B#1`}-tGwARi!Ywct*F~;=!{Uk{SgMqbH
+zDFpzuTrQPT%&fHrfWcs(wa)W=I2>kKrnRoEWmy_yilU%qv)S+WtE!6Q_~PPXcXw9^
+z0RYxoL<E2|O`|9RfJURy>2wGYvn&h4@aX91?(VKO6-5C6MCAK^p6A_e7XW<U7eY|Y
+zr7TM+<?->c5CRc<y&fV8A+**T8ym~zl9`!VDMg)5r`PM%un;j#)0>-{8uNO+K07;$
+z<G8+onS&r8M6Bn&yu6G?Bj5KwFBX$LAGX_ni()hy0l?|$X&lF%=Q-y@5Cq1UG)=Fs
+zuRlINf0)nV9E1>X4ue+f<mu_;>FM(FQYlscNv&2Zj^nGVtFKzCPgvP1&$G=6vey~D
+z$5%fc5q)#+U#rE;VHlEgt}M&_{r&RIFEcQRV6B5Qz%jbF0N;Usn^j{arL3yTIVYGo
+z%Q7P3A1wb!@kPpn<U5i#<Rv5}Nssu_EEbFTe9p}O0jDW<SdN0Dc>n+a07*qoM6N<$
+Eg4_N`8~^|S
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_side.png b/src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_side.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..8f6cfe94f1bad2144acf46acb5166621225b9714
+GIT binary patch
+literal 516
+zcmV+f0{i`mP)<h;3K|Lk000e1NJLTq000mG000mO1^@s6AM^iV00006VoOIv0RI60
+z0RN!9r;`8x010qNS#tmY3ljhU3ljkVnw%H_000McNliru;06&44Hy!wYX<-T0g*{W
+zK~y-)U6b9ef<O#}zrtcr5M!b~gYSRqgBV{!V3EJ}T%2qp?iJZ7)6Ps+9*>6&!+?lT
+z6a__55JEsiFf#zm3=yI4dql+VvMeLib<O>LM?{<iKve;lrpbu_uQM}VuNPsSXUvRs
+zUCFYHWm){^R4gK!yHpDh+P3BM`Jk$p8LCQ_WtbTu1pgKh#&JYdS=SX2q3gPT3Fq_K
+zS=V(X&vVykX2cjVGY*HthVXbi5=4Yy7*N%Xaex!1(Z3CK34Pzw_q_w@gb@7B%oxYf
+zu{2%VwuGvxxZQ57>x!x}O_O&ATyI&HZe+r$s`{4@V?<Tm$UM)T@HdS#Wx~Sy{bm>j
+z=6MF7C<=Evr4mA597m7P%qYu}zV8W5({Q<5Hd~j>OQZmGU9&99#^kE12mo!{I`F$V
+z--&$hNowX2eosmvk;WJuQ&o1m9Wh42>2%_Hy}Ir^&o@pl%R-EirfD_}M1=i*Pf%65
+zuJgRpsNdZa+3#aAGr}}YJfBb3^t~)*=C3m?)#vlsnEeN}I7Wd*afmhm0000<MNUMn
+GLSTaCXx@AP
+
+literal 0
+HcmV?d00001
+
+-- 
+2.11.0
+

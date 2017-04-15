@@ -1,0 +1,153 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Fri, 20 Nov 2015 21:52:49 +0800
+Subject: v2.2.1
+
+---
+ .../ustc_zzzz/fmltutor/crafting/CraftingLoader.java  |   4 ++++
+ .../github/ustc_zzzz/fmltutor/item/ItemLoader.java   |   4 ++++
+ .../ustc_zzzz/fmltutor/item/ItemRedstonePickaxe.java |  19 +++++++++++++++++++
+ src/main/resources/assets/fmltutor/lang/en_US.lang   |   1 +
+ src/main/resources/assets/fmltutor/lang/zh_CN.lang   |   1 +
+ .../fmltutor/models/item/redstone_pickaxe.json       |  18 ++++++++++++++++++
+ .../fmltutor/textures/items/redstone_pickaxe.png     | Bin 0 -> 325 bytes
+ 7 files changed, 47 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstonePickaxe.java
+ create mode 100644 src/main/resources/assets/fmltutor/models/item/redstone_pickaxe.json
+ create mode 100644 src/main/resources/assets/fmltutor/textures/items/redstone_pickaxe.png
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
+index 25f3267..af7e525 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
+@@ -29,6 +29,10 @@ public class CraftingLoader
+         {
+                 "##", "##", '#', Blocks.vine
+         });
++        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstonePickaxe), new Object[]
++        {
++                "###", " * ", " * ", '#', Items.redstone, '*', Items.stick
++        });
+         GameRegistry.addShapelessRecipe(new ItemStack(Blocks.vine, 4), BlockLoader.grassBlock);
+     }
+ 
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
+index 0128ecb..090ffe4 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
+@@ -2,6 +2,7 @@ package com.github.ustc_zzzz.fmltutor.item;
+ 
+ import net.minecraft.client.resources.model.ModelResourceLocation;
+ import net.minecraft.item.Item;
++import net.minecraft.item.ItemPickaxe;
+ import net.minecraftforge.client.model.ModelLoader;
+ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+ import net.minecraftforge.fml.common.registry.GameData;
+@@ -12,16 +13,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
+ public class ItemLoader
+ {
+     public static Item goldenEgg = new ItemGoldenEgg();
++    public static ItemPickaxe redstonePickaxe = new ItemRedstonePickaxe();
+ 
+     public ItemLoader(FMLPreInitializationEvent event)
+     {
+         register(goldenEgg, "golden_egg");
++        register(redstonePickaxe, "redstone_pickaxe");
+     }
+ 
+     @SideOnly(Side.CLIENT)
+     public static void registerRenders()
+     {
+         registerRender(goldenEgg);
++        registerRender(redstonePickaxe);
+     }
+ 
+     private static void register(Item item, String name)
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstonePickaxe.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstonePickaxe.java
+new file mode 100644
+index 0000000..65a9b4c
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstonePickaxe.java
+@@ -0,0 +1,19 @@
++package com.github.ustc_zzzz.fmltutor.item;
++
++import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
++
++import net.minecraft.item.Item;
++import net.minecraft.item.ItemPickaxe;
++import net.minecraftforge.common.util.EnumHelper;
++
++public class ItemRedstonePickaxe extends ItemPickaxe
++{
++    public static final Item.ToolMaterial REDSTONE = EnumHelper.addToolMaterial("REDSTONE", 3, 16, 16.0F, 0.0F, 10);
++
++    public ItemRedstonePickaxe()
++    {
++        super(REDSTONE);
++        this.setUnlocalizedName("redstonePickaxe");
++        this.setCreativeTab(CreativeTabsLoader.tabFMLTutor);
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
+index ffbcf4a..d4f5fdc 100644
+--- a/src/main/resources/assets/fmltutor/lang/en_US.lang
++++ b/src/main/resources/assets/fmltutor/lang/en_US.lang
+@@ -1,4 +1,5 @@
+ item.goldenEgg.name=Golden Egg
++item.redstonePickaxe.name=Redstone Pickaxe
+ 
+ tile.grassBlock.name=Grass Block
+ 
+diff --git a/src/main/resources/assets/fmltutor/lang/zh_CN.lang b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+index bc6a75b..ed39a1e 100644
+--- a/src/main/resources/assets/fmltutor/lang/zh_CN.lang
++++ b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+@@ -1,4 +1,5 @@
+ item.goldenEgg.name=金蛋
++item.redstonePickaxe.name=红石镐
+ 
+ tile.grassBlock.name=草块
+ 
+diff --git a/src/main/resources/assets/fmltutor/models/item/redstone_pickaxe.json b/src/main/resources/assets/fmltutor/models/item/redstone_pickaxe.json
+new file mode 100644
+index 0000000..e3468c1
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/item/redstone_pickaxe.json
+@@ -0,0 +1,18 @@
++{
++    "parent": "builtin/generated",
++    "textures": {
++        "layer0": "fmltutor:items/redstone_pickaxe"
++    },
++    "display": {
++        "thirdperson": {
++            "rotation": [ 0, 90, -35 ],
++            "translation": [ 0, 1.25, -3.5 ],
++            "scale": [ 0.85, 0.85, 0.85 ]
++        },
++        "firstperson": {
++            "rotation": [ 0, -135, 25 ],
++            "translation": [ 0, 4, 2 ],
++            "scale": [ 1.7, 1.7, 1.7 ]
++        }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/textures/items/redstone_pickaxe.png b/src/main/resources/assets/fmltutor/textures/items/redstone_pickaxe.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..032257048371c8f59e73d96f02d2bbae7b04bc58
+GIT binary patch
+literal 325
+zcmeAS@N?(olHy`uVBq!ia0vp^0wB!61|;P_|4#%`Y)RhkE)4%caKYZ?lYt_f1s;*b
+z3=G`DAk4@xYmNj^kiEpy*OmP~w-B3}^%a#pZ-GLWJY5_^EKVmUNMs!7@IKVs{Mdfi
+zjXrsMiB6*fK+b=q>gqQ8>+1~n{QBD62n3Ejy}gPrzh<+!*~YO|a{9GN&XzNr^rVTe
+zu8s`|+U7Dc@qFHHpSa`W3vFf3y00d}fB*Z0ef!T^`0@XVHe<onk#S9v4|aZ(Wd?%7
+zHi3aVxMy};e3PJYq~O7!=r-y8eMVt5e>nKXo7fKI9DAOwmXzx@O*lFEa6W_L?8q%!
+zK3MNIj{Up8P3C)j(xMrHv(Mg`;~NqpxJgp~#D~es@y4nQ3|o)Hgl%WvybtI*22WQ%
+Jmvv4FO#p$4d^Z39
+
+literal 0
+HcmV?d00001
+
+-- 
+2.11.0
+

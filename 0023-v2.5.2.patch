@@ -1,0 +1,130 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Wed, 17 Feb 2016 13:27:11 +0800
+Subject: v2.5.2
+
+---
+ .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  1 +
+ .../fmltutor/common/OreDictionaryLoader.java       | 24 +++++++++++
+ .../fmltutor/crafting/CraftingLoader.java          | 47 +++++++++++-----------
+ 3 files changed, 49 insertions(+), 23 deletions(-)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/common/OreDictionaryLoader.java
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+index e52553b..d339568 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+@@ -23,6 +23,7 @@ public class CommonProxy
+         new CreativeTabsLoader(event);
+         new ItemLoader(event);
+         new BlockLoader(event);
++        new OreDictionaryLoader(event);
+         new PotionLoader(event);
+     }
+ 
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/OreDictionaryLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/OreDictionaryLoader.java
+new file mode 100644
+index 0000000..462428e
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/OreDictionaryLoader.java
+@@ -0,0 +1,24 @@
++package com.github.ustc_zzzz.fmltutor.common;
++
++import java.util.List;
++
++import net.minecraft.item.ItemStack;
++import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
++import net.minecraftforge.oredict.OreDictionary;
++
++public class OreDictionaryLoader
++{
++    public OreDictionaryLoader(FMLPreInitializationEvent event)
++    {
++        List<ItemStack> dustRedstones = OreDictionary.getOres("dustRedstone");
++        List<ItemStack> dustGlowstones = OreDictionary.getOres("dustGlowstone");
++        for (ItemStack itemStack : dustGlowstones)
++        {
++            OreDictionary.registerOre("dustRedstone", itemStack);
++        }
++        for (ItemStack itemStack : dustRedstones)
++        {
++            OreDictionary.registerOre("dustGlowstone", itemStack);
++        }
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
+index 58a00af..e3cd605 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
+@@ -9,6 +9,7 @@ import net.minecraft.init.Items;
+ import net.minecraft.item.ItemStack;
+ import net.minecraftforge.fml.common.IFuelHandler;
+ import net.minecraftforge.fml.common.registry.GameRegistry;
++import net.minecraftforge.oredict.ShapedOreRecipe;
+ 
+ public class CraftingLoader
+ {
+@@ -21,37 +22,37 @@ public class CraftingLoader
+ 
+     private static void registerRecipe()
+     {
+-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.goldenEgg), new Object[]
++        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.goldenEgg), new Object[]
+         {
+-                "###", "#*#", "###", '#', Items.gold_ingot, '*', Items.egg
+-        });
+-        GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.grassBlock), new Object[]
++                "###", "#*#", "###", '#', "ingotGold", '*', Items.egg
++        }));
++        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.redstonePickaxe), new Object[]
+         {
+-                "##", "##", '#', Blocks.vine
+-        });
+-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstonePickaxe), new Object[]
++                "###", " * ", " * ", '#', "dustRedstone", '*', "stickWood"
++        }));
++        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.redstoneApple), new Object[]
+         {
+-                "###", " * ", " * ", '#', Items.redstone, '*', Items.stick
+-        });
+-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneApple), new Object[]
++                "###", "#*#", "###", '#', "dustRedstone", '*', Items.apple
++        }));
++        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.redstoneHelmet), new Object[]
+         {
+-                "###", "#*#", "###", '#', Items.redstone, '*', Items.apple
+-        });
+-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneHelmet), new Object[]
++                "###", "# #", '#', "dustRedstone"
++        }));
++        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.redstoneChestplate), new Object[]
+         {
+-                "###", "# #", '#', Items.redstone
+-        });
+-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneChestplate), new Object[]
++                "# #", "###", "###", '#', "dustRedstone"
++        }));
++        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.redstoneLeggings), new Object[]
+         {
+-                "# #", "###", "###", '#', Items.redstone
+-        });
+-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneLeggings), new Object[]
++                "###", "# #", "# #", '#', "dustRedstone"
++        }));
++        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemLoader.redstoneBoots), new Object[]
+         {
+-                "###", "# #", "# #", '#', Items.redstone
+-        });
+-        GameRegistry.addShapedRecipe(new ItemStack(ItemLoader.redstoneBoots), new Object[]
++                "# #", "# #", '#', "dustRedstone"
++        }));
++        GameRegistry.addShapedRecipe(new ItemStack(BlockLoader.grassBlock), new Object[]
+         {
+-                "# #", "# #", '#', Items.redstone
++                "##", "##", '#', Blocks.vine
+         });
+         GameRegistry.addShapelessRecipe(new ItemStack(Blocks.vine, 4), BlockLoader.grassBlock);
+     }
+-- 
+2.11.0
+

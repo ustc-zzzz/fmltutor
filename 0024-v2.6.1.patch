@@ -1,0 +1,522 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Sun, 21 Feb 2016 21:10:19 +0800
+Subject: v2.6.1
+
+---
+ .../fmltutor/block/BlockFluidMercury.java          |  17 ++++++
+ .../ustc_zzzz/fmltutor/block/BlockLoader.java      |   2 +
+ .../fmltutor/client/ItemRenderLoader.java          |   2 +
+ .../ustc_zzzz/fmltutor/common/CommonProxy.java     |   2 +
+ .../ustc_zzzz/fmltutor/fluid/FluidLoader.java      |  66 +++++++++++++++++++++
+ .../ustc_zzzz/fmltutor/fluid/FluidMercury.java     |  22 +++++++
+ .../assets/fmltutor/blockstates/fluid_mercury.json |   9 +++
+ src/main/resources/assets/fmltutor/lang/en_US.lang |   3 +
+ src/main/resources/assets/fmltutor/lang/zh_CN.lang |   3 +
+ .../fmltutor/textures/fluid/mercury_flow.png       | Bin 0 -> 5594 bytes
+ .../textures/fluid/mercury_flow.png.mcmeta         |   3 +
+ .../fmltutor/textures/fluid/mercury_still.png      | Bin 0 -> 5989 bytes
+ .../textures/fluid/mercury_still.png.mcmeta        |   5 ++
+ 13 files changed, 134 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockFluidMercury.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/fluid/FluidLoader.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/fluid/FluidMercury.java
+ create mode 100644 src/main/resources/assets/fmltutor/blockstates/fluid_mercury.json
+ create mode 100644 src/main/resources/assets/fmltutor/textures/fluid/mercury_flow.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/fluid/mercury_flow.png.mcmeta
+ create mode 100644 src/main/resources/assets/fmltutor/textures/fluid/mercury_still.png
+ create mode 100644 src/main/resources/assets/fmltutor/textures/fluid/mercury_still.png.mcmeta
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockFluidMercury.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockFluidMercury.java
+new file mode 100644
+index 0000000..c2209f3
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockFluidMercury.java
+@@ -0,0 +1,17 @@
++package com.github.ustc_zzzz.fmltutor.block;
++
++import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
++import com.github.ustc_zzzz.fmltutor.fluid.FluidLoader;
++
++import net.minecraft.block.material.Material;
++import net.minecraftforge.fluids.BlockFluidClassic;
++
++public class BlockFluidMercury extends BlockFluidClassic
++{
++    public BlockFluidMercury()
++    {
++        super(FluidLoader.fluidMercury, Material.water);
++        this.setUnlocalizedName("fluidMercury");
++        this.setCreativeTab(CreativeTabsLoader.tabFMLTutor);
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
+index 2c24fa5..f463398 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
+@@ -13,10 +13,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
+ public class BlockLoader
+ {
+     public static Block grassBlock = new BlockGrassBlock();
++    public static Block fluidMercury = new BlockFluidMercury();
+ 
+     public BlockLoader(FMLPreInitializationEvent event)
+     {
+         register(grassBlock, "grass_block");
++        register(fluidMercury, "fluid_mercury");
+     }
+ 
+     @SideOnly(Side.CLIENT)
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java
+index 5fab7d8..581d125 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java
+@@ -1,6 +1,7 @@
+ package com.github.ustc_zzzz.fmltutor.client;
+ 
+ import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
++import com.github.ustc_zzzz.fmltutor.fluid.FluidLoader;
+ import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+ 
+ public class ItemRenderLoader
+@@ -9,5 +10,6 @@ public class ItemRenderLoader
+     {
+         ItemLoader.registerRenders();
+         BlockLoader.registerRenders();
++        FluidLoader.registerRenders();
+     }
+ }
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+index d339568..371413f 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+@@ -6,6 +6,7 @@ import com.github.ustc_zzzz.fmltutor.command.CommandLoader;
+ import com.github.ustc_zzzz.fmltutor.crafting.CraftingLoader;
+ import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
+ import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
++import com.github.ustc_zzzz.fmltutor.fluid.FluidLoader;
+ import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+ import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
+ import com.github.ustc_zzzz.fmltutor.worldgen.WorldGeneratorLoader;
+@@ -21,6 +22,7 @@ public class CommonProxy
+     {
+         new ConfigLoader(event);
+         new CreativeTabsLoader(event);
++        new FluidLoader(event);
+         new ItemLoader(event);
+         new BlockLoader(event);
+         new OreDictionaryLoader(event);
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/fluid/FluidLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/fluid/FluidLoader.java
+new file mode 100644
+index 0000000..19b1f12
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/fluid/FluidLoader.java
+@@ -0,0 +1,66 @@
++package com.github.ustc_zzzz.fmltutor.fluid;
++
++import com.github.ustc_zzzz.fmltutor.FMLTutor;
++import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
++import com.github.ustc_zzzz.fmltutor.common.ConfigLoader;
++
++import net.minecraft.block.state.IBlockState;
++import net.minecraft.client.renderer.ItemMeshDefinition;
++import net.minecraft.client.renderer.block.statemap.StateMapperBase;
++import net.minecraft.client.resources.model.ModelResourceLocation;
++import net.minecraft.item.Item;
++import net.minecraft.item.ItemStack;
++import net.minecraftforge.client.model.ModelLoader;
++import net.minecraftforge.fluids.BlockFluidBase;
++import net.minecraftforge.fluids.Fluid;
++import net.minecraftforge.fluids.FluidRegistry;
++import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
++import net.minecraftforge.fml.relauncher.Side;
++import net.minecraftforge.fml.relauncher.SideOnly;
++
++public class FluidLoader
++{
++    public static Fluid fluidMercury = new FluidMercury();
++
++    public FluidLoader(FMLPreInitializationEvent event)
++    {
++        if (FluidRegistry.isFluidRegistered(fluidMercury))
++        {
++            ConfigLoader.logger().info("Found fluid {}, the registration is canceled. ", fluidMercury.getName());
++            fluidMercury = FluidRegistry.getFluid(fluidMercury.getName());
++        }
++        else
++        {
++            FluidRegistry.registerFluid(fluidMercury);
++        }
++    }
++
++    @SideOnly(Side.CLIENT)
++    public static void registerRenders()
++    {
++        registerFluidRender((BlockFluidBase) BlockLoader.fluidMercury, "fluid_mercury");
++    }
++
++    @SideOnly(Side.CLIENT)
++    private static void registerFluidRender(BlockFluidBase blockFluid, String blockStateName)
++    {
++        final String location = FMLTutor.MODID + ":" + blockStateName;
++        final Item itemFluid = Item.getItemFromBlock(blockFluid);
++        ModelLoader.setCustomMeshDefinition(itemFluid, new ItemMeshDefinition()
++        {
++            @Override
++            public ModelResourceLocation getModelLocation(ItemStack stack)
++            {
++                return new ModelResourceLocation(location, "fluid");
++            }
++        });
++        ModelLoader.setCustomStateMapper(blockFluid, new StateMapperBase()
++        {
++            @Override
++            protected ModelResourceLocation getModelResourceLocation(IBlockState state)
++            {
++                return new ModelResourceLocation(location, "fluid");
++            }
++        });
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/fluid/FluidMercury.java b/src/main/java/com/github/ustc_zzzz/fmltutor/fluid/FluidMercury.java
+new file mode 100644
+index 0000000..d622aa7
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/fluid/FluidMercury.java
+@@ -0,0 +1,22 @@
++package com.github.ustc_zzzz.fmltutor.fluid;
++
++import com.github.ustc_zzzz.fmltutor.FMLTutor;
++
++import net.minecraft.util.ResourceLocation;
++import net.minecraftforge.fluids.Fluid;
++
++public class FluidMercury extends Fluid
++{
++    public static final ResourceLocation still = new ResourceLocation(FMLTutor.MODID + ":" + "fluid/mercury_still");
++    public static final ResourceLocation flowing = new ResourceLocation(FMLTutor.MODID + ":" + "fluid/mercury_flow");
++
++    public FluidMercury()
++    {
++        super("mercury", FluidMercury.still, FluidMercury.flowing);
++        this.setUnlocalizedName("fluidMercury");
++        this.setDensity(13600);
++        this.setViscosity(750);
++        this.setLuminosity(0);
++        this.setTemperature(300);
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/blockstates/fluid_mercury.json b/src/main/resources/assets/fmltutor/blockstates/fluid_mercury.json
+new file mode 100644
+index 0000000..1c77654
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/blockstates/fluid_mercury.json
+@@ -0,0 +1,9 @@
++{
++  "forge_marker": 1,
++  "variants": {
++    "fluid": {
++      "model": "forge:fluid",
++      "custom": { "fluid": "mercury" }
++    }
++  }
++}
+diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
+index 0746fa2..dc941b0 100644
+--- a/src/main/resources/assets/fmltutor/lang/en_US.lang
++++ b/src/main/resources/assets/fmltutor/lang/en_US.lang
+@@ -8,6 +8,7 @@ item.redstoneLeggings.name=Redstone Leggings
+ item.redstoneBoots.name=Redstone Boots
+ 
+ tile.grassBlock.name=Grass Block
++tile.fluidMercury.name=Mercury
+ 
+ itemGroup.fmltutor=FML Tutor
+ 
+@@ -32,3 +33,5 @@ achievement.fmltutor.explosionFromGrassBlock.desc=Make an explosion of grass blo
+ 
+ commands.position.usage=/position [player]
+ commands.position.success=The position of %1$s is %2$s in world %3$s
++
++fluid.mercury=Mercury
+diff --git a/src/main/resources/assets/fmltutor/lang/zh_CN.lang b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+index 2a8fdc8..cacb1a9 100644
+--- a/src/main/resources/assets/fmltutor/lang/zh_CN.lang
++++ b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+@@ -8,6 +8,7 @@ item.redstoneLeggings.name=红石护腿
+ item.redstoneBoots.name=红石靴子
+ 
+ tile.grassBlock.name=草块
++tile.fluidMercury.name=水银
+ 
+ itemGroup.fmltutor=FML教程
+ 
+@@ -32,3 +33,5 @@ achievement.fmltutor.explosionFromGrassBlock.desc=通过点击草块使草块爆
+ 
+ commands.position.usage=/position [玩家]
+ commands.position.success=玩家 %1$s 处于名为 %3$s 的世界，其坐标为 %2$s
++
++fluid.mercury=水银
+diff --git a/src/main/resources/assets/fmltutor/textures/fluid/mercury_flow.png b/src/main/resources/assets/fmltutor/textures/fluid/mercury_flow.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..4fb26b79d80be064a7df4cb389d957d8237a4b9d
+GIT binary patch
+literal 5594
+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
+CB)7Q$
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/fluid/mercury_flow.png.mcmeta b/src/main/resources/assets/fmltutor/textures/fluid/mercury_flow.png.mcmeta
+new file mode 100644
+index 0000000..4f0718a
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/textures/fluid/mercury_flow.png.mcmeta
+@@ -0,0 +1,3 @@
++{
++  "animation": {}
++}
+\ No newline at end of file
+diff --git a/src/main/resources/assets/fmltutor/textures/fluid/mercury_still.png b/src/main/resources/assets/fmltutor/textures/fluid/mercury_still.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..d72a0b1707c957e09eaf39a21732aa264fd05712
+GIT binary patch
+literal 5989
+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
+Th5g|y00000NkvXXu0mjf1L8xz
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/main/resources/assets/fmltutor/textures/fluid/mercury_still.png.mcmeta b/src/main/resources/assets/fmltutor/textures/fluid/mercury_still.png.mcmeta
+new file mode 100644
+index 0000000..0645f48
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/textures/fluid/mercury_still.png.mcmeta
+@@ -0,0 +1,5 @@
++{
++  "animation": {
++    "frametime": 2
++  }
++}
+-- 
+2.11.0
+

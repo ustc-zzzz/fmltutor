@@ -1,0 +1,125 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Wed, 10 Feb 2016 12:49:38 +0800
+Subject: v2.5.1
+
+---
+ .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  2 ++
+ .../fmltutor/worldgen/WorldGeneratorGlowstone.java | 38 +++++++++++++++++++++
+ .../fmltutor/worldgen/WorldGeneratorLoader.java    | 39 ++++++++++++++++++++++
+ 3 files changed, 79 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/worldgen/WorldGeneratorGlowstone.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/worldgen/WorldGeneratorLoader.java
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+index 04c719a..e52553b 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+@@ -8,6 +8,7 @@ import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
+ import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
+ import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+ import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
++import com.github.ustc_zzzz.fmltutor.worldgen.WorldGeneratorLoader;
+ 
+ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+@@ -31,6 +32,7 @@ public class CommonProxy
+         new EnchantmentLoader();
+         new AchievementLoader();
+         new EventLoader();
++        new WorldGeneratorLoader();
+     }
+ 
+     public void postInit(FMLPostInitializationEvent event)
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/worldgen/WorldGeneratorGlowstone.java b/src/main/java/com/github/ustc_zzzz/fmltutor/worldgen/WorldGeneratorGlowstone.java
+new file mode 100644
+index 0000000..67d28c6
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/worldgen/WorldGeneratorGlowstone.java
+@@ -0,0 +1,38 @@
++package com.github.ustc_zzzz.fmltutor.worldgen;
++
++import java.util.Random;
++
++import net.minecraft.init.Blocks;
++import net.minecraft.util.BlockPos;
++import net.minecraft.world.World;
++import net.minecraft.world.biome.BiomeGenBase;
++import net.minecraft.world.gen.feature.WorldGenMinable;
++import net.minecraft.world.gen.feature.WorldGenerator;
++import net.minecraftforge.event.terraingen.OreGenEvent;
++import net.minecraftforge.event.terraingen.TerrainGen;
++
++public class WorldGeneratorGlowstone extends WorldGenerator
++{
++    private final WorldGenerator glowstoneGenerator = new WorldGenMinable(Blocks.glowstone.getDefaultState(), 16);
++
++    @Override
++    public boolean generate(World world, Random rand, BlockPos pos)
++    {
++        if (TerrainGen.generateOre(world, rand, this, pos, OreGenEvent.GenerateMinable.EventType.CUSTOM))
++        {
++            for (int i = 0; i < 4; ++i)
++            {
++                int posX = pos.getX() + rand.nextInt(16);
++                int posY = 16 + rand.nextInt(16);
++                int posZ = pos.getZ() + rand.nextInt(16);
++                BlockPos blockpos = new BlockPos(posX, posY, posZ);
++                BiomeGenBase biomeGenBase = world.getBiomeGenForCoords(blockpos);
++                if (biomeGenBase.getIntRainfall() < rand.nextInt(65536))
++                {
++                    glowstoneGenerator.generate(world, rand, blockpos);
++                }
++            }
++        }
++        return true;
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/worldgen/WorldGeneratorLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/worldgen/WorldGeneratorLoader.java
+new file mode 100644
+index 0000000..dae931a
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/worldgen/WorldGeneratorLoader.java
+@@ -0,0 +1,39 @@
++package com.github.ustc_zzzz.fmltutor.worldgen;
++
++import net.minecraft.util.BlockPos;
++import net.minecraft.world.gen.feature.WorldGenerator;
++import net.minecraftforge.common.MinecraftForge;
++import net.minecraftforge.event.terraingen.OreGenEvent;
++import net.minecraftforge.fml.common.eventhandler.Event;
++import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
++
++public class WorldGeneratorLoader
++{
++    private static WorldGenerator generatorGlowstone = new WorldGeneratorGlowstone();
++
++    private BlockPos pos;
++
++    public WorldGeneratorLoader()
++    {
++        MinecraftForge.ORE_GEN_BUS.register(this);
++    }
++
++    @SubscribeEvent
++    public void onOreGenPost(OreGenEvent.Post event)
++    {
++        if (!event.pos.equals(this.pos))
++        {
++            this.pos = event.pos;
++            generatorGlowstone.generate(event.world, event.rand, event.pos);
++        }
++    }
++
++    @SubscribeEvent
++    public void onOreGenGenerateMinable(OreGenEvent.GenerateMinable event)
++    {
++        if (event.type == OreGenEvent.GenerateMinable.EventType.ANDESITE)
++        {
++            event.setResult(Event.Result.DENY);
++        }
++    }
++}
+-- 
+2.11.0
+

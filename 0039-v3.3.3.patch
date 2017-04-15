@@ -1,0 +1,228 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Wed, 24 Aug 2016 23:07:05 +0800
+Subject: v3.3.3
+
+---
+ .../fmltutor/command/CommandPosition.java          |  46 ++++++++++
+ .../worldstorage/PositionWorldSavedData.java       | 102 +++++++++++++++++++++
+ src/main/resources/assets/fmltutor/lang/en_US.lang |   2 +
+ src/main/resources/assets/fmltutor/lang/zh_CN.lang |   2 +
+ 4 files changed, 152 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/worldstorage/PositionWorldSavedData.java
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java b/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java
+index ed148b9..89b29e0 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java
+@@ -1,11 +1,14 @@
+ package com.github.ustc_zzzz.fmltutor.command;
+ 
++import java.util.Arrays;
+ import java.util.List;
++import java.util.UUID;
+ 
+ import com.github.ustc_zzzz.fmltutor.capability.CapabilityLoader;
+ import com.github.ustc_zzzz.fmltutor.capability.IPositionHistory;
+ import com.github.ustc_zzzz.fmltutor.network.MessagePositionHistory;
+ import com.github.ustc_zzzz.fmltutor.network.NetworkLoader;
++import com.github.ustc_zzzz.fmltutor.worldstorage.PositionWorldSavedData;
+ 
+ import net.minecraft.command.CommandBase;
+ import net.minecraft.command.CommandException;
+@@ -43,6 +46,43 @@ public class CommandPosition extends CommandBase
+     @Override
+     public void processCommand(ICommandSender sender, String[] args) throws CommandException
+     {
++        if (args.length == 2 && "mark".equals(args[0]))
++        {
++            EntityPlayerMP entityPlayerMP = CommandBase.getCommandSenderAsPlayer(sender);
++            if ("list".equals(args[1]))
++            {
++                PositionWorldSavedData data;
++                sender.addChatMessage(new ChatComponentText("Global: "));
++                data = PositionWorldSavedData.getGlobal(entityPlayerMP.worldObj);
++                for (int i = data.size() - 1; i >= 0; --i)
++                {
++                    sender.addChatMessage(new ChatComponentTranslation("commands.position.mark", data.getPosition(i),
++                            entityPlayerMP.worldObj.getPlayerEntityByUUID(data.getPlayerUUID(i)).getName()));
++                }
++                sender.addChatMessage(new ChatComponentText("Dimension: "));
++                data = PositionWorldSavedData.get(entityPlayerMP.worldObj);
++                for (int i = data.size() - 1; i >= 0; --i)
++                {
++                    sender.addChatMessage(new ChatComponentTranslation("commands.position.mark", data.getPosition(i),
++                            entityPlayerMP.worldObj.getPlayerEntityByUUID(data.getPlayerUUID(i)).getName()));
++                }
++            }
++            else if ("global".equals(args[1]))
++            {
++                Vec3 pos = entityPlayerMP.getPositionVector();
++                UUID uuid = entityPlayerMP.getUniqueID();
++                PositionWorldSavedData.getGlobal(entityPlayerMP.worldObj).add(pos, uuid);
++                sender.addChatMessage(new ChatComponentTranslation("commands.position.marked", pos));
++            }
++            else if ("dimension".equals(args[1]))
++            {
++                Vec3 pos = entityPlayerMP.getPositionVector();
++                UUID uuid = entityPlayerMP.getUniqueID();
++                PositionWorldSavedData.get(entityPlayerMP.worldObj).add(pos, uuid);
++                sender.addChatMessage(new ChatComponentTranslation("commands.position.marked", pos));
++            }
++            return;
++        }
+         if (args.length > 1)
+         {
+             throw new WrongUsageException("commands.position.usage");
+@@ -86,8 +126,14 @@ public class CommandPosition extends CommandBase
+         if (args.length == 1)
+         {
+             String[] names = MinecraftServer.getServer().getAllUsernames();
++            names = Arrays.copyOf(names, names.length + 1);
++            names[names.length - 1] = "mark";
+             return CommandBase.getListOfStringsMatchingLastWord(args, names);
+         }
++        else if (args.length == 2 && "mark".equals(args[0]))
++        {
++            return CommandBase.getListOfStringsMatchingLastWord(args, "list", "global", "dimension");
++        }
+         return null;
+     }
+ }
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/worldstorage/PositionWorldSavedData.java b/src/main/java/com/github/ustc_zzzz/fmltutor/worldstorage/PositionWorldSavedData.java
+new file mode 100644
+index 0000000..725403f
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/worldstorage/PositionWorldSavedData.java
+@@ -0,0 +1,102 @@
++package com.github.ustc_zzzz.fmltutor.worldstorage;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.UUID;
++
++import net.minecraft.nbt.NBTTagCompound;
++import net.minecraft.nbt.NBTTagList;
++import net.minecraft.util.Vec3;
++import net.minecraft.world.World;
++import net.minecraft.world.WorldSavedData;
++
++public class PositionWorldSavedData extends WorldSavedData
++{
++    private List<Vec3> positions = new ArrayList<Vec3>();
++    private List<UUID> players = new ArrayList<UUID>();
++
++    public PositionWorldSavedData(String name)
++    {
++        super(name);
++    }
++
++    public int size()
++    {
++        return players.size();
++    }
++
++    public Vec3 getPosition(int index)
++    {
++        return positions.get(index);
++    }
++
++    public UUID getPlayerUUID(int index)
++    {
++        return players.get(index);
++    }
++
++    public void add(Vec3 position, UUID player)
++    {
++        positions.add(position);
++        players.add(player);
++        this.markDirty();
++    }
++
++    @Override
++    public void readFromNBT(NBTTagCompound nbt)
++    {
++        positions.clear();
++        players.clear();
++        NBTTagList list = (NBTTagList) nbt.getTag("positions");
++        if (list == null)
++        {
++            list = new NBTTagList();
++        }
++        for (int i = list.tagCount() - 1; i >= 0; --i)
++        {
++            NBTTagCompound compound = (NBTTagCompound) list.get(i);
++            positions.add(new Vec3(compound.getDouble("x"), compound.getDouble("y"), compound.getDouble("z")));
++            players.add(UUID.fromString(compound.getString("player")));
++        }
++    }
++
++    @Override
++    public void writeToNBT(NBTTagCompound nbt)
++    {
++        NBTTagList list = new NBTTagList();
++        for (int i = players.size() - 1; i >= 0; --i)
++        {
++            Vec3 position = positions.get(i);
++            UUID player = players.get(i);
++            NBTTagCompound compound = new NBTTagCompound();
++            compound.setDouble("x", position.xCoord);
++            compound.setDouble("y", position.yCoord);
++            compound.setDouble("z", position.zCoord);
++            compound.setString("player", player.toString());
++            list.appendTag(compound);
++        }
++        nbt.setTag("positions", list);
++    }
++
++    public static PositionWorldSavedData get(World world)
++    {
++        WorldSavedData data = world.getPerWorldStorage().loadData(PositionWorldSavedData.class, "FMLTutorPositions");
++        if (data == null)
++        {
++            data = new PositionWorldSavedData("FMLTutorPositions");
++            world.getPerWorldStorage().setData("FMLTutorPositions", data);
++        }
++        return (PositionWorldSavedData) data;
++    }
++
++    public static PositionWorldSavedData getGlobal(World world)
++    {
++        WorldSavedData data = world.getMapStorage().loadData(PositionWorldSavedData.class, "FMLTutorPositionsGlobal");
++        if (data == null)
++        {
++            data = new PositionWorldSavedData("FMLTutorPositionsGlobal");
++            world.getMapStorage().setData("FMLTutorPositionsGlobal", data);
++        }
++        return (PositionWorldSavedData) data;
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
+index d9fad2d..3ab825f 100644
+--- a/src/main/resources/assets/fmltutor/lang/en_US.lang
++++ b/src/main/resources/assets/fmltutor/lang/en_US.lang
+@@ -39,6 +39,8 @@ achievement.fmltutor.explosionFromGrassBlock.desc=Make an explosion of grass blo
+ commands.position.usage=/position [player]
+ commands.position.history=Position query history:
+ commands.position.success=The position of %1$s is %2$s in world %3$s
++commands.position.mark=%s, by %s
++commands.position.marked=Marked %s
+ 
+ fluid.mercury=Mercury
+ 
+diff --git a/src/main/resources/assets/fmltutor/lang/zh_CN.lang b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+index cc6e0ed..8d25504 100644
+--- a/src/main/resources/assets/fmltutor/lang/zh_CN.lang
++++ b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+@@ -39,6 +39,8 @@ achievement.fmltutor.explosionFromGrassBlock.desc=通过点击草块使草块爆
+ commands.position.usage=/position [玩家]
+ commands.position.history=位置查询历史：
+ commands.position.success=玩家 %1$s 处于名为 %3$s 的世界，其坐标为 %2$s
++commands.position.mark=%s，来自于 %s
++commands.position.marked=已标记 %s
+ 
+ fluid.mercury=水银
+ 
+-- 
+2.11.0
+

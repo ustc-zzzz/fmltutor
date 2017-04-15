@@ -1,0 +1,179 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Wed, 27 Jan 2016 10:57:51 +0800
+Subject: v2.4.3
+
+---
+ .../com/github/ustc_zzzz/fmltutor/FMLTutor.java    |  7 +++
+ .../ustc_zzzz/fmltutor/command/CommandLoader.java  | 11 ++++
+ .../fmltutor/command/CommandPosition.java          | 62 ++++++++++++++++++++++
+ .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  7 +++
+ src/main/resources/assets/fmltutor/lang/en_US.lang |  3 ++
+ src/main/resources/assets/fmltutor/lang/zh_CN.lang |  3 ++
+ 6 files changed, 93 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandLoader.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java b/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java
+index e1f0b19..aff68d8 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java
+@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.SidedProxy;
+ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
++import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+ 
+ /**
+  * @author ustc_zzzz
+@@ -43,4 +44,10 @@ public class FMLTutor
+     {
+         proxy.postInit(event);
+     }
++
++    @EventHandler
++    public void serverStarting(FMLServerStartingEvent event)
++    {
++        proxy.serverStarting(event);
++    }
+ }
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandLoader.java
+new file mode 100644
+index 0000000..5160096
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandLoader.java
+@@ -0,0 +1,11 @@
++package com.github.ustc_zzzz.fmltutor.command;
++
++import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
++
++public class CommandLoader
++{
++    public CommandLoader(FMLServerStartingEvent event)
++    {
++        event.registerServerCommand(new CommandPosition());
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java b/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java
+new file mode 100644
+index 0000000..db5e25d
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java
+@@ -0,0 +1,62 @@
++package com.github.ustc_zzzz.fmltutor.command;
++
++import java.util.List;
++
++import net.minecraft.command.CommandBase;
++import net.minecraft.command.CommandException;
++import net.minecraft.command.ICommandSender;
++import net.minecraft.command.WrongUsageException;
++import net.minecraft.entity.player.EntityPlayerMP;
++import net.minecraft.server.MinecraftServer;
++import net.minecraft.util.BlockPos;
++import net.minecraft.util.ChatComponentTranslation;
++import net.minecraft.util.Vec3;
++
++public class CommandPosition extends CommandBase
++{
++    @Override
++    public String getCommandName()
++    {
++        return "position";
++    }
++
++    @Override
++    public int getRequiredPermissionLevel()
++    {
++        return 2;
++    }
++
++    @Override
++    public String getCommandUsage(ICommandSender sender)
++    {
++        return "commands.position.usage";
++    }
++
++    @Override
++    public void processCommand(ICommandSender sender, String[] args) throws CommandException
++    {
++        if (args.length > 1)
++        {
++            throw new WrongUsageException("commands.position.usage");
++        }
++        else
++        {
++            EntityPlayerMP entityPlayerMP = args.length > 0 ? CommandBase.getPlayer(sender, args[0])
++                    : CommandBase.getCommandSenderAsPlayer(sender);
++            Vec3 pos = entityPlayerMP.getPositionVector();
++            sender.addChatMessage(new ChatComponentTranslation("commands.position.success", entityPlayerMP.getName(),
++                    pos, entityPlayerMP.worldObj.provider.getDimensionName()));
++        }
++    }
++
++    @Override
++    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos)
++    {
++        if (args.length == 1)
++        {
++            String[] names = MinecraftServer.getServer().getAllUsernames();
++            return CommandBase.getListOfStringsMatchingLastWord(args, names);
++        }
++        return null;
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+index a43fa8c..04c719a 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+@@ -2,6 +2,7 @@ package com.github.ustc_zzzz.fmltutor.common;
+ 
+ import com.github.ustc_zzzz.fmltutor.achievement.AchievementLoader;
+ import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
++import com.github.ustc_zzzz.fmltutor.command.CommandLoader;
+ import com.github.ustc_zzzz.fmltutor.crafting.CraftingLoader;
+ import com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
+ import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
+@@ -11,6 +12,7 @@ import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
+ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
++import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+ 
+ public class CommonProxy
+ {
+@@ -35,4 +37,9 @@ public class CommonProxy
+     {
+ 
+     }
++
++    public void serverStarting(FMLServerStartingEvent event)
++    {
++        new CommandLoader(event);
++    }
+ }
+diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
+index dea4527..0746fa2 100644
+--- a/src/main/resources/assets/fmltutor/lang/en_US.lang
++++ b/src/main/resources/assets/fmltutor/lang/en_US.lang
+@@ -29,3 +29,6 @@ achievement.fmltutor.buildGrassBlock=Grass Block
+ achievement.fmltutor.buildGrassBlock.desc=Build a grass block
+ achievement.fmltutor.explosionFromGrassBlock=Grass Block Explosion
+ achievement.fmltutor.explosionFromGrassBlock.desc=Make an explosion of grass block by the click
++
++commands.position.usage=/position [player]
++commands.position.success=The position of %1$s is %2$s in world %3$s
+diff --git a/src/main/resources/assets/fmltutor/lang/zh_CN.lang b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+index 734b425..2a8fdc8 100644
+--- a/src/main/resources/assets/fmltutor/lang/zh_CN.lang
++++ b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+@@ -29,3 +29,6 @@ achievement.fmltutor.buildGrassBlock=草块
+ achievement.fmltutor.buildGrassBlock.desc=制作一个草块
+ achievement.fmltutor.explosionFromGrassBlock=草块爆炸
+ achievement.fmltutor.explosionFromGrassBlock.desc=通过点击草块使草块爆炸
++
++commands.position.usage=/position [玩家]
++commands.position.success=玩家 %1$s 处于名为 %3$s 的世界，其坐标为 %2$s
+-- 
+2.11.0
+

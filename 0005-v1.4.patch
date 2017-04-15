@@ -1,0 +1,195 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Sun, 25 Oct 2015 22:30:16 +0800
+Subject: v1.4
+
+---
+ .../ustc_zzzz/fmltutor/block/BlockGrassBlock.java  |  15 ++++++++
+ .../ustc_zzzz/fmltutor/block/BlockLoader.java      |  40 +++++++++++++++++++++
+ .../fmltutor/client/ItemRenderLoader.java          |   2 ++
+ .../ustc_zzzz/fmltutor/common/CommonProxy.java     |   2 ++
+ .../assets/fmltutor/blockstates/grass_block.json   |   5 +++
+ .../assets/fmltutor/models/block/grass_block.json  |   6 ++++
+ .../assets/fmltutor/models/item/grass_block.json   |  10 ++++++
+ .../fmltutor/textures/blocks/grass_block.png       | Bin 0 -> 923 bytes
+ 8 files changed, 80 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
+ create mode 100644 src/main/resources/assets/fmltutor/blockstates/grass_block.json
+ create mode 100644 src/main/resources/assets/fmltutor/models/block/grass_block.json
+ create mode 100644 src/main/resources/assets/fmltutor/models/item/grass_block.json
+ create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/grass_block.png
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java
+new file mode 100644
+index 0000000..b0f1363
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java
+@@ -0,0 +1,15 @@
++package com.github.ustc_zzzz.fmltutor.block;
++
++import net.minecraft.block.Block;
++import net.minecraft.block.material.Material;
++
++public class BlockGrassBlock extends Block
++{
++    public BlockGrassBlock()
++    {
++        super(Material.ground);
++        this.setUnlocalizedName("grassBlock");
++        this.setHardness(0.5F);
++        this.setStepSound(soundTypeGrass);
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
+new file mode 100644
+index 0000000..2c24fa5
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
+@@ -0,0 +1,40 @@
++package com.github.ustc_zzzz.fmltutor.block;
++
++import net.minecraft.block.Block;
++import net.minecraft.client.resources.model.ModelResourceLocation;
++import net.minecraft.item.Item;
++import net.minecraftforge.client.model.ModelLoader;
++import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
++import net.minecraftforge.fml.common.registry.GameData;
++import net.minecraftforge.fml.common.registry.GameRegistry;
++import net.minecraftforge.fml.relauncher.Side;
++import net.minecraftforge.fml.relauncher.SideOnly;
++
++public class BlockLoader
++{
++    public static Block grassBlock = new BlockGrassBlock();
++
++    public BlockLoader(FMLPreInitializationEvent event)
++    {
++        register(grassBlock, "grass_block");
++    }
++
++    @SideOnly(Side.CLIENT)
++    public static void registerRenders()
++    {
++        registerRender(grassBlock);
++    }
++
++    private static void register(Block block, String name)
++    {
++        GameRegistry.registerBlock(block, name);
++    }
++
++    @SideOnly(Side.CLIENT)
++    private static void registerRender(Block block)
++    {
++        Item item = Item.getItemFromBlock(block);
++        String name = GameData.getBlockRegistry().getNameForObject(block).toString();
++        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(name, "inventory"));
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java
+index 6b3a6d7..5fab7d8 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java
+@@ -1,5 +1,6 @@
+ package com.github.ustc_zzzz.fmltutor.client;
+ 
++import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
+ import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+ 
+ public class ItemRenderLoader
+@@ -7,5 +8,6 @@ public class ItemRenderLoader
+     public ItemRenderLoader()
+     {
+         ItemLoader.registerRenders();
++        BlockLoader.registerRenders();
+     }
+ }
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+index 399fd96..e0f715c 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+@@ -1,5 +1,6 @@
+ package com.github.ustc_zzzz.fmltutor.common;
+ 
++import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
+ import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+ 
+ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+@@ -11,6 +12,7 @@ public class CommonProxy
+     public void preInit(FMLPreInitializationEvent event)
+     {
+         new ItemLoader(event);
++        new BlockLoader(event);
+     }
+ 
+     public void init(FMLInitializationEvent event)
+diff --git a/src/main/resources/assets/fmltutor/blockstates/grass_block.json b/src/main/resources/assets/fmltutor/blockstates/grass_block.json
+new file mode 100644
+index 0000000..a0e8cbc
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/blockstates/grass_block.json
+@@ -0,0 +1,5 @@
++{
++    "variants": {
++        "normal": { "model": "fmltutor:grass_block" }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/models/block/grass_block.json b/src/main/resources/assets/fmltutor/models/block/grass_block.json
+new file mode 100644
+index 0000000..157e0d0
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/block/grass_block.json
+@@ -0,0 +1,6 @@
++{
++    "parent": "block/cube_all",
++    "textures": {
++        "all": "fmltutor:blocks/grass_block"
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/models/item/grass_block.json b/src/main/resources/assets/fmltutor/models/item/grass_block.json
+new file mode 100644
+index 0000000..27ee542
+--- /dev/null
++++ b/src/main/resources/assets/fmltutor/models/item/grass_block.json
+@@ -0,0 +1,10 @@
++{
++    "parent": "fmltutor:block/grass_block",
++    "display": {
++        "thirdperson": {
++            "rotation": [ 10, -45, 170 ],
++            "translation": [ 0, 1.5, -2.75 ],
++            "scale": [ 0.375, 0.375, 0.375 ]
++        }
++    }
++}
+diff --git a/src/main/resources/assets/fmltutor/textures/blocks/grass_block.png b/src/main/resources/assets/fmltutor/textures/blocks/grass_block.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..5f47adcfcd6917f4559b325c763896cdfc1af25c
+GIT binary patch
+literal 923
+zcmV;M17!S(P)<h;3K|Lk000e1NJLTq000mG000mO1^@s6AM^iV00006VoOIv0RI60
+z0RN!9r;`8x010qNS#tmY3ljhU3ljkVnw%H_000McNliru-wGKF5(A+6+~WWM11L#E
+zK~y-)J<@4!+6Dl|@xP7DVZi3dK|&I85CU!PM3vg9llEdCas3AS4$He~ohB_C&9=6o
+zWl1>#gv*3r4jW^<7n%A69{u#!BfPmdbmxvsAn2i8w+N~dHy?%^z0?>EW(b0S>$-$g
+ziTkR_b}mS_ImPP}=<7COvud)KP?3EC+u0bBEb!|4Wh%unAyuMTH3>%~hJzWYj6%0L
+zMUn-K{*3jV0AebmP<*c=2m;0TI(|i@UNOj?Xf(<ud&ePWw#)Kr2#-f#X(dSO&LW=h
+zQv7>_c%3&$Zu@E1E%pu;DdY{Ji!$}nh|EEphmMUT3*_H+Xp~LHW0TZgfI{9Np71^i
+z3V8!}4tM1q=iesKn^TfoLH_)ui4yiu$Q!Ju71Wr-@X_I+W0N}zV@({yM%m=-^&;)M
+zMQq7St=wlR>Er6x9(%`OzFd!qEO=?vETYi}uIsY!KR=%EBIZs*3?3(FahaI9Mluzq
+zuiKoyj$@e)M=zty9hajQ%hann4;`CcdrIy!#G`H_&gY<NLA02}yUQYv4-?erQv-n8
+z>jC@6n^eE_SYA`u$}04`v#(-tGIH=q5sdzf=ch|VVj<>^%i5NPZMnE}D3|V7-Bf5)
+zMkoP|^g)o+PMk_{g7D)Xr|x~lVkPB6Z`lAe$|lZi&a3Zs8Jca>K$6SfK9e~Na$hyc
+z<TmK)O?-Y4;myUN+iOo58xEUUh1%_e>`9nzbBfWQp@c++j}CrCeEP$>k4D*KE30sw
+zA0pm<9I>4XV^8OVR0-KDVon^aiNi|DN2f7mcR#}Frk~y13IOS65t?@v&(Af)XJ=uC
+zgDLwjR6bo9Z0rWmn^Uy7Od)TOJ_wS3+d*&Hlx~^?6fgh$u9HlKY1PJvpRNpiev!|A
+z4auHpRR5i@nO>xJJ7GPo&}lr4JF_{74L>7e%K10jRBi_N0v?1PemZcS87w6H)Jr20
+z8-BX?7OAbZuc5p?8A(*=w0meViALEZv$sR3R6_IzJcKk44_y;2F7x4XfEty#tJd*&
+x1PbqljE7Tdl@8&Egx<1IqcT5Ve8lS)`454tfXSEcrd9v|002ovPDHLkV1kHvt6=~D
+
+literal 0
+HcmV?d00001
+
+-- 
+2.11.0
+

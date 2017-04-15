@@ -1,0 +1,78 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Sat, 5 Dec 2015 18:53:50 +0800
+Subject: v2.3.1
+
+---
+ .../ustc_zzzz/fmltutor/common/EventLoader.java     | 22 ++++++++++++++++++++++
+ src/main/resources/assets/fmltutor/lang/en_US.lang |  2 ++
+ src/main/resources/assets/fmltutor/lang/zh_CN.lang |  2 ++
+ 3 files changed, 26 insertions(+)
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
+index dd8eb97..1c4bd03 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
+@@ -2,10 +2,15 @@ package com.github.ustc_zzzz.fmltutor.common;
+ 
+ import net.minecraft.entity.Entity;
+ import net.minecraft.entity.item.EntityTNTPrimed;
++import net.minecraft.entity.passive.EntityPig;
+ import net.minecraft.entity.player.EntityPlayer;
++import net.minecraft.init.Items;
++import net.minecraft.item.ItemStack;
+ import net.minecraft.util.BlockPos;
++import net.minecraft.util.DamageSource;
+ import net.minecraft.world.World;
+ import net.minecraftforge.common.MinecraftForge;
++import net.minecraftforge.event.entity.player.EntityInteractEvent;
+ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+ import net.minecraftforge.fml.common.eventhandler.Cancelable;
+ import net.minecraftforge.fml.common.eventhandler.EventBus;
+@@ -23,6 +28,23 @@ public class EventLoader
+     }
+ 
+     @SubscribeEvent
++    public void onEntityInteract(EntityInteractEvent event)
++    {
++        EntityPlayer player = event.entityPlayer;
++        if (player.isServerWorld() && event.target instanceof EntityPig)
++        {
++            EntityPig pig = (EntityPig) event.target;
++            ItemStack stack = player.getCurrentEquippedItem();
++            if (stack != null && (stack.getItem() == Items.wheat || stack.getItem() == Items.wheat_seeds))
++            {
++                player.attackEntityFrom((new DamageSource("byPig")).setDifficultyScaled().setExplosion(), 8.0F);
++                player.worldObj.createExplosion(pig, pig.posX, pig.posY, pig.posZ, 2.0F, false);
++                pig.setDead();
++            }
++        }
++    }
++
++    @SubscribeEvent
+     public void onPlayerItemPickup(PlayerEvent.ItemPickupEvent event)
+     {
+         if (event.player.isServerWorld())
+diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
+index b0325ae..d7d3310 100644
+--- a/src/main/resources/assets/fmltutor/lang/en_US.lang
++++ b/src/main/resources/assets/fmltutor/lang/en_US.lang
+@@ -10,3 +10,5 @@ item.redstoneBoots.name=Redstone Boots
+ tile.grassBlock.name=Grass Block
+ 
+ itemGroup.fmltutor=FML Tutor
++
++death.attack.byPig=%s was dead because of a pig! 
+diff --git a/src/main/resources/assets/fmltutor/lang/zh_CN.lang b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+index c9aceec..00ee50c 100644
+--- a/src/main/resources/assets/fmltutor/lang/zh_CN.lang
++++ b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+@@ -10,3 +10,5 @@ item.redstoneBoots.name=红石靴子
+ tile.grassBlock.name=草块
+ 
+ itemGroup.fmltutor=FML教程
++
++death.attack.byPig=%s被猪弄死了！
+-- 
+2.11.0
+

@@ -1,0 +1,134 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Tue, 22 Dec 2015 15:21:49 +0800
+Subject: v2.4.1
+
+---
+ .../github/ustc_zzzz/fmltutor/client/ClientProxy.java  |  1 +
+ .../github/ustc_zzzz/fmltutor/client/KeyLoader.java    | 17 +++++++++++++++++
+ .../github/ustc_zzzz/fmltutor/common/EventLoader.java  | 18 ++++++++++++++++++
+ src/main/resources/assets/fmltutor/lang/en_US.lang     |  6 ++++++
+ src/main/resources/assets/fmltutor/lang/zh_CN.lang     |  6 ++++++
+ 5 files changed, 48 insertions(+)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/KeyLoader.java
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java
+index 9f6c94f..87fa99e 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java
+@@ -19,6 +19,7 @@ public class ClientProxy extends CommonProxy
+     public void init(FMLInitializationEvent event)
+     {
+         super.init(event);
++        new KeyLoader();
+     }
+ 
+     @Override
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/KeyLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/KeyLoader.java
+new file mode 100644
+index 0000000..1f15086
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/client/KeyLoader.java
+@@ -0,0 +1,17 @@
++package com.github.ustc_zzzz.fmltutor.client;
++
++import net.minecraft.client.settings.KeyBinding;
++import net.minecraftforge.fml.client.registry.ClientRegistry;
++import org.lwjgl.input.Keyboard;
++
++public class KeyLoader
++{
++    public static KeyBinding showTime;
++
++    public KeyLoader()
++    {
++        KeyLoader.showTime = new KeyBinding("key.fmltutor.showTime", Keyboard.KEY_H, "key.categories.fmltutor");
++
++        ClientRegistry.registerKeyBinding(KeyLoader.showTime);
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
+index 9db1d8c..8121508 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
+@@ -1,9 +1,11 @@
+ package com.github.ustc_zzzz.fmltutor.common;
+ 
++import com.github.ustc_zzzz.fmltutor.client.KeyLoader;
+ import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
+ import com.github.ustc_zzzz.fmltutor.potion.PotionLoader;
+ 
+ import net.minecraft.block.Block;
++import net.minecraft.client.Minecraft;
+ import net.minecraft.enchantment.EnchantmentHelper;
+ import net.minecraft.entity.Entity;
+ import net.minecraft.entity.item.EntityTNTPrimed;
+@@ -14,6 +16,7 @@ import net.minecraft.item.ItemStack;
+ import net.minecraft.item.crafting.FurnaceRecipes;
+ import net.minecraft.potion.PotionEffect;
+ import net.minecraft.util.BlockPos;
++import net.minecraft.util.ChatComponentTranslation;
+ import net.minecraft.util.DamageSource;
+ import net.minecraft.util.EnumFacing;
+ import net.minecraft.world.World;
+@@ -25,7 +28,10 @@ import net.minecraftforge.event.world.BlockEvent;
+ import net.minecraftforge.fml.common.eventhandler.Cancelable;
+ import net.minecraftforge.fml.common.eventhandler.EventBus;
+ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
++import net.minecraftforge.fml.common.gameevent.InputEvent;
+ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
++import net.minecraftforge.fml.relauncher.Side;
++import net.minecraftforge.fml.relauncher.SideOnly;
+ 
+ public class EventLoader
+ {
+@@ -142,6 +148,18 @@ public class EventLoader
+         }
+     }
+ 
++    @SideOnly(Side.CLIENT)
++    @SubscribeEvent
++    public void onKeyInput(InputEvent.KeyInputEvent event)
++    {
++        if (KeyLoader.showTime.isPressed())
++        {
++            EntityPlayer player = Minecraft.getMinecraft().thePlayer;
++            World world = Minecraft.getMinecraft().theWorld;
++            player.addChatMessage(new ChatComponentTranslation("chat.fmltutor.time", world.getTotalWorldTime()));
++        }
++    }
++
+     @Cancelable
+     public static class PlayerRightClickGrassBlockEvent extends net.minecraftforge.event.entity.player.PlayerEvent
+     {
+diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
+index 2ad4c3d..6c8e8b5 100644
+--- a/src/main/resources/assets/fmltutor/lang/en_US.lang
++++ b/src/main/resources/assets/fmltutor/lang/en_US.lang
+@@ -16,3 +16,9 @@ death.attack.byPig=%s was dead because of a pig!
+ enchantment.fireBurn=Fire Burning
+ 
+ potion.fallProtection=Fall Protection
++
++key.fmltutor.showTime=Show Time
++
++key.categories.fmltutor=FML Tutor
++
++chat.fmltutor.time=The total world time is: %s. 
+diff --git a/src/main/resources/assets/fmltutor/lang/zh_CN.lang b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+index 31f9b6e..ff58955 100644
+--- a/src/main/resources/assets/fmltutor/lang/zh_CN.lang
++++ b/src/main/resources/assets/fmltutor/lang/zh_CN.lang
+@@ -16,3 +16,9 @@ death.attack.byPig=%s被猪弄死了！
+ enchantment.fireBurn=火焰灼烧
+ 
+ potion.fallProtection=摔落保护
++
++key.fmltutor.showTime=显示时间
++
++key.categories.fmltutor=FML教程
++
++chat.fmltutor.time=现在时间为：%s。
+-- 
+2.11.0
+

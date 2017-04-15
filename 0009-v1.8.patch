@@ -1,0 +1,94 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Wed, 28 Oct 2015 19:17:13 +0800
+Subject: v1.8
+
+---
+ .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  1 +
+ .../ustc_zzzz/fmltutor/common/ConfigLoader.java    | 40 ++++++++++++++++++++++
+ .../fmltutor/crafting/CraftingLoader.java          |  3 +-
+ 3 files changed, 43 insertions(+), 1 deletion(-)
+ create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/common/ConfigLoader.java
+
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+index 0fd37e3..638d05b 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
+@@ -13,6 +13,7 @@ public class CommonProxy
+ {
+     public void preInit(FMLPreInitializationEvent event)
+     {
++        new ConfigLoader(event);
+         new CreativeTabsLoader(event);
+         new ItemLoader(event);
+         new BlockLoader(event);
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/ConfigLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/ConfigLoader.java
+new file mode 100644
+index 0000000..16488aa
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/ConfigLoader.java
+@@ -0,0 +1,40 @@
++package com.github.ustc_zzzz.fmltutor.common;
++
++import net.minecraftforge.common.config.Configuration;
++import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
++import org.apache.logging.log4j.Logger;
++
++public class ConfigLoader
++{
++    private static Configuration config;
++
++    private static Logger logger;
++
++    public static int diamondBurnTime;
++
++    public ConfigLoader(FMLPreInitializationEvent event)
++    {
++        logger = event.getModLog();
++        config = new Configuration(event.getSuggestedConfigurationFile());
++
++        config.load();
++        load();
++    }
++
++    public static void load()
++    {
++        logger.info("Started loading config. ");
++        String comment;
++        
++        comment = "How many seconds can a diamond burn in a furnace. ";
++        diamondBurnTime = config.get(Configuration.CATEGORY_GENERAL, "diamondBurnTime", 640, comment).getInt();
++
++        config.save();
++        logger.info("Finished loading config. ");
++    }
++
++    public static Logger logger()
++    {
++        return logger;
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
+index 645d5ed..25f3267 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
+@@ -1,6 +1,7 @@
+ package com.github.ustc_zzzz.fmltutor.crafting;
+ 
+ import com.github.ustc_zzzz.fmltutor.block.BlockLoader;
++import com.github.ustc_zzzz.fmltutor.common.ConfigLoader;
+ import com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+ 
+ import net.minecraft.init.Blocks;
+@@ -43,7 +44,7 @@ public class CraftingLoader
+             @Override
+             public int getBurnTime(ItemStack fuel)
+             {
+-                return Items.diamond != fuel.getItem() ? 0 : 12800;
++                return Items.diamond != fuel.getItem() ? 0 : Math.max(0, ConfigLoader.diamondBurnTime) * 20;
+             }
+         });
+     }
+-- 
+2.11.0
+
