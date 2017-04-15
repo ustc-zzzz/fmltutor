@@ -9,7 +9,7 @@ function do-apply
     git commit -m "Initial commit" >/dev/null
 
     echo -n "Applying patches: "
-    git am --whitespace=nowarn ../*.patch | while read m
+    git am --whitespace=nowarn --keep-cr ../*.patch | while read m
     do echo -n '.'; done
     echo " done"
 }
