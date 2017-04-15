@@ -6,4 +6,4 @@ script:
 - ./build.sh build
 after_success:
 - cd build/
-- git push -f https://ustc-zzzz:$GITHUB_TOKEN@github.com/ustc-zzzz/fmltutor master:master
+- git push -f -q https://ustc-zzzz:$GITHUB_TOKEN@github.com/ustc-zzzz/fmltutor master:master
