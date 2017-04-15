@@ -3,18 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Fri, 20 Nov 2015 21:52:49 +0800
 Subject: v2.2.1
 
----
- .../ustc_zzzz/fmltutor/crafting/CraftingLoader.java  |   4 ++++
- .../github/ustc_zzzz/fmltutor/item/ItemLoader.java   |   4 ++++
- .../ustc_zzzz/fmltutor/item/ItemRedstonePickaxe.java |  19 +++++++++++++++++++
- src/main/resources/assets/fmltutor/lang/en_US.lang   |   1 +
- src/main/resources/assets/fmltutor/lang/zh_CN.lang   |   1 +
- .../fmltutor/models/item/redstone_pickaxe.json       |  18 ++++++++++++++++++
- .../fmltutor/textures/items/redstone_pickaxe.png     | Bin 0 -> 325 bytes
- 7 files changed, 47 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstonePickaxe.java
- create mode 100644 src/main/resources/assets/fmltutor/models/item/redstone_pickaxe.json
- create mode 100644 src/main/resources/assets/fmltutor/textures/items/redstone_pickaxe.png
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
 index 25f3267..af7e525 100644
@@ -147,7 +135,4 @@ Jmvv4FO#p$4d^Z39
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 

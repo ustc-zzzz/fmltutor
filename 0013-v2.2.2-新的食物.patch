@@ -3,18 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Thu, 26 Nov 2015 20:12:55 +0800
 Subject: v2.2.2
 
----
- .../fmltutor/crafting/CraftingLoader.java          |   4 +++
- .../github/ustc_zzzz/fmltutor/item/ItemLoader.java |   4 +++
- .../ustc_zzzz/fmltutor/item/ItemRedstoneApple.java |  33 +++++++++++++++++++++
- src/main/resources/assets/fmltutor/lang/en_US.lang |   1 +
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |   1 +
- .../fmltutor/models/item/redstone_apple.json       |  18 +++++++++++
- .../fmltutor/textures/items/redstone_apple.png     | Bin 0 -> 304 bytes
- 7 files changed, 61 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstoneApple.java
- create mode 100644 src/main/resources/assets/fmltutor/models/item/redstone_apple.json
- create mode 100644 src/main/resources/assets/fmltutor/textures/items/redstone_apple.png
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
 index af7e525..b49c6d5 100644
@@ -164,7 +152,4 @@ tlFD-pgABco+T7jz|EN{zN)e_5+<x`m|K^|TngH|&gQu&X%Q~loCIC5&asmJV
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 

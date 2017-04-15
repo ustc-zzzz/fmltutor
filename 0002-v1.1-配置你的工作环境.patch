@@ -3,12 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Thu, 22 Oct 2015 14:54:55 +0800
 Subject: v1.1
 
----
- build.gradle                                         |  7 ++++---
- src/main/java/com/example/examplemod/ExampleMod.java | 20 --------------------
- src/main/resources/mcmod.info                        | 14 +++++++-------
- 3 files changed, 11 insertions(+), 30 deletions(-)
- delete mode 100644 src/main/java/com/example/examplemod/ExampleMod.java
 
 diff --git a/build.gradle b/build.gradle
 index 8b83723..93e4862 100644
@@ -80,6 +74,3 @@ index f480667..e25ddbd 100644
    "logoFile": "",
    "screenshots": [],
    "dependencies": []
--- 
-2.11.0
-

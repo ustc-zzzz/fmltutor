@@ -3,17 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Thu, 10 Dec 2015 17:38:19 +0800
 Subject: v2.3.2
 
----
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  2 +
- .../ustc_zzzz/fmltutor/common/ConfigLoader.java    |  5 +++
- .../ustc_zzzz/fmltutor/common/EventLoader.java     | 44 +++++++++++++++++++
- .../fmltutor/enchantment/EnchantmentFireBurn.java  | 50 ++++++++++++++++++++++
- .../fmltutor/enchantment/EnchantmentLoader.java    | 25 +++++++++++
- src/main/resources/assets/fmltutor/lang/en_US.lang |  2 +
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |  2 +
- 7 files changed, 130 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/enchantment/EnchantmentFireBurn.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/enchantment/EnchantmentLoader.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
 index 551c35d..4a71118 100644
@@ -238,6 +227,3 @@ index 00ee50c..03ac8b1 100644
  death.attack.byPig=%s被猪弄死了！
 +
 +enchantment.fireBurn=火焰灼烧
--- 
-2.11.0
-

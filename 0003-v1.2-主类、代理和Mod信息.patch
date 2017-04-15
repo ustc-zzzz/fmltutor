@@ -3,14 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Thu, 22 Oct 2015 22:28:37 +0800
 Subject: v1.2
 
----
- .../com/github/ustc_zzzz/fmltutor/FMLTutor.java    | 46 ++++++++++++++++++++++
- .../ustc_zzzz/fmltutor/client/ClientProxy.java     | 28 +++++++++++++
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     | 23 +++++++++++
- 3 files changed, 97 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java b/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java
 new file mode 100644
@@ -127,6 +119,3 @@ index 0000000..c8ba597
 +
 +    }
 +}
--- 
-2.11.0
-

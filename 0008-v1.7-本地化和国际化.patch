@@ -3,12 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Tue, 27 Oct 2015 17:24:02 +0800
 Subject: v1.7
 
----
- src/main/resources/assets/fmltutor/lang/en_US.lang | 5 +++++
- src/main/resources/assets/fmltutor/lang/zh_CN.lang | 5 +++++
- 2 files changed, 10 insertions(+)
- create mode 100644 src/main/resources/assets/fmltutor/lang/en_US.lang
- create mode 100644 src/main/resources/assets/fmltutor/lang/zh_CN.lang
 
 diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
 new file mode 100644
@@ -32,6 +26,3 @@ index 0000000..bc6a75b
 +tile.grassBlock.name=草块
 +
 +itemGroup.fmltutor=FML教程
--- 
-2.11.0
-

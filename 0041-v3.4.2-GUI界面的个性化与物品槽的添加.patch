@@ -3,15 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Tue, 20 Sep 2016 05:44:44 +0800
 Subject: v3.4.2
 
----
- .../fmltutor/client/gui/GuiContainerDemo.java      |  85 ++++++++++++++++++++-
- .../fmltutor/inventory/ContainerDemo.java          |  31 +++++++-
- .../fmltutor/inventory/GuiElementLoader.java       |   4 +-
- src/main/resources/assets/fmltutor/lang/en_US.lang |   2 +
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |   2 +
- .../fmltutor/textures/gui/container/gui_demo.png   | Bin 0 -> 1627 bytes
- 6 files changed, 119 insertions(+), 5 deletions(-)
- create mode 100644 src/main/resources/assets/fmltutor/textures/gui/container/gui_demo.png
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java
 index 366a951..b1e3cf8 100644
@@ -255,7 +246,4 @@ GJoyhP-hqe!
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 

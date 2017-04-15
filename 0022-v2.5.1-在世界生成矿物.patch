@@ -3,13 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Wed, 10 Feb 2016 12:49:38 +0800
 Subject: v2.5.1
 
----
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  2 ++
- .../fmltutor/worldgen/WorldGeneratorGlowstone.java | 38 +++++++++++++++++++++
- .../fmltutor/worldgen/WorldGeneratorLoader.java    | 39 ++++++++++++++++++++++
- 3 files changed, 79 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/worldgen/WorldGeneratorGlowstone.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/worldgen/WorldGeneratorLoader.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
 index 04c719a..e52553b 100644
@@ -120,6 +113,3 @@ index 0000000..dae931a
 +        }
 +    }
 +}
--- 
-2.11.0
-

@@ -3,14 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Tue, 22 Dec 2015 15:21:49 +0800
 Subject: v2.4.1
 
----
- .../github/ustc_zzzz/fmltutor/client/ClientProxy.java  |  1 +
- .../github/ustc_zzzz/fmltutor/client/KeyLoader.java    | 17 +++++++++++++++++
- .../github/ustc_zzzz/fmltutor/common/EventLoader.java  | 18 ++++++++++++++++++
- src/main/resources/assets/fmltutor/lang/en_US.lang     |  6 ++++++
- src/main/resources/assets/fmltutor/lang/zh_CN.lang     |  6 ++++++
- 5 files changed, 48 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/KeyLoader.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java
 index 9f6c94f..87fa99e 100644
@@ -129,6 +121,3 @@ index 31f9b6e..ff58955 100644
 +key.categories.fmltutor=FML教程
 +
 +chat.fmltutor.time=现在时间为：%s。
--- 
-2.11.0
-

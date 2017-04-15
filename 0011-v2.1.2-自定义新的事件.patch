@@ -3,10 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Tue, 3 Nov 2015 18:36:53 +0800
 Subject: v2.1.2
 
----
- .../ustc_zzzz/fmltutor/block/BlockGrassBlock.java  | 23 ++++++++++++++
- .../ustc_zzzz/fmltutor/common/EventLoader.java     | 35 ++++++++++++++++++++++
- 2 files changed, 58 insertions(+)
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java
 index a0657d1..105faba 100644
@@ -109,6 +105,3 @@ index 0c67982..dd8eb97 100644
 +        }
 +    }
  }
--- 
-2.11.0
-

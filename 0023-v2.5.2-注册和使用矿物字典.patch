@@ -3,12 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Wed, 17 Feb 2016 13:27:11 +0800
 Subject: v2.5.2
 
----
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  1 +
- .../fmltutor/common/OreDictionaryLoader.java       | 24 +++++++++++
- .../fmltutor/crafting/CraftingLoader.java          | 47 +++++++++++-----------
- 3 files changed, 49 insertions(+), 23 deletions(-)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/common/OreDictionaryLoader.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
 index e52553b..d339568 100644
@@ -125,6 +119,3 @@ index 58a00af..e3cd605 100644
          });
          GameRegistry.addShapelessRecipe(new ItemStack(Blocks.vine, 4), BlockLoader.grassBlock);
      }
--- 
-2.11.0
-

@@ -3,15 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Mon, 8 Aug 2016 00:13:59 +0800
 Subject: v3.3.2
 
----
- .../fmltutor/command/CommandPosition.java          | 12 +++++
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  2 +
- .../ustc_zzzz/fmltutor/common/EventLoader.java     | 40 +++++++++++++++
- .../fmltutor/network/MessagePositionHistory.java   | 60 ++++++++++++++++++++++
- .../ustc_zzzz/fmltutor/network/NetworkLoader.java  | 28 ++++++++++
- 5 files changed, 142 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/network/MessagePositionHistory.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/network/NetworkLoader.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java b/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java
 index bab634b..ed148b9 100644
@@ -263,6 +254,3 @@ index 0000000..723c6f3
 +        instance.registerMessage(messageHandler, requestMessageType, nextID++, side);
 +    }
 +}
--- 
-2.11.0
-

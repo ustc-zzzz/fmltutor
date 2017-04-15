@@ -3,12 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Sun, 29 May 2016 01:06:28 +0800
 Subject: v3.1.7
 
----
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  2 ++
- .../fmltutor/entity/EntityGoldenChicken.java       | 15 ++++++++--
- .../fmltutor/entity/FakePlayerLoader.java          | 35 ++++++++++++++++++++++
- 3 files changed, 49 insertions(+), 3 deletions(-)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/entity/FakePlayerLoader.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
 index 51f01d9..8226709 100644
@@ -117,6 +111,3 @@ index 0000000..bb66006
 +        return fakePlayer;
 +    }
 +}
--- 
-2.11.0
-

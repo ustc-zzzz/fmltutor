@@ -3,34 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Wed, 2 Dec 2015 17:02:54 +0800
 Subject: v2.2.3
 
----
- .../fmltutor/crafting/CraftingLoader.java          |  16 ++++++
- .../github/ustc_zzzz/fmltutor/item/ItemLoader.java |  16 ++++++
- .../ustc_zzzz/fmltutor/item/ItemRedstoneArmor.java |  59 +++++++++++++++++++++
- src/main/resources/assets/fmltutor/lang/en_US.lang |   5 ++
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |   5 ++
- .../fmltutor/models/item/redstone_boots.json       |  18 +++++++
- .../fmltutor/models/item/redstone_chestplate.json  |  18 +++++++
- .../fmltutor/models/item/redstone_helmet.json      |  18 +++++++
- .../fmltutor/models/item/redstone_leggings.json    |  18 +++++++
- .../fmltutor/textures/items/redstone_boots.png     | Bin 0 -> 273 bytes
- .../textures/items/redstone_chestplate.png         | Bin 0 -> 330 bytes
- .../fmltutor/textures/items/redstone_helmet.png    | Bin 0 -> 266 bytes
- .../fmltutor/textures/items/redstone_leggings.png  | Bin 0 -> 257 bytes
- .../textures/models/armor/redstone_layer_1.png     | Bin 0 -> 1711 bytes
- .../textures/models/armor/redstone_layer_2.png     | Bin 0 -> 879 bytes
- 15 files changed, 173 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemRedstoneArmor.java
- create mode 100644 src/main/resources/assets/fmltutor/models/item/redstone_boots.json
- create mode 100644 src/main/resources/assets/fmltutor/models/item/redstone_chestplate.json
- create mode 100644 src/main/resources/assets/fmltutor/models/item/redstone_helmet.json
- create mode 100644 src/main/resources/assets/fmltutor/models/item/redstone_leggings.json
- create mode 100644 src/main/resources/assets/fmltutor/textures/items/redstone_boots.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/items/redstone_chestplate.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/items/redstone_helmet.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/items/redstone_leggings.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/models/armor/redstone_layer_1.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/models/armor/redstone_layer_2.png
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
 index b49c6d5..58a00af 100644
@@ -427,7 +399,4 @@ FV1g&}j~D;|
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 

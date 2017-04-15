@@ -3,19 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Sun, 7 Aug 2016 20:08:03 +0800
 Subject: v3.3.1
 
----
- .../fmltutor/capability/CapabilityLoader.java      |  18 ++++
- .../capability/CapabilityPositionHistory.java      | 117 +++++++++++++++++++++
- .../fmltutor/capability/IPositionHistory.java      |  12 +++
- .../fmltutor/command/CommandPosition.java          |  19 ++++
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |   2 +
- .../ustc_zzzz/fmltutor/common/EventLoader.java     |  34 ++++++
- src/main/resources/assets/fmltutor/lang/en_US.lang |   1 +
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |   1 +
- 8 files changed, 204 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/capability/CapabilityLoader.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/capability/CapabilityPositionHistory.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/capability/IPositionHistory.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/capability/CapabilityLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/capability/CapabilityLoader.java
 new file mode 100644
@@ -337,6 +324,3 @@ index df2fc3e..cc6e0ed 100644
  commands.position.success=玩家 %1$s 处于名为 %3$s 的世界，其坐标为 %2$s
  
  fluid.mercury=水银
--- 
-2.11.0
-

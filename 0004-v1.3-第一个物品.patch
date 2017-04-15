@@ -3,20 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Sat, 24 Oct 2015 15:22:44 +0800
 Subject: v1.3
 
----
- .../ustc_zzzz/fmltutor/client/ClientProxy.java     |   1 +
- .../fmltutor/client/ItemRenderLoader.java          |  11 ++++++
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |   4 ++-
- .../ustc_zzzz/fmltutor/item/ItemGoldenEgg.java     |  12 +++++++
- .../github/ustc_zzzz/fmltutor/item/ItemLoader.java |  38 +++++++++++++++++++++
- .../assets/fmltutor/models/item/golden_egg.json    |  18 ++++++++++
- .../assets/fmltutor/textures/items/golden_egg.png  | Bin 0 -> 287 bytes
- 7 files changed, 83 insertions(+), 1 deletion(-)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
- create mode 100644 src/main/resources/assets/fmltutor/models/item/golden_egg.json
- create mode 100644 src/main/resources/assets/fmltutor/textures/items/golden_egg.png
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java
 index 98a8914..9f6c94f 100644
@@ -168,7 +154,4 @@ avN7ym>8;Cu@~#8W-3*?telF{r5}E+;fp=#B
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 

@@ -3,16 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Sun, 18 Sep 2016 23:47:03 +0800
 Subject: v3.4.1
 
----
- .../fmltutor/client/gui/GuiContainerDemo.java      | 28 ++++++++++++++
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  2 +
- .../fmltutor/inventory/ContainerDemo.java          | 21 +++++++++++
- .../fmltutor/inventory/GuiElementLoader.java       | 43 ++++++++++++++++++++++
- .../ustc_zzzz/fmltutor/item/ItemGoldenEgg.java     |  9 +++++
- 5 files changed, 103 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java
 new file mode 100644
@@ -176,6 +166,3 @@ index 7289db4..81963b1 100644
              worldIn.spawnEntityInWorld(new EntityGoldenEgg(worldIn, playerIn));
          }
          return itemStackIn;
--- 
-2.11.0
-

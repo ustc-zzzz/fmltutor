@@ -3,16 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Wed, 9 Mar 2016 21:43:51 +0800
 Subject: v3.1.1
 
----
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  2 ++
- .../ustc_zzzz/fmltutor/common/EventLoader.java     | 13 ++++++++++
- .../fmltutor/entity/EntityGoldenChicken.java       | 30 ++++++++++++++++++++++
- .../ustc_zzzz/fmltutor/entity/EntityLoader.java    | 30 ++++++++++++++++++++++
- src/main/resources/assets/fmltutor/lang/en_US.lang |  2 ++
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |  2 ++
- 6 files changed, 79 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/entity/EntityGoldenChicken.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/entity/EntityLoader.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
 index 371413f..51f01d9 100644
@@ -164,6 +154,3 @@ index 667e60a..cc7b077 100644
  fluid.mercury=水银
 +
 +entity.fmltutor.GoldenChicken.name=黄金鸡
--- 
-2.11.0
-

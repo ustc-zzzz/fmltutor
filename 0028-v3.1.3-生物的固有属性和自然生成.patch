@@ -3,13 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Wed, 20 Apr 2016 19:38:56 +0800
 Subject: v3.1.3
 
----
- .../client/entity/model/ModelGoldenChicken.java       | 12 ++++++++++--
- .../fmltutor/entity/EntityGoldenChicken.java          | 19 +++++++++++++++++++
- .../ustc_zzzz/fmltutor/entity/EntityLoader.java       | 15 +++++++++++++++
- src/main/resources/assets/fmltutor/lang/en_US.lang    |  2 ++
- src/main/resources/assets/fmltutor/lang/zh_CN.lang    |  2 ++
- 5 files changed, 48 insertions(+), 2 deletions(-)
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/entity/model/ModelGoldenChicken.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/entity/model/ModelGoldenChicken.java
 index 31175f9..04157e7 100644
@@ -145,6 +138,3 @@ index cc7b077..553beee 100644
  entity.fmltutor.GoldenChicken.name=黄金鸡
 +
 +attribute.name.fmltutor.GoldenChicken.wingSpeed=翅膀振速
--- 
-2.11.0
-

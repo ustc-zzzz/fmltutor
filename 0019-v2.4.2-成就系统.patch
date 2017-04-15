@@ -3,14 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Sun, 27 Dec 2015 18:41:32 +0800
 Subject: v2.4.2
 
----
- .../fmltutor/achievement/AchievementLoader.java    | 32 ++++++++++++++++++++++
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  2 ++
- .../ustc_zzzz/fmltutor/common/EventLoader.java     | 23 ++++++++++++++++
- src/main/resources/assets/fmltutor/lang/en_US.lang |  7 +++++
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |  7 +++++
- 5 files changed, 71 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/achievement/AchievementLoader.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/achievement/AchievementLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/achievement/AchievementLoader.java
 new file mode 100644
@@ -160,6 +152,3 @@ index ff58955..734b425 100644
 +achievement.fmltutor.buildGrassBlock.desc=制作一个草块
 +achievement.fmltutor.explosionFromGrassBlock=草块爆炸
 +achievement.fmltutor.explosionFromGrassBlock.desc=通过点击草块使草块爆炸
--- 
-2.11.0
-

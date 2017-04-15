@@ -3,10 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Wed, 27 Apr 2016 17:31:57 +0800
 Subject: v3.1.4
 
----
- .../client/entity/model/ModelGoldenChicken.java    | 16 +++++++++-
- .../fmltutor/entity/EntityGoldenChicken.java       | 34 ++++++++++++++++++++++
- 2 files changed, 49 insertions(+), 1 deletion(-)
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/entity/model/ModelGoldenChicken.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/entity/model/ModelGoldenChicken.java
 index 04157e7..2983e77 100644
@@ -88,6 +84,3 @@ index 2528922..7a72f58 100644
      protected void applyEntityAttributes()
      {
          super.applyEntityAttributes();
--- 
-2.11.0
-

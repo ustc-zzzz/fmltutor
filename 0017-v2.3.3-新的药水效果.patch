@@ -3,18 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Thu, 10 Dec 2015 17:38:19 +0800
 Subject: v2.3.3
 
----
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |   2 ++
- .../ustc_zzzz/fmltutor/common/EventLoader.java     |  23 ++++++++++++++++++
- .../fmltutor/potion/PotionFallProtection.java      |  27 +++++++++++++++++++++
- .../ustc_zzzz/fmltutor/potion/PotionLoader.java    |  14 +++++++++++
- src/main/resources/assets/fmltutor/lang/en_US.lang |   2 ++
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |   2 ++
- .../assets/fmltutor/textures/gui/potion.png        | Bin 0 -> 470 bytes
- 7 files changed, 70 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/potion/PotionFallProtection.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/potion/PotionLoader.java
- create mode 100644 src/main/resources/assets/fmltutor/textures/gui/potion.png
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
 index 4a71118..9c21ee3 100644
@@ -175,7 +163,4 @@ a!$R3vUlm$<nBzo1{`PeBb6Mw<&;$U#HAW`@
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 

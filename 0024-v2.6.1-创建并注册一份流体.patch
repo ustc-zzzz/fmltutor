@@ -3,29 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Sun, 21 Feb 2016 21:10:19 +0800
 Subject: v2.6.1
 
----
- .../fmltutor/block/BlockFluidMercury.java          |  17 ++++++
- .../ustc_zzzz/fmltutor/block/BlockLoader.java      |   2 +
- .../fmltutor/client/ItemRenderLoader.java          |   2 +
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |   2 +
- .../ustc_zzzz/fmltutor/fluid/FluidLoader.java      |  66 +++++++++++++++++++++
- .../ustc_zzzz/fmltutor/fluid/FluidMercury.java     |  22 +++++++
- .../assets/fmltutor/blockstates/fluid_mercury.json |   9 +++
- src/main/resources/assets/fmltutor/lang/en_US.lang |   3 +
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |   3 +
- .../fmltutor/textures/fluid/mercury_flow.png       | Bin 0 -> 5594 bytes
- .../textures/fluid/mercury_flow.png.mcmeta         |   3 +
- .../fmltutor/textures/fluid/mercury_still.png      | Bin 0 -> 5989 bytes
- .../textures/fluid/mercury_still.png.mcmeta        |   5 ++
- 13 files changed, 134 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockFluidMercury.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/fluid/FluidLoader.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/fluid/FluidMercury.java
- create mode 100644 src/main/resources/assets/fmltutor/blockstates/fluid_mercury.json
- create mode 100644 src/main/resources/assets/fmltutor/textures/fluid/mercury_flow.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/fluid/mercury_flow.png.mcmeta
- create mode 100644 src/main/resources/assets/fmltutor/textures/fluid/mercury_still.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/fluid/mercury_still.png.mcmeta
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockFluidMercury.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockFluidMercury.java
 new file mode 100644
@@ -517,6 +494,3 @@ index 0000000..0645f48
 +    "frametime": 2
 +  }
 +}
--- 
-2.11.0
-

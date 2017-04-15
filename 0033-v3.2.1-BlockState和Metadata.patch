@@ -3,41 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Sat, 18 Jun 2016 17:35:51 +0800
 Subject: v3.2.1
 
----
- .../ustc_zzzz/fmltutor/block/BlockLoader.java      |  38 ++++++-
- .../fmltutor/block/BlockMetalFurnace.java          | 121 +++++++++++++++++++++
- .../fmltutor/crafting/CraftingLoader.java          |   8 ++
- .../github/ustc_zzzz/fmltutor/item/ItemLoader.java |  14 ++-
- .../assets/fmltutor/blockstates/metal_furnace.json |  20 ++++
- src/main/resources/assets/fmltutor/lang/en_US.lang |   3 +
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |   3 +
- .../assets/fmltutor/models/block/gold_furnace.json |   8 ++
- .../models/block/gold_furnace_burning.json         |   8 ++
- .../assets/fmltutor/models/block/iron_furnace.json |   8 ++
- .../models/block/iron_furnace_burning.json         |   8 ++
- .../assets/fmltutor/models/item/gold_furnace.json  |  10 ++
- .../assets/fmltutor/models/item/iron_furnace.json  |  10 ++
- .../fmltutor/textures/blocks/gold_furnace.png      | Bin 0 -> 802 bytes
- .../textures/blocks/gold_furnace_burning.png       | Bin 0 -> 842 bytes
- .../fmltutor/textures/blocks/gold_furnace_side.png | Bin 0 -> 628 bytes
- .../fmltutor/textures/blocks/iron_furnace.png      | Bin 0 -> 655 bytes
- .../textures/blocks/iron_furnace_burning.png       | Bin 0 -> 722 bytes
- .../fmltutor/textures/blocks/iron_furnace_side.png | Bin 0 -> 516 bytes
- 19 files changed, 254 insertions(+), 5 deletions(-)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java
- create mode 100644 src/main/resources/assets/fmltutor/blockstates/metal_furnace.json
- create mode 100644 src/main/resources/assets/fmltutor/models/block/gold_furnace.json
- create mode 100644 src/main/resources/assets/fmltutor/models/block/gold_furnace_burning.json
- create mode 100644 src/main/resources/assets/fmltutor/models/block/iron_furnace.json
- create mode 100644 src/main/resources/assets/fmltutor/models/block/iron_furnace_burning.json
- create mode 100644 src/main/resources/assets/fmltutor/models/item/gold_furnace.json
- create mode 100644 src/main/resources/assets/fmltutor/models/item/iron_furnace.json
- create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_burning.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_side.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_burning.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_side.png
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
 index f463398..06c6af4 100644
@@ -579,7 +544,4 @@ GLSTaCXx@AP
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 

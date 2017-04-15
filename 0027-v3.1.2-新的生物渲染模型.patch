@@ -3,20 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Wed, 6 Apr 2016 17:47:46 +0800
 Subject: v3.1.2
 
----
- .../ustc_zzzz/fmltutor/client/ClientProxy.java     |   2 +
- .../client/entity/EntityRenderFactory.java         |  29 ++++++++
- .../fmltutor/client/entity/EntityRenderLoader.java |  11 +++
- .../client/entity/model/ModelGoldenChicken.java    |  81 +++++++++++++++++++++
- .../client/entity/render/RenderGoldenChicken.java  |  42 +++++++++++
- .../ustc_zzzz/fmltutor/entity/EntityLoader.java    |  18 +++++
- .../fmltutor/textures/entity/golden_chicken.png    | Bin 0 -> 583 bytes
- 7 files changed, 183 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/entity/EntityRenderFactory.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/entity/EntityRenderLoader.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/entity/model/ModelGoldenChicken.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/entity/render/RenderGoldenChicken.java
- create mode 100644 src/main/resources/assets/fmltutor/textures/entity/golden_chicken.png
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ClientProxy.java
 index 87fa99e..d5aa1c6 100644
@@ -285,7 +271,4 @@ V$atFqY)t?F002ovPDHLkV1lLD`IrCz
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 

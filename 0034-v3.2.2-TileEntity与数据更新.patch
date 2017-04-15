@@ -3,14 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Wed, 6 Jul 2016 12:37:24 +0800
 Subject: v3.2.2
 
----
- .../fmltutor/block/BlockMetalFurnace.java          |  59 +++++++++++-
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |   2 +
- .../fmltutor/tileentity/TileEntityLoader.java      |  20 ++++
- .../tileentity/TileEntityMetalFurnace.java         | 107 +++++++++++++++++++++
- 4 files changed, 186 insertions(+), 2 deletions(-)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityLoader.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java
 index 57deadf..4db4b85 100644
@@ -269,6 +261,3 @@ index 0000000..35fa2bd
 +        }
 +    }
 +}
--- 
-2.11.0
-

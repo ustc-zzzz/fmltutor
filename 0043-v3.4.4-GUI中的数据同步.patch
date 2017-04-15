@@ -3,17 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Sun, 6 Nov 2016 18:38:02 +0800
 Subject: v3.4.4
 
----
- .../fmltutor/block/BlockMetalFurnace.java          |  10 +-
- .../fmltutor/client/gui/GuiMetalFurnace.java       |  45 +++++++
- .../fmltutor/inventory/ContainerMetalFurnace.java  | 150 +++++++++++++++++++++
- .../fmltutor/inventory/GuiElementLoader.java       |   7 +
- .../tileentity/TileEntityMetalFurnace.java         |  30 +++--
- .../textures/gui/container/gui_metal_furnace.png   | Bin 0 -> 1558 bytes
- 6 files changed, 226 insertions(+), 16 deletions(-)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiMetalFurnace.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerMetalFurnace.java
- create mode 100644 src/main/resources/assets/fmltutor/textures/gui/container/gui_metal_furnace.png
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java
 index 9c2c80d..acca45f 100644
@@ -379,7 +368,4 @@ wxR__a)$Y!Q<hu18C^se1;7Ahq-w$Fo$04}fu-r*$FkKDq?keCFx`dql3%+$u7XSbN
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 

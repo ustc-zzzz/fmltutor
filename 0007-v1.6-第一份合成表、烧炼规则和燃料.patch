@@ -3,11 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Mon, 26 Oct 2015 21:10:02 +0800
 Subject: v1.6
 
----
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  3 +-
- .../fmltutor/crafting/CraftingLoader.java          | 50 ++++++++++++++++++++++
- 2 files changed, 52 insertions(+), 1 deletion(-)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/crafting/CraftingLoader.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
 index 22a7a12..0fd37e3 100644
@@ -86,6 +81,3 @@ index 0000000..645d5ed
 +        });
 +    }
 +}
--- 
-2.11.0
-

@@ -3,11 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Mon, 2 Nov 2015 22:23:09 +0800
 Subject: v2.1.1
 
----
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  1 +
- .../ustc_zzzz/fmltutor/common/EventLoader.java     | 34 ++++++++++++++++++++++
- 2 files changed, 35 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java
 index 638d05b..551c35d 100644
@@ -61,6 +56,3 @@ index 0000000..0c67982
 +        }
 +    }
 +}
--- 
-2.11.0
-

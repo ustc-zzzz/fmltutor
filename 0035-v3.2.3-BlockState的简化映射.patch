@@ -3,27 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Fri, 15 Jul 2016 23:08:51 +0800
 Subject: v3.2.3
 
----
- .../ustc_zzzz/fmltutor/block/BlockLoader.java      | 11 ++++++++++
- .../assets/fmltutor/blockstates/gold_furnace.json  | 25 ++++++++++++++++++++++
- .../assets/fmltutor/blockstates/iron_furnace.json  | 25 ++++++++++++++++++++++
- .../assets/fmltutor/blockstates/metal_furnace.json | 20 -----------------
- .../assets/fmltutor/models/block/gold_furnace.json |  8 -------
- .../models/block/gold_furnace_burning.json         |  8 -------
- .../assets/fmltutor/models/block/iron_furnace.json |  8 -------
- .../models/block/iron_furnace_burning.json         |  8 -------
- .../assets/fmltutor/models/item/gold_furnace.json  | 10 ---------
- .../assets/fmltutor/models/item/iron_furnace.json  | 10 ---------
- 10 files changed, 61 insertions(+), 72 deletions(-)
- create mode 100644 src/main/resources/assets/fmltutor/blockstates/gold_furnace.json
- create mode 100644 src/main/resources/assets/fmltutor/blockstates/iron_furnace.json
- delete mode 100644 src/main/resources/assets/fmltutor/blockstates/metal_furnace.json
- delete mode 100644 src/main/resources/assets/fmltutor/models/block/gold_furnace.json
- delete mode 100644 src/main/resources/assets/fmltutor/models/block/gold_furnace_burning.json
- delete mode 100644 src/main/resources/assets/fmltutor/models/block/iron_furnace.json
- delete mode 100644 src/main/resources/assets/fmltutor/models/block/iron_furnace_burning.json
- delete mode 100644 src/main/resources/assets/fmltutor/models/item/gold_furnace.json
- delete mode 100644 src/main/resources/assets/fmltutor/models/item/iron_furnace.json
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
 index 06c6af4..cd8952c 100644
@@ -239,6 +218,3 @@ index 7a08352..0000000
 -        }
 -    }
 -}
--- 
-2.11.0
-

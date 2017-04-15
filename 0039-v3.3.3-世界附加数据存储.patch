@@ -3,13 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Wed, 24 Aug 2016 23:07:05 +0800
 Subject: v3.3.3
 
----
- .../fmltutor/command/CommandPosition.java          |  46 ++++++++++
- .../worldstorage/PositionWorldSavedData.java       | 102 +++++++++++++++++++++
- src/main/resources/assets/fmltutor/lang/en_US.lang |   2 +
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |   2 +
- 4 files changed, 152 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/worldstorage/PositionWorldSavedData.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java b/src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java
 index ed148b9..89b29e0 100644
@@ -223,6 +216,3 @@ index cc6e0ed..8d25504 100644
  
  fluid.mercury=水银
  
--- 
-2.11.0
-

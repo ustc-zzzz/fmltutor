@@ -3,17 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Mon, 26 Oct 2015 16:26:32 +0800
 Subject: v1.5
 
----
- .../ustc_zzzz/fmltutor/block/BlockGrassBlock.java  |   2 ++
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |   2 ++
- .../fmltutor/creativetab/CreativeTabsFMLTutor.java |  27 +++++++++++++++++++++
- .../fmltutor/creativetab/CreativeTabsLoader.java   |  14 +++++++++++
- .../ustc_zzzz/fmltutor/item/ItemGoldenEgg.java     |   3 +++
- .../container/creative_inventory/tab_fmltutor.png  | Bin 0 -> 1161 bytes
- 6 files changed, 48 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/creativetab/CreativeTabsFMLTutor.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/creativetab/CreativeTabsLoader.java
- create mode 100644 src/main/resources/assets/minecraft/textures/gui/container/creative_inventory/tab_fmltutor.png
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java
 index b0f1363..a0657d1 100644
@@ -149,7 +138,4 @@ hVA@Y7BNLv~G3>8A+a)3{0V-P<JYD@<);T3K0RRr<QY-)f
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 

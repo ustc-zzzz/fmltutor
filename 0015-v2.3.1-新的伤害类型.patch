@@ -3,11 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Sat, 5 Dec 2015 18:53:50 +0800
 Subject: v2.3.1
 
----
- .../ustc_zzzz/fmltutor/common/EventLoader.java     | 22 ++++++++++++++++++++++
- src/main/resources/assets/fmltutor/lang/en_US.lang |  2 ++
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |  2 ++
- 3 files changed, 26 insertions(+)
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 index dd8eb97..1c4bd03 100644
@@ -73,6 +68,3 @@ index c9aceec..00ee50c 100644
  itemGroup.fmltutor=FML教程
 +
 +death.attack.byPig=%s被猪弄死了！
--- 
-2.11.0
-

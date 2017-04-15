@@ -3,22 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Sun, 25 Oct 2015 22:30:16 +0800
 Subject: v1.4
 
----
- .../ustc_zzzz/fmltutor/block/BlockGrassBlock.java  |  15 ++++++++
- .../ustc_zzzz/fmltutor/block/BlockLoader.java      |  40 +++++++++++++++++++++
- .../fmltutor/client/ItemRenderLoader.java          |   2 ++
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |   2 ++
- .../assets/fmltutor/blockstates/grass_block.json   |   5 +++
- .../assets/fmltutor/models/block/grass_block.json  |   6 ++++
- .../assets/fmltutor/models/item/grass_block.json   |  10 ++++++
- .../fmltutor/textures/blocks/grass_block.png       | Bin 0 -> 923 bytes
- 8 files changed, 80 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
- create mode 100644 src/main/resources/assets/fmltutor/blockstates/grass_block.json
- create mode 100644 src/main/resources/assets/fmltutor/models/block/grass_block.json
- create mode 100644 src/main/resources/assets/fmltutor/models/item/grass_block.json
- create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/grass_block.png
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java
 new file mode 100644
@@ -189,7 +173,4 @@ x1PbqljE7Tdl@8&Egx<1IqcT5Ve8lS)`454tfXSEcrd9v|002ovPDHLkV1kHvt6=~D
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 

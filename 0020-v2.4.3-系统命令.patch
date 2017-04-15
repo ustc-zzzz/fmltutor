@@ -3,16 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Wed, 27 Jan 2016 10:57:51 +0800
 Subject: v2.4.3
 
----
- .../com/github/ustc_zzzz/fmltutor/FMLTutor.java    |  7 +++
- .../ustc_zzzz/fmltutor/command/CommandLoader.java  | 11 ++++
- .../fmltutor/command/CommandPosition.java          | 62 ++++++++++++++++++++++
- .../ustc_zzzz/fmltutor/common/CommonProxy.java     |  7 +++
- src/main/resources/assets/fmltutor/lang/en_US.lang |  3 ++
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |  3 ++
- 6 files changed, 93 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandLoader.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java b/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java
 index e1f0b19..aff68d8 100644
@@ -174,6 +164,3 @@ index 734b425..2a8fdc8 100644
 +
 +commands.position.usage=/position [玩家]
 +commands.position.success=玩家 %1$s 处于名为 %3$s 的世界，其坐标为 %2$s
--- 
-2.11.0
-

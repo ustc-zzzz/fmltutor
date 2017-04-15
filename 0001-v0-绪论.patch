@@ -3,26 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Thu, 22 Oct 2015 14:37:35 +0800
 Subject: v0
 
----
- .gitignore                                         |  20 +++
- README.md                                          |  25 ++++
- build.gradle                                       |  82 +++++++++++
- gradle/wrapper/gradle-wrapper.jar                  | Bin 0 -> 52271 bytes
- gradle/wrapper/gradle-wrapper.properties           |   6 +
- gradlew                                            | 164 +++++++++++++++++++++
- gradlew.bat                                        |  90 +++++++++++
- .../java/com/example/examplemod/ExampleMod.java    |  20 +++
- src/main/resources/mcmod.info                      |  16 ++
- 9 files changed, 423 insertions(+)
- create mode 100644 .gitignore
- create mode 100644 README.md
- create mode 100644 build.gradle
- create mode 100644 gradle/wrapper/gradle-wrapper.jar
- create mode 100644 gradle/wrapper/gradle-wrapper.properties
- create mode 100755 gradlew
- create mode 100644 gradlew.bat
- create mode 100644 src/main/java/com/example/examplemod/ExampleMod.java
- create mode 100644 src/main/resources/mcmod.info
 
 diff --git a/.gitignore b/.gitignore
 new file mode 100644
@@ -52,17 +32,18 @@ index 0000000..b839c94
 +
 diff --git a/README.md b/README.md
 new file mode 100644
-index 0000000..711fc0b
+index 0000000..cc8da3c
 --- /dev/null
 +++ b/README.md
-@@ -0,0 +1,25 @@
+@@ -0,0 +1,26 @@
 +# Minecraft 1.8.9 FML Mod 开发教程
 +
 +欢迎来到 Minecraft 1.8.9 FML Mod 开发教程的源代码仓库！
 +
-+你可能想要：
-+ * [浏览代码](#)
-+ * [进入教程](https://fmltutor.ustc-zzzz.net/)
++自2017年4月15日起，该教程源代码将以patch的方式维护。本分支下的代码是根据所有维护的patch自动生成的，因此，
++请不要向本分支发起Pull Request。如欲贡献代码，请移步[patch分支](tree/patch)。
++
++教程的文字部分由[book分支](tree/book)维护，如欲浏览真正的教程，请点击[这里](https://fmltutor.ustc-zzzz.net/)。
 +
 +## 版权声明
 +
@@ -80,7 +61,7 @@ index 0000000..711fc0b
 +转载请附上本作品链接：
 +<https://fmltutor.ustc-zzzz.net/>
 +
-+所有源代码使用[MIT协议](https://github.com/ustc-zzzz/fmltutor/blob/master/LICENSE)开源。
++所有源代码使用[MIT协议](LICENSE)开源。
 diff --git a/build.gradle b/build.gradle
 new file mode 100644
 index 0000000..8b83723
@@ -1412,6 +1393,3 @@ index 0000000..f480667
 +  "dependencies": []
 +}
 +]
--- 
-2.11.0
-

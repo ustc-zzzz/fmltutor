@@ -3,13 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Wed, 3 Feb 2016 13:26:25 +0800
 Subject: v2.4.4
 
----
- .../github/ustc_zzzz/fmltutor/common/EventLoader.java   |   1 +
- src/main/resources/assets/fmltutor/sounds.json          |   8 ++++++++
- src/main/resources/assets/fmltutor/sounds/fmltutor.ogg  | Bin 0 -> 87401 bytes
- 3 files changed, 9 insertions(+)
- create mode 100644 src/main/resources/assets/fmltutor/sounds.json
- create mode 100644 src/main/resources/assets/fmltutor/sounds/fmltutor.ogg
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 index 841a886..b7abed8 100644
@@ -1649,7 +1642,4 @@ dJH`%CkTayP|NT1u^T`6$5tG~kLI-&DKLE~GX@>v+
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 

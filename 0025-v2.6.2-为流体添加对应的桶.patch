@@ -3,18 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Mon, 22 Feb 2016 19:27:59 +0800
 Subject: v2.6.2
 
----
- .../ustc_zzzz/fmltutor/common/EventLoader.java     |  23 +++++++++++++++++++++
- .../ustc_zzzz/fmltutor/item/ItemBucketMercury.java |  23 +++++++++++++++++++++
- .../github/ustc_zzzz/fmltutor/item/ItemLoader.java |   6 ++++++
- src/main/resources/assets/fmltutor/lang/en_US.lang |   2 ++
- src/main/resources/assets/fmltutor/lang/zh_CN.lang |   2 ++
- .../fmltutor/models/item/bucket_mercury.json       |  18 ++++++++++++++++
- .../fmltutor/textures/items/bucket_mercury.png     | Bin 0 -> 431 bytes
- 7 files changed, 74 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemBucketMercury.java
- create mode 100644 src/main/resources/assets/fmltutor/models/item/bucket_mercury.json
- create mode 100644 src/main/resources/assets/fmltutor/textures/items/bucket_mercury.png
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 index b7abed8..1652726 100644
@@ -194,7 +182,4 @@ Z{Qy5ueWm{FpDq9Z002ovPDHLkV1ja3v>*Tg
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 

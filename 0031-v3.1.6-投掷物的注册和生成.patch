@@ -3,14 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Thu, 26 May 2016 14:41:55 +0800
 Subject: v3.1.6
 
----
- .../client/entity/render/RenderGoldenEgg.java      | 16 +++++++
- .../ustc_zzzz/fmltutor/entity/EntityGoldenEgg.java | 53 ++++++++++++++++++++++
- .../ustc_zzzz/fmltutor/entity/EntityLoader.java    |  3 ++
- .../ustc_zzzz/fmltutor/item/ItemGoldenEgg.java     | 18 ++++++++
- 4 files changed, 90 insertions(+)
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/client/entity/render/RenderGoldenEgg.java
- create mode 100644 src/main/java/com/github/ustc_zzzz/fmltutor/entity/EntityGoldenEgg.java
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/entity/render/RenderGoldenEgg.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/entity/render/RenderGoldenEgg.java
 new file mode 100644
@@ -157,6 +149,3 @@ index f6e10db..7289db4 100644
 +        return itemStackIn;
 +    }
  }
--- 
-2.11.0
-

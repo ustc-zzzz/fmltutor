@@ -3,10 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Fri, 7 Oct 2016 20:12:03 +0800
 Subject: v3.4.3
 
----
- .../fmltutor/client/gui/GuiContainerDemo.java      |  29 +++++
- .../fmltutor/inventory/ContainerDemo.java          | 139 ++++++++++++++++++++-
- 2 files changed, 164 insertions(+), 4 deletions(-)
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java
 index b1e3cf8..7ca797e 100644
@@ -245,6 +241,3 @@ index f4bb3f1..18a5896 100644
      }
  
      @Override
--- 
-2.11.0
-

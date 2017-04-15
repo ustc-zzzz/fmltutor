@@ -3,37 +3,6 @@ From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
 Date: Thu, 21 Jul 2016 16:43:18 +0800
 Subject: v3.2.4
 
----
- .../ustc_zzzz/fmltutor/block/BlockLoader.java      |   7 +-
- .../fmltutor/block/BlockMetalFurnace.java          |  43 +-
- .../tileentity/TileEntityMetalFurnace.java         |  22 +
- .../assets/fmltutor/blockstates/gold_furnace.json  |  24 +-
- .../assets/fmltutor/blockstates/iron_furnace.json  |  24 +-
- .../assets/fmltutor/models/block/metal_furnace.mtl |   1 +
- .../assets/fmltutor/models/block/metal_furnace.obj | 650 +++++++++++++++++++++
- .../fmltutor/textures/blocks/gold_furnace.png      | Bin 802 -> 0 bytes
- .../textures/blocks/gold_furnace_burning.png       | Bin 842 -> 0 bytes
- .../blocks/gold_furnace_burning_texture.png        | Bin 0 -> 2744 bytes
- .../fmltutor/textures/blocks/gold_furnace_side.png | Bin 628 -> 0 bytes
- .../textures/blocks/gold_furnace_texture.png       | Bin 0 -> 2652 bytes
- .../fmltutor/textures/blocks/iron_furnace.png      | Bin 655 -> 0 bytes
- .../textures/blocks/iron_furnace_burning.png       | Bin 722 -> 0 bytes
- .../blocks/iron_furnace_burning_texture.png        | Bin 0 -> 1906 bytes
- .../fmltutor/textures/blocks/iron_furnace_side.png | Bin 516 -> 0 bytes
- .../textures/blocks/iron_furnace_texture.png       | Bin 0 -> 1826 bytes
- 17 files changed, 738 insertions(+), 33 deletions(-)
- create mode 100644 src/main/resources/assets/fmltutor/models/block/metal_furnace.mtl
- create mode 100644 src/main/resources/assets/fmltutor/models/block/metal_furnace.obj
- delete mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace.png
- delete mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_burning.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_burning_texture.png
- delete mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_side.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/gold_furnace_texture.png
- delete mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace.png
- delete mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_burning.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_burning_texture.png
- delete mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_side.png
- create mode 100644 src/main/resources/assets/fmltutor/textures/blocks/iron_furnace_texture.png
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
 index cd8952c..6595f69 100644
@@ -1274,7 +1243,4 @@ BZZiM?
 
 literal 0
 HcmV?d00001
-
--- 
-2.11.0
 
