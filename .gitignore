@@ -12,6 +12,7 @@
 !README.md
 
 # include git important files
+!.gitattributes
 !.gitmodules
 !.gitignore
 
