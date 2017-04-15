@@ -32,18 +32,19 @@ index 0000000..b839c94
 +
 diff --git a/README.md b/README.md
 new file mode 100644
-index 0000000..cc8da3c
+index 0000000..4e3a7f8
 --- /dev/null
 +++ b/README.md
-@@ -0,0 +1,26 @@
+@@ -0,0 +1,27 @@
 +# Minecraft 1.8.9 FML Mod 开发教程
 +
 +欢迎来到 Minecraft 1.8.9 FML Mod 开发教程的源代码仓库！
 +
-+自2017年4月15日起，该教程源代码将以patch的方式维护。本分支下的代码是根据所有维护的patch自动生成的，因此，
-+请不要向本分支发起Pull Request。如欲贡献代码，请移步[patch分支](tree/patch)。
++自2017年4月15日起，该教程源代码将以patch的方式维护。本分支下的代码是根据所有维护的patch自动生成的，因此，如欲贡献代码，
++请移步[patch分支](/ustc-zzzz/fmltutor/tree/patch)，而不要向本分支发起Pull Request。
 +
-+教程的文字部分由[book分支](tree/book)维护，如欲浏览真正的教程，请点击[这里](https://fmltutor.ustc-zzzz.net/)。
++教程的文字部分由[book分支](/ustc-zzzz/fmltutor/tree/book)维护，如欲浏览真正的构建后的教程网页，
++请点击[这里](https://fmltutor.ustc-zzzz.net/)。
 +
 +## 版权声明
 +
