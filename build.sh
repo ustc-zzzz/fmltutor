@@ -17,12 +17,27 @@ function do-apply
 
 function do-clean
 {
-    rm -rf files/
+    [ -d files/ ] && pushd files >/dev/null
+    if [ $? -eq 0 ]
+    then
+        for file in $(git ls-files)
+        do
+            rm -f $file
+        done
+        rm -rf .git/
+        find . -type d -empty -delete
+        popd >/dev/null
+    fi
 }
 
 function do-build
 {
-    mkdir files/ && cd files && do-apply
+    mkdir -p files/ && pushd files >/dev/null
+    if [ $? -eq 0 ]
+    then
+        do-apply
+        popd >/dev/null
+    fi
 }
 
 cd $(dirname $0)
