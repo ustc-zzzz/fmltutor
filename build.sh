@@ -17,12 +17,12 @@ function do-apply
 
 function do-clean
 {
-    rm -rf build/
+    rm -rf files/
 }
 
 function do-build
 {
-    mkdir build/ && cd build && do-apply
+    mkdir files/ && cd files && do-apply
 }
 
 cd $(dirname $0)

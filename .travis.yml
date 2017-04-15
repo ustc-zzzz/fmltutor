@@ -5,5 +5,5 @@ script:
 - ./build.sh clean
 - ./build.sh build
 after_success:
-- cd build/
+- cd files/
 - git push -f -q https://ustc-zzzz:$GITHUB_TOKEN@github.com/ustc-zzzz/fmltutor master:master

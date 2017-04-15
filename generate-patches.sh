@@ -30,4 +30,4 @@ function do-apply
 
 cd $(dirname $0)
 
-cd build && do-apply
+cd files && do-apply
