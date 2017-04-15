@@ -2,7 +2,7 @@
 /*
 
 # patches
-!*.patches
+!patch/
 
 # scripts
 !*.sh

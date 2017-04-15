@@ -7,9 +7,10 @@ function do-apply
     git init
     git add LICENSE
     git commit -m "Initial commit" >/dev/null
+    git tag -f start
 
     echo -n "Applying patches: "
-    git am --whitespace=nowarn --keep-cr ../*.patch | while read m
+    git am --whitespace=nowarn --keep-cr ../patch/*.patch | while read m
     do echo -n '.'; done
     echo " done"
 }
