@@ -1,0 +1,17 @@
+# exclude all
+/*
+
+# patches
+!*.patches
+
+# scripts
+!*.sh
+
+# include markdowns
+!LICENSE
+!README.md
+
+# include git important files
+!.gitmodules
+!.gitignore
+
