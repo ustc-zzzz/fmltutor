@@ -4,7 +4,6 @@ function do-apply
 {
     prefix="../patch"
     rm *.patch 2>/dev/null
-    ident="Yanbing\\ Zhao\\ \\<zzzz@mail.ustc.edu.cn\\>"
     patches="$(git -c format.from=Yanbing\ Zhao\ \<zzzz@mail.ustc.edu.cn\> \
         format-patch start..master --minimal --keep-subject --zero-commit \
         --no-add-header --no-stat --no-signature)"
