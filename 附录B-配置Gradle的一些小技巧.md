@@ -6,12 +6,12 @@
 
 ## 更新你的Forge版本和MCP版本
 
-如果你正在使用着旧版本的Forge（这里使用11.15.1.2318-1.8.9举例），想要升级到新版本（这里使用11.15.1.1902举例）的话，我们先看一下旧版本的`build.gradle`的部分配置文件：
+如果你正在使用着旧版本的Forge（这里使用11.15.1.1722举例），想要升级到新版本（这里使用11.15.1.2318-1.8.9举例）的话，我们先看一下旧版本的`build.gradle`的部分配置文件：
 
 **`build.gradle（部分）:`**
 
     minecraft {
-        version = "1.8.9-11.15.1.2318-1.8.9"
+        version = "1.8.9-11.15.1.1722"
         runDir = "run"
         
         // the mappings can be changed at any time, and must be in the following format.
@@ -29,7 +29,7 @@
 **`build.gradle（部分）:`**
 
     minecraft {
-        version = "1.8.9-11.15.1.1902"
+        version = "1.8.9-11.15.1.2318-1.8.9"
         runDir = "run"
         mappings = "stable_20"
     }
