@@ -28,10 +28,10 @@ index 0000000..c2209f3
 +    }
 +}
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
-index 2c24fa5..f463398 100644
+index 348aa8f..895f5f2 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
 +++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
-@@ -13,10 +13,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
+@@ -12,10 +12,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  public class BlockLoader
  {
      public static Block grassBlock = new BlockGrassBlock();

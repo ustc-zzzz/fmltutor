@@ -20,7 +20,7 @@ index 25f3267..af7e525 100644
      }
  
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
-index 0128ecb..090ffe4 100644
+index 07f02c1..896809b 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
 +++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
 @@ -2,6 +2,7 @@ package com.github.ustc_zzzz.fmltutor.item;
@@ -30,8 +30,8 @@ index 0128ecb..090ffe4 100644
 +import net.minecraft.item.ItemPickaxe;
  import net.minecraftforge.client.model.ModelLoader;
  import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
- import net.minecraftforge.fml.common.registry.GameData;
-@@ -12,16 +13,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
+ import net.minecraftforge.fml.common.registry.GameRegistry;
+@@ -11,16 +12,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  public class ItemLoader
  {
      public static Item goldenEgg = new ItemGoldenEgg();

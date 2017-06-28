@@ -27,10 +27,10 @@ index 0000000..b0f1363
 +}
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
 new file mode 100644
-index 0000000..2c24fa5
+index 0000000..348aa8f
 --- /dev/null
 +++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
-@@ -0,0 +1,40 @@
+@@ -0,0 +1,38 @@
 +package com.github.ustc_zzzz.fmltutor.block;
 +
 +import net.minecraft.block.Block;
@@ -38,7 +38,6 @@ index 0000000..2c24fa5
 +import net.minecraft.item.Item;
 +import net.minecraftforge.client.model.ModelLoader;
 +import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-+import net.minecraftforge.fml.common.registry.GameData;
 +import net.minecraftforge.fml.common.registry.GameRegistry;
 +import net.minecraftforge.fml.relauncher.Side;
 +import net.minecraftforge.fml.relauncher.SideOnly;
@@ -60,15 +59,14 @@ index 0000000..2c24fa5
 +
 +    private static void register(Block block, String name)
 +    {
-+        GameRegistry.registerBlock(block, name);
++        GameRegistry.registerBlock(block.setRegistryName(name));
 +    }
 +
 +    @SideOnly(Side.CLIENT)
 +    private static void registerRender(Block block)
 +    {
-+        Item item = Item.getItemFromBlock(block);
-+        String name = GameData.getBlockRegistry().getNameForObject(block).toString();
-+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(name, "inventory"));
++        ModelResourceLocation model = new ModelResourceLocation(block.getRegistryName(), "inventory");
++        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, model);
 +    }
 +}
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/client/ItemRenderLoader.java

@@ -5,18 +5,18 @@ Subject: v3.2.4
 
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
-index cd8952c..6595f69 100644
+index 25d1a39..e4a5e1e 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
 +++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
-@@ -13,6 +13,7 @@ import net.minecraft.item.ItemMultiTexture;
+@@ -11,6 +11,7 @@ import net.minecraft.item.ItemBlock;
+ import net.minecraft.item.ItemMultiTexture;
  import net.minecraft.item.ItemStack;
- import net.minecraft.util.ResourceLocation;
  import net.minecraftforge.client.model.ModelLoader;
 +import net.minecraftforge.client.model.obj.OBJLoader;
  import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
  import net.minecraftforge.fml.common.registry.GameData;
  import net.minecraftforge.fml.common.registry.GameRegistry;
-@@ -42,8 +43,10 @@ public class BlockLoader
+@@ -40,8 +41,10 @@ public class BlockLoader
      @SideOnly(Side.CLIENT)
      public static void registerRenders()
      {
@@ -28,7 +28,7 @@ index cd8952c..6595f69 100644
 +                .withSuffix("_furnace").ignore(BlockMetalFurnace.FACING).build());
  
          registerRender(grassBlock);
-         registerRender(metalFurnace, 0, "iron_furnace");
+         registerRender(metalFurnace, 0, FMLTutor.MODID + ":" + "iron_furnace");
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java
 index 4db4b85..9c2c80d 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java

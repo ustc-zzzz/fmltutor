@@ -20,7 +20,7 @@ index af7e525..b49c6d5 100644
      }
  
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
-index 090ffe4..ac6535d 100644
+index 896809b..3de3357 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
 +++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
 @@ -2,6 +2,7 @@ package com.github.ustc_zzzz.fmltutor.item;
@@ -31,7 +31,7 @@ index 090ffe4..ac6535d 100644
  import net.minecraft.item.ItemPickaxe;
  import net.minecraftforge.client.model.ModelLoader;
  import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-@@ -14,11 +15,13 @@ public class ItemLoader
+@@ -13,11 +14,13 @@ public class ItemLoader
  {
      public static Item goldenEgg = new ItemGoldenEgg();
      public static ItemPickaxe redstonePickaxe = new ItemRedstonePickaxe();
@@ -45,7 +45,7 @@ index 090ffe4..ac6535d 100644
      }
  
      @SideOnly(Side.CLIENT)
-@@ -26,6 +29,7 @@ public class ItemLoader
+@@ -25,6 +28,7 @@ public class ItemLoader
      {
          registerRender(goldenEgg);
          registerRender(redstonePickaxe);

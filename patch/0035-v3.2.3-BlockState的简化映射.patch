@@ -5,19 +5,19 @@ Subject: v3.2.3
 
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
-index 06c6af4..cd8952c 100644
+index db50147..25d1a39 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
 +++ b/src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java
-@@ -4,6 +4,8 @@ import com.github.ustc_zzzz.fmltutor.FMLTutor;
+@@ -3,6 +3,8 @@ package com.github.ustc_zzzz.fmltutor.block;
+ import com.github.ustc_zzzz.fmltutor.FMLTutor;
  import com.google.common.base.Function;
- 
  import net.minecraft.block.Block;
 +import net.minecraft.client.renderer.block.statemap.IStateMapper;
 +import net.minecraft.client.renderer.block.statemap.StateMap;
  import net.minecraft.client.resources.model.ModelResourceLocation;
  import net.minecraft.item.Item;
  import net.minecraft.item.ItemBlock;
-@@ -40,6 +42,9 @@ public class BlockLoader
+@@ -38,6 +40,9 @@ public class BlockLoader
      @SideOnly(Side.CLIENT)
      public static void registerRenders()
      {
@@ -25,9 +25,9 @@ index 06c6af4..cd8952c 100644
 +                new StateMap.Builder().withName(BlockMetalFurnace.MATERIAL).withSuffix("_furnace").build());
 +
          registerRender(grassBlock);
-         registerRender(metalFurnace, 0, "iron_furnace");
-         registerRender(metalFurnace, 8, "gold_furnace");
-@@ -58,6 +63,12 @@ public class BlockLoader
+         registerRender(metalFurnace, 0, FMLTutor.MODID + ":" + "iron_furnace");
+         registerRender(metalFurnace, 8, FMLTutor.MODID + ":" + "gold_furnace");
+@@ -56,6 +61,12 @@ public class BlockLoader
      }
  
      @SideOnly(Side.CLIENT)
@@ -39,7 +39,7 @@ index 06c6af4..cd8952c 100644
 +    @SideOnly(Side.CLIENT)
      private static void registerRender(Block block, int meta, String name)
      {
-         Item item = Item.getItemFromBlock(block);
+         ModelResourceLocation model = new ModelResourceLocation(name, "inventory");
 diff --git a/src/main/resources/assets/fmltutor/blockstates/gold_furnace.json b/src/main/resources/assets/fmltutor/blockstates/gold_furnace.json
 new file mode 100644
 index 0000000..947716f
