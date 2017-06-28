@@ -65,7 +65,7 @@ index 0000000..686ba04
 +所有源代码使用[MIT协议](LICENSE)开源。
 diff --git a/build.gradle b/build.gradle
 new file mode 100644
-index 0000000..8b83723
+index 0000000..2abca3c
 --- /dev/null
 +++ b/build.gradle
 @@ -0,0 +1,82 @@
@@ -96,7 +96,7 @@ index 0000000..8b83723
 +archivesBaseName = "modid"
 +
 +minecraft {
-+    version = "1.8.9-11.15.1.1722"
++    version = "1.8.9-11.15.1.2318-1.8.9"
 +    runDir = "run"
 +    
 +    // the mappings can be changed at any time, and must be in the following format.

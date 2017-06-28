@@ -5,7 +5,7 @@ Subject: v1.1
 
 
 diff --git a/build.gradle b/build.gradle
-index 8b83723..93e4862 100644
+index 2abca3c..f8cfcd1 100644
 --- a/build.gradle
 +++ b/build.gradle
 @@ -20,9 +20,10 @@ plugins {
@@ -21,7 +21,7 @@ index 8b83723..93e4862 100644
 +archivesBaseName = "fmltutor"
  
  minecraft {
-     version = "1.8.9-11.15.1.1722"
+     version = "1.8.9-11.15.1.2318-1.8.9"
 diff --git a/src/main/java/com/example/examplemod/ExampleMod.java b/src/main/java/com/example/examplemod/ExampleMod.java
 deleted file mode 100644
 index 82123bc..0000000
