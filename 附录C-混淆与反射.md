@@ -33,7 +33,7 @@ Forge在加载Minecraft类的时候，会通过修改中立字节码（ASM）的
 **`build.gradle（部分）:`**
 
     minecraft {
-        version = "1.8.9-11.15.1.1722"
+        version = "1.8.9-11.15.1.2318-1.8.9"
         runDir = "run"
         mappings = "stable_20" // MCP version comes here
     }
