@@ -5,7 +5,7 @@ Subject: v2.6.2
 
 
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
-index b7abed8..1652726 100644
+index 1bc9e05..e66ab9b 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 +++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 @@ -7,6 +7,7 @@ import com.github.ustc_zzzz.fmltutor.enchantment.EnchantmentLoader;
@@ -33,7 +33,7 @@ index b7abed8..1652726 100644
  import net.minecraftforge.fml.common.eventhandler.EventBus;
  import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
  import net.minecraftforge.fml.common.gameevent.InputEvent;
-@@ -172,6 +180,21 @@ public class EventLoader
+@@ -173,6 +181,21 @@ public class EventLoader
          }
      }
  

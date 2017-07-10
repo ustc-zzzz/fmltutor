@@ -234,7 +234,7 @@ index f00e462..6491993 100644
          new FluidLoader(event);
          new ItemLoader(event);
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
-index 5c71d25..0ba35b4 100644
+index a05fcf7..b8ddc92 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 +++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 @@ -1,7 +1,11 @@
@@ -270,7 +270,7 @@ index 5c71d25..0ba35b4 100644
  import net.minecraftforge.event.entity.living.LivingDeathEvent;
  import net.minecraftforge.event.entity.living.LivingHurtEvent;
  import net.minecraftforge.event.entity.player.EntityInteractEvent;
-@@ -220,6 +231,29 @@ public class EventLoader
+@@ -221,6 +232,29 @@ public class EventLoader
          }
      }
  

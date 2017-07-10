@@ -25,7 +25,7 @@ index 371413f..51f01d9 100644
  
      public void init(FMLInitializationEvent event)
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
-index 1652726..5c71d25 100644
+index e66ab9b..a05fcf7 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 +++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 @@ -4,6 +4,8 @@ import com.github.ustc_zzzz.fmltutor.achievement.AchievementLoader;

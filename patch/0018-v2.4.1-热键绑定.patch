@@ -40,7 +40,7 @@ index 0000000..1f15086
 +    }
 +}
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
-index 9db1d8c..8121508 100644
+index f74f6e1..e1e4c11 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 +++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 @@ -1,9 +1,11 @@
@@ -74,7 +74,7 @@ index 9db1d8c..8121508 100644
  
  public class EventLoader
  {
-@@ -142,6 +148,18 @@ public class EventLoader
+@@ -143,6 +149,18 @@ public class EventLoader
          }
      }
  

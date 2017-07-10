@@ -48,7 +48,7 @@ index 16488aa..dbd3022 100644
          logger.info("Finished loading config. ");
      }
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
-index 1c4bd03..6b94a71 100644
+index 1c4bd03..c1e466f 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 +++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 @@ -1,17 +1,24 @@
@@ -76,7 +76,7 @@ index 1c4bd03..6b94a71 100644
  import net.minecraftforge.fml.common.eventhandler.Cancelable;
  import net.minecraftforge.fml.common.eventhandler.EventBus;
  import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-@@ -75,6 +82,43 @@ public class EventLoader
+@@ -75,6 +82,44 @@ public class EventLoader
          }
      }
  
@@ -89,14 +89,15 @@ index 1c4bd03..6b94a71 100644
 +            if (EnchantmentHelper.getEnchantmentLevel(EnchantmentLoader.fireBurn.effectId, itemStack) > 0
 +                    && itemStack.getItem() != Items.shears)
 +            {
-+                for (ItemStack stack : event.drops)
++                for (int i = 0; i < event.drops.size(); ++i)
 +                {
++                    ItemStack stack = event.drops.get(i);
 +                    ItemStack newStack = FurnaceRecipes.instance().getSmeltingResult(stack);
 +                    if (newStack != null)
 +                    {
 +                        newStack = newStack.copy();
 +                        newStack.stackSize = stack.stackSize;
-+                        event.drops.set(event.drops.indexOf(stack), newStack);
++                        event.drops.set(i, newStack);
 +                    }
 +                    else if (stack != null)
 +                    {
@@ -109,7 +110,7 @@ index 1c4bd03..6b94a71 100644
 +                                || block.isFlammable(event.world, event.pos, EnumFacing.UP)
 +                                || block.isFlammable(event.world, event.pos, EnumFacing.WEST)))
 +                        {
-+                            event.drops.remove(stack);
++                            event.drops.remove(i);
 +                        }
 +                    }
 +                }

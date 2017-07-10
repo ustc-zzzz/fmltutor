@@ -66,7 +66,7 @@ index 6491993..ecdd428 100644
  
      public void init(FMLInitializationEvent event)
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
-index 0ba35b4..14348e7 100644
+index b8ddc92..d8dcb1c 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 +++ b/src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java
 @@ -10,6 +10,8 @@ import com.github.ustc_zzzz.fmltutor.client.KeyLoader;
@@ -106,7 +106,7 @@ index 0ba35b4..14348e7 100644
  import net.minecraftforge.event.entity.living.LivingDeathEvent;
  import net.minecraftforge.event.entity.living.LivingHurtEvent;
  import net.minecraftforge.event.entity.player.EntityInteractEvent;
-@@ -228,6 +234,19 @@ public class EventLoader
+@@ -229,6 +235,19 @@ public class EventLoader
              EntityPlayer player = Minecraft.getMinecraft().thePlayer;
              World world = Minecraft.getMinecraft().theWorld;
              player.addChatMessage(new ChatComponentTranslation("chat.fmltutor.time", world.getTotalWorldTime()));
@@ -126,7 +126,7 @@ index 0ba35b4..14348e7 100644
          }
      }
  
-@@ -242,6 +261,27 @@ public class EventLoader
+@@ -243,6 +262,27 @@ public class EventLoader
      }
  
      @SubscribeEvent
