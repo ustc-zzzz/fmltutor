@@ -1,23 +1,34 @@
 package com.github.ustc_zzzz.fmltutor.tileentity;
 
 import com.github.ustc_zzzz.fmltutor.block.BlockMetalFurnace;
-
+import ic2.api.energy.event.EnergyTileLoadEvent;
+import ic2.api.energy.event.EnergyTileUnloadEvent;
+import ic2.api.energy.tile.IEnergyEmitter;
+import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityMetalFurnace extends TileEntity implements ITickable
+@Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "IC2")
+public class TileEntityMetalFurnace extends TileEntity implements ITickable, IEnergySink
 {
     protected double rotationDegree = 0;
 
+    private boolean updated = false;
+
+    protected double receivedEnergyUnit = 0;
     protected int burnTime = 0;
 
     protected ItemStackHandler upInventory = new ItemStackHandler();
@@ -51,6 +62,7 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable
         super.readFromNBT(compound);
         this.upInventory.deserializeNBT(compound.getCompoundTag("UpInventory"));
         this.downInventory.deserializeNBT(compound.getCompoundTag("DownInventory"));
+        this.receivedEnergyUnit = compound.getDouble("ReceivedEnergyUnit");
         this.burnTime = compound.getInteger("BurnTime");
     }
 
@@ -60,6 +72,7 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable
         super.writeToNBT(compound);
         compound.setTag("UpInventory", this.upInventory.serializeNBT());
         compound.setTag("DownInventory", this.downInventory.serializeNBT());
+        compound.setDouble("ReceivedEnergyUnit", this.receivedEnergyUnit);
         compound.setInteger("BurnTime", this.burnTime);
     }
 
@@ -70,29 +83,57 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable
     }
 
     @Override
+    public void invalidate()
+    {
+        super.invalidate();
+        if (!this.worldObj.isRemote && Loader.isModLoaded("IC2"))
+        {
+            this.onIC2MachineUnloaded();
+        }
+    }
+
+    @Override
     public void update()
     {
         if (!this.worldObj.isRemote)
         {
+            if (!this.updated && Loader.isModLoaded("IC2"))
+            {
+                this.onIC2MachineLoaded();
+                this.updated = true;
+            }
+
             ItemStack itemStack = upInventory.extractItem(0, 1, true);
             IBlockState state = this.worldObj.getBlockState(pos);
 
-            if (itemStack != null && downInventory.insertItem(0, itemStack, true) == null)
+            if (itemStack != null)
             {
-                this.worldObj.setBlockState(pos, state.withProperty(BlockMetalFurnace.BURNING, Boolean.TRUE));
-
-                int burnTotalTime = this.getTotalBurnTime();
-
-                if (++this.burnTime >= burnTotalTime)
+                ItemStack furnaceRecipeResult = FurnaceRecipes.instance().getSmeltingResult(itemStack);
+                if (furnaceRecipeResult != null && downInventory.insertItem(0, furnaceRecipeResult, true) == null)
                 {
-                    this.burnTime = 0;
-                    itemStack = upInventory.extractItem(0, 1, false);
-                    downInventory.insertItem(0, itemStack, false);
-                    this.markDirty();
+                    double requiredEnergyPerTick = this.getRequiredEnergyPerTick();
+                    if (this.receivedEnergyUnit >= requiredEnergyPerTick)
+                    {
+                        this.receivedEnergyUnit -= requiredEnergyPerTick;
+
+                        this.worldObj.setBlockState(pos, state.withProperty(BlockMetalFurnace.BURNING, Boolean.TRUE));
+
+                        int burnTotalTime = this.getTotalBurnTime();
+
+                        if (++this.burnTime >= burnTotalTime)
+                        {
+                            this.burnTime = 0;
+                            itemStack = upInventory.extractItem(0, 1, false);
+                            furnaceRecipeResult = FurnaceRecipes.instance().getSmeltingResult(itemStack).copy();
+                            downInventory.insertItem(0, furnaceRecipeResult, false);
+                            this.markDirty();
+                        }
+                    }
                 }
             }
             else
             {
+                this.burnTime = 0;
                 this.worldObj.setBlockState(pos, state.withProperty(BlockMetalFurnace.BURNING, Boolean.FALSE));
             }
         }
@@ -135,5 +176,53 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable
         default:
             return 200;
         }
+    }
+
+    public double getRequiredEnergyPerTick()
+    {
+        return 4.5;
+    }
+
+    public double getEnergyCapacity()
+    {
+        return 4096;
+    }
+
+    @Override
+    public double getDemandedEnergy()
+    {
+        return Math.max(0, this.getEnergyCapacity() - this.receivedEnergyUnit);
+    }
+
+    @Override
+    public int getSinkTier()
+    {
+        return 2;
+    }
+
+    @Override
+    public double injectEnergy(EnumFacing directionFrom, double amount, double voltage)
+    {
+        this.receivedEnergyUnit += amount;
+        return 0;
+    }
+
+    @Override
+    @Optional.Method(modid = "IC2")
+    public boolean acceptsEnergyFrom(IEnergyEmitter iEnergyEmitter, EnumFacing enumFacing)
+    {
+        return true;
+    }
+
+    @Optional.Method(modid = "IC2")
+    private void onIC2MachineLoaded()
+    {
+        MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+    }
+
+    @Optional.Method(modid = "IC2")
+    private void onIC2MachineUnloaded()
+    {
+        MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
     }
 }

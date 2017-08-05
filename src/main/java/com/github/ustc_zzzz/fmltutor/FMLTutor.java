@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 /**
  * @author ustc_zzzz
  */
-@Mod(modid = FMLTutor.MODID, name = FMLTutor.NAME, version = FMLTutor.VERSION, acceptedMinecraftVersions = "1.8.9")
+@Mod(modid = FMLTutor.MODID, name = FMLTutor.NAME, version = FMLTutor.VERSION, acceptedMinecraftVersions = "1.8.9", dependencies = "required-after:Forge@[11.15.1.1722,)")
 public class FMLTutor
 {
     public static final String MODID = "fmltutor";
