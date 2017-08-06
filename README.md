@@ -91,6 +91,11 @@ Welcome to the fmltutor wiki!
 * [GUI界面中的交互](3.4.3-GUI界面中的交互.md)
 * [GUI中的数据同步](3.4.4-GUI中的数据同步.md)
 
+#### 3.5 [与其他Mod交互](#35-与其他mod交互)
+
+* [使用其他Mod的API](3.5.1-使用其他Mod的API.md)
+* 向其他Mod提供API
+
 ### 4 高级部分
 
 #### 4.1 渲染器
@@ -118,8 +123,6 @@ Welcome to the fmltutor wiki!
 * [混淆与反射](附录C-混淆与反射.md)
 * [使用AccessTransformers](附录D-使用AccessTransformers.md)
 * [使用Scala编写Mod](附录E-使用Scala编写Mod.md)
-* 使用Git管理项目
-* 与其他Mod协作
 
 ## 版权声明
 
