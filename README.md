@@ -1,12 +1,10 @@
 # Minecraft 1.8.9 FML Mod 开发教程
 
-Welcome to the fmltutor wiki!
-
 **[蓝色](#)**的链接表示这部分已写完，**黑色**的文本表示正在填坑。。。
 
 如果该教程和源代码存在问题，可以通过电邮的方式：[zzzz@infstudio.net](mailto:zzzz@infstudio.net)，或者发送[GitHub Issue](https://github.com/ustc-zzzz/fmltutor/issues)。
 
-**请不要发送Pull Request**，教程本身的原因使得作者不通过Pull Request的方式合并源代码，请文字告知。
+教程所属的代码仓库的`master`分支是根据所有维护的patch自动生成的，因此**请不要向`master`分支发送Pull Request**。教程的文字部分由`book`分支维护，代码部分由`patch`分支维护。如有必要，请向这两个分支发送Pull Request。
 
 ## 目录
 
