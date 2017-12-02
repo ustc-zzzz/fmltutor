@@ -1,0 +1,19 @@
+before_install:
+- mkdir -p ~/.ssh/
+- eval "$(ssh-agent -s)"
+- echo "StrictHostKeyChecking no" >> ~/.ssh/config
+- echo "UserKnownHostsFile /dev/null" >> ~/.ssh/config
+- echo $SSH_PRIVATE_KEY | base64 -d | gunzip > ~/.ssh/id_rsa
+- sha1sum ~/.ssh/id_rsa; chmod 600 ~/.ssh/id_rsa; ssh-add ~/.ssh/id_rsa
+- npm install gitbook-cli
+- git config --global user.email "deploy@travis-ci.org"
+- git config --global user.name "Travis CI Deployment Bot"
+script:
+- node_modules/gitbook-cli/bin/gitbook.js init
+- node_modules/gitbook-cli/bin/gitbook.js install
+- node_modules/gitbook-cli/bin/gitbook.js build
+after_success:
+- cd _book/
+- git init; git add -- *
+- git commit --allow-empty-message -m ""
+- git push -f -q git@git.coding.net:ustc-zzzz/fmltutor.ustc-zzzz.net.git master:coding-pages
