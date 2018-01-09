@@ -1,0 +1,139 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Yanbing Zhao <zzzz@mail.ustc.edu.cn>
+Date: Wed, 10 Jan 2018 00:38:06 +0800
+Subject: v3.5.2
+
+
+diff --git a/build.gradle b/build.gradle
+index f8cfcd1..a1f9866 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -81,3 +81,14 @@ processResources
+         exclude 'mcmod.info'
+     }
+ }
++
++task apiJar(type: Jar) {
++    classifier = 'api'
++    from sourceSets.main.output
++    from sourceSets.main.allSource
++    include 'com/github/ustc_zzzz/fmltutor/api/**'
++}
++
++artifacts {
++    archives apiJar
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutorRecipeManagerImpl.java b/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutorRecipeManagerImpl.java
+new file mode 100644
+index 0000000..b3ea231
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutorRecipeManagerImpl.java
+@@ -0,0 +1,45 @@
++package com.github.ustc_zzzz.fmltutor;
++
++import com.github.ustc_zzzz.fmltutor.api.FMLTutorRecipeManager;
++import net.minecraft.item.ItemStack;
++import net.minecraft.item.crafting.FurnaceRecipes;
++
++import java.util.LinkedList;
++
++public class FMLTutorRecipeManagerImpl extends FMLTutorRecipeManager
++{
++    public static final FMLTutorRecipeManagerImpl INSTANCE = new FMLTutorRecipeManagerImpl();
++
++    private final LinkedList<Recipe> recipes = new LinkedList<Recipe>();
++
++    @Override
++    public void addRecipe(ItemStack input, ItemStack output)
++    {
++        this.recipes.addFirst(new Recipe(input, output));
++    }
++
++    @Override
++    public ItemStack getResult(ItemStack input)
++    {
++        for (Recipe recipe : recipes)
++        {
++            if (recipe.input.isItemEqual(input))
++            {
++                return recipe.output;
++            }
++        }
++        return FurnaceRecipes.instance().getSmeltingResult(input);
++    }
++
++    private static class Recipe
++    {
++        private final ItemStack input;
++        private final ItemStack output;
++
++        private Recipe(ItemStack input, ItemStack output)
++        {
++            this.input = input;
++            this.output = output;
++        }
++    }
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/api/FMLTutorRecipeManager.java b/src/main/java/com/github/ustc_zzzz/fmltutor/api/FMLTutorRecipeManager.java
+new file mode 100644
+index 0000000..d9ed7c3
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/api/FMLTutorRecipeManager.java
+@@ -0,0 +1,25 @@
++package com.github.ustc_zzzz.fmltutor.api;
++
++import net.minecraft.item.ItemStack;
++
++public abstract class FMLTutorRecipeManager
++{
++    public static final FMLTutorRecipeManager INSTANCE;
++
++    static
++    {
++        try
++        {
++            Class<?> implClass = Class.forName("com.github.ustc_zzzz.fmltutor.FMLTutorRecipeManagerImpl");
++            INSTANCE = (FMLTutorRecipeManager) implClass.getDeclaredField("INSTANCE").get(null);
++        }
++        catch (Exception e)
++        {
++            throw new RuntimeException("Cannot find implementation", e);
++        }
++    }
++
++    public abstract void addRecipe(ItemStack input, ItemStack output);
++
++    public abstract ItemStack getResult(ItemStack input);
++}
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/api/package-info.java b/src/main/java/com/github/ustc_zzzz/fmltutor/api/package-info.java
+new file mode 100644
+index 0000000..c1142bd
+--- /dev/null
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/api/package-info.java
+@@ -0,0 +1,5 @@
++/**
++ * @author ustc_zzzz
++ */
++@net.minecraftforge.fml.common.API(apiVersion = "0.1.0", owner = "fmltutor", provides = "FMLTutorAPI")
++package com.github.ustc_zzzz.fmltutor.api;
+diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java b/src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java
+index 2b55a1b..af960ab 100644
+--- a/src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java
++++ b/src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java
+@@ -1,5 +1,6 @@
+ package com.github.ustc_zzzz.fmltutor.tileentity;
+ 
++import com.github.ustc_zzzz.fmltutor.api.FMLTutorRecipeManager;
+ import com.github.ustc_zzzz.fmltutor.block.BlockMetalFurnace;
+ import ic2.api.energy.event.EnergyTileLoadEvent;
+ import ic2.api.energy.event.EnergyTileUnloadEvent;
+@@ -108,7 +109,8 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable, IEn
+ 
+             if (itemStack != null)
+             {
+-                ItemStack furnaceRecipeResult = FurnaceRecipes.instance().getSmeltingResult(itemStack);
++                // previous code: ItemStack furnaceRecipeResult = FurnaceRecipes.instance().getSmeltingResult(itemStack);
++                ItemStack furnaceRecipeResult = FMLTutorRecipeManager.INSTANCE.getResult(itemStack);
+                 if (furnaceRecipeResult != null && downInventory.insertItem(0, furnaceRecipeResult, true) == null)
+                 {
+                     double requiredEnergyPerTick = this.getRequiredEnergyPerTick();
