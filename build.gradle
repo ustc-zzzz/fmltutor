@@ -81,3 +81,14 @@ processResources
         exclude 'mcmod.info'
     }
 }
+
+task apiJar(type: Jar) {
+    classifier = 'api'
+    from sourceSets.main.output
+    from sourceSets.main.allSource
+    include 'com/github/ustc_zzzz/fmltutor/api/**'
+}
+
+artifacts {
+    archives apiJar
+}

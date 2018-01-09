@@ -1,5 +1,6 @@
 package com.github.ustc_zzzz.fmltutor.tileentity;
 
+import com.github.ustc_zzzz.fmltutor.api.FMLTutorRecipeManager;
 import com.github.ustc_zzzz.fmltutor.block.BlockMetalFurnace;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
@@ -108,7 +109,8 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable, IEn
 
             if (itemStack != null)
             {
-                ItemStack furnaceRecipeResult = FurnaceRecipes.instance().getSmeltingResult(itemStack);
+                // previous code: ItemStack furnaceRecipeResult = FurnaceRecipes.instance().getSmeltingResult(itemStack);
+                ItemStack furnaceRecipeResult = FMLTutorRecipeManager.INSTANCE.getResult(itemStack);
                 if (furnaceRecipeResult != null && downInventory.insertItem(0, furnaceRecipeResult, true) == null)
                 {
                     double requiredEnergyPerTick = this.getRequiredEnergyPerTick();
