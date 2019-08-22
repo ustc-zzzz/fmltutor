@@ -140,5 +140,5 @@
 
 另外，本作品同时提供[源代码](https://github.com/ustc-zzzz/fmltutor/tree/master)，所有源代码使用[MIT协议](https://github.com/ustc-zzzz/fmltutor/blob/master/LICENSE)开源。
 
-<p>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a></p>
+感谢[Team CovertDragon](https://covertdragon.team/)，鉴于该团队为本教程提供的机房位于中华人民共和国香港特别行政区的阿里云服务器。
 
