@@ -1,5 +1,5 @@
 {
-    "plugins": ["theme-default@1.0.5", "scripts"],
+    "plugins": ["-search", "theme-default@1.0.5", "scripts"],
     "pluginsConfig": {
         "scripts": {
             "files": ["./book.json.js"]
