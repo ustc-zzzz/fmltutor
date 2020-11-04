@@ -1,0 +1,1189 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.3.3 世界附加数据存储 · FMLTutor</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3.4.1-创建一个新的GUI界面.html" />
+    
+    
+    <link rel="prev" href="3.3.2-使用SimpleImpl同步数据.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <a target="_blank" href="https://github.com/ustc-zzzz/fmltutor/tree/master">
+            
+                    
+                    源代码仓库（记得Star哦）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="0-绪论.html">
+            
+                <a href="0-绪论.html">
+            
+                    
+                    0 绪论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    1 基础部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="1.1-配置你的工作环境.html">
+            
+                <a href="1.1-配置你的工作环境.html">
+            
+                    
+                    1.1 配置你的工作环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="1.2-主类、代理和Mod信息.html">
+            
+                <a href="1.2-主类、代理和Mod信息.html">
+            
+                    
+                    1.2 主类、代理和Mod信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="1.3-第一个物品.html">
+            
+                <a href="1.3-第一个物品.html">
+            
+                    
+                    1.3 第一个物品
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="1.4-第一个方块.html">
+            
+                <a href="1.4-第一个方块.html">
+            
+                    
+                    1.4 第一个方块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="1.5-创造模式物品栏.html">
+            
+                <a href="1.5-创造模式物品栏.html">
+            
+                    
+                    1.5 创造模式物品栏
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                <a href="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                    
+                    1.6 第一份合成表、烧炼规则和燃料
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="1.7-本地化和国际化.html">
+            
+                <a href="1.7-本地化和国际化.html">
+            
+                    
+                    1.7 本地化和国际化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="1.8-创建一份配置文件.html">
+            
+                <a href="1.8-创建一份配置文件.html">
+            
+                    
+                    1.8 创建一份配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    2 初级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="2.1.1-注册已有的事件.html">
+            
+                <a href="2.1.1-注册已有的事件.html">
+            
+                    
+                    2.1.1 注册已有的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="2.1.2-自定义新的事件.html">
+            
+                <a href="2.1.2-自定义新的事件.html">
+            
+                    
+                    2.1.2 自定义新的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="2.2.1-新的工具.html">
+            
+                <a href="2.2.1-新的工具.html">
+            
+                    
+                    2.2.1 新的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="2.2.2-新的食物.html">
+            
+                <a href="2.2.2-新的食物.html">
+            
+                    
+                    2.2.2 新的食物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="2.2.3-新的盔甲.html">
+            
+                <a href="2.2.3-新的盔甲.html">
+            
+                    
+                    2.2.3 新的盔甲
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="2.3.1-新的伤害类型.html">
+            
+                <a href="2.3.1-新的伤害类型.html">
+            
+                    
+                    2.3.1 新的伤害类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="2.3.2-新的附魔属性.html">
+            
+                <a href="2.3.2-新的附魔属性.html">
+            
+                    
+                    2.3.2 新的附魔属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="2.3.3-新的药水效果.html">
+            
+                <a href="2.3.3-新的药水效果.html">
+            
+                    
+                    2.3.3 新的药水效果
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="2.4.1-热键绑定.html">
+            
+                <a href="2.4.1-热键绑定.html">
+            
+                    
+                    2.4.1 热键绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="2.4.2-成就系统.html">
+            
+                <a href="2.4.2-成就系统.html">
+            
+                    
+                    2.4.2 成就系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="2.4.3-系统命令.html">
+            
+                <a href="2.4.3-系统命令.html">
+            
+                    
+                    2.4.3 系统命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="2.4.4-声音系统.html">
+            
+                <a href="2.4.4-声音系统.html">
+            
+                    
+                    2.4.4 声音系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.13" data-path="2.5.1-在世界生成矿物.html">
+            
+                <a href="2.5.1-在世界生成矿物.html">
+            
+                    
+                    2.5.1 在世界生成矿物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.14" data-path="2.5.2-注册和使用矿物字典.html">
+            
+                <a href="2.5.2-注册和使用矿物字典.html">
+            
+                    
+                    2.5.2 注册和使用矿物字典
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.15" data-path="2.6.1-创建并注册一份流体.html">
+            
+                <a href="2.6.1-创建并注册一份流体.html">
+            
+                    
+                    2.6.1 创建并注册一份流体
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.16" data-path="2.6.2-为流体添加对应的桶.html">
+            
+                <a href="2.6.2-为流体添加对应的桶.html">
+            
+                    
+                    2.6.2 为流体添加对应的桶
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    3 高级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                <a href="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                    
+                    3.1.1 新的生物和对应的刷怪蛋
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="3.1.2-新的生物渲染模型.html">
+            
+                <a href="3.1.2-新的生物渲染模型.html">
+            
+                    
+                    3.1.2 新的生物渲染模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="3.1.3-生物的固有属性和自然生成.html">
+            
+                <a href="3.1.3-生物的固有属性和自然生成.html">
+            
+                    
+                    3.1.3 生物的固有属性和自然生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="3.1.4-生物的自动同步和数据存储.html">
+            
+                <a href="3.1.4-生物的自动同步和数据存储.html">
+            
+                    
+                    3.1.4 生物的自动同步和数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="3.1.5-为生物绑定AI.html">
+            
+                <a href="3.1.5-为生物绑定AI.html">
+            
+                    
+                    3.1.5 为生物绑定AI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="3.1.6-投掷物的注册和生成.html">
+            
+                <a href="3.1.6-投掷物的注册和生成.html">
+            
+                    
+                    3.1.6 投掷物的注册和生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="3.1.7-FakePlayer的获取与使用.html">
+            
+                <a href="3.1.7-FakePlayer的获取与使用.html">
+            
+                    
+                    3.1.7 FakePlayer的获取与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="3.2.1-BlockState和Metadata.html">
+            
+                <a href="3.2.1-BlockState和Metadata.html">
+            
+                    
+                    3.2.1 BlockState和Metadata
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="3.2.2-TileEntity与数据更新.html">
+            
+                <a href="3.2.2-TileEntity与数据更新.html">
+            
+                    
+                    3.2.2 TileEntity与数据更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="3.2.3-BlockState的简化映射.html">
+            
+                <a href="3.2.3-BlockState的简化映射.html">
+            
+                    
+                    3.2.3 BlockState的简化映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                <a href="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                    
+                    3.2.4 扩展BlockState和第三方模型格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                <a href="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                    
+                    3.3.1 Capability系统与已有实体附加属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="3.3.2-使用SimpleImpl同步数据.html">
+            
+                <a href="3.3.2-使用SimpleImpl同步数据.html">
+            
+                    
+                    3.3.2 使用SimpleImpl同步数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.14" data-path="3.3.3-世界附加数据存储.html">
+            
+                <a href="3.3.3-世界附加数据存储.html">
+            
+                    
+                    3.3.3 世界附加数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.15" data-path="3.4.1-创建一个新的GUI界面.html">
+            
+                <a href="3.4.1-创建一个新的GUI界面.html">
+            
+                    
+                    3.4.1 创建一个新的GUI界面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.16" data-path="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                <a href="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                    
+                    3.4.2 GUI界面的个性化与物品槽的添加
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.17" data-path="3.4.3-GUI界面中的交互.html">
+            
+                <a href="3.4.3-GUI界面中的交互.html">
+            
+                    
+                    3.4.3 GUI界面中的交互
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.18" data-path="3.4.4-GUI中的数据同步.html">
+            
+                <a href="3.4.4-GUI中的数据同步.html">
+            
+                    
+                    3.4.4 GUI中的数据同步
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.19" data-path="3.5.1-使用其他Mod的API.html">
+            
+                <a href="3.5.1-使用其他Mod的API.html">
+            
+                    
+                    3.5.1 使用其他Mod的API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.20" data-path="3.5.2-向其他Mod提供API.html">
+            
+                <a href="3.5.2-向其他Mod提供API.html">
+            
+                    
+                    3.5.2 向其他Mod提供API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    附录
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="附录A-配置Gradle的一些小技巧.html">
+            
+                <a href="附录A-配置Gradle的一些小技巧.html">
+            
+                    
+                    附录A 配置Gradle的一些小技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="附录B-混淆与反射.html">
+            
+                <a href="附录B-混淆与反射.html">
+            
+                    
+                    附录B 混淆与反射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="附录C-使用AccessTransformers.html">
+            
+                <a href="附录C-使用AccessTransformers.html">
+            
+                    
+                    附录C 使用AccessTransformers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="附录D-使用Scala编写Mod.html">
+            
+                <a href="附录D-使用Scala编写Mod.html">
+            
+                    
+                    附录D 使用Scala编写Mod
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >3.3.3 世界附加数据存储</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="worldsaveddata"><code>WorldSavedData</code></h2>
+<p>Minecraft&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>WorldSavedData</code>&#x7684;&#x7C7B;&#xFF0C;&#x7528;&#x4E8E;&#x5168;&#x5C40;&#xFF08;&#x6240;&#x6709;&#x4E16;&#x754C;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#xFF09;&#x6216;&#x8005;&#x5206;&#x7EF4;&#x5EA6;&#xFF08;&#x539F;&#x7248;&#x7684;&#x4E09;&#x4E2A;&#x4E16;&#x754C;&#x7684;&#x5B58;&#x50A8;&#x4E0D;&#x540C;&#xFF09;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#xFF0C;&#x8FD9;&#x4E00;&#x90E8;&#x5206;&#x7528;&#x4E8E;&#x6F14;&#x793A;&#x7684;&#x662F;&#x73A9;&#x5BB6;&#x6807;&#x8BB0;&#x4F4D;&#x7F6E;&#x6570;&#x636E;&#xFF0C;&#x6240;&#x4EE5;&#x9996;&#x5148;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x7EE7;&#x627F;&#x4E00;&#x4E2A;<code>WorldSavedData</code>&#x3002;&#x65B0;&#x5EFA;&#x5305;<code>com.github.ustc_zzzz.fmltutor.worldstorage</code>&#xFF0C;&#x5E76;&#x5728;&#x5176;&#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;<code>PositionWorldSavedData</code>&#x7C7B;&#xFF0C;&#x4F7F;&#x5176;&#x7EE7;&#x627F;<code>WorldSavedData</code>&#x7C7B;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/worldstorage/PositionWorldSavedData.java:</code></strong></p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.github.ustc_zzzz.fmltutor.worldstorage;
+
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> java.util.UUID;
+
+<span class="hljs-keyword">import</span> net.minecraft.nbt.NBTTagCompound;
+<span class="hljs-keyword">import</span> net.minecraft.nbt.NBTTagList;
+<span class="hljs-keyword">import</span> net.minecraft.util.Vec3;
+<span class="hljs-keyword">import</span> net.minecraft.world.WorldSavedData;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PositionWorldSavedData</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WorldSavedData</span>
+</span>{
+    <span class="hljs-keyword">private</span> List&lt;Vec3&gt; positions = <span class="hljs-keyword">new</span> ArrayList&lt;Vec3&gt;();
+    <span class="hljs-keyword">private</span> List&lt;UUID&gt; players = <span class="hljs-keyword">new</span> ArrayList&lt;UUID&gt;();
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">PositionWorldSavedData</span><span class="hljs-params">(String name)</span>
+    </span>{
+        <span class="hljs-keyword">super</span>(name);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> players.size();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Vec3 <span class="hljs-title">getPosition</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> positions.get(index);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> UUID <span class="hljs-title">getPlayerUUID</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> players.get(index);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(Vec3 position, UUID player)</span>
+    </span>{
+        positions.add(position);
+        players.add(player);
+        <span class="hljs-keyword">this</span>.markDirty();
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">readFromNBT</span><span class="hljs-params">(NBTTagCompound nbt)</span>
+    </span>{
+        positions.clear();
+        players.clear();
+        NBTTagList list = (NBTTagList) nbt.getTag(<span class="hljs-string">&quot;positions&quot;</span>);
+        <span class="hljs-keyword">if</span> (list == <span class="hljs-keyword">null</span>)
+        {
+            list = <span class="hljs-keyword">new</span> NBTTagList();
+        }
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = list.tagCount() - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; --i)
+        {
+            NBTTagCompound compound = (NBTTagCompound) list.get(i);
+            positions.add(<span class="hljs-keyword">new</span> Vec3(compound.getDouble(<span class="hljs-string">&quot;x&quot;</span>), compound.getDouble(<span class="hljs-string">&quot;y&quot;</span>), compound.getDouble(<span class="hljs-string">&quot;z&quot;</span>)));
+            players.add(UUID.fromString(compound.getString(<span class="hljs-string">&quot;player&quot;</span>)));
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeToNBT</span><span class="hljs-params">(NBTTagCompound nbt)</span>
+    </span>{
+        NBTTagList list = <span class="hljs-keyword">new</span> NBTTagList();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = players.size() - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; --i)
+        {
+            Vec3 position = positions.get(i);
+            UUID player = players.get(i);
+            NBTTagCompound compound = <span class="hljs-keyword">new</span> NBTTagCompound();
+            compound.setDouble(<span class="hljs-string">&quot;x&quot;</span>, position.xCoord);
+            compound.setDouble(<span class="hljs-string">&quot;y&quot;</span>, position.yCoord);
+            compound.setDouble(<span class="hljs-string">&quot;z&quot;</span>, position.zCoord);
+            compound.setString(<span class="hljs-string">&quot;player&quot;</span>, player.toString());
+            list.appendTag(compound);
+        }
+        nbt.setTag(<span class="hljs-string">&quot;positions&quot;</span>, list);
+    }
+}
+</code></pre>
+<p>&#x9996;&#x5148;&#xFF0C;<code>WorldSavedData</code>&#x7C7B;&#x7684;&#x5B50;&#x7C7B;<strong>&#x5FC5;&#x987B;</strong>&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#xFF08;<code>String</code>&#xFF09;&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8FD9;&#x6BB5;&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">PositionWorldSavedData</span><span class="hljs-params">(String name)</span>
+    </span>{
+        <span class="hljs-keyword">super</span>(name);
+    }
+</code></pre>
+<p>&#x7136;&#x540E;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x4F7F;&#x7528;&#xFF0C;&#x6211;&#x4EEC;&#x6DFB;&#x52A0;&#x4E86;&#x82E5;&#x5E72;&#x4E2A;&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x83B7;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x6709;&#x4E00;&#x70B9;&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">add</span><span class="hljs-params">(Vec3 position, UUID player)</span>
+    </span>{
+        positions.add(position);
+        players.add(player);
+        <span class="hljs-keyword">this</span>.markDirty();
+    }
+</code></pre>
+<p>&#x91CC;&#x9762;&#x8C03;&#x7528;&#x4E86;&#x7684;<code>markDirty</code>&#x65B9;&#x6CD5;&#x662F;&#x4EC0;&#x4E48;&#x610F;&#x601D;&#x5462;&#xFF1F;</p>
+<p>Minecraft&#x4F1A;&#x5728;&#x89E6;&#x53D1;&#x67D0;&#x4E9B;&#x72B6;&#x6001;&#xFF08;&#x6BD4;&#x5982;&#x5355;&#x4EBA;&#x6A21;&#x5F0F;&#x65F6;&#x6309;&#x4E0B;Esc&#xFF09;&#x6216;&#x6BCF;&#x9694;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x4FDD;&#x5B58;&#x6240;&#x6709;&#x6570;&#x636E;&#x3002;&#x4E0D;&#x8FC7;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x6548;&#x7387;&#xFF0C;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x6570;&#x636E;&#x90FD;&#x9700;&#x8981;&#x4FDD;&#x5B58;&#xFF0C;&#x56E0;&#x4E3A;&#x5927;&#x90E8;&#x5206;&#x7684;&#x6570;&#x636E;&#x5728;&#x4E24;&#x6B21;&#x4FDD;&#x5B58;&#x95F4;&#x9694;&#x4E2D;&#x6CA1;&#x6709;&#x53D1;&#x751F;&#x8FC7;&#x53D8;&#x52A8;&#x3002;<code>markDirty</code>&#x65B9;&#x6CD5;&#x7684;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#x6807;&#x8BB0;&#x8FD9;&#x4E00;&#x6570;&#x636E;&#x53D1;&#x751F;&#x4E86;&#x53D8;&#x52A8;&#xFF0C;&#x4EE5;&#x8BA9;Minecraft&#x4E0B;&#x4E00;&#x6B21;&#x4FDD;&#x5B58;&#x6E38;&#x620F;&#x7684;&#x65F6;&#x5019;&#x8FDB;&#x884C;&#x4FDD;&#x5B58;&#x3002;</p>
+<p>Minecraft&#x4E2D;&#x51E0;&#x4E4E;&#x6240;&#x6709;&#x6570;&#x636E;&#x90FD;&#x4F7F;&#x7528;NBT&#x6807;&#x7B7E;&#x7684;&#x65B9;&#x5F0F;&#x4FDD;&#x5B58;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x662F;&#x5B9E;&#x73B0;&#x4E86;<code>writeToNBT</code>&#x548C;<code>readFromNBT</code>&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x4E8E;&#x628A;<code>WorldSavedData</code>&#x5E8F;&#x5217;&#x5316;&#x6210;&#x4E00;&#x4E2A;NBT&#x6807;&#x7B7E;&#xFF0C;&#x6216;&#x8005;&#x628A;&#x4E00;&#x4E2A;NBT&#x6807;&#x7B7E;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x6210;&#x4E00;&#x4E2A;<code>WorldSavedData</code>&#x3002;&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;&#x4E5F;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x4E0D;&#x518D;&#x8D58;&#x8FF0;&#x4E86;&#x3002;</p>
+<h2 id="&#x83B7;&#x53D6;worldsaveddata">&#x83B7;&#x53D6;<code>WorldSavedData</code></h2>
+<p>&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5728;<code>PositionWorldSavedData</code>&#x7C7B;&#x91CC;&#x5199;&#x4E24;&#x4E2A;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x4E8E;&#x83B7;&#x53D6;&#x5168;&#x5C40;&#x7684;&#x6216;&#x8005;&#x5206;&#x7EF4;&#x5EA6;&#x7684;<code>WorldSavedData</code>&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/worldstorage/PositionWorldSavedData.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> PositionWorldSavedData <span class="hljs-title">get</span><span class="hljs-params">(World world)</span>
+    </span>{
+        WorldSavedData data = world.getPerWorldStorage().loadData(PositionWorldSavedData.class, <span class="hljs-string">&quot;FMLTutorPositions&quot;</span>);
+        <span class="hljs-keyword">if</span> (data == <span class="hljs-keyword">null</span>)
+        {
+            data = <span class="hljs-keyword">new</span> PositionWorldSavedData(<span class="hljs-string">&quot;FMLTutorPositions&quot;</span>);
+            world.getPerWorldStorage().setData(<span class="hljs-string">&quot;FMLTutorPositions&quot;</span>, data);
+        }
+        <span class="hljs-keyword">return</span> (PositionWorldSavedData) data;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> PositionWorldSavedData <span class="hljs-title">getGlobal</span><span class="hljs-params">(World world)</span>
+    </span>{
+        WorldSavedData data = world.getMapStorage().loadData(PositionWorldSavedData.class, <span class="hljs-string">&quot;FMLTutorPositionsGlobal&quot;</span>);
+        <span class="hljs-keyword">if</span> (data == <span class="hljs-keyword">null</span>)
+        {
+            data = <span class="hljs-keyword">new</span> PositionWorldSavedData(<span class="hljs-string">&quot;FMLTutorPositionsGlobal&quot;</span>);
+            world.getMapStorage().setData(<span class="hljs-string">&quot;FMLTutorPositionsGlobal&quot;</span>, data);
+        }
+        <span class="hljs-keyword">return</span> (PositionWorldSavedData) data;
+    }
+</code></pre>
+<p>&#x9996;&#x5148;&#xFF0C;<code>World</code>&#x7C7B;&#x63D0;&#x4F9B;&#x4E86;&#x540D;&#x4E3A;<code>getPerWorldStorage</code>&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x83B7;&#x53D6;&#x5206;&#x7EF4;&#x5EA6;&#x6570;&#x636E;&#xFF0C;&#x540C;&#x65F6;&#x63D0;&#x4F9B;&#x4E86;&#x540D;&#x4E3A;<code>getMapStorage</code>&#x7684;&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x83B7;&#x53D6;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x6570;&#x636E;&#x3002;&#x5B83;&#x4EEC;&#x90FD;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;<code>MapStorage</code>&#x3002;<code>MapStorage</code>&#x6709;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x9700;&#x8981;&#x88AB;&#x6CE8;&#x610F;&#xFF1A;<code>loadData</code>&#x548C;<code>setData</code>&#xFF0C;&#x5B83;&#x4EEC;&#x5206;&#x522B;&#x88AB;&#x7528;&#x4E8E;&#x83B7;&#x53D6;&#x548C;&#x8BBE;&#x7F6E;<code>WorldSavedData</code>&#x3002;</p>
+<p><code>loadData</code>&#x65B9;&#x6CD5;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;<code>PositionWorldSavedData</code>&#x7684;&#x5B50;&#x7C7B;&#x5BF9;&#x5E94;&#x7684;class&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x6807;&#x8BC6;&#x7B26;&#x3002;&#x8FD9;&#x91CC;&#x5982;&#x679C;&#x8FD4;&#x56DE;<code>null</code>&#xFF0C;&#x5C31;&#x4EE3;&#x8868;&#x5BF9;&#x5E94;&#x7684;&#x6570;&#x636E;&#x5E76;&#x672A;&#x5B58;&#x5728;&#x8FC7;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x9700;&#x8981;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#x3002;</p>
+<p><code>setData</code>&#x5C31;&#x662F;&#x7528;&#x4E8E;&#x8BBE;&#x7F6E;&#x7684;&#x3002;&#x5B83;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x6807;&#x8BC6;&#x7B26;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x60F3;&#x8981;&#x8BBE;&#x7F6E;&#x7684;<code>WorldSavedData</code>&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x6709;&#x4E00;&#x70B9;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;<strong>&#x7528;&#x4E8E;&#x5168;&#x5C40;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x548C;&#x5206;&#x7EF4;&#x5EA6;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#xFF0C;&#x5B83;&#x4EEC;&#x7684;&#x6807;&#x8BC6;&#x7B26;&#x51B3;&#x4E0D;&#x80FD;&#x76F8;&#x540C;</strong>&#x3002;&#x56E0;&#x4E3A;&#x4E3B;&#x4E16;&#x754C;&#x7EF4;&#x5EA6;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x548C;&#x5168;&#x5C40;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x4F4D;&#x7F6E;&#x662F;&#x91CD;&#x5408;&#x7684;&#x3002;&#x8BFB;&#x8005;&#x53EF;&#x4EE5;&#x5728;&#x5B58;&#x6863;&#x7684;<code>data</code>&#x76EE;&#x5F55;&#x4E0B;&#x627E;&#x5230;&#x6807;&#x8BC6;&#x7B26;&#x5BF9;&#x5E94;&#x7684;&#xFF0C;&#x6DFB;&#x52A0;&#x4E86;&#x540D;&#x4E3A;<code>.dat</code>&#x540E;&#x7F00;&#x540D;&#x7684;&#x5B58;&#x50A8;&#x6587;&#x4EF6;&#xFF0C;&#x6559;&#x7A0B;&#x91CC;&#x5C31;&#x662F;<code>data/FMLTutorPositionsGlobal.dat</code>&#xFF0C;&#x8FD9;&#x4E00;&#x6587;&#x4EF6;&#x8868;&#x793A;&#x5168;&#x5C40;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x548C;&#x4E3B;&#x4E16;&#x754C;&#x7EF4;&#x5EA6;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x3002;&#x4E0B;&#x754C;&#x3001;&#x672B;&#x754C;&#x7B49;&#x7684;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x53EF;&#x4EE5;&#x5728;<code>DIM-1/data</code>&#x548C;<code>DIM1/data</code>&#x7B49;&#x76EE;&#x5F55;&#x4E0B;&#x627E;&#x5230;&#xFF0C;&#x6559;&#x7A0B;&#x91CC;&#x5BF9;&#x5E94;&#x4E09;&#x4E2A;&#x7EF4;&#x5EA6;&#x7684;&#x5C31;&#x662F;<code>data/FMLTutorPositions.dat</code>&#x3001;<code>DIM-1/data/FMLTutorPositions.dat</code>&#x3001;&#x548C;<code>DIM1/data/FMLTutorPositions.dat</code>&#x3002;</p>
+<p>&#x8FDB;&#x884C;&#x4E86;&#x7B80;&#x5355;&#x7684;&#x5305;&#x88C5;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;<code>WorldSavedData</code>&#x4E86;&#x3002;</p>
+<h2 id="&#x4E00;&#x4E9B;&#x548C;&#x6559;&#x7A0B;&#x6838;&#x5FC3;&#x5185;&#x5BB9;&#x5173;&#x8054;&#x4E0D;&#x5927;&#x7684;&#x5B9E;&#x73B0;">&#x4E00;&#x4E9B;&#x548C;&#x6559;&#x7A0B;&#x6838;&#x5FC3;&#x5185;&#x5BB9;&#x5173;&#x8054;&#x4E0D;&#x5927;&#x7684;&#x5B9E;&#x73B0;</h2>
+<p>&#x4EC5;&#x4EC5;&#x662F;&#x4F5C;&#x4E3A;&#x6F14;&#x793A;&#xFF0C;&#x6211;&#x4EEC;&#x6DFB;&#x52A0;&#x4E86;&#x7528;&#x4E8E;&#x7CFB;&#x7EDF;&#x547D;&#x4EE4;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4E4B;&#x524D;&#x66FE;&#x7ECF;&#x63D0;&#x5230;&#x8FC7;&#x7684;<code>/position</code>&#x7684;&#x4E16;&#x754C;&#x9644;&#x52A0;&#x6570;&#x636E;&#x5B58;&#x50A8;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">processCommand</span><span class="hljs-params">(ICommandSender sender, String[] args)</span> <span class="hljs-keyword">throws</span> CommandException
+    </span>{
+        <span class="hljs-keyword">if</span> (args.length == <span class="hljs-number">2</span> &amp;&amp; <span class="hljs-string">&quot;mark&quot;</span>.equals(args[<span class="hljs-number">0</span>]))
+        {
+            EntityPlayerMP entityPlayerMP = CommandBase.getCommandSenderAsPlayer(sender);
+            <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;list&quot;</span>.equals(args[<span class="hljs-number">1</span>]))
+            {
+                PositionWorldSavedData data;
+                sender.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentText(<span class="hljs-string">&quot;Global: &quot;</span>));
+                data = PositionWorldSavedData.getGlobal(entityPlayerMP.worldObj);
+                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = data.size() - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; --i)
+                {
+                    sender.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentTranslation(<span class="hljs-string">&quot;commands.position.mark&quot;</span>, data.getPosition(i),
+                            entityPlayerMP.worldObj.getPlayerEntityByUUID(data.getPlayerUUID(i)).getName()));
+                }
+                sender.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentText(<span class="hljs-string">&quot;Dimension: &quot;</span>));
+                data = PositionWorldSavedData.get(entityPlayerMP.worldObj);
+                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = data.size() - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; --i)
+                {
+                    sender.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentTranslation(<span class="hljs-string">&quot;commands.position.mark&quot;</span>, data.getPosition(i),
+                            entityPlayerMP.worldObj.getPlayerEntityByUUID(data.getPlayerUUID(i)).getName()));
+                }
+            }
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;global&quot;</span>.equals(args[<span class="hljs-number">1</span>]))
+            {
+                Vec3 pos = entityPlayerMP.getPositionVector();
+                UUID uuid = entityPlayerMP.getUniqueID();
+                PositionWorldSavedData.getGlobal(entityPlayerMP.worldObj).add(pos, uuid);
+                sender.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentTranslation(<span class="hljs-string">&quot;commands.position.marked&quot;</span>, pos));
+            }
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;dimension&quot;</span>.equals(args[<span class="hljs-number">1</span>]))
+            {
+                Vec3 pos = entityPlayerMP.getPositionVector();
+                UUID uuid = entityPlayerMP.getUniqueID();
+                PositionWorldSavedData.get(entityPlayerMP.worldObj).add(pos, uuid);
+                sender.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentTranslation(<span class="hljs-string">&quot;commands.position.marked&quot;</span>, pos));
+            }
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">if</span> (args.length &gt; <span class="hljs-number">1</span>)
+        {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> WrongUsageException(<span class="hljs-string">&quot;commands.position.usage&quot;</span>);
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            EntityPlayerMP entityPlayerMP = args.length &gt; <span class="hljs-number">0</span> ? CommandBase.getPlayer(sender, args[<span class="hljs-number">0</span>])
+                    : CommandBase.getCommandSenderAsPlayer(sender);
+            Vec3 pos = entityPlayerMP.getPositionVector();
+
+            <span class="hljs-keyword">if</span> (entityPlayerMP == sender &amp;&amp; entityPlayerMP.hasCapability(CapabilityLoader.positionHistory, <span class="hljs-keyword">null</span>))
+            {
+                sender.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentTranslation(<span class="hljs-string">&quot;commands.position.history&quot;</span>));
+                IPositionHistory histories = entityPlayerMP.getCapability(CapabilityLoader.positionHistory, <span class="hljs-keyword">null</span>);
+                <span class="hljs-keyword">for</span> (Vec3 vec3 : histories.getHistories())
+                {
+                    <span class="hljs-keyword">if</span> (vec3 != <span class="hljs-keyword">null</span>)
+                    {
+                        sender.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentText(vec3.toString()));
+                    }
+                }
+                histories.pushHistory(pos);
+
+                MessagePositionHistory message = <span class="hljs-keyword">new</span> MessagePositionHistory();
+                IStorage&lt;IPositionHistory&gt; storage = CapabilityLoader.positionHistory.getStorage();
+
+                message.nbt = <span class="hljs-keyword">new</span> NBTTagCompound();
+                message.nbt.setTag(<span class="hljs-string">&quot;histories&quot;</span>, storage.writeNBT(CapabilityLoader.positionHistory, histories, <span class="hljs-keyword">null</span>));
+
+                NetworkLoader.instance.sendTo(message, entityPlayerMP);
+            }
+
+            sender.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentTranslation(<span class="hljs-string">&quot;commands.position.success&quot;</span>, entityPlayerMP.getName(),
+                    pos, entityPlayerMP.worldObj.provider.getDimensionName()));
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;String&gt; <span class="hljs-title">addTabCompletionOptions</span><span class="hljs-params">(ICommandSender sender, String[] args, BlockPos pos)</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (args.length == <span class="hljs-number">1</span>)
+        {
+            String[] names = MinecraftServer.getServer().getAllUsernames();
+            names = Arrays.copyOf(names, names.length + <span class="hljs-number">1</span>);
+            names[names.length - <span class="hljs-number">1</span>] = <span class="hljs-string">&quot;mark&quot;</span>;
+            <span class="hljs-keyword">return</span> CommandBase.getListOfStringsMatchingLastWord(args, names);
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (args.length == <span class="hljs-number">2</span> &amp;&amp; <span class="hljs-string">&quot;mark&quot;</span>.equals(args[<span class="hljs-number">0</span>]))
+        {
+            <span class="hljs-keyword">return</span> CommandBase.getListOfStringsMatchingLastWord(args, <span class="hljs-string">&quot;list&quot;</span>, <span class="hljs-string">&quot;global&quot;</span>, <span class="hljs-string">&quot;dimension&quot;</span>);
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    }
+</code></pre>
+<p>&#x8FD8;&#x6709;&#x4E24;&#x4E2A;&#x8BED;&#x8A00;&#x6587;&#x4EF6;&#xFF1A;</p>
+<p><strong><code>src/main/resources/assets/fmltutor/lang/en_US.lang&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code>commands.position.mark=%s, by %s
+commands.position.marked=Marked %s
+</code></pre><p><strong><code>src/main/resources/assets/fmltutor/lang/zh_CN.lang&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code>commands.position.mark=%s&#xFF0C;&#x6765;&#x81EA;&#x4E8E; %s
+commands.position.marked=&#x5DF2;&#x6807;&#x8BB0; %s
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="3.3.2-使用SimpleImpl同步数据.html" class="navigation navigation-prev " aria-label="Previous page: 3.3.2 使用SimpleImpl同步数据">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3.4.1-创建一个新的GUI界面.html" class="navigation navigation-next " aria-label="Next page: 3.4.1 创建一个新的GUI界面">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.3.3 世界附加数据存储","level":"1.6.14","depth":2,"next":{"title":"3.4.1 创建一个新的GUI界面","level":"1.6.15","depth":2,"path":"3.4.1-创建一个新的GUI界面.md","ref":"3.4.1-创建一个新的GUI界面.md","articles":[]},"previous":{"title":"3.3.2 使用SimpleImpl同步数据","level":"1.6.13","depth":2,"path":"3.3.2-使用SimpleImpl同步数据.md","ref":"3.3.2-使用SimpleImpl同步数据.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default@1.0.5"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"FMLTutor","gitbook":"*","description":"Minecraft 1.8.9 FML Mod 开发教程"},"file":{"path":"3.3.3-世界附加数据存储.md","mtime":"2016-08-24T15:43:14.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-04T06:29:21.625Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

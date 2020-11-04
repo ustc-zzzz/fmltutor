@@ -1,0 +1,1170 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.2.3 BlockState的简化映射 · FMLTutor</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3.2.4-扩展BlockState和第三方模型格式.html" />
+    
+    
+    <link rel="prev" href="3.2.2-TileEntity与数据更新.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <a target="_blank" href="https://github.com/ustc-zzzz/fmltutor/tree/master">
+            
+                    
+                    源代码仓库（记得Star哦）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="0-绪论.html">
+            
+                <a href="0-绪论.html">
+            
+                    
+                    0 绪论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    1 基础部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="1.1-配置你的工作环境.html">
+            
+                <a href="1.1-配置你的工作环境.html">
+            
+                    
+                    1.1 配置你的工作环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="1.2-主类、代理和Mod信息.html">
+            
+                <a href="1.2-主类、代理和Mod信息.html">
+            
+                    
+                    1.2 主类、代理和Mod信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="1.3-第一个物品.html">
+            
+                <a href="1.3-第一个物品.html">
+            
+                    
+                    1.3 第一个物品
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="1.4-第一个方块.html">
+            
+                <a href="1.4-第一个方块.html">
+            
+                    
+                    1.4 第一个方块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="1.5-创造模式物品栏.html">
+            
+                <a href="1.5-创造模式物品栏.html">
+            
+                    
+                    1.5 创造模式物品栏
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                <a href="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                    
+                    1.6 第一份合成表、烧炼规则和燃料
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="1.7-本地化和国际化.html">
+            
+                <a href="1.7-本地化和国际化.html">
+            
+                    
+                    1.7 本地化和国际化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="1.8-创建一份配置文件.html">
+            
+                <a href="1.8-创建一份配置文件.html">
+            
+                    
+                    1.8 创建一份配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    2 初级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="2.1.1-注册已有的事件.html">
+            
+                <a href="2.1.1-注册已有的事件.html">
+            
+                    
+                    2.1.1 注册已有的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="2.1.2-自定义新的事件.html">
+            
+                <a href="2.1.2-自定义新的事件.html">
+            
+                    
+                    2.1.2 自定义新的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="2.2.1-新的工具.html">
+            
+                <a href="2.2.1-新的工具.html">
+            
+                    
+                    2.2.1 新的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="2.2.2-新的食物.html">
+            
+                <a href="2.2.2-新的食物.html">
+            
+                    
+                    2.2.2 新的食物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="2.2.3-新的盔甲.html">
+            
+                <a href="2.2.3-新的盔甲.html">
+            
+                    
+                    2.2.3 新的盔甲
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="2.3.1-新的伤害类型.html">
+            
+                <a href="2.3.1-新的伤害类型.html">
+            
+                    
+                    2.3.1 新的伤害类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="2.3.2-新的附魔属性.html">
+            
+                <a href="2.3.2-新的附魔属性.html">
+            
+                    
+                    2.3.2 新的附魔属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="2.3.3-新的药水效果.html">
+            
+                <a href="2.3.3-新的药水效果.html">
+            
+                    
+                    2.3.3 新的药水效果
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="2.4.1-热键绑定.html">
+            
+                <a href="2.4.1-热键绑定.html">
+            
+                    
+                    2.4.1 热键绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="2.4.2-成就系统.html">
+            
+                <a href="2.4.2-成就系统.html">
+            
+                    
+                    2.4.2 成就系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="2.4.3-系统命令.html">
+            
+                <a href="2.4.3-系统命令.html">
+            
+                    
+                    2.4.3 系统命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="2.4.4-声音系统.html">
+            
+                <a href="2.4.4-声音系统.html">
+            
+                    
+                    2.4.4 声音系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.13" data-path="2.5.1-在世界生成矿物.html">
+            
+                <a href="2.5.1-在世界生成矿物.html">
+            
+                    
+                    2.5.1 在世界生成矿物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.14" data-path="2.5.2-注册和使用矿物字典.html">
+            
+                <a href="2.5.2-注册和使用矿物字典.html">
+            
+                    
+                    2.5.2 注册和使用矿物字典
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.15" data-path="2.6.1-创建并注册一份流体.html">
+            
+                <a href="2.6.1-创建并注册一份流体.html">
+            
+                    
+                    2.6.1 创建并注册一份流体
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.16" data-path="2.6.2-为流体添加对应的桶.html">
+            
+                <a href="2.6.2-为流体添加对应的桶.html">
+            
+                    
+                    2.6.2 为流体添加对应的桶
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    3 高级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                <a href="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                    
+                    3.1.1 新的生物和对应的刷怪蛋
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="3.1.2-新的生物渲染模型.html">
+            
+                <a href="3.1.2-新的生物渲染模型.html">
+            
+                    
+                    3.1.2 新的生物渲染模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="3.1.3-生物的固有属性和自然生成.html">
+            
+                <a href="3.1.3-生物的固有属性和自然生成.html">
+            
+                    
+                    3.1.3 生物的固有属性和自然生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="3.1.4-生物的自动同步和数据存储.html">
+            
+                <a href="3.1.4-生物的自动同步和数据存储.html">
+            
+                    
+                    3.1.4 生物的自动同步和数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="3.1.5-为生物绑定AI.html">
+            
+                <a href="3.1.5-为生物绑定AI.html">
+            
+                    
+                    3.1.5 为生物绑定AI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="3.1.6-投掷物的注册和生成.html">
+            
+                <a href="3.1.6-投掷物的注册和生成.html">
+            
+                    
+                    3.1.6 投掷物的注册和生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="3.1.7-FakePlayer的获取与使用.html">
+            
+                <a href="3.1.7-FakePlayer的获取与使用.html">
+            
+                    
+                    3.1.7 FakePlayer的获取与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="3.2.1-BlockState和Metadata.html">
+            
+                <a href="3.2.1-BlockState和Metadata.html">
+            
+                    
+                    3.2.1 BlockState和Metadata
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="3.2.2-TileEntity与数据更新.html">
+            
+                <a href="3.2.2-TileEntity与数据更新.html">
+            
+                    
+                    3.2.2 TileEntity与数据更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.10" data-path="3.2.3-BlockState的简化映射.html">
+            
+                <a href="3.2.3-BlockState的简化映射.html">
+            
+                    
+                    3.2.3 BlockState的简化映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                <a href="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                    
+                    3.2.4 扩展BlockState和第三方模型格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                <a href="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                    
+                    3.3.1 Capability系统与已有实体附加属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="3.3.2-使用SimpleImpl同步数据.html">
+            
+                <a href="3.3.2-使用SimpleImpl同步数据.html">
+            
+                    
+                    3.3.2 使用SimpleImpl同步数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="3.3.3-世界附加数据存储.html">
+            
+                <a href="3.3.3-世界附加数据存储.html">
+            
+                    
+                    3.3.3 世界附加数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.15" data-path="3.4.1-创建一个新的GUI界面.html">
+            
+                <a href="3.4.1-创建一个新的GUI界面.html">
+            
+                    
+                    3.4.1 创建一个新的GUI界面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.16" data-path="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                <a href="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                    
+                    3.4.2 GUI界面的个性化与物品槽的添加
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.17" data-path="3.4.3-GUI界面中的交互.html">
+            
+                <a href="3.4.3-GUI界面中的交互.html">
+            
+                    
+                    3.4.3 GUI界面中的交互
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.18" data-path="3.4.4-GUI中的数据同步.html">
+            
+                <a href="3.4.4-GUI中的数据同步.html">
+            
+                    
+                    3.4.4 GUI中的数据同步
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.19" data-path="3.5.1-使用其他Mod的API.html">
+            
+                <a href="3.5.1-使用其他Mod的API.html">
+            
+                    
+                    3.5.1 使用其他Mod的API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.20" data-path="3.5.2-向其他Mod提供API.html">
+            
+                <a href="3.5.2-向其他Mod提供API.html">
+            
+                    
+                    3.5.2 向其他Mod提供API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    附录
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="附录A-配置Gradle的一些小技巧.html">
+            
+                <a href="附录A-配置Gradle的一些小技巧.html">
+            
+                    
+                    附录A 配置Gradle的一些小技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="附录B-混淆与反射.html">
+            
+                <a href="附录B-混淆与反射.html">
+            
+                    
+                    附录B 混淆与反射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="附录C-使用AccessTransformers.html">
+            
+                <a href="附录C-使用AccessTransformers.html">
+            
+                    
+                    附录C 使用AccessTransformers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="附录D-使用Scala编写Mod.html">
+            
+                <a href="附录D-使用Scala编写Mod.html">
+            
+                    
+                    附录D 使用Scala编写Mod
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >3.2.3 BlockState的简化映射</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x6982;&#x8FF0;">&#x6982;&#x8FF0;</h2>
+<p>&#x901A;&#x8FC7;&#x524D;&#x9762;&#x90E8;&#x5206;&#x7684;&#x8BB2;&#x8FF0;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#xFF0C;&#x4E00;&#x4E2A;&#x591A;BlockState&#x7684;&#x65B9;&#x5757;&#x7684;BlockState&#x548C;&#x5BF9;&#x5E94;&#x6A21;&#x578B;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#x662F;&#x5728;<code>blockstates</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;&#x540D;&#x4E3A;<code>&lt;&#x65B9;&#x5757;id&gt;.json</code>&#x7684;&#x6587;&#x4EF6;&#x4E2D;&#x63CF;&#x8FF0;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x610F;&#x8BC6;&#x5230;&#xFF0C;&#x867D;&#x7136;&#x4E00;&#x4E2A;&#x65B9;&#x5757;&#x7684;BlockState&#x4E2D;&#xFF0C;&#x5C5E;&#x6027;&#xFF08;<code>IProperty</code>&#xFF09;&#x53EA;&#x6709;&#x51E0;&#x79CD;&#xFF0C;&#x4F46;&#x662F;&#x6392;&#x5217;&#x7EC4;&#x5408;&#x4E0B;&#x6765;&#xFF0C;&#x6BCF;&#x4E00;&#x79CD;&#x7684;&#x53EF;&#x80FD;&#x60C5;&#x51B5;&#x4E58;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x6709;&#x7684;&#x65F6;&#x5019;&#x6570;&#x91CF;&#x8FD8;&#x662F;&#x5341;&#x5206;&#x60CA;&#x4EBA;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x4ECE;&#x4E24;&#x79CD;&#x65B9;&#x9762;&#x7B80;&#x5316;&#x8FD9;&#x4E00;&#x95EE;&#x9898;&#xFF1A;&#x51CF;&#x5C11;&#x540C;&#x4E00;&#x4E2A;<code>json</code>&#x4E2D;&#x9700;&#x8981;&#x58F0;&#x660E;&#x7684;&#x6570;&#x91CF;&#xFF0C;&#x548C;&#x7B80;&#x5316;&#x590D;&#x6742;&#x800C;&#x4E14;&#x8FC7;&#x4E8E;&#x91CD;&#x590D;&#x7684;&#x58F0;&#x660E;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>&#x4E00;&#x65B9;&#x9762;&#xFF0C;&#x6211;&#x4EEC;&#x77E5;&#x9053;&#xFF0C;&#x539F;&#x7248;&#x7684;&#x5F88;&#x591A;&#x65B9;&#x5757;&#x4E2D;&#xFF0C;&#x540C;&#x4E00;&#x4E2A;&#x65B9;&#x5757;&#x7684;&#x4E0D;&#x540C;BlockState&#x5F80;&#x5F80;&#x5206;&#x914D;&#x5728;&#x4E0D;&#x540C;&#x7684;<code>json</code>&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x6B64;&#x5916;&#xFF0C;&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x6709;&#x7684;&#x5C5E;&#x6027;&#xFF08;<code>IProperty</code>&#xFF09;&#x5E76;&#x4E0D;&#x5B58;&#x5728;&#x63CF;&#x8FF0;&#xFF08;&#x6BD4;&#x5982;&#x6811;&#x53F6;&#x7684;&#x8150;&#x8D25;&#x7B49;&#x7B49;&#xFF0C;&#x8FD9;&#x4E9B;&#x4E5F;&#x4E0D;&#x9700;&#x8981;&#x63CF;&#x8FF0;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x7684;&#x6A21;&#x578B;&#x548C;&#x8D34;&#x56FE;&#x6CA1;&#x6709;&#x533A;&#x522B;&#xFF09;&#x3002;&#x4E3A;&#x4E86;&#x505A;&#x5230;&#x8FD9;&#x4E9B;&#xFF0C;&#x6211;&#x4EEC;&#x5F80;&#x5F80;&#x9700;&#x8981;&#x4E00;&#x79CD;&#x540D;&#x4E3A;<code>BlockStateMapper</code>&#x7684;&#x673A;&#x5236;&#xFF0C;&#x672C;&#x8282;&#x7684;&#x4EFB;&#x52A1;&#x4E4B;&#x4E00;&#x5C31;&#x662F;&#x8BB2;&#x8FF0;&#x8FD9;&#x79CD;&#x673A;&#x5236;&#x3002;</p>
+<p>&#x53E6;&#x4E00;&#x65B9;&#x9762;&#xFF0C;&#x4EE5;&#x4F5C;&#x8005;&#x66FE;&#x7ECF;&#x62FF;&#x6765;&#x4E3E;&#x4F8B;&#x8FC7;&#x7684;&#x706B;&#x7130;&#x65B9;&#x5757;&#xFF0C;&#x6709;&#x7740;&#x4E09;&#x5343;&#x591A;&#x79CD;BlockState&#xFF0C;&#x867D;&#x7136;&#x90E8;&#x5206;BlockState&#x4E0D;&#x5F71;&#x54CD;&#x7ED8;&#x5236;&#xFF0C;&#x4F46;&#x662F;&#x6BCF;&#x4E00;&#x79CD;&#x53EF;&#x80FD;&#x60C5;&#x51B5;&#x7684;&#x7EC4;&#x5408;&#x5728;<code>blockstates</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;<code>json</code>&#x4E2D;&#x5C31;&#x662F;&#x4E00;&#x884C;&#xFF0C;&#x8FD9;&#x5C31;&#x5BFC;&#x81F4;&#x4E86;&#x63CF;&#x8FF0;&#x539F;&#x7248;&#x7684;&#x706B;&#x7130;&#x65B9;&#x5757;&#x7684;<code>json</code>&#x6709;&#x7740;&#x8DB3;&#x8DB3;196&#x4E2A;&#x975E;&#x7A7A;&#x884C;&#x3002;&#x5728;Minecraft 1.9&#x53CA;&#x4EE5;&#x4E0A;&#x7684;&#x7248;&#x672C;&#x4E2D;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x5F97;&#x5230;&#x4E86;&#x4E00;&#x5B9A;&#x7684;&#x6539;&#x5584;&#xFF0C;&#x4E0D;&#x8FC7;&#x66F4;&#x597D;&#x7684;&#x529E;&#x6CD5;&#x5176;&#x5B9E;&#x662F;Forge&#x63D0;&#x4F9B;&#x7684;&#x63CF;&#x8FF0;BlockState&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x8FD9;&#x4E5F;&#x5C31;&#x662F;&#x672C;&#x8282;&#x7684;&#x53E6;&#x4E00;&#x4EFB;&#x52A1;&#x3002;</p>
+<h2 id="blockstatemapper"><code>BlockStateMapper</code></h2>
+<p>&#x4E00;&#x4E2A;&#x5E38;&#x89C1;&#x7684;BlockState <code>json</code>&#x5927;&#x6982;&#x662F;&#x8FD9;&#x4E2A;&#x6837;&#x5B50;&#x7684;&#xFF1A;</p>
+<pre><code class="lang-json">{
+    <span class="hljs-string">&quot;variants&quot;</span>: {
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-comment">// ...</span>
+    }
+}
+</code></pre>
+<p>Minecraft&#x4F7F;&#x7528;&#x4E00;&#x4E2A;<code>ModelResourceLocation</code>&#x6807;&#x8BB0;&#x4E0A;&#x9762;&#x7684;&#x6BCF;&#x4E00;&#x884C;&#x6CE8;&#x91CA;&#x66FF;&#x4EE3;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x6BD4;&#x5982;&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x7684;&#x4E24;&#x4E2A;&#x5D2D;&#x65B0;&#x7684;&#x7194;&#x7089;&#xFF0C;&#x5C31;&#x5171;&#x6709;&#x5341;&#x516D;&#x884C;&#xFF0C;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x4F7F;&#x7528;<code>ModelResourceLocation</code>&#x7684;&#x65B9;&#x5F0F;&#x63CF;&#x8FF0;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li><code>fmltutor:metal_furnace#burning=false,facing=east,material=gold</code></li>
+<li><code>fmltutor:metal_furnace#burning=true,facing=east,material=gold</code></li>
+<li><code>fmltutor:metal_furnace#burning=false,facing=north,material=gold</code></li>
+<li><code>fmltutor:metal_furnace#burning=true,facing=north,material=gold</code></li>
+<li><code>fmltutor:metal_furnace#burning=false,facing=south,material=gold</code></li>
+<li><code>fmltutor:metal_furnace#burning=true,facing=south,material=gold</code></li>
+<li><code>fmltutor:metal_furnace#burning=false,facing=west,material=gold</code></li>
+<li><code>fmltutor:metal_furnace#burning=true,facing=west,material=gold</code></li>
+<li><code>fmltutor:metal_furnace#burning=false,facing=east,material=iron</code></li>
+<li><code>fmltutor:metal_furnace#burning=true,facing=east,material=iron</code></li>
+<li><code>fmltutor:metal_furnace#burning=false,facing=north,material=iron</code></li>
+<li><code>fmltutor:metal_furnace#burning=true,facing=north,material=iron</code></li>
+<li><code>fmltutor:metal_furnace#burning=false,facing=south,material=iron</code></li>
+<li><code>fmltutor:metal_furnace#burning=true,facing=south,material=iron</code></li>
+<li><code>fmltutor:metal_furnace#burning=false,facing=west,material=iron</code></li>
+<li><code>fmltutor:metal_furnace#burning=true,facing=west,material=iron</code></li>
+</ul>
+<p>&#x8FD9;&#x91CC;&#x7684;<code>fmltutor:metal_furnace</code>&#x8FD9;&#x4E00;&#x540D;&#x79F0;&#x662F;&#x6587;&#x4EF6;&#x540D;&#x548C;&#x6587;&#x4EF6;&#x6240;&#x5728;&#x4F4D;&#x7F6E;&#x63D0;&#x4F9B;&#x7684;&#xFF08;<code>assets.fmltutor.blockstates.metal_furnace.json</code>&#xFF09;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5F00;&#x59CB;&#x8BA8;&#x8BBA;&#x672C;&#x8282;&#x5F00;&#x5934;&#x4E2D;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;&#xFF1A;</p>
+<ul>
+<li>&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x6587;&#x4EF6;&#x540D;&#x4EE5;<code>material</code>&#x51B3;&#x5B9A;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x628A;&#x94C1;&#x7089;&#x5B50;&#x7684;<code>json</code>&#x548C;&#x91D1;&#x7089;&#x5B50;&#x7684;<code>json</code>&#x5206;&#x5F00;</li>
+<li>&#x56E0;&#x4E3A;&#x8BF8;&#x5982;<code>iron</code>&#x548C;<code>gold</code>&#x8FD9;&#x79CD;&#x540D;&#x5B57;&#x5BB9;&#x6613;&#x5F15;&#x8D77;&#x91CD;&#x590D;&#xFF08;&#x6211;&#x8981;&#x662F;&#x518D;&#x505A;&#x4E2A;&#x91D1;&#x5C5E;&#x7BB1;&#x5B50;&#x548B;&#x6574;&#xFF09;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x5728;&#x540E;&#x9762;&#x52A0;&#x4E0A;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>_furnace</code>&#x7684;&#x540E;&#x7F00;&#x4EE5;&#x533A;&#x5206;&#x5F00;&#x6765;&#xFF08;<code>iron_furnace</code>&#x548C;<code>gold_furnace</code>&#xFF09;</li>
+<li>&#x6559;&#x7A0B;&#x7684;&#x4E0B;&#x4E00;&#x8282;&#x4F1A;&#x4F7F;&#x7528;OBJ&#x6A21;&#x578B;&#xFF0C;&#x800C;&#x90A3;&#x65F6;&#x540D;&#x4E3A;<code>facing</code>&#x7684;&#x5C5E;&#x6027;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x5230;&#x65F6;&#x5019;&#x81EA;&#x6709;&#x89E3;&#x51B3;&#x65CB;&#x8F6C;&#x95EE;&#x9898;&#x7684;&#x529E;&#x6CD5;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x4E00;&#x8282;&#x8FD8;&#x662F;&#x7559;&#x7740;</li>
+</ul>
+<p>&#x8FD9;&#x91CC;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x63D0;&#x5230;&#x7684;<code>BlockStateMapper</code>&#x6D3E;&#x4E0A;&#x7528;&#x573A;&#x7684;&#x65F6;&#x5019;&#x4E86;&#xFF1A;&#x6240;&#x6709;&#x7684;<code>BlockStateMapper</code>&#x90FD;&#x662F;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>IStateMapper</code>&#x7684;&#x63A5;&#x53E3;&#x7684;&#x5B9E;&#x73B0;&#x3002;</p>
+<p>&#x6CE8;&#x518C;<code>BlockStateMapper</code>&#x7684;&#x65B9;&#x6CD5;&#x4E5F;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x8981;&#x5728;<strong>&#x5BA2;&#x6237;&#x7AEF;&#x7684;<code>preInit</code>&#x9636;&#x6BB5;</strong>&#x8C03;&#x7528;<code>ModelLoader</code>&#x7684;<code>setCustomStateMapper</code>&#x65B9;&#x6CD5;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@SideOnly</span>(Side.CLIENT)
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerStateMapper</span><span class="hljs-params">(Block block, IStateMapper mapper)</span>
+    </span>{
+        ModelLoader.setCustomStateMapper(block, mapper);
+    }
+</code></pre>
+<p>&#x90A3;&#x6211;&#x4EEC;&#x5C31;&#x5BF9;&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x5236;&#x4F5C;&#x7684;&#x4E24;&#x4E2A;&#x7089;&#x5B50;&#x6CE8;&#x518C;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@SideOnly</span>(Side.CLIENT)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerRenders</span><span class="hljs-params">()</span>
+    </span>{
+        registerStateMapper(metalFurnace,
+                <span class="hljs-keyword">new</span> StateMap.Builder().withName(BlockMetalFurnace.MATERIAL).withSuffix(<span class="hljs-string">&quot;_furnace&quot;</span>).build());
+
+        registerRender(grassBlock);
+        registerRender(metalFurnace, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;iron_furnace&quot;</span>);
+        registerRender(metalFurnace, <span class="hljs-number">8</span>, <span class="hljs-string">&quot;gold_furnace&quot;</span>);
+    }
+</code></pre>
+<p>&#x6CA1;&#x9519;&#xFF0C;&#x5C31;&#x662F;&#x8FD9;&#x53E5;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockLoader.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">        registerStateMapper(metalFurnace,
+                <span class="hljs-keyword">new</span> StateMap.Builder().withName(BlockMetalFurnace.MATERIAL).withSuffix(<span class="hljs-string">&quot;_furnace&quot;</span>).build());
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x7528;&#x5230;&#x4E86;&#x539F;&#x7248;&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x4E2A;Builder&#x3002;&#x8FD9;&#x4E2A;Builder&#x63D0;&#x4F9B;&#x4E86;&#x4E09;&#x4E2A;&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x6EE1;&#x8DB3;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x63D0;&#x51FA;&#x7684;&#x9700;&#x6C42;&#xFF0C;&#x7136;&#x540E;&#x6700;&#x540E;&#x518D;&#x8C03;&#x7528;&#x4E00;&#x6B21;<code>build</code>&#x65B9;&#x6CD5;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;<code>IStateMapper</code>&#xFF1A;</p>
+<ul>
+<li><code>withName</code>&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x63CF;&#x8FF0;BlockState&#x7684;<code>json</code>&#x548C;&#x54EA;&#x4E2A;<code>IProperty</code>&#x6709;&#x5173;</li>
+<li><code>withSuffix</code>&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x5728;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x540D;&#x540E;&#x52A0;&#x4E0A;&#x540E;&#x7F00;&#xFF0C;&#x4EE5;&#x9632;&#x6B62;&#x6DF7;&#x6DC6;</li>
+<li><code>ignore</code>&#x65B9;&#x6CD5;&#x4F20;&#x5165;&#x4E00;&#x4E2A;&#x53D8;&#x957F;&#x53C2;&#x6570;&#xFF0C;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x4EC0;&#x4E48;<code>IProperty</code>&#x5728;&#x6307;&#x5B9A;&#x6A21;&#x578B;&#x7684;&#x65F6;&#x5019;&#x88AB;&#x5FFD;&#x7565;&#x6389;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x9700;&#x8981;&#x5FFD;&#x7565;&#x6389;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x5728;&#x4E0B;&#x4E00;&#x8282;&#x7684;&#x65F6;&#x5019;&#xFF0C;<code>facing</code>&#x8FD9;&#x4E00;<code>IProperty</code>&#x5C31;&#x8981;&#x88AB;&#x5FFD;&#x7565;&#x6389;&#x4E86;</li>
+</ul>
+<p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x518D;&#x6B21;&#x6574;&#x7406;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li><code>fmltutor:gold_furnace#burning=false,facing=east</code></li>
+<li><code>fmltutor:gold_furnace#burning=true,facing=east</code></li>
+<li><code>fmltutor:gold_furnace#burning=false,facing=north</code></li>
+<li><code>fmltutor:gold_furnace#burning=true,facing=north</code></li>
+<li><code>fmltutor:gold_furnace#burning=false,facing=south</code></li>
+<li><code>fmltutor:gold_furnace#burning=true,facing=south</code></li>
+<li><code>fmltutor:gold_furnace#burning=false,facing=west</code></li>
+<li><code>fmltutor:gold_furnace#burning=true,facing=west</code></li>
+<li><code>fmltutor:iron_furnace#burning=false,facing=east</code></li>
+<li><code>fmltutor:iron_furnace#burning=true,facing=east</code></li>
+<li><code>fmltutor:iron_furnace#burning=false,facing=north</code></li>
+<li><code>fmltutor:iron_furnace#burning=true,facing=north</code></li>
+<li><code>fmltutor:iron_furnace#burning=false,facing=south</code></li>
+<li><code>fmltutor:iron_furnace#burning=true,facing=south</code></li>
+<li><code>fmltutor:iron_furnace#burning=false,facing=west</code></li>
+<li><code>fmltutor:iron_furnace#burning=true,facing=west</code></li>
+</ul>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x73B0;&#x5728;BlockState&#x5BF9;&#x5E94;&#x6A21;&#x578B;&#x7684;&#x6307;&#x5B9A;&#xFF0C;&#x5DF2;&#x7ECF;&#x7531;<code>blockstates</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;<code>gold_furnace.json</code>&#x548C;<code>iron_furnace.json</code>&#x5B8C;&#x5168;&#x63A5;&#x7BA1;&#x4E86;&#xFF0C;&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x521B;&#x7ACB;&#x7684;<code>metal_furnace.json</code>&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5220;&#x6389;&#x4E86;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x518D;&#x628A;&#x76EE;&#x5149;&#x6295;&#x5230;&#x8FD9;&#x4E24;&#x4E2A;<code>json</code>&#x6587;&#x4EF6;&#x4E0A;&#x6765;&#x3002;</p>
+<h2 id="forge&#x63D0;&#x4F9B;&#x7684;&#x63CF;&#x8FF0;blockstates&#x7684;&#x65B9;&#x5F0F;">Forge&#x63D0;&#x4F9B;&#x7684;&#x63CF;&#x8FF0;BlockStates&#x7684;&#x65B9;&#x5F0F;</h2>
+<p>&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x8BF4;&#x8FC7;Minecraft&#x539F;&#x7248;&#x63CF;&#x8FF0;BlockStates&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x4F7F;&#x5F97;&#x5176;&#x5BF9;&#x5E94;&#x7684;<code>json</code>&#x6587;&#x4EF6;&#x4F1A;&#x53D8;&#x5F97;&#x975E;&#x5E38;&#x957F;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5C31;&#x9700;&#x8981;Forge&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x7684;&#x683C;&#x5F0F;&#x4E86;&#x3002;&#x8FD9;&#x4E00;&#x683C;&#x5F0F;&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x7B80;&#x5316;&#x63CF;&#x8FF0;&#xFF0C;&#x8FD8;&#x652F;&#x6301;&#x5F15;&#x7528;&#x7B2C;&#x4E09;&#x65B9;&#x6A21;&#x578B;&#x683C;&#x5F0F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x672C;&#x8282;&#x5F00;&#x59CB;&#x63D0;&#x5230;&#x8FC7;&#x7684;B3D&#x6A21;&#x578B;&#x548C;OBJ&#x6A21;&#x578B;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x8BB2;&#x89E3;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x76F4;&#x63A5;&#x7ED9;&#x51FA;&#x7B80;&#x5316;&#x7ED3;&#x679C;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x8FDB;&#x884C;&#x5206;&#x6790;&#xFF1A;</p>
+<p><strong><code>src/main/resources/assets/fmltutor/blockstates/gold_furnace.json:</code></strong></p>
+<pre><code class="lang-json">{
+    <span class="hljs-string">&quot;forge_marker&quot;</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">&quot;defaults&quot;</span>: {
+        <span class="hljs-string">&quot;model&quot;</span>: <span class="hljs-string">&quot;orientable&quot;</span>,
+        <span class="hljs-string">&quot;textures&quot;</span>: {
+            <span class="hljs-string">&quot;top&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/gold_furnace_side&quot;</span>,
+            <span class="hljs-string">&quot;side&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/gold_furnace_side&quot;</span>
+        }
+    },
+    <span class="hljs-string">&quot;variants&quot;</span>: {
+        <span class="hljs-string">&quot;inventory&quot;</span>: [{
+             <span class="hljs-string">&quot;textures&quot;</span>: { <span class="hljs-string">&quot;front&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/gold_furnace&quot;</span> }
+        }],
+        <span class="hljs-string">&quot;burning&quot;</span>: {
+            <span class="hljs-string">&quot;true&quot;</span>: { <span class="hljs-string">&quot;textures&quot;</span>: { <span class="hljs-string">&quot;front&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/gold_furnace_burning&quot;</span> } },
+            <span class="hljs-string">&quot;false&quot;</span>: { <span class="hljs-string">&quot;textures&quot;</span>: { <span class="hljs-string">&quot;front&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/gold_furnace&quot;</span> } }
+        },
+        <span class="hljs-string">&quot;facing&quot;</span>: {
+            <span class="hljs-string">&quot;east&quot;</span>: { <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">90</span>, <span class="hljs-string">&quot;uvlock&quot;</span>: <span class="hljs-literal">true</span> },
+            <span class="hljs-string">&quot;north&quot;</span>: {},
+            <span class="hljs-string">&quot;south&quot;</span>: { <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">180</span>, <span class="hljs-string">&quot;uvlock&quot;</span>: <span class="hljs-literal">true</span> },
+            <span class="hljs-string">&quot;west&quot;</span>: { <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">270</span>, <span class="hljs-string">&quot;uvlock&quot;</span>: <span class="hljs-literal">true</span> }
+        }
+    }
+}
+</code></pre>
+<p><strong><code>src/main/resources/assets/fmltutor/blockstates/iron_furnace.json:</code></strong></p>
+<pre><code class="lang-json">{
+    <span class="hljs-string">&quot;forge_marker&quot;</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">&quot;defaults&quot;</span>: {
+        <span class="hljs-string">&quot;model&quot;</span>: <span class="hljs-string">&quot;orientable&quot;</span>,
+        <span class="hljs-string">&quot;textures&quot;</span>: {
+            <span class="hljs-string">&quot;top&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/iron_furnace_side&quot;</span>,
+            <span class="hljs-string">&quot;side&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/iron_furnace_side&quot;</span>
+        }
+    },
+    <span class="hljs-string">&quot;variants&quot;</span>: {
+        <span class="hljs-string">&quot;inventory&quot;</span>: [{
+             <span class="hljs-string">&quot;textures&quot;</span>: { <span class="hljs-string">&quot;front&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/iron_furnace&quot;</span> }
+        }],
+        <span class="hljs-string">&quot;burning&quot;</span>: {
+            <span class="hljs-string">&quot;true&quot;</span>: { <span class="hljs-string">&quot;textures&quot;</span>: { <span class="hljs-string">&quot;front&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/iron_furnace_burning&quot;</span> } },
+            <span class="hljs-string">&quot;false&quot;</span>: { <span class="hljs-string">&quot;textures&quot;</span>: { <span class="hljs-string">&quot;front&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/iron_furnace&quot;</span> } }
+        },
+        <span class="hljs-string">&quot;facing&quot;</span>: {
+            <span class="hljs-string">&quot;east&quot;</span>: { <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">90</span>, <span class="hljs-string">&quot;uvlock&quot;</span>: <span class="hljs-literal">true</span> },
+            <span class="hljs-string">&quot;north&quot;</span>: {},
+            <span class="hljs-string">&quot;south&quot;</span>: { <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">180</span>, <span class="hljs-string">&quot;uvlock&quot;</span>: <span class="hljs-literal">true</span> },
+            <span class="hljs-string">&quot;west&quot;</span>: { <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">270</span>, <span class="hljs-string">&quot;uvlock&quot;</span>: <span class="hljs-literal">true</span> }
+        }
+    }
+}
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x4EE5;&#x94C1;&#x7089;&#x5B50;&#x4E3A;&#x4F8B;&#x8FDB;&#x884C;&#x5206;&#x6790;&#xFF1A;</p>
+<p>&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x52A0;&#x4E0A;&#x8868;&#x793A;Forge&#x63D0;&#x4F9B;&#x7684;&#x7B2C;&#x4E09;&#x65B9;<code>json</code>&#x683C;&#x5F0F;&#x7684;&#x6807;&#x5FD7;&#xFF1A;</p>
+<pre><code class="lang-json">    <span class="hljs-string">&quot;forge_marker&quot;</span>: <span class="hljs-number">1</span>,
+</code></pre>
+<p>&#x7136;&#x540E;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x540D;&#x4E3A;<code>default</code>&#x7684;&#x6807;&#x7B7E;&#x4E86;&#xFF0C;&#x8FD9;&#x4E2A;&#x6807;&#x7B7E;&#x8BBE;&#x5B9A;&#x4E86;&#x4E00;&#x4E2A;&#x65B9;&#x5757;&#x5B83;<strong>&#x9ED8;&#x8BA4;</strong>&#x7684;&#x72B6;&#x6001;&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x5B50;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6240;&#x6709;BlockState&#x7684;&#x5171;&#x6027;&#xFF0C;&#x8FD9;&#x91CC;&#x94C1;&#x7089;&#x5B50;&#x7684;&#x5171;&#x6027;&#x5C31;&#x662F;&#x5B83;&#x4EEC;&#x90FD;&#x662F;&#x540C;&#x4E00;&#x79CD;&#x7C7B;&#x578B;&#x7684;&#x65B9;&#x5757;&#xFF0C;&#x5176;&#x4ED6;&#x7684;&#x53EA;&#x662F;&#x65B9;&#x5411;&#x548C;&#x8D34;&#x56FE;&#x4E0D;&#x540C;&#xFF1A;</p>
+<pre><code class="lang-json">    <span class="hljs-string">&quot;defaults&quot;</span>: {
+        <span class="hljs-string">&quot;model&quot;</span>: <span class="hljs-string">&quot;orientable&quot;</span>,
+        <span class="hljs-string">&quot;textures&quot;</span>: {
+            <span class="hljs-string">&quot;top&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/iron_furnace_side&quot;</span>,
+            <span class="hljs-string">&quot;side&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/iron_furnace_side&quot;</span>
+        }
+    },
+</code></pre>
+<p>&#x73B0;&#x5728;&#x7EC6;&#x5FC3;&#x7684;&#x8BFB;&#x8005;&#x53EF;&#x80FD;&#x5DF2;&#x7ECF;&#x6CE8;&#x610F;&#x5230;&#x4E86;Forge&#x58F0;&#x660E;&#x6A21;&#x578B;&#x548C;Minecraft&#x539F;&#x7248;&#x58F0;&#x660E;&#x6A21;&#x578B;&#x7684;&#x65B9;&#x5F0F;&#x7684;&#x533A;&#x522B;&#x3002;&#x4E3A;&#x4E86;&#x5E2E;&#x52A9;&#x8BFB;&#x8005;&#x56DE;&#x5FC6;&#xFF0C;&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x4ECE;&#x4E4B;&#x524D;&#x7684;<code>json</code>&#x91CC;&#x62BD;&#x4E24;&#x884C;&#x51FA;&#x6765;&#xFF1A;</p>
+<pre><code class="lang-json">        <span class="hljs-string">&quot;burning=false,facing=north,material=iron&quot;</span>: { <span class="hljs-string">&quot;model&quot;</span>: <span class="hljs-string">&quot;fmltutor:iron_furnace&quot;</span> },
+        <span class="hljs-string">&quot;burning=true,facing=north,material=iron&quot;</span>: { <span class="hljs-string">&quot;model&quot;</span>: <span class="hljs-string">&quot;fmltutor:iron_furnace_burning&quot;</span> },
+</code></pre>
+<p>&#x73B0;&#x5728;&#x8BFB;&#x8005;&#x53EF;&#x80FD;&#x5DF2;&#x7ECF;&#x6CE8;&#x610F;&#x5230;&#x4E86;&#xFF1A;&#x539F;&#x7248;&#x7684;&#x65B9;&#x5F0F;&#x662F;&#x628A;&#x6A21;&#x578B;&#x7684;&#x58F0;&#x660E;&#xFF0C;&#x6258;&#x7BA1;&#x5230;<code>models/block</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;&#x4E00;&#x4E2A;&#x6A21;&#x578B;<code>json</code>&#x4E2D;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x662F;<code>assets.fmltutor.models.block.iron_furnace.json</code>&#xFF0C;&#x548C;<code>assets.fmltutor.models.block.iron_furnace_burning.json</code>&#x3002;&#x800C;Forge&#x58F0;&#x660E;&#x6A21;&#x578B;&#x7684;&#x65B9;&#x5F0F;&#x5219;&#x662F;&#x76F4;&#x63A5;&#x5728;<code>blockstates</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;<code>json</code>&#x58F0;&#x660E;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x76EE;&#x524D;&#x6211;&#x4EEC;&#x770B;&#x5230;&#x7684;&#x90A3;&#x6837;&#x3002;&#x8FD9;&#x6837;&#x7684;&#x597D;&#x5904;&#x663E;&#x800C;&#x6613;&#x89C1;&#xFF0C;&#x5C31;&#x662F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x6307;&#x5B9A;&#x8D34;&#x56FE;&#x7B49;&#x5E94;&#x8BE5;&#x5728;<code>models/block</code>&#x4E0B;&#x7684;<code>json</code>&#x6A21;&#x578B;&#x91CC;&#x6307;&#x5B9A;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5728;&#x4E0A;&#x9762;&#x6211;&#x4EEC;&#x770B;&#x5230;&#x7684;<code>top</code>&#x548C;<code>side</code>&#x4E24;&#x4E2A;&#x3002;&#x6CE8;&#x610F;&#x5728;<code>blockstates</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;<code>json</code>&#x91CC;&#xFF0C;&#x4F7F;&#x7528;&#x7684;&#x6A21;&#x578B;&#x4F4D;&#x7F6E;<strong>&#x4E00;&#x5F8B;&#x4E0D;&#x5E26;<code>block/</code>&#x8DEF;&#x5F84;&#x6807;&#x8BB0;</strong>&#xFF0C;&#x800C;<code>models/block</code>&#x4E0B;&#x7684;&#x6A21;&#x578B;<code>json</code>&#x662F;&#x5E26;&#x7684;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x5C31;&#x662F;&#x58F0;&#x660E;<code>variants</code>&#x7684;&#x73AF;&#x8282;&#x4E86;&#xFF0C;&#x6211;&#x4EEC;&#x770B;&#x770B;Forge&#x662F;&#x600E;&#x4E48;&#x7B80;&#x5316;&#x58F0;&#x660E;&#x7684;&#x3002;<code>inventory</code>&#x90E8;&#x5206;&#x4F5C;&#x8005;&#x7A0D;&#x540E;&#x4F1A;&#x8BB2;&#xFF0C;&#x8FD9;&#x91CC;&#x5148;&#x6401;&#x7F6E;&#xFF0C;&#x6211;&#x4EEC;&#x770B;&#x770B;&#x5269;&#x4E0B;&#x7684;&#x90E8;&#x5206;&#xFF1A;</p>
+<pre><code class="lang-json">        <span class="hljs-string">&quot;burning&quot;</span>: {
+            <span class="hljs-string">&quot;true&quot;</span>: { <span class="hljs-string">&quot;textures&quot;</span>: { <span class="hljs-string">&quot;front&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/iron_furnace_burning&quot;</span> } },
+            <span class="hljs-string">&quot;false&quot;</span>: { <span class="hljs-string">&quot;textures&quot;</span>: { <span class="hljs-string">&quot;front&quot;</span>: <span class="hljs-string">&quot;fmltutor:blocks/iron_furnace&quot;</span> } }
+        },
+        <span class="hljs-string">&quot;facing&quot;</span>: {
+            <span class="hljs-string">&quot;east&quot;</span>: { <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">90</span>, <span class="hljs-string">&quot;uvlock&quot;</span>: <span class="hljs-literal">true</span> },
+            <span class="hljs-string">&quot;north&quot;</span>: {},
+            <span class="hljs-string">&quot;south&quot;</span>: { <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">180</span>, <span class="hljs-string">&quot;uvlock&quot;</span>: <span class="hljs-literal">true</span> },
+            <span class="hljs-string">&quot;west&quot;</span>: { <span class="hljs-string">&quot;y&quot;</span>: <span class="hljs-number">270</span>, <span class="hljs-string">&quot;uvlock&quot;</span>: <span class="hljs-literal">true</span> }
+        }
+</code></pre>
+<p>&#x73B0;&#x5728;&#x7684;&#x7ED3;&#x8BBA;&#x5C31;&#x5F88;&#x7B80;&#x5355;&#x4E86;&#xFF1A;&#x6700;&#x540E;&#x5F97;&#x5230;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x6240;&#x6709;&#x5C5E;&#x6027;&#xFF08;<code>IProperty</code>&#xFF09;&#x672C;&#x8EAB;&#x7684;&#x7B80;&#x5355;<strong>&#x7EC4;&#x5408;</strong>&#x3002;&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x5B9A;&#x4E49;&#x4E86;<code>burning</code>&#x548C;<code>facing</code>&#x4E24;&#x79CD;&#x5C5E;&#x6027;&#x7684;&#x6240;&#x6709;&#x60C5;&#x51B5;&#xFF0C;Forge&#x5728;&#x52A0;&#x8F7D;&#x6A21;&#x578B;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x628A;&#x5B83;&#x4EEC;&#x7B80;&#x5355;&#x5730;&#x7EC4;&#x5408;&#xFF0C;&#x5E76;&#x548C;<code>defaults</code>&#x63D0;&#x4F9B;&#x7684;&#x7EC4;&#x5408;&#x5728;&#x4E00;&#x8D77;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x8FD9;&#x6BD4;Minecraft&#x539F;&#x7248;&#x7684;&#x8FD8;&#x662F;&#x8981;&#x6E05;&#x6670;&#x4E0D;&#x5C11;&#x7684;&#x3002;&#x8FD9;&#x91CC;<code>defaults</code>&#x6CA1;&#x6709;&#x58F0;&#x660E;&#x7684;&#x90E8;&#x5206;&#xFF0C;&#x6BD4;&#x5982;<code>front</code>&#x5BF9;&#x5E94;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x548C;&#x4E0D;&#x540C;&#x5C5E;&#x6027;&#x7684;&#x7EC4;&#x5408;&#x6765;&#x8865;&#x9F50;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x65B9;&#x5757;&#x90FD;&#x5728;<code>blockstates</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;<code>json</code>&#x91CC;&#x5B8C;&#x6210;&#x6A21;&#x578B;&#x58F0;&#x660E;&#x4E86;&#xFF0C;&#x90A3;&#x65B9;&#x5757;&#x5BF9;&#x5E94;&#x7684;&#x7269;&#x54C1;&#x600E;&#x4E48;&#x529E;&#x5462;&#xFF1F;&#x8FD9;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x5C31;&#x9700;&#x8981;&#x63D0;&#x5230;Forge&#x7684;&#x53E6;&#x4E00;&#x4E2A;&#x673A;&#x5236;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#xFF1A;&#x5728;<code>models/item</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x627E;&#x5230;&#x60F3;&#x8981;&#x7684;&#x7269;&#x54C1;&#x6A21;&#x578B;&#xFF0C;&#x5C31;&#x4F1A;&#x53BB;<code>blockstates</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;&#x540C;&#x540D;<code>json</code>&#x91CC;&#x53BB;&#x627E;&#x5BF9;&#x5E94;&#x7684;<code>variant</code>&#x5BF9;&#x5E94;&#x7684;&#x6A21;&#x578B;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x5148;&#x6765;&#x56DE;&#x987E;&#x4E00;&#x4E0B;&#x6CE8;&#x518C;&#x4E24;&#x4E2A;&#x7089;&#x5B50;&#x5BF9;&#x5E94;&#x7684;&#x7269;&#x54C1;&#x6E32;&#x67D3;&#x7684;&#x8BED;&#x53E5;&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-meta">@SideOnly</span>(Side.CLIENT)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerRenders</span><span class="hljs-params">()</span>
+    </span>{
+        registerStateMapper(metalFurnace,
+                <span class="hljs-keyword">new</span> StateMap.Builder().withName(BlockMetalFurnace.MATERIAL).withSuffix(<span class="hljs-string">&quot;_furnace&quot;</span>).build());
+
+        registerRender(grassBlock);
+        registerRender(metalFurnace, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;iron_furnace&quot;</span>);
+        registerRender(metalFurnace, <span class="hljs-number">8</span>, <span class="hljs-string">&quot;gold_furnace&quot;</span>);
+    }
+
+    <span class="hljs-meta">@SideOnly</span>(Side.CLIENT)
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerRender</span><span class="hljs-params">(Block block, <span class="hljs-keyword">int</span> meta, String name)</span>
+    </span>{
+        Item item = Item.getItemFromBlock(block);
+        ResourceLocation location = <span class="hljs-keyword">new</span> ResourceLocation(FMLTutor.MODID, name);
+        ModelLoader.setCustomModelResourceLocation(item, meta, <span class="hljs-keyword">new</span> ModelResourceLocation(location, <span class="hljs-string">&quot;inventory&quot;</span>));
+    }
+</code></pre>
+<p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x6CE8;&#x518C;&#x4E86;&#x4E24;&#x4E2A;&#x7269;&#x54C1;&#x6A21;&#x578B;&#xFF0C;&#x5206;&#x522B;&#x662F;<code>fmltutor:iron_furnace#inventory</code>&#x548C;<code>fmltutor:gold_furnace#inventory</code>&#xFF0C;&#x5BF9;&#x5E94;&#x4E8E;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x6DFB;&#x52A0;&#x7684;&#x4E24;&#x79CD;&#x7089;&#x5B50;&#x5BF9;&#x5E94;&#x7684;&#x4E24;&#x79CD;&#x7269;&#x54C1;&#xFF08;&#x4E00;&#x4E2A;<code>Item</code>&#x7684;&#x4E24;&#x79CD;<code>Metadata</code>&#xFF09;&#x3002;&#x5982;&#x679C;&#x50CF;&#x4E4B;&#x524D;&#x7684;&#x90A3;&#x6837;&#xFF0C;Forge&#x5C31;&#x4F1A;&#x53BB;&#x627E;<code>assets.fmltutor.models.item.iron_furnace.json</code>&#xFF0C;&#x548C;<code>assets.fmltutor.models.item.gold_furnace.json</code>&#xFF0C;&#x5E76;&#x8BFB;&#x53D6;&#x6A21;&#x578B;&#xFF0C;&#x4E8B;&#x5B9E;&#x4E0A;&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x4E5F;&#x662F;&#x90A3;&#x4E48;&#x505A;&#x7684;&#xFF0C;&#x5728;&#x8FD9;&#x4E24;&#x4E2A;<code>json</code>&#x4E2D;&#x6211;&#x4EEC;&#x8BA9;&#x65B9;&#x5757;&#x5BF9;&#x5E94;&#x7269;&#x54C1;&#x7EE7;&#x627F;&#x65B9;&#x5757;&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x91CC;&#x7684;&#x65B9;&#x5757;&#x6A21;&#x578B;&#x90FD;&#x5728;<code>blockstates</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;<code>json</code>&#x91CC;&#x58F0;&#x660E;&#x4E86;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x4E0D;&#x80FD;&#x50CF;&#x4E4B;&#x524D;&#x4E00;&#x6837;&#x7167;&#x732B;&#x753B;&#x864E;&#x3002;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#xFF0C;Forge&#x5C31;&#x4F1A;&#x53BB;<code>blockstates</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#xFF0C;&#x53BB;&#x5BFB;&#x627E;<code>iron_furnace.json</code>&#x548C;<code>gold_furnace.json</code>&#x4E24;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x8BD5;&#x56FE;&#x4ECE;&#x540D;&#x4E3A;<code>inventory</code>&#x7684;<code>variant</code>&#x91CC;&#x8BFB;&#x53D6;&#x6A21;&#x578B;&#x4FE1;&#x606F;&#x4E86;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x4E4B;&#x524D;&#x6211;&#x4EEC;&#x5728;<code>models/item</code>&#x548C;<code>models/block</code>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;&#xFF0C;&#x7528;&#x4E8E;&#x63CF;&#x8FF0;&#x4E24;&#x79CD;&#x7089;&#x5B50;&#x548C;&#x4E24;&#x79CD;&#x7089;&#x5B50;&#x5BF9;&#x5E94;&#x7269;&#x54C1;&#x7684;&#x5171;&#x516D;&#x4E2A;<code>json</code>&#xFF0C;&#x52A0;&#x4E0A;&#x4E4B;&#x524D;&#x5DF2;&#x7ECF;&#x5220;&#x6389;&#x7684;&#x4E00;&#x4E2A;<code>json</code>&#x5171;&#x4E03;&#x4E2A;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x901A;&#x5220;&#x9664;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x76F8;&#x5173;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x5DF2;&#x7ECF;&#x5728;<code>assets.fmltutor.blockstates.iron_furnace.json</code>&#xFF0C;&#x548C;<code>assets.fmltutor.blockstates.gold_furnace.json</code>&#x91CC;&#x58F0;&#x660E;&#x4E86;&#x3002;</p>
+<p>&#x8FD9;&#x4E00;&#x90E8;&#x5206;&#x603B;&#x5171;&#x88AB;&#x5220;&#x9664;&#x7684;&#x6587;&#x4EF6;&#x6709;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li><code>assets.fmltutor.blockstates.metal_furnace.json</code></li>
+<li><code>assets.fmltutor.models.block.gold_furnace_burning.json</code></li>
+<li><code>assets.fmltutor.models.block.gold_furnace.json</code></li>
+<li><code>assets.fmltutor.models.block.iron_furnace_burning.json</code></li>
+<li><code>assets.fmltutor.models.block.iron_furnace.json</code></li>
+<li><code>assets.fmltutor.models.item.gold_furnace.json</code></li>
+<li><code>assets.fmltutor.models.item.iron_furnace.json</code></li>
+</ul>
+<p>&#x6253;&#x5F00;&#x6E38;&#x620F;&#x8BD5;&#x8BD5;&#x5427;&#xFF5E;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="3.2.2-TileEntity与数据更新.html" class="navigation navigation-prev " aria-label="Previous page: 3.2.2 TileEntity与数据更新">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3.2.4-扩展BlockState和第三方模型格式.html" class="navigation navigation-next " aria-label="Next page: 3.2.4 扩展BlockState和第三方模型格式">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.2.3 BlockState的简化映射","level":"1.6.10","depth":2,"next":{"title":"3.2.4 扩展BlockState和第三方模型格式","level":"1.6.11","depth":2,"path":"3.2.4-扩展BlockState和第三方模型格式.md","ref":"3.2.4-扩展BlockState和第三方模型格式.md","articles":[]},"previous":{"title":"3.2.2 TileEntity与数据更新","level":"1.6.9","depth":2,"path":"3.2.2-TileEntity与数据更新.md","ref":"3.2.2-TileEntity与数据更新.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default@1.0.5"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"FMLTutor","gitbook":"*","description":"Minecraft 1.8.9 FML Mod 开发教程"},"file":{"path":"3.2.3-BlockState的简化映射.md","mtime":"2016-08-10T09:00:58.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-04T06:29:21.625Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

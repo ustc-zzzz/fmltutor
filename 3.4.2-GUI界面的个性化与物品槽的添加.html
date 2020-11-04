@@ -1,0 +1,1224 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.4.2 GUI界面的个性化与物品槽的添加 · FMLTutor</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3.4.3-GUI界面中的交互.html" />
+    
+    
+    <link rel="prev" href="3.4.1-创建一个新的GUI界面.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <a target="_blank" href="https://github.com/ustc-zzzz/fmltutor/tree/master">
+            
+                    
+                    源代码仓库（记得Star哦）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="0-绪论.html">
+            
+                <a href="0-绪论.html">
+            
+                    
+                    0 绪论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    1 基础部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="1.1-配置你的工作环境.html">
+            
+                <a href="1.1-配置你的工作环境.html">
+            
+                    
+                    1.1 配置你的工作环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="1.2-主类、代理和Mod信息.html">
+            
+                <a href="1.2-主类、代理和Mod信息.html">
+            
+                    
+                    1.2 主类、代理和Mod信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="1.3-第一个物品.html">
+            
+                <a href="1.3-第一个物品.html">
+            
+                    
+                    1.3 第一个物品
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="1.4-第一个方块.html">
+            
+                <a href="1.4-第一个方块.html">
+            
+                    
+                    1.4 第一个方块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="1.5-创造模式物品栏.html">
+            
+                <a href="1.5-创造模式物品栏.html">
+            
+                    
+                    1.5 创造模式物品栏
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                <a href="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                    
+                    1.6 第一份合成表、烧炼规则和燃料
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="1.7-本地化和国际化.html">
+            
+                <a href="1.7-本地化和国际化.html">
+            
+                    
+                    1.7 本地化和国际化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="1.8-创建一份配置文件.html">
+            
+                <a href="1.8-创建一份配置文件.html">
+            
+                    
+                    1.8 创建一份配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    2 初级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="2.1.1-注册已有的事件.html">
+            
+                <a href="2.1.1-注册已有的事件.html">
+            
+                    
+                    2.1.1 注册已有的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="2.1.2-自定义新的事件.html">
+            
+                <a href="2.1.2-自定义新的事件.html">
+            
+                    
+                    2.1.2 自定义新的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="2.2.1-新的工具.html">
+            
+                <a href="2.2.1-新的工具.html">
+            
+                    
+                    2.2.1 新的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="2.2.2-新的食物.html">
+            
+                <a href="2.2.2-新的食物.html">
+            
+                    
+                    2.2.2 新的食物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="2.2.3-新的盔甲.html">
+            
+                <a href="2.2.3-新的盔甲.html">
+            
+                    
+                    2.2.3 新的盔甲
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="2.3.1-新的伤害类型.html">
+            
+                <a href="2.3.1-新的伤害类型.html">
+            
+                    
+                    2.3.1 新的伤害类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="2.3.2-新的附魔属性.html">
+            
+                <a href="2.3.2-新的附魔属性.html">
+            
+                    
+                    2.3.2 新的附魔属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="2.3.3-新的药水效果.html">
+            
+                <a href="2.3.3-新的药水效果.html">
+            
+                    
+                    2.3.3 新的药水效果
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="2.4.1-热键绑定.html">
+            
+                <a href="2.4.1-热键绑定.html">
+            
+                    
+                    2.4.1 热键绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="2.4.2-成就系统.html">
+            
+                <a href="2.4.2-成就系统.html">
+            
+                    
+                    2.4.2 成就系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="2.4.3-系统命令.html">
+            
+                <a href="2.4.3-系统命令.html">
+            
+                    
+                    2.4.3 系统命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="2.4.4-声音系统.html">
+            
+                <a href="2.4.4-声音系统.html">
+            
+                    
+                    2.4.4 声音系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.13" data-path="2.5.1-在世界生成矿物.html">
+            
+                <a href="2.5.1-在世界生成矿物.html">
+            
+                    
+                    2.5.1 在世界生成矿物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.14" data-path="2.5.2-注册和使用矿物字典.html">
+            
+                <a href="2.5.2-注册和使用矿物字典.html">
+            
+                    
+                    2.5.2 注册和使用矿物字典
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.15" data-path="2.6.1-创建并注册一份流体.html">
+            
+                <a href="2.6.1-创建并注册一份流体.html">
+            
+                    
+                    2.6.1 创建并注册一份流体
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.16" data-path="2.6.2-为流体添加对应的桶.html">
+            
+                <a href="2.6.2-为流体添加对应的桶.html">
+            
+                    
+                    2.6.2 为流体添加对应的桶
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    3 高级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                <a href="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                    
+                    3.1.1 新的生物和对应的刷怪蛋
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="3.1.2-新的生物渲染模型.html">
+            
+                <a href="3.1.2-新的生物渲染模型.html">
+            
+                    
+                    3.1.2 新的生物渲染模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="3.1.3-生物的固有属性和自然生成.html">
+            
+                <a href="3.1.3-生物的固有属性和自然生成.html">
+            
+                    
+                    3.1.3 生物的固有属性和自然生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="3.1.4-生物的自动同步和数据存储.html">
+            
+                <a href="3.1.4-生物的自动同步和数据存储.html">
+            
+                    
+                    3.1.4 生物的自动同步和数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="3.1.5-为生物绑定AI.html">
+            
+                <a href="3.1.5-为生物绑定AI.html">
+            
+                    
+                    3.1.5 为生物绑定AI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="3.1.6-投掷物的注册和生成.html">
+            
+                <a href="3.1.6-投掷物的注册和生成.html">
+            
+                    
+                    3.1.6 投掷物的注册和生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="3.1.7-FakePlayer的获取与使用.html">
+            
+                <a href="3.1.7-FakePlayer的获取与使用.html">
+            
+                    
+                    3.1.7 FakePlayer的获取与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="3.2.1-BlockState和Metadata.html">
+            
+                <a href="3.2.1-BlockState和Metadata.html">
+            
+                    
+                    3.2.1 BlockState和Metadata
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="3.2.2-TileEntity与数据更新.html">
+            
+                <a href="3.2.2-TileEntity与数据更新.html">
+            
+                    
+                    3.2.2 TileEntity与数据更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="3.2.3-BlockState的简化映射.html">
+            
+                <a href="3.2.3-BlockState的简化映射.html">
+            
+                    
+                    3.2.3 BlockState的简化映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                <a href="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                    
+                    3.2.4 扩展BlockState和第三方模型格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                <a href="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                    
+                    3.3.1 Capability系统与已有实体附加属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="3.3.2-使用SimpleImpl同步数据.html">
+            
+                <a href="3.3.2-使用SimpleImpl同步数据.html">
+            
+                    
+                    3.3.2 使用SimpleImpl同步数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="3.3.3-世界附加数据存储.html">
+            
+                <a href="3.3.3-世界附加数据存储.html">
+            
+                    
+                    3.3.3 世界附加数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.15" data-path="3.4.1-创建一个新的GUI界面.html">
+            
+                <a href="3.4.1-创建一个新的GUI界面.html">
+            
+                    
+                    3.4.1 创建一个新的GUI界面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.16" data-path="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                <a href="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                    
+                    3.4.2 GUI界面的个性化与物品槽的添加
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.17" data-path="3.4.3-GUI界面中的交互.html">
+            
+                <a href="3.4.3-GUI界面中的交互.html">
+            
+                    
+                    3.4.3 GUI界面中的交互
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.18" data-path="3.4.4-GUI中的数据同步.html">
+            
+                <a href="3.4.4-GUI中的数据同步.html">
+            
+                    
+                    3.4.4 GUI中的数据同步
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.19" data-path="3.5.1-使用其他Mod的API.html">
+            
+                <a href="3.5.1-使用其他Mod的API.html">
+            
+                    
+                    3.5.1 使用其他Mod的API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.20" data-path="3.5.2-向其他Mod提供API.html">
+            
+                <a href="3.5.2-向其他Mod提供API.html">
+            
+                    
+                    3.5.2 向其他Mod提供API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    附录
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="附录A-配置Gradle的一些小技巧.html">
+            
+                <a href="附录A-配置Gradle的一些小技巧.html">
+            
+                    
+                    附录A 配置Gradle的一些小技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="附录B-混淆与反射.html">
+            
+                <a href="附录B-混淆与反射.html">
+            
+                    
+                    附录B 混淆与反射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="附录C-使用AccessTransformers.html">
+            
+                <a href="附录C-使用AccessTransformers.html">
+            
+                    
+                    附录C 使用AccessTransformers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="附录D-使用Scala编写Mod.html">
+            
+                <a href="附录D-使用Scala编写Mod.html">
+            
+                    
+                    附录D 使用Scala编写Mod
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >3.4.2 GUI界面的个性化与物品槽的添加</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x6982;&#x8FF0;">&#x6982;&#x8FF0;</h2>
+<p>&#x5728;&#x672C;&#x90E8;&#x5206;&#x6559;&#x7A0B;&#x4E2D;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x505A;&#x5230;&#xFF1A;</p>
+<ul>
+<li>&#x4E3A;GUI&#x6DFB;&#x52A0;&#x5408;&#x9002;&#x7684;&#x80CC;&#x666F;</li>
+<li>&#x5411;GUI&#x6DFB;&#x52A0;&#x7269;&#x54C1;&#x69FD;&#x5E76;&#x4F7F;&#x5176;&#x81EA;&#x52A8;&#x663E;&#x793A;&#x5728;GUI&#x7684;&#x6B63;&#x786E;&#x4F4D;&#x7F6E;&#x4E0A;</li>
+<li>&#x5728;GUI&#x4E2D;&#x7ED8;&#x5236;&#x6A2A;&#x7EBF;&#x3001;&#x7AD6;&#x7EBF;&#x3001;&#x4E00;&#x884C;&#x6587;&#x5B57;&#x3001;&#x4EE5;&#x53CA;&#x7279;&#x5B9A;&#x7269;&#x54C1;</li>
+<li>&#x5728;GUI&#x4E2D;&#x6DFB;&#x52A0;&#x6309;&#x94AE;</li>
+</ul>
+<h2 id="gui&#x7684;&#x80CC;&#x666F;">GUI&#x7684;&#x80CC;&#x666F;</h2>
+<p>&#x5728;&#x4E0A;&#x4E00;&#x90E8;&#x5206;&#x7684;&#x5185;&#x5BB9;&#x4E2D;&#x6211;&#x4EEC;&#x8BF4;&#x9053;&#xFF0C;GUI&#x7684;&#x4EE3;&#x8868;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;<code>GuiContainer</code>&#x7C7B;&#xFF0C;&#x6709;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;&#x8F83;&#x4E3A;&#x91CD;&#x8981;&#xFF0C;&#x5B83;&#x4EEC;&#x5206;&#x522B;&#x662F;<code>drawGuiContainerBackgroundLayer</code>&#x548C;<code>drawGuiContainerForegroundLayer</code>&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x662F;&#x5982;&#x4F55;&#x88AB;&#x8C03;&#x7528;&#x7684;&#x5462;&#xFF1F;</p>
+<p>&#x4E00;&#x4E2A;<code>GuiContainer</code>&#x7684;&#x7ED8;&#x5236;&#xFF0C;&#x4E00;&#x822C;&#x8981;&#x7ECF;&#x5386;&#x4EE5;&#x4E0B;&#x56DB;&#x6B65;&#xFF1A;</p>
+<ul>
+<li>&#x6267;&#x884C;<code>drawGuiContainerBackgroundLayer</code>&#x65B9;&#x6CD5;</li>
+<li>&#x7ED8;&#x5236;&#x6240;&#x6709;&#x6309;&#x94AE;</li>
+<li>&#x7ED8;&#x5236;&#x6240;&#x6709;&#x7269;&#x54C1;&#x69FD;&#x4E0A;&#x7684;&#x7269;&#x54C1;</li>
+<li>&#x6267;&#x884C;<code>drawGuiContainerForegroundLayer</code>&#x65B9;&#x6CD5;</li>
+</ul>
+<p>&#x4E2D;&#x95F4;&#x4E24;&#x6B65;&#x6211;&#x4EEC;&#x662F;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x76F4;&#x63A5;&#x5E72;&#x6D89;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x76EE;&#x524D;&#x6765;&#x770B;&#xFF0C;&#x5F88;&#x663E;&#x800C;&#x6613;&#x89C1;&#x5730;&#xFF0C;GUI&#x7684;&#x80CC;&#x666F;&#x5E94;&#x8BE5;&#x662F;&#x5728;&#x7B2C;&#x4E00;&#x6B65;&#x7ED8;&#x5236;&#xFF0C;&#x800C;&#x5236;&#x6A2A;&#x7EBF;&#x3001;&#x7AD6;&#x7EBF;&#x3001;&#x4E00;&#x884C;&#x6587;&#x5B57;&#x3001;&#x4EE5;&#x53CA;&#x7279;&#x5B9A;&#x7269;&#x54C1;&#x7B49;&#xFF0C;&#x5E94;&#x8BE5;&#x5728;&#x6700;&#x540E;&#x4E00;&#x6B65;&#x7ED8;&#x5236;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5C31;&#x7ED8;&#x5236;&#x4E00;&#x4E0B;&#x80CC;&#x666F;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String TEXTURE_PATH = FMLTutor.MODID + <span class="hljs-string">&quot;:&quot;</span> + <span class="hljs-string">&quot;textures/gui/container/gui_demo.png&quot;</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> ResourceLocation TEXTURE = <span class="hljs-keyword">new</span> ResourceLocation(TEXTURE_PATH);
+</code></pre>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawGuiContainerBackgroundLayer</span><span class="hljs-params">(<span class="hljs-keyword">float</span> partialTicks, <span class="hljs-keyword">int</span> mouseX, <span class="hljs-keyword">int</span> mouseY)</span>
+    </span>{
+        GlStateManager.color(<span class="hljs-number">1.0F</span>, <span class="hljs-number">1.0F</span>, <span class="hljs-number">1.0F</span>);
+
+        <span class="hljs-keyword">this</span>.mc.getTextureManager().bindTexture(TEXTURE);
+        <span class="hljs-keyword">int</span> offsetX = (<span class="hljs-keyword">this</span>.width - <span class="hljs-keyword">this</span>.xSize) / <span class="hljs-number">2</span>, offsetY = (<span class="hljs-keyword">this</span>.height - <span class="hljs-keyword">this</span>.ySize) / <span class="hljs-number">2</span>;
+
+        <span class="hljs-keyword">this</span>.drawTexturedModalRect(offsetX, offsetY, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.xSize, <span class="hljs-keyword">this</span>.ySize);
+    }
+</code></pre>
+<p>&#x5F88;&#x7B80;&#x5355;&#x5BF9;&#x5427;&#x3002;&#x9996;&#x5148;&#x6211;&#x4EEC;&#x8981;&#x5148;&#x6267;&#x884C;<code>GlStateManager.color(1.0F, 1.0F, 1.0F)</code>&#x4EE5;&#x786E;&#x4FDD;&#x7ED8;&#x5236;&#x51FA;&#x6765;&#x7684;&#x989C;&#x8272;&#x662F;&#x6B63;&#x5E38;&#x7684;&#xFF0C;&#x8FD9;&#x4E00;&#x6B65;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x5728;&#x610F;&#x3002;</p>
+<p>&#x7136;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;<code>TextureManager</code>&#x7C7B;&#x7684;<code>bindTexture</code>&#x65B9;&#x6CD5;&#x7ED1;&#x5B9A;&#x6750;&#x8D28;&#xFF0C;&#x8FD9;&#x91CC;&#x7684;&#x6750;&#x8D28;&#x4F7F;&#x7528;<code>ResourceLocation</code>&#x8FDB;&#x884C;&#x8BBE;&#x7F6E;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x6750;&#x8D28;&#x7684;&#x4F4D;&#x7F6E;&#x5DF2;&#x7ECF;&#x5F88;&#x660E;&#x663E;&#x4E86;&#xFF0C;&#x6211;&#x4EEC;&#x65B0;&#x5EFA;&#x6587;&#x4EF6;<code>assets.fmltutor.textures.gui.container.gui_demo.png</code>&#xFF0C;&#x4EE5;&#x5B8C;&#x6210;&#x5BF9;&#x4E8E;&#x6750;&#x8D28;&#x7684;&#x8BBE;&#x5B9A;&#xFF1A;</p>
+<p><strong><code>src/main/resources/assets/fmltutor/textures/gui/container/gui_demo.png:</code></strong></p>
+<p><img src="resources/gui_demo.png" alt="gui_demo"></p>
+<p>&#x8FD9;&#x91CC;&#x53EA;&#x6709;&#x4E00;&#x70B9;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;<strong>&#x6750;&#x8D28;&#x7684;&#x5927;&#x5C0F;&#x5FC5;&#x987B;&#x662F;256x256</strong>&#x3002;</p>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x8C03;&#x7528;<code>drawTexturedModalRect</code>&#x65B9;&#x6CD5;&#x7ED8;&#x5236;&#x7279;&#x5B9A;&#x6750;&#x8D28;&#xFF0C;&#x4E0B;&#x9762;&#x6765;&#x89E3;&#x91CA;&#x4E00;&#x4E0B;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x516D;&#x4E2A;&#x53C2;&#x6570;&#xFF1A;</p>
+<ul>
+<li>&#x524D;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;&#x7ED8;&#x5236;&#x7684;&#x6750;&#x8D28;&#x5728;<strong>&#x7A97;&#x53E3;&#x7684;&#x5DE6;&#x4E0A;&#x89D2;</strong>&#x7684;&#x5750;&#x6807;&#xFF0C;&#x53C8;&#x79F0;xy&#x503C;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4E86;&#x4E00;&#x79CD;&#x6280;&#x5DE7;&#x4F7F;&#x5176;&#x4F4D;&#x4E8E;&#x5C4F;&#x5E55;&#x6B63;&#x4E2D;&#x95F4;</li>
+<li>&#x4E2D;&#x95F4;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;&#x7ED8;&#x5236;&#x5728;&#x6750;&#x8D28;&#x5728;<strong>&#x6750;&#x8D28;&#x56FE;&#x7684;&#x5DE6;&#x4E0A;&#x89D2;</strong>&#x7684;&#x5750;&#x6807;&#xFF0C;&#x53C8;&#x79F0;uv&#x503C;&#xFF0C;&#x8FD9;&#x91CC;&#x81EA;&#x7136;&#x90FD;&#x662F;&#x96F6;</li>
+<li>&#x6700;&#x540E;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;&#x7ED8;&#x5236;&#x7684;&#x77E9;&#x5F62;&#x7684;&#x957F;&#x5BBD;&#x5C3A;&#x5BF8;</li>
+</ul>
+<p>&#x8FD9;&#x91CC;&#x8FD8;&#x6709;&#x4E00;&#x70B9;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#xFF0C;&#x8BFB;&#x8005;&#x53EF;&#x4EE5;&#x6CE8;&#x610F;&#x5230;&#xFF0C;&#x4E0A;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x51FA;&#x73B0;&#x7684;&#x56DB;&#x4E2A;&#x5C5E;&#x6027;&#x503C;&#xFF0C;&#x5176;&#x4E2D;<code>this.width</code>&#x548C;<code>this.height</code>&#x5206;&#x522B;&#x4EE3;&#x8868;&#x7684;&#x662F;&#x7A97;&#x53E3;&#x7684;&#x957F;&#x548C;&#x5BBD;&#xFF0C;&#x5B83;&#x4EEC;&#x662F;&#x53EF;&#x4EE5;&#x88AB;&#x65B9;&#x4FBF;&#x786E;&#x5B9A;&#x7684;&#xFF0C;&#x800C;&#x5269;&#x4E0B;&#x7684;<code>this.xSize</code>&#x548C;<code>this.ySize</code>&#x5206;&#x522B;&#x4EE3;&#x8868;&#x7684;&#x662F;GUI&#x754C;&#x9762;&#x7684;&#x957F;&#x548C;&#x5BBD;&#xFF0C;&#x8FD9;&#x4E24;&#x9879;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x624B;&#x52A8;&#x8BBE;&#x7F6E;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x4E2D;&#x8BBE;&#x7F6E;&#x8FD9;&#x4E00;&#x70B9;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GuiContainerDemo</span><span class="hljs-params">(ContainerDemo inventorySlotsIn)</span>
+    </span>{
+        <span class="hljs-keyword">super</span>(inventorySlotsIn);
+        <span class="hljs-keyword">this</span>.xSize = <span class="hljs-number">176</span>;
+        <span class="hljs-keyword">this</span>.ySize = <span class="hljs-number">133</span>;
+    }
+</code></pre>
+<p>&#x8FD9;&#x5F97;&#x4EE5;&#x4FDD;&#x8BC1;&#x6B63;&#x597D;&#x662F;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7684;GUI&#x754C;&#x9762;&#x88AB;&#x6E32;&#x67D3;&#x8FDB;&#x7A97;&#x53E3;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x53D1;&#x751F;&#x5C11;&#x6E32;&#x67D3;&#x751A;&#x81F3;&#x591A;&#x6E32;&#x67D3;&#xFF08;&#x628A;&#x4E0B;&#x9762;&#x7A0D;&#x540E;&#x7528;&#x5230;&#x7684;&#x6309;&#x94AE;&#x76F4;&#x63A5;&#x6E32;&#x67D3;&#x8FDB;&#x7A97;&#x53E3;&#xFF09;&#x7684;&#x60C5;&#x51B5;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x6253;&#x5F00;GUI&#xFF0C;&#x7406;&#x5E94;&#x80FD;&#x591F;&#x770B;&#x5230;&#x754C;&#x9762;&#x4E86;&#xFF0C;&#x867D;&#x7136;&#x8FD9;&#x4E2A;&#x754C;&#x9762;&#x8FD8;&#x4EC0;&#x4E48;&#x90FD;&#x4E0D;&#x80FD;&#x505A;&#x3002;</p>
+<h2 id="gui&#x7684;&#x7269;&#x54C1;&#x69FD;">GUI&#x7684;&#x7269;&#x54C1;&#x69FD;</h2>
+<p>&#x56E0;&#x4E3A;Mojang&#x72EC;&#x7279;&#x7684;&#x8BBE;&#x8BA1;&#x65B9;&#x5F0F;&#x2014;&#x2014;&#x7269;&#x54C1;&#x69FD;&#x7684;&#x5927;&#x90E8;&#x5206;&#x6570;&#x636E;&#xFF0C;&#x751A;&#x81F3;&#x5305;&#x62EC;&#x5176;&#x5728;GUI&#x4E2D;&#x7684;&#x5750;&#x6807;&#xFF0C;&#x90FD;&#x662F;&#x5728;<code>Container</code>&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x4FEE;&#x6539;&#x4E00;&#x4E0B;<code>Container</code>&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF0C;&#x4F7F;&#x5176;&#x53EF;&#x4EE5;&#x4F20;&#x5165;&#x4E00;&#x4E2A;<code>EntityPlayer</code>&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ContainerDemo</span><span class="hljs-params">(EntityPlayer player)</span>
+    </span>{
+        <span class="hljs-keyword">super</span>();
+
+        <span class="hljs-comment">// TODO</span>
+    }
+</code></pre>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getServerGuiElement</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ID, EntityPlayer player, World world, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span> z)</span>
+    </span>{
+        <span class="hljs-keyword">switch</span> (ID)
+        {
+        <span class="hljs-keyword">case</span> GUI_DEMO:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ContainerDemo(player);
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getClientGuiElement</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ID, EntityPlayer player, World world, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span> z)</span>
+    </span>{
+        <span class="hljs-keyword">switch</span> (ID)
+        {
+        <span class="hljs-keyword">case</span> GUI_DEMO:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> GuiContainerDemo(<span class="hljs-keyword">new</span> ContainerDemo(player));
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+    }
+</code></pre>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x5C31;&#x8981;&#x4F7F;&#x7528;<code>addSlotToContainer</code>&#x65B9;&#x6CD5;&#x6DFB;&#x52A0;&#x7269;&#x54C1;&#x69FD;&#x4E86;&#xFF0C;&#x8FD9;&#x91CC;&#x5148;&#x76F4;&#x63A5;&#x628A;&#x4EE3;&#x7801;&#x8D34;&#x51FA;&#x6765;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-keyword">private</span> ItemStackHandler items = <span class="hljs-keyword">new</span> ItemStackHandler(<span class="hljs-number">4</span>);
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ContainerDemo</span><span class="hljs-params">(EntityPlayer player)</span>
+    </span>{
+        <span class="hljs-keyword">super</span>();
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; ++i)
+        {
+            <span class="hljs-keyword">this</span>.addSlotToContainer(<span class="hljs-keyword">new</span> SlotItemHandler(items, i, <span class="hljs-number">38</span> + i * <span class="hljs-number">32</span>, <span class="hljs-number">20</span>));
+        }
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; ++i)
+        {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">9</span>; ++j)
+            {
+                <span class="hljs-keyword">this</span>.addSlotToContainer(<span class="hljs-keyword">new</span> Slot(player.inventory, j + i * <span class="hljs-number">9</span> + <span class="hljs-number">9</span>, <span class="hljs-number">8</span> + j * <span class="hljs-number">18</span>, <span class="hljs-number">51</span> + i * <span class="hljs-number">18</span>));
+            }
+        }
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">9</span>; ++i)
+        {
+            <span class="hljs-keyword">this</span>.addSlotToContainer(<span class="hljs-keyword">new</span> Slot(player.inventory, i, <span class="hljs-number">8</span> + i * <span class="hljs-number">18</span>, <span class="hljs-number">109</span>));
+        }
+    }
+</code></pre>
+<p>&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x6E05;&#x695A;&#xFF0C;&#x6240;&#x6709;&#x7684;<code>Slot</code>&#xFF0C;&#x90FD;&#x662F;&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x5BB9;&#x7EB3;&#x4E00;&#x4E2A;<code>ItemStack</code>&#x7684;&#x7269;&#x54C1;&#x69FD;&#xFF0C;&#x800C;&#x53EF;&#x4EE5;&#x5B58;&#x653E;&#x7269;&#x54C1;&#x69FD;&#x7684;&#x5BF9;&#x8C61;&#x90FD;&#x6709;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x4E00;&#x4E2A;&#x6700;&#x5E38;&#x89C1;&#x7684;&#x5C31;&#x662F;Minecraft&#x539F;&#x7248;&#x63D0;&#x4F9B;&#x7684;<code>IInventory</code>&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x6765;&#x770B;&#x4E00;&#x4E0B;<code>Slot</code>&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Slot</span><span class="hljs-params">(IInventory inventoryIn, <span class="hljs-keyword">int</span> index, <span class="hljs-keyword">int</span> xPosition, <span class="hljs-keyword">int</span> yPosition)</span> </span>{...}
+</code></pre>
+<p>&#x610F;&#x601D;&#x5DF2;&#x7ECF;&#x5F88;&#x660E;&#x663E;&#x4E86;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4EE3;&#x8868;&#x76F8;&#x5173;&#x8054;&#x7684;<code>IInventory</code>&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x4EE3;&#x8868;&#x7269;&#x54C1;&#x69FD;&#x5728;<code>IInventory</code>&#x4E2D;&#x7684;ID&#xFF0C;&#x6700;&#x540E;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#x4EE3;&#x8868;&#x5B83;&#x5728;GUI&#x4E2D;&#x7684;&#x5750;&#x6807;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x9996;&#x5148;&#x8981;&#x660E;&#x786E;&#x4E00;&#x4E0B;&#x51E0;&#x4E4E;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;GUI&#x90FD;&#x4F1A;&#x6DFB;&#x52A0;&#x7684;<code>IInventory</code>&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x73A9;&#x5BB6;&#x80CC;&#x5305;&#xFF08;&#x901A;&#x8FC7;<code>player.inventory</code>&#x83B7;&#x53D6;&#xFF09;&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x7269;&#x54C1;&#x69FD;&#x7684;ID&#x662F;&#x591A;&#x5C11;&#xFF08;&#x6CE8;&#x610F;&#x4E0B;&#x56FE;&#x4E2D;&#x7684;&#x9EC4;&#x8272;&#x90E8;&#x5206;&#xFF09;&#xFF1A;</p>
+<p><img src="resources/gui_demo_analysis_slot.png" alt="gui_demo_analysis_slot"></p>
+<p>&#x4ECE;0&#x5230;35,&#x5206;&#x522B;&#x6307;&#x4EE3;&#x4E86;&#x80CC;&#x5305;&#x4E2D;36&#x4E2A;&#x7269;&#x54C1;&#x69FD;&#x7684;ID&#xFF0C;&#x4E0D;&#x8FC7;&#x6211;&#x4EEC;&#x8FD8;&#x6709;&#x56DB;&#x4E2A;&#x69FD;&#x6CA1;&#x6307;&#x5B9A;&#x5462;&#xFF0C;&#x6211;&#x4EEC;&#x8FD9;&#x91CC;&#x624B;&#x52A8;&#x6307;&#x5B9A;&#x4E00;&#x4E0B;&#xFF08;&#x6CE8;&#x610F;&#x4E0A;&#x56FE;&#x4E2D;&#x7684;&#x7EFF;&#x8272;&#x90E8;&#x5206;&#xFF09;&#x3002;</p>
+<p>&#x5728;&#x4E4B;&#x524D;&#x7684;&#x6559;&#x7A0B;&#x4E2D;&#x4F5C;&#x8005;&#x63D0;&#x5230;&#x8FC7;Forge&#x63A8;&#x8350;&#x4F7F;&#x7528;<code>IItemHandler</code>&#x5B58;&#x50A8;&#x7269;&#x54C1;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x65B0;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x62E5;&#x6709;&#x56DB;&#x4E2A;&#x7269;&#x54C1;&#x69FD;&#x7684;<code>ItemStackHandler</code>&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-keyword">private</span> ItemStackHandler items = <span class="hljs-keyword">new</span> ItemStackHandler(<span class="hljs-number">4</span>);
+</code></pre>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x5148;&#x628A;&#x8FD9;&#x56DB;&#x4E2A;&#x7269;&#x54C1;&#x69FD;&#x52A0;&#x5165;&#x4E86;GUI&#xFF1A;</p>
+<pre><code class="lang-java">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; ++i)
+        {
+            <span class="hljs-keyword">this</span>.addSlotToContainer(<span class="hljs-keyword">new</span> SlotItemHandler(items, i, <span class="hljs-number">38</span> + i * <span class="hljs-number">32</span>, <span class="hljs-number">20</span>));
+        }
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x7528;&#x5230;&#x4E86;Forge&#x63D0;&#x4F9B;&#x7684;<code>Slot</code>&#x7C7B;&#x7684;&#x5B50;&#x7C7B;&#xFF0C;<code>SlotItemHandler</code>&#xFF0C;&#x5176;&#x7528;&#x6CD5;&#x548C;<code>Slot</code>&#x51E0;&#x4E4E;&#x6CA1;&#x6709;&#x533A;&#x522B;&#xFF0C;&#x53EA;&#x662F;&#x628A;<code>IInventory</code>&#x66FF;&#x6362;&#x6210;&#x4E86;<code>IItemHandler</code>&#x800C;&#x5DF2;&#x3002;</p>
+<p>&#x63A5;&#x7740;&#x628A;36&#x4E2A;&#x73A9;&#x5BB6;&#x80CC;&#x5305;&#x4E2D;&#x7684;&#x7269;&#x54C1;&#x69FD;&#x52A0;&#x5165;&#x4E86;GUI&#xFF1A;</p>
+<pre><code class="lang-java">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; ++i)
+        {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">9</span>; ++j)
+            {
+                <span class="hljs-keyword">this</span>.addSlotToContainer(<span class="hljs-keyword">new</span> Slot(player.inventory, j + i * <span class="hljs-number">9</span> + <span class="hljs-number">9</span>, <span class="hljs-number">8</span> + j * <span class="hljs-number">18</span>, <span class="hljs-number">51</span> + i * <span class="hljs-number">18</span>));
+            }
+        }
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">9</span>; ++i)
+        {
+            <span class="hljs-keyword">this</span>.addSlotToContainer(<span class="hljs-keyword">new</span> Slot(player.inventory, i, <span class="hljs-number">8</span> + i * <span class="hljs-number">18</span>, <span class="hljs-number">109</span>));
+        }
+</code></pre>
+<p>&#x5C31;&#x5927;&#x529F;&#x544A;&#x6210;&#x4E86;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x7684;&#x6DFB;&#x52A0;&#x987A;&#x5E8F;&#x5176;&#x5B9E;&#x6307;&#x5B9A;&#x4E86;&#x53E6;&#x4E00;&#x4E2A;ID&#xFF0C;&#x8FD9;&#x4E2A;ID&#x5C31;&#x662F;<code>Slot</code>&#x5728;&#x8FD9;&#x4E2A;<code>Container</code>&#x4E2D;&#x7684;&#x5E8F;&#x53F7;&#xFF0C;&#x8FD9;&#x91CC;&#x6682;&#x65F6;&#x7528;&#x4E0D;&#x5230;&#xFF0C;&#x4E0B;&#x4E00;&#x8282;&#x7684;&#x6559;&#x7A0B;&#x4E2D;&#x4F1A;&#x7528;&#x5230;&#xFF0C;&#x8FD9;&#x91CC;&#x63D0;&#x51FA;&#x53EA;&#x662F;&#x4E0D;&#x8981;&#x5E0C;&#x671B;&#x548C;&#x4E0A;&#x9762;&#x7684;ID&#x6DF7;&#x6DC6;&#xFF1A;</p>
+<p><img src="resources/gui_demo_analysis.png" alt="gui_demo_analysis"></p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x8986;&#x5199;&#x4E00;&#x4E0B;<code>transferStackInSlot</code>&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ItemStack <span class="hljs-title">transferStackInSlot</span><span class="hljs-params">(EntityPlayer playerIn, <span class="hljs-keyword">int</span> index)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    }
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x4F5C;&#x7528;&#x5728;&#x4E0B;&#x4E00;&#x8282;&#x4F1A;&#x8BB2;&#x5230;&#xFF0C;&#x4F46;&#x5982;&#x679C;&#x8FD8;&#x6CA1;&#x6709;&#x5177;&#x4F53;&#x8BBE;&#x8BA1;&#x8FD9;&#x4E00;&#x65B9;&#x6CD5;&#xFF0C;<strong>&#x8BF7;&#x52A1;&#x5FC5;&#x5C06;&#x5176;&#x8BBE;&#x7F6E;&#x4E3A;&#x8FD4;&#x56DE;null</strong>&#xFF0C;&#x5426;&#x5219;&#x5728;&#x6D4B;&#x8BD5;&#x4E2D;&#x53EF;&#x80FD;&#x4F1A;&#x9047;&#x5230;&#x4E00;&#x4E9B;&#x532A;&#x5937;&#x6240;&#x601D;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<h2 id="&#x5728;gui&#x4E2D;&#x7ED8;&#x5236;&#x56FE;&#x5F62;">&#x5728;GUI&#x4E2D;&#x7ED8;&#x5236;&#x56FE;&#x5F62;</h2>
+<p>&#x6211;&#x4EEC;&#x8986;&#x5199;<code>drawGuiContainerForegroundLayer</code>&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawGuiContainerForegroundLayer</span><span class="hljs-params">(<span class="hljs-keyword">int</span> mouseX, <span class="hljs-keyword">int</span> mouseY)</span>
+    </span>{
+        <span class="hljs-keyword">this</span>.drawVerticalLine(<span class="hljs-number">30</span>, <span class="hljs-number">19</span>, <span class="hljs-number">36</span>, <span class="hljs-number">0xFF000000</span>);
+        <span class="hljs-keyword">this</span>.drawHorizontalLine(<span class="hljs-number">8</span>, <span class="hljs-number">167</span>, <span class="hljs-number">43</span>, <span class="hljs-number">0xFF000000</span>);
+
+        String title = I18n.format(<span class="hljs-string">&quot;container.fmltutor.demo&quot;</span>);
+        <span class="hljs-keyword">this</span>.fontRendererObj.drawString(title, (<span class="hljs-keyword">this</span>.xSize - <span class="hljs-keyword">this</span>.fontRendererObj.getStringWidth(title)) / <span class="hljs-number">2</span>, <span class="hljs-number">6</span>, <span class="hljs-number">0x404040</span>);
+
+        ItemStack item = <span class="hljs-keyword">new</span> ItemStack(ItemLoader.goldenEgg);
+        <span class="hljs-keyword">this</span>.itemRender.renderItemAndEffectIntoGUI(item, <span class="hljs-number">8</span>, <span class="hljs-number">20</span>);
+    }
+</code></pre>
+<p>&#x8FD9;&#x4E00;&#x6BB5;&#x7B80;&#x5355;&#x7684;&#x4EE3;&#x7801;&#x793A;&#x4F8B;&#xFF0C;&#x5DF2;&#x7ECF;&#x5305;&#x62EC;&#x4E86;&#x7ED8;&#x5236;&#x6A2A;&#x7EBF;&#x3001;&#x7AD6;&#x7EBF;&#x3001;&#x4E00;&#x884C;&#x6587;&#x5B57;&#x3001;&#x4EE5;&#x53CA;&#x7279;&#x5B9A;&#x7269;&#x54C1;&#x7684;&#x5185;&#x5BB9;&#x3002;</p>
+<p>&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>drawVerticalLine</code>&#x65B9;&#x6CD5;&#x7ED8;&#x5236;&#x7AD6;&#x7EBF;&#xFF0C;&#x4F7F;&#x7528;<code>drawHorizontalLine</code>&#x65B9;&#x6CD5;&#x7ED8;&#x5236;&#x6A2A;&#x7EBF;&#x3002;</p>
+<ul>
+<li><code>drawVerticalLine</code>&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;&#x7AD6;&#x7EBF;&#x7684;&#x6A2A;&#x5750;&#x6807;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x548C;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;&#x7AD6;&#x7EBF;&#x7684;&#x8D77;&#x59CB;&#x4E0E;&#x7EC8;&#x6B62;&#x7EB5;&#x5750;&#x6807;</li>
+<li><code>drawHorizontalLine</code>&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x548C;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;&#x6A2A;&#x7EBF;&#x7684;&#x8D77;&#x59CB;&#x4E0E;&#x7EC8;&#x6B62;&#x6A2A;&#x5750;&#x6807;&#xFF0C;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;&#x6A2A;&#x7EBF;&#x7684;&#x7EB5;&#x5750;&#x6807;</li>
+<li>&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x7B2C;&#x56DB;&#x4E2A;&#x53C2;&#x6570;&#x5747;&#x8868;&#x793A;&#x7ED8;&#x5236;&#x989C;&#x8272;&#xFF0C;&#x4F7F;&#x7528;&#x5341;&#x516D;&#x8FDB;&#x5236;&#x8868;&#x793A;&#xFF0C;&#x5176;&#x56DB;&#x4E2A;&#x516B;&#x4F4D;&#x5206;&#x522B;&#x4EE3;&#x8868;Alpha&#x3001;Red&#x3001;Green&#x548C;Blue&#xFF0C;&#x8FD9;&#x91CC;&#x4EE3;&#x8868;&#x9ED1;&#x8272;</li>
+</ul>
+<p>&#x7136;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>FontRenderer</code>&#xFF08;&#x901A;&#x8FC7;<code>this.fontRendererObj</code>&#x83B7;&#x53D6;&#xFF09;&#x7684;&#x5404;&#x79CD;&#x65B9;&#x6CD5;&#x7ED8;&#x5236;&#x6587;&#x5B57;&#x3002;</p>
+<ul>
+<li><code>drawString</code>&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x7ED8;&#x5236;&#x666E;&#x901A;&#x6587;&#x5B57;&#xFF0C;<code>drawStringWithShadow</code>&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x7ED8;&#x5236;&#x5E26;&#x9634;&#x5F71;&#x7684;&#x6587;&#x5B57;</li>
+<li>&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x6587;&#x5B57;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x548C;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x6587;&#x5B57;&#x5DE6;&#x4E0A;&#x89D2;&#x7684;&#x6A2A;&#x7EB5;&#x5750;&#x6807;</li>
+<li>&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x7ED8;&#x5236;&#x989C;&#x8272;&#xFF0C;&#x4F7F;&#x7528;&#x5341;&#x516D;&#x8FDB;&#x5236;&#x8868;&#x793A;&#xFF0C;&#x5176;&#x4E09;&#x4E2A;&#x516B;&#x4F4D;&#x5206;&#x522B;&#x4EE3;&#x8868;RGB&#xFF0C;0x404040&#x662F;Minecraft&#x4E2D;&#x7ED8;&#x5236;&#x6807;&#x9898;&#x7684;&#x901A;&#x7528;&#x8272;</li>
+</ul>
+<p>&#x6211;&#x4EEC;&#x6CE8;&#x610F;&#x5230;&#x4E0D;&#x540C;&#x8BED;&#x8A00;&#x7ED8;&#x5236;&#x7684;&#x6587;&#x5B57;&#x5185;&#x5BB9;&#x53EF;&#x80FD;&#x4E0D;&#x5C3D;&#x76F8;&#x540C;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x7528;&#x5230;&#x4E86;<code>net.minecraft.client.resources.I18n</code>&#x7C7B;&#x7528;&#x4E8E;&#x83B7;&#x53D6;&#x7279;&#x5B9A;&#x8BED;&#x8A00;&#x7684;&#x6587;&#x5B57;&#x5185;&#x5BB9;&#xFF0C;&#x6211;&#x4EEC;&#x5728;&#x8BED;&#x8A00;&#x6587;&#x4EF6;&#x4E2D;&#x6DFB;&#x52A0;&#x76F8;&#x5E94;&#x7684;&#x9009;&#x9879;&#xFF1A;</p>
+<p><strong><code>src/main/resources/assets/fmltutor/lang/en_US.lang&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code>container.fmltutor.demo=FMLTutor GUI Demo
+</code></pre><p><strong><code>src/main/resources/assets/fmltutor/lang/zh_CN.lang&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code>container.fmltutor.demo=FML&#x6559;&#x7A0B;&#x793A;&#x4F8B;GUI
+</code></pre><p>&#x8FD9;&#x91CC;&#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x6587;&#x5B57;&#x88AB;&#x7ED8;&#x5236;&#x4E8E;&#x6B63;&#x4E2D;&#x95F4;&#xFF0C;&#x4F7F;&#x7528;&#x4E86;<code>FontRenderer</code>&#x7C7B;&#x7684;<code>getStringWidth</code>&#x65B9;&#x6CD5;&#x83B7;&#x53D6;&#x6587;&#x5B57;&#x957F;&#x5EA6;&#x3002;</p>
+<p>&#x7136;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>RenderItem</code>&#xFF08;&#x901A;&#x8FC7;<code>this.itemRender</code>&#x83B7;&#x53D6;&#xFF09;&#x7684;<code>renderItemAndEffectIntoGUI</code>&#x65B9;&#x6CD5;&#xFF0C;&#x628A;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x7269;&#x54C1;&#xFF08;<code>ItemStack</code>&#xFF09;&#x6E32;&#x67D3;&#x8FDB;GUI&#x754C;&#x9762;&#x3002;&#x8FD9;&#x4E00;&#x65B9;&#x6CD5;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x4E00;&#x4E2A;<code>ItemStack</code>&#xFF0C;&#x800C;&#x7B2C;&#x4E8C;&#x4E2A;&#x548C;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x5DE6;&#x4E0A;&#x89D2;&#x7684;&#x6A2A;&#x7EB5;&#x5750;&#x6807;&#x3002;</p>
+<p>&#x6700;&#x540E;&#x6709;&#x4E00;&#x70B9;&#x9700;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x5C31;&#x662F;&#x548C;<code>drawGuiContainerBackgroundLayer</code>&#x65B9;&#x6CD5;&#x4E0D;&#x540C;&#xFF0C;<strong><code>drawGuiContainerForegroundLayer</code>&#x65B9;&#x6CD5;&#x7684;&#x5750;&#x6807;&#x539F;&#x70B9;&#x4F4D;&#x4E8E;GUI&#x754C;&#x9762;&#x7684;&#x5DE6;&#x4E0A;&#x89D2;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x7A97;&#x53E3;&#x7684;&#x5DE6;&#x4E0A;&#x89D2;</strong>&#x3002;</p>
+<h2 id="&#x4E3A;gui&#x6DFB;&#x52A0;&#x6309;&#x94AE;">&#x4E3A;GUI&#x6DFB;&#x52A0;&#x6309;&#x94AE;</h2>
+<p><code>initGui</code>&#x65B9;&#x6CD5;&#x662F;&#x4E13;&#x95E8;&#x7528;&#x4E8E;&#x6DFB;&#x52A0;GUI&#x7EC4;&#x4EF6;&#x7684;&#xFF0C;&#x4E00;&#x79CD;&#x6700;&#x5E38;&#x89C1;&#x7684;GUI&#x7EC4;&#x4EF6;&#xFF0C;&#x4E5F;&#x662F;&#x672C;&#x90E8;&#x5206;&#x552F;&#x4E00;&#x4F1A;&#x8BB2;&#x5230;&#x7684;GUI&#x7EC4;&#x4EF6;&#xFF0C;&#x5C31;&#x662F;<code>GuiButton</code>&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6309;&#x94AE;&#x3002;</p>
+<p><code>buttonList</code>&#x5C5E;&#x6027;&#x662F;GUI&#x754C;&#x9762;&#x7528;&#x4E8E;&#x7EF4;&#x62A4;&#x6309;&#x94AE;&#x7684;&#x5217;&#x8868;&#xFF0C;&#x6211;&#x4EEC;&#x8986;&#x5199;<code>initGui</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5E76;&#x5728;&#x5176;&#x4E2D;&#x76F4;&#x63A5;&#x6DFB;&#x52A0;<code>GuiButton</code>&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> BUTTON_UP = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> BUTTON_DOWN = <span class="hljs-number">1</span>;
+</code></pre>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiContainerDemo.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initGui</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">super</span>.initGui();
+        <span class="hljs-keyword">int</span> offsetX = (<span class="hljs-keyword">this</span>.width - <span class="hljs-keyword">this</span>.xSize) / <span class="hljs-number">2</span>, offsetY = (<span class="hljs-keyword">this</span>.height - <span class="hljs-keyword">this</span>.ySize) / <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">this</span>.buttonList.add(<span class="hljs-keyword">new</span> GuiButton(BUTTON_UP, offsetX + <span class="hljs-number">153</span>, offsetY + <span class="hljs-number">17</span>, <span class="hljs-number">15</span>, <span class="hljs-number">10</span>, <span class="hljs-string">&quot;&quot;</span>)
+        {
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawButton</span><span class="hljs-params">(Minecraft mc, <span class="hljs-keyword">int</span> mouseX, <span class="hljs-keyword">int</span> mouseY)</span>
+            </span>{
+                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.visible)
+                {
+                    GlStateManager.color(<span class="hljs-number">1.0F</span>, <span class="hljs-number">1.0F</span>, <span class="hljs-number">1.0F</span>);
+
+                    mc.getTextureManager().bindTexture(TEXTURE);
+                    <span class="hljs-keyword">int</span> x = mouseX - <span class="hljs-keyword">this</span>.xPosition, y = mouseY - <span class="hljs-keyword">this</span>.yPosition;
+
+                    <span class="hljs-keyword">if</span> (x &gt;= <span class="hljs-number">0</span> &amp;&amp; y &gt;= <span class="hljs-number">0</span> &amp;&amp; x &lt; <span class="hljs-keyword">this</span>.width &amp;&amp; y &lt; <span class="hljs-keyword">this</span>.height)
+                    {
+                        <span class="hljs-keyword">this</span>.drawTexturedModalRect(<span class="hljs-keyword">this</span>.xPosition, <span class="hljs-keyword">this</span>.yPosition, <span class="hljs-number">1</span>, <span class="hljs-number">146</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+                    }
+                    <span class="hljs-keyword">else</span>
+                    {
+                        <span class="hljs-keyword">this</span>.drawTexturedModalRect(<span class="hljs-keyword">this</span>.xPosition, <span class="hljs-keyword">this</span>.yPosition, <span class="hljs-number">1</span>, <span class="hljs-number">134</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+                    }
+                }
+            }
+        });
+        <span class="hljs-keyword">this</span>.buttonList.add(<span class="hljs-keyword">new</span> GuiButton(BUTTON_DOWN, offsetX + <span class="hljs-number">153</span>, offsetY + <span class="hljs-number">29</span>, <span class="hljs-number">15</span>, <span class="hljs-number">10</span>, <span class="hljs-string">&quot;&quot;</span>)
+        {
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawButton</span><span class="hljs-params">(Minecraft mc, <span class="hljs-keyword">int</span> mouseX, <span class="hljs-keyword">int</span> mouseY)</span>
+            </span>{
+                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.visible)
+                {
+                    GlStateManager.color(<span class="hljs-number">1.0F</span>, <span class="hljs-number">1.0F</span>, <span class="hljs-number">1.0F</span>);
+
+                    mc.getTextureManager().bindTexture(TEXTURE);
+                    <span class="hljs-keyword">int</span> x = mouseX - <span class="hljs-keyword">this</span>.xPosition, y = mouseY - <span class="hljs-keyword">this</span>.yPosition;
+
+                    <span class="hljs-keyword">if</span> (x &gt;= <span class="hljs-number">0</span> &amp;&amp; y &gt;= <span class="hljs-number">0</span> &amp;&amp; x &lt; <span class="hljs-keyword">this</span>.width &amp;&amp; y &lt; <span class="hljs-keyword">this</span>.height)
+                    {
+                        <span class="hljs-keyword">this</span>.drawTexturedModalRect(<span class="hljs-keyword">this</span>.xPosition, <span class="hljs-keyword">this</span>.yPosition, <span class="hljs-number">20</span>, <span class="hljs-number">146</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+                    }
+                    <span class="hljs-keyword">else</span>
+                    {
+                        <span class="hljs-keyword">this</span>.drawTexturedModalRect(<span class="hljs-keyword">this</span>.xPosition, <span class="hljs-keyword">this</span>.yPosition, <span class="hljs-number">20</span>, <span class="hljs-number">134</span>, <span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height);
+                    }
+                }
+            }
+        });
+    }
+</code></pre>
+<p>&#x6BCF;&#x4E2A;&#x6309;&#x94AE;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x7684;ID&#xFF0C;&#x8FD9;&#x91CC;&#x6559;&#x7A0B;&#x91C7;&#x7528;&#x4E86;&#x786C;&#x7F16;&#x7801;&#x7684;&#x65B9;&#x5F0F;&#x8BBE;&#x7F6E;ID&#xFF0C;&#x7136;&#x540E;&#x6211;&#x4EEC;&#x8986;&#x5199;&#x4E86;<code>drawButton</code>&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x81EA;&#x4E3B;&#x8BBE;&#x5B9A;&#x6309;&#x94AE;&#x7684;&#x8D34;&#x56FE;&#x3002;</p>
+<ul>
+<li><code>GuiButton</code>&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x7684;&#x5C31;&#x662F;&#x7279;&#x5B9A;&#x7684;ID&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x548C;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x5176;&#x6A2A;&#x7EB5;&#x5750;&#x6807;&#xFF0C;&#x7B2C;&#x56DB;&#x4E2A;&#x548C;&#x7B2C;&#x4E94;&#x4E2A;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x5176;&#x957F;&#x5BBD;</li>
+<li><code>GuiButton</code>&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x7684;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x672C;&#x5E94;&#x8BE5;&#x4F20;&#x5165;&#x663E;&#x793A;&#x6587;&#x672C;&#xFF0C;&#x4F46;&#x56E0;&#x4E3A;&#x6574;&#x4E2A;&#x8D34;&#x56FE;&#x7684;&#x6E32;&#x67D3;&#x90FD;&#x5DF2;&#x7ECF;&#x88AB;&#x91CD;&#x5199;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x4F20;&#x5165;&#x7A7A;&#x5B57;&#x7B26;&#x4E32;</li>
+</ul>
+<p><code>drawButton</code>&#x65B9;&#x6CD5;&#x548C;<code>drawGuiContainerBackgroundLayer</code>&#x65B9;&#x6CD5;&#x9664;&#x4E86;&#x4E00;&#x4E9B;&#x7EC6;&#x5FAE;&#x7684;&#x5DEE;&#x522B;&#x5916;&#x90FD;&#x662F;&#x5DEE;&#x4E0D;&#x591A;&#x7684;&#x3002;</p>
+<p>&#x6253;&#x5F00;&#x6E38;&#x620F;&#x540E;&#x7684;GUI&#x5C31;&#x662F;&#x8FD9;&#x6837;&#x5B50;&#x7684;&#x4E86;&#xFF1A;</p>
+<p><img src="resources/gui_demo_example.png" alt="gui_demo_example"></p>
+<p>&#x867D;&#x7136;&#x73B0;&#x5728;&#x7684;&#x7269;&#x54C1;&#x69FD;&#x8FD8;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x7279;&#x70B9;&#xFF0C;&#x6309;&#x94AE;&#x4E5F;&#x5B8C;&#x5168;&#x4E0D;&#x53EF;&#x7528;&#xFF0C;&#x4F46;&#x662F;&#x4E00;&#x4E2A;&#x5E26;&#x6709;&#x7269;&#x54C1;&#x69FD;&#x7B49;&#x5404;&#x79CD;&#x5143;&#x7D20;&#x7684;GUI&#x5DF2;&#x7ECF;&#x5236;&#x4F5C;&#x6210;&#x529F;&#x4E86;&#xFF0C;&#x4E0D;&#x662F;&#x5417;&#xFF1F;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="3.4.1-创建一个新的GUI界面.html" class="navigation navigation-prev " aria-label="Previous page: 3.4.1 创建一个新的GUI界面">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3.4.3-GUI界面中的交互.html" class="navigation navigation-next " aria-label="Next page: 3.4.3 GUI界面中的交互">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.4.2 GUI界面的个性化与物品槽的添加","level":"1.6.16","depth":2,"next":{"title":"3.4.3 GUI界面中的交互","level":"1.6.17","depth":2,"path":"3.4.3-GUI界面中的交互.md","ref":"3.4.3-GUI界面中的交互.md","articles":[]},"previous":{"title":"3.4.1 创建一个新的GUI界面","level":"1.6.15","depth":2,"path":"3.4.1-创建一个新的GUI界面.md","ref":"3.4.1-创建一个新的GUI界面.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default@1.0.5"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"FMLTutor","gitbook":"*","description":"Minecraft 1.8.9 FML Mod 开发教程"},"file":{"path":"3.4.2-GUI界面的个性化与物品槽的添加.md","mtime":"2016-09-19T21:46:52.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-04T06:29:21.625Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

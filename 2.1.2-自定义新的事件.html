@@ -1,0 +1,1018 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>2.1.2 自定义新的事件 · FMLTutor</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="2.2.1-新的工具.html" />
+    
+    
+    <link rel="prev" href="2.1.1-注册已有的事件.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <a target="_blank" href="https://github.com/ustc-zzzz/fmltutor/tree/master">
+            
+                    
+                    源代码仓库（记得Star哦）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="0-绪论.html">
+            
+                <a href="0-绪论.html">
+            
+                    
+                    0 绪论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    1 基础部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="1.1-配置你的工作环境.html">
+            
+                <a href="1.1-配置你的工作环境.html">
+            
+                    
+                    1.1 配置你的工作环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="1.2-主类、代理和Mod信息.html">
+            
+                <a href="1.2-主类、代理和Mod信息.html">
+            
+                    
+                    1.2 主类、代理和Mod信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="1.3-第一个物品.html">
+            
+                <a href="1.3-第一个物品.html">
+            
+                    
+                    1.3 第一个物品
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="1.4-第一个方块.html">
+            
+                <a href="1.4-第一个方块.html">
+            
+                    
+                    1.4 第一个方块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="1.5-创造模式物品栏.html">
+            
+                <a href="1.5-创造模式物品栏.html">
+            
+                    
+                    1.5 创造模式物品栏
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                <a href="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                    
+                    1.6 第一份合成表、烧炼规则和燃料
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="1.7-本地化和国际化.html">
+            
+                <a href="1.7-本地化和国际化.html">
+            
+                    
+                    1.7 本地化和国际化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="1.8-创建一份配置文件.html">
+            
+                <a href="1.8-创建一份配置文件.html">
+            
+                    
+                    1.8 创建一份配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    2 初级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="2.1.1-注册已有的事件.html">
+            
+                <a href="2.1.1-注册已有的事件.html">
+            
+                    
+                    2.1.1 注册已有的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.2" data-path="2.1.2-自定义新的事件.html">
+            
+                <a href="2.1.2-自定义新的事件.html">
+            
+                    
+                    2.1.2 自定义新的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="2.2.1-新的工具.html">
+            
+                <a href="2.2.1-新的工具.html">
+            
+                    
+                    2.2.1 新的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="2.2.2-新的食物.html">
+            
+                <a href="2.2.2-新的食物.html">
+            
+                    
+                    2.2.2 新的食物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="2.2.3-新的盔甲.html">
+            
+                <a href="2.2.3-新的盔甲.html">
+            
+                    
+                    2.2.3 新的盔甲
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="2.3.1-新的伤害类型.html">
+            
+                <a href="2.3.1-新的伤害类型.html">
+            
+                    
+                    2.3.1 新的伤害类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="2.3.2-新的附魔属性.html">
+            
+                <a href="2.3.2-新的附魔属性.html">
+            
+                    
+                    2.3.2 新的附魔属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="2.3.3-新的药水效果.html">
+            
+                <a href="2.3.3-新的药水效果.html">
+            
+                    
+                    2.3.3 新的药水效果
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="2.4.1-热键绑定.html">
+            
+                <a href="2.4.1-热键绑定.html">
+            
+                    
+                    2.4.1 热键绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="2.4.2-成就系统.html">
+            
+                <a href="2.4.2-成就系统.html">
+            
+                    
+                    2.4.2 成就系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="2.4.3-系统命令.html">
+            
+                <a href="2.4.3-系统命令.html">
+            
+                    
+                    2.4.3 系统命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="2.4.4-声音系统.html">
+            
+                <a href="2.4.4-声音系统.html">
+            
+                    
+                    2.4.4 声音系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.13" data-path="2.5.1-在世界生成矿物.html">
+            
+                <a href="2.5.1-在世界生成矿物.html">
+            
+                    
+                    2.5.1 在世界生成矿物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.14" data-path="2.5.2-注册和使用矿物字典.html">
+            
+                <a href="2.5.2-注册和使用矿物字典.html">
+            
+                    
+                    2.5.2 注册和使用矿物字典
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.15" data-path="2.6.1-创建并注册一份流体.html">
+            
+                <a href="2.6.1-创建并注册一份流体.html">
+            
+                    
+                    2.6.1 创建并注册一份流体
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.16" data-path="2.6.2-为流体添加对应的桶.html">
+            
+                <a href="2.6.2-为流体添加对应的桶.html">
+            
+                    
+                    2.6.2 为流体添加对应的桶
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    3 高级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                <a href="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                    
+                    3.1.1 新的生物和对应的刷怪蛋
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="3.1.2-新的生物渲染模型.html">
+            
+                <a href="3.1.2-新的生物渲染模型.html">
+            
+                    
+                    3.1.2 新的生物渲染模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="3.1.3-生物的固有属性和自然生成.html">
+            
+                <a href="3.1.3-生物的固有属性和自然生成.html">
+            
+                    
+                    3.1.3 生物的固有属性和自然生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="3.1.4-生物的自动同步和数据存储.html">
+            
+                <a href="3.1.4-生物的自动同步和数据存储.html">
+            
+                    
+                    3.1.4 生物的自动同步和数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="3.1.5-为生物绑定AI.html">
+            
+                <a href="3.1.5-为生物绑定AI.html">
+            
+                    
+                    3.1.5 为生物绑定AI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="3.1.6-投掷物的注册和生成.html">
+            
+                <a href="3.1.6-投掷物的注册和生成.html">
+            
+                    
+                    3.1.6 投掷物的注册和生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="3.1.7-FakePlayer的获取与使用.html">
+            
+                <a href="3.1.7-FakePlayer的获取与使用.html">
+            
+                    
+                    3.1.7 FakePlayer的获取与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="3.2.1-BlockState和Metadata.html">
+            
+                <a href="3.2.1-BlockState和Metadata.html">
+            
+                    
+                    3.2.1 BlockState和Metadata
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="3.2.2-TileEntity与数据更新.html">
+            
+                <a href="3.2.2-TileEntity与数据更新.html">
+            
+                    
+                    3.2.2 TileEntity与数据更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="3.2.3-BlockState的简化映射.html">
+            
+                <a href="3.2.3-BlockState的简化映射.html">
+            
+                    
+                    3.2.3 BlockState的简化映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                <a href="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                    
+                    3.2.4 扩展BlockState和第三方模型格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                <a href="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                    
+                    3.3.1 Capability系统与已有实体附加属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="3.3.2-使用SimpleImpl同步数据.html">
+            
+                <a href="3.3.2-使用SimpleImpl同步数据.html">
+            
+                    
+                    3.3.2 使用SimpleImpl同步数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="3.3.3-世界附加数据存储.html">
+            
+                <a href="3.3.3-世界附加数据存储.html">
+            
+                    
+                    3.3.3 世界附加数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.15" data-path="3.4.1-创建一个新的GUI界面.html">
+            
+                <a href="3.4.1-创建一个新的GUI界面.html">
+            
+                    
+                    3.4.1 创建一个新的GUI界面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.16" data-path="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                <a href="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                    
+                    3.4.2 GUI界面的个性化与物品槽的添加
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.17" data-path="3.4.3-GUI界面中的交互.html">
+            
+                <a href="3.4.3-GUI界面中的交互.html">
+            
+                    
+                    3.4.3 GUI界面中的交互
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.18" data-path="3.4.4-GUI中的数据同步.html">
+            
+                <a href="3.4.4-GUI中的数据同步.html">
+            
+                    
+                    3.4.4 GUI中的数据同步
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.19" data-path="3.5.1-使用其他Mod的API.html">
+            
+                <a href="3.5.1-使用其他Mod的API.html">
+            
+                    
+                    3.5.1 使用其他Mod的API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.20" data-path="3.5.2-向其他Mod提供API.html">
+            
+                <a href="3.5.2-向其他Mod提供API.html">
+            
+                    
+                    3.5.2 向其他Mod提供API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    附录
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="附录A-配置Gradle的一些小技巧.html">
+            
+                <a href="附录A-配置Gradle的一些小技巧.html">
+            
+                    
+                    附录A 配置Gradle的一些小技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="附录B-混淆与反射.html">
+            
+                <a href="附录B-混淆与反射.html">
+            
+                    
+                    附录B 混淆与反射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="附录C-使用AccessTransformers.html">
+            
+                <a href="附录C-使用AccessTransformers.html">
+            
+                    
+                    附录C 使用AccessTransformers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="附录D-使用Scala编写Mod.html">
+            
+                <a href="附录D-使用Scala编写Mod.html">
+            
+                    
+                    附录D 使用Scala编写Mod
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >2.1.2 自定义新的事件</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x81EA;&#x5B9A;&#x4E49;&#x65B0;&#x7684;&#x4E8B;&#x4EF6;&#x7C7B;">&#x81EA;&#x5B9A;&#x4E49;&#x65B0;&#x7684;&#x4E8B;&#x4EF6;&#x7C7B;</h2>
+<p>&#x6211;&#x4EEC;&#x5728;<code>EventLoader</code>&#x7C7B;&#x4E2D;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7684;&#x4E8B;&#x4EF6;&#x7C7B;&#x3002;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code>    @Cancelable
+    public static class PlayerRightClickGrassBlockEvent extends net.minecraftforge.event.entity.player.PlayerEvent
+    {
+        public final BlockPos pos;
+        public final World world;
+
+        public PlayerRightClickGrassBlockEvent(EntityPlayer player, BlockPos pos, World world)
+        {
+            super(player);
+            this.pos = pos;
+            this.world = world;
+        }
+    }
+</code></pre><p>&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x8FD9;&#x4E2A;&#x7C7B;&#x548C;&#x73A9;&#x5BB6;&#x53F3;&#x952E;&#x8349;&#x5757;&#x76F8;&#x5173;&#x3002;&#x8BE5;&#x4E8B;&#x4EF6;&#x7C7B;&#x7EE7;&#x627F;&#x4E86;<code>PlayerEvent</code>&#xFF0C;<code>@Cancelable</code>&#x6CE8;&#x89E3;&#x8868;&#x660E;&#x4E86;&#x8BE5;&#x4E8B;&#x4EF6;&#x53EF;&#x53D6;&#x6D88;&#x3002;</p>
+<h2 id="&#x81EA;&#x5B9A;&#x4E49;&#x4E8B;&#x4EF6;&#x7684;&#x6CE8;&#x518C;&#x673A;&#x5236;">&#x81EA;&#x5B9A;&#x4E49;&#x4E8B;&#x4EF6;&#x7684;&#x6CE8;&#x518C;&#x673A;&#x5236;</h2>
+<p>&#x5728;&#x4E0A;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x6211;&#x4EEC;&#x6CE8;&#x610F;&#x5230;<code>FMLCommonHandler.instance().bus()</code>&#x548C;<code>MinecraftForge.EVENT_BUS</code>&#x5747;&#x4E3A;<code>EventBus</code>&#x7C7B;&#x578B;&#x3002;&#x8BE5;&#x7C7B;&#x578B;&#x63D0;&#x4F9B;&#x4E86;&#x540D;&#x4E3A;<code>register</code>&#x7684;&#x65B9;&#x6CD5;&#x4F7F;&#x5F97;&#x4E8B;&#x4EF6;&#x53EF;&#x4EE5;&#x88AB;&#x6CE8;&#x518C;&#x3002;</p>
+<p>&#x663E;&#x7136;&#xFF0C;&#x6211;&#x4EEC;&#x81EA;&#x5DF1;&#x4E5F;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;<code>EventBus</code>&#xFF0C;&#x5E76;&#x4E14;&#x4F7F;&#x5F97;&#x6240;&#x6709;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x4E8B;&#x4EF6;&#x5728;&#x8FD9;&#x91CC;&#x88AB;&#x6CE8;&#x518C;&#x3002;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code>    public static final EventBus EVENT_BUS = new EventBus();
+</code></pre><h2 id="&#x4F7F;&#x81EA;&#x5B9A;&#x4E49;&#x4E8B;&#x4EF6;&#x4F1A;&#x88AB;&#x89E6;&#x53D1;&#x5230;">&#x4F7F;&#x81EA;&#x5B9A;&#x4E49;&#x4E8B;&#x4EF6;&#x4F1A;&#x88AB;&#x89E6;&#x53D1;&#x5230;</h2>
+<p><code>EventBus</code>&#x672C;&#x8EAB;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>post</code>&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x8D1F;&#x8D23;&#x6267;&#x884C;&#x4E8B;&#x4EF6;&#x3002;&#x5927;&#x5BB6;&#x5982;&#x679C;&#x7ECF;&#x5E38;&#x7FFB;&#x6E90;&#x4EE3;&#x7801;&#x7684;&#x8BDD;&#xFF0C;&#x4F1A;&#x5728;Minecraft&#x7684;&#x8BB8;&#x591A;&#x7C7B;&#x4E2D;&#x627E;&#x5230;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;&#x3002;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5E0C;&#x671B;&#x5728;&#x73A9;&#x5BB6;&#x70B9;&#x51FB;&#x8349;&#x5757;&#x65F6;&#x89E6;&#x53D1;&#xFF0C;&#x6211;&#x4EEC;&#x4E5F;&#x5982;&#x6CD5;&#x70AE;&#x5236;&#x3002;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code>    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+            EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        EventLoader.PlayerRightClickGrassBlockEvent event;
+        event = new EventLoader.PlayerRightClickGrassBlockEvent(playerIn, pos, worldIn);
+        EventLoader.EVENT_BUS.post(event);
+        if (!event.isCanceled() &amp;&amp; !worldIn.isRemote)
+        {
+            worldIn.setBlockToAir(pos);
+            return true;
+        }
+        return false;
+    }
+</code></pre><p>&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x7684;&#x610F;&#x601D;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x4E8B;&#x4EF6;&#x88AB;&#x53D6;&#x6D88;&#x4E86;&#xFF0C;&#x5C31;&#x963B;&#x6B62;&#x8349;&#x5757;&#x53D8;&#x6210;&#x7A7A;&#x6C14;&#xFF0C;&#x5426;&#x5219;&#x8349;&#x5757;&#x5C31;&#x4F1A;&#x53D8;&#x6210;&#x7A7A;&#x6C14;&#x3002;</p>
+<h2 id="&#x81EA;&#x5B9A;&#x4E49;&#x4E8B;&#x4EF6;&#x7684;&#x5B9E;&#x73B0;">&#x81EA;&#x5B9A;&#x4E49;&#x4E8B;&#x4EF6;&#x7684;&#x5B9E;&#x73B0;</h2>
+<p>&#x81EA;&#x5B9A;&#x4E49;&#x4E8B;&#x4EF6;&#x7684;&#x5B9E;&#x73B0;&#x548C;Forge&#x63D0;&#x4F9B;&#x7684;&#x5B8C;&#x5168;&#x4E00;&#x6837;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;&#x6211;&#x4EEC;&#x8981;&#x627E;&#x51C6;&#x5728;&#x54EA;&#x91CC;&#x6CE8;&#x518C;&#x3002;</p>
+<p>&#x5728;<code>EventLoader</code>&#x7C7B;&#x4E2D;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x3002;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code>    @SubscribeEvent
+    public void onPlayerClickGrassBlock(PlayerRightClickGrassBlockEvent event)
+    {
+        if (!event.world.isRemote)
+        {
+            BlockPos pos = event.pos;
+            Entity tnt = new EntityTNTPrimed(event.world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, null);
+            event.world.spawnEntityInWorld(tnt);
+        }
+    }
+</code></pre><p>&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x8FD9;&#x91CC;&#x5B9A;&#x4E49;&#x4E86;&#x5F53;&#x73A9;&#x5BB6;&#x4E24;&#x624B;&#x7A7A;&#x7A7A;&#x65F6;&#x7684;&#x884C;&#x4E3A;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x6CE8;&#x518C;&#x8FD9;&#x4E2A;&#x4E8B;&#x4EF6;&#x3002;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code>    public EventLoader()
+    {
+        MinecraftForge.EVENT_BUS.register(this);
+        EventLoader.EVENT_BUS.register(this);
+    }
+</code></pre><p>&#x6253;&#x5F00;&#x6E38;&#x620F;&#xFF0C;&#x653E;&#x7F6E;&#x4E00;&#x4E2A;&#x8349;&#x5757;&#xFF0C;&#x53F3;&#x952E;&#x70B9;&#x51FB;&#x5B83;&#xFF0C;&#x4E09;&#x3001;&#x4E8C;&#x3001;&#x4E00;&#x3002;&#x3002;&#x3002;BOOM</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="2.1.1-注册已有的事件.html" class="navigation navigation-prev " aria-label="Previous page: 2.1.1 注册已有的事件">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="2.2.1-新的工具.html" class="navigation navigation-next " aria-label="Next page: 2.2.1 新的工具">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"2.1.2 自定义新的事件","level":"1.5.2","depth":2,"next":{"title":"2.2.1 新的工具","level":"1.5.3","depth":2,"path":"2.2.1-新的工具.md","ref":"2.2.1-新的工具.md","articles":[]},"previous":{"title":"2.1.1 注册已有的事件","level":"1.5.1","depth":2,"path":"2.1.1-注册已有的事件.md","ref":"2.1.1-注册已有的事件.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default@1.0.5"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"FMLTutor","gitbook":"*","description":"Minecraft 1.8.9 FML Mod 开发教程"},"file":{"path":"2.1.2-自定义新的事件.md","mtime":"2016-08-10T09:00:58.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-04T06:29:21.625Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

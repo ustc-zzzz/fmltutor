@@ -1,0 +1,1225 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.5.1 使用其他Mod的API · FMLTutor</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3.5.2-向其他Mod提供API.html" />
+    
+    
+    <link rel="prev" href="3.4.4-GUI中的数据同步.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <a target="_blank" href="https://github.com/ustc-zzzz/fmltutor/tree/master">
+            
+                    
+                    源代码仓库（记得Star哦）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="0-绪论.html">
+            
+                <a href="0-绪论.html">
+            
+                    
+                    0 绪论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    1 基础部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="1.1-配置你的工作环境.html">
+            
+                <a href="1.1-配置你的工作环境.html">
+            
+                    
+                    1.1 配置你的工作环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="1.2-主类、代理和Mod信息.html">
+            
+                <a href="1.2-主类、代理和Mod信息.html">
+            
+                    
+                    1.2 主类、代理和Mod信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="1.3-第一个物品.html">
+            
+                <a href="1.3-第一个物品.html">
+            
+                    
+                    1.3 第一个物品
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="1.4-第一个方块.html">
+            
+                <a href="1.4-第一个方块.html">
+            
+                    
+                    1.4 第一个方块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="1.5-创造模式物品栏.html">
+            
+                <a href="1.5-创造模式物品栏.html">
+            
+                    
+                    1.5 创造模式物品栏
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                <a href="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                    
+                    1.6 第一份合成表、烧炼规则和燃料
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="1.7-本地化和国际化.html">
+            
+                <a href="1.7-本地化和国际化.html">
+            
+                    
+                    1.7 本地化和国际化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="1.8-创建一份配置文件.html">
+            
+                <a href="1.8-创建一份配置文件.html">
+            
+                    
+                    1.8 创建一份配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    2 初级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="2.1.1-注册已有的事件.html">
+            
+                <a href="2.1.1-注册已有的事件.html">
+            
+                    
+                    2.1.1 注册已有的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="2.1.2-自定义新的事件.html">
+            
+                <a href="2.1.2-自定义新的事件.html">
+            
+                    
+                    2.1.2 自定义新的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="2.2.1-新的工具.html">
+            
+                <a href="2.2.1-新的工具.html">
+            
+                    
+                    2.2.1 新的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="2.2.2-新的食物.html">
+            
+                <a href="2.2.2-新的食物.html">
+            
+                    
+                    2.2.2 新的食物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="2.2.3-新的盔甲.html">
+            
+                <a href="2.2.3-新的盔甲.html">
+            
+                    
+                    2.2.3 新的盔甲
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="2.3.1-新的伤害类型.html">
+            
+                <a href="2.3.1-新的伤害类型.html">
+            
+                    
+                    2.3.1 新的伤害类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="2.3.2-新的附魔属性.html">
+            
+                <a href="2.3.2-新的附魔属性.html">
+            
+                    
+                    2.3.2 新的附魔属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="2.3.3-新的药水效果.html">
+            
+                <a href="2.3.3-新的药水效果.html">
+            
+                    
+                    2.3.3 新的药水效果
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="2.4.1-热键绑定.html">
+            
+                <a href="2.4.1-热键绑定.html">
+            
+                    
+                    2.4.1 热键绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="2.4.2-成就系统.html">
+            
+                <a href="2.4.2-成就系统.html">
+            
+                    
+                    2.4.2 成就系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="2.4.3-系统命令.html">
+            
+                <a href="2.4.3-系统命令.html">
+            
+                    
+                    2.4.3 系统命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="2.4.4-声音系统.html">
+            
+                <a href="2.4.4-声音系统.html">
+            
+                    
+                    2.4.4 声音系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.13" data-path="2.5.1-在世界生成矿物.html">
+            
+                <a href="2.5.1-在世界生成矿物.html">
+            
+                    
+                    2.5.1 在世界生成矿物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.14" data-path="2.5.2-注册和使用矿物字典.html">
+            
+                <a href="2.5.2-注册和使用矿物字典.html">
+            
+                    
+                    2.5.2 注册和使用矿物字典
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.15" data-path="2.6.1-创建并注册一份流体.html">
+            
+                <a href="2.6.1-创建并注册一份流体.html">
+            
+                    
+                    2.6.1 创建并注册一份流体
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.16" data-path="2.6.2-为流体添加对应的桶.html">
+            
+                <a href="2.6.2-为流体添加对应的桶.html">
+            
+                    
+                    2.6.2 为流体添加对应的桶
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    3 高级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                <a href="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                    
+                    3.1.1 新的生物和对应的刷怪蛋
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="3.1.2-新的生物渲染模型.html">
+            
+                <a href="3.1.2-新的生物渲染模型.html">
+            
+                    
+                    3.1.2 新的生物渲染模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="3.1.3-生物的固有属性和自然生成.html">
+            
+                <a href="3.1.3-生物的固有属性和自然生成.html">
+            
+                    
+                    3.1.3 生物的固有属性和自然生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="3.1.4-生物的自动同步和数据存储.html">
+            
+                <a href="3.1.4-生物的自动同步和数据存储.html">
+            
+                    
+                    3.1.4 生物的自动同步和数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="3.1.5-为生物绑定AI.html">
+            
+                <a href="3.1.5-为生物绑定AI.html">
+            
+                    
+                    3.1.5 为生物绑定AI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="3.1.6-投掷物的注册和生成.html">
+            
+                <a href="3.1.6-投掷物的注册和生成.html">
+            
+                    
+                    3.1.6 投掷物的注册和生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="3.1.7-FakePlayer的获取与使用.html">
+            
+                <a href="3.1.7-FakePlayer的获取与使用.html">
+            
+                    
+                    3.1.7 FakePlayer的获取与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="3.2.1-BlockState和Metadata.html">
+            
+                <a href="3.2.1-BlockState和Metadata.html">
+            
+                    
+                    3.2.1 BlockState和Metadata
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="3.2.2-TileEntity与数据更新.html">
+            
+                <a href="3.2.2-TileEntity与数据更新.html">
+            
+                    
+                    3.2.2 TileEntity与数据更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="3.2.3-BlockState的简化映射.html">
+            
+                <a href="3.2.3-BlockState的简化映射.html">
+            
+                    
+                    3.2.3 BlockState的简化映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                <a href="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                    
+                    3.2.4 扩展BlockState和第三方模型格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                <a href="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                    
+                    3.3.1 Capability系统与已有实体附加属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="3.3.2-使用SimpleImpl同步数据.html">
+            
+                <a href="3.3.2-使用SimpleImpl同步数据.html">
+            
+                    
+                    3.3.2 使用SimpleImpl同步数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="3.3.3-世界附加数据存储.html">
+            
+                <a href="3.3.3-世界附加数据存储.html">
+            
+                    
+                    3.3.3 世界附加数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.15" data-path="3.4.1-创建一个新的GUI界面.html">
+            
+                <a href="3.4.1-创建一个新的GUI界面.html">
+            
+                    
+                    3.4.1 创建一个新的GUI界面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.16" data-path="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                <a href="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                    
+                    3.4.2 GUI界面的个性化与物品槽的添加
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.17" data-path="3.4.3-GUI界面中的交互.html">
+            
+                <a href="3.4.3-GUI界面中的交互.html">
+            
+                    
+                    3.4.3 GUI界面中的交互
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.18" data-path="3.4.4-GUI中的数据同步.html">
+            
+                <a href="3.4.4-GUI中的数据同步.html">
+            
+                    
+                    3.4.4 GUI中的数据同步
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.19" data-path="3.5.1-使用其他Mod的API.html">
+            
+                <a href="3.5.1-使用其他Mod的API.html">
+            
+                    
+                    3.5.1 使用其他Mod的API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.20" data-path="3.5.2-向其他Mod提供API.html">
+            
+                <a href="3.5.2-向其他Mod提供API.html">
+            
+                    
+                    3.5.2 向其他Mod提供API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    附录
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="附录A-配置Gradle的一些小技巧.html">
+            
+                <a href="附录A-配置Gradle的一些小技巧.html">
+            
+                    
+                    附录A 配置Gradle的一些小技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="附录B-混淆与反射.html">
+            
+                <a href="附录B-混淆与反射.html">
+            
+                    
+                    附录B 混淆与反射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="附录C-使用AccessTransformers.html">
+            
+                <a href="附录C-使用AccessTransformers.html">
+            
+                    
+                    附录C 使用AccessTransformers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="附录D-使用Scala编写Mod.html">
+            
+                <a href="附录D-使用Scala编写Mod.html">
+            
+                    
+                    附录D 使用Scala编写Mod
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >3.5.1 使用其他Mod的API</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x6982;&#x8FF0;">&#x6982;&#x8FF0;</h2>
+<p>&#x5728;Minecraft&#x4E2D;&#xFF0C;&#x4F53;&#x4F1A;&#x5230;Mod&#x4E4B;&#x95F4;&#x7684;&#x76F8;&#x4E92;&#x534F;&#x4F5C;&#xFF0C;&#x6B63;&#x662F;Minecraft&#x6E38;&#x620F;&#x7684;&#x4E50;&#x8DA3;&#x4E4B;&#x4E00;&#x3002;&#x6B64;&#x5916;&#xFF0C;&#x4E00;&#x4E9B;&#x5E38;&#x89C1;&#x7684;Mod&#xFF0C;&#x5982;IndustrialCraft2&#xFF08;&#x4EE5;&#x4E0B;&#x7B80;&#x79F0;IC2&#xFF09;&#x3001;ThermalExpansion&#x7B49;&#xFF0C;&#x90FD;&#x63D0;&#x4F9B;&#x4E86;&#x76F8;&#x5E94;&#x7684;API&#x7528;&#x4E8E;&#x8BA9;&#x5176;&#x4ED6;Mod&#x8C03;&#x7528;&#xFF0C;&#x4ECE;&#x800C;&#x5B9E;&#x73B0;&#x76F8;&#x4E92;&#x7684;&#x517C;&#x5BB9;&#x3002;IC2&#x8FD9;&#x4E00;Mod&#x7531;&#x4E8E;&#x5176;&#x5F15;&#x5165;&#x7684;&#x79D1;&#x6280;&#x81EA;&#x52A8;&#x5316;&#x7CFB;&#x7EDF;&#x800C;&#x7ECF;&#x4E45;&#x4E0D;&#x8870;&#xFF0C;&#x5176;&#x5F15;&#x5165;&#x7684;&#x80FD;&#x91CF;&#x5355;&#x4F4D;&#xFF0C;EnergyUnit&#xFF08;&#x7B80;&#x79F0;EU&#xFF09;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x7684;Mod&#x73A9;&#x5BB6;&#x66F4;&#x662F;&#x8033;&#x719F;&#x80FD;&#x8BE6;&#x3002;&#x672C;&#x90E8;&#x5206;&#x5C06;&#x4EE5;IC2&#x8FD9;&#x4E00;Mod&#x4E3A;&#x4F8B;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x5728;3.2&#x8282;&#x5F15;&#x5165;&#x7684;&#x91D1;&#x5C5E;&#x7194;&#x7089;&#x5F15;&#x5165;EU&#x7CFB;&#x7EDF;&#xFF0C;&#x4ECE;&#x800C;&#x5F97;&#x4EE5;&#x63A5;&#x5165;IC2&#x7684;&#x7F51;&#x7EDC;&#xFF0C;&#x5E76;&#x5E26;&#x7ED9;&#x8BFB;&#x8005;&#x4F7F;&#x7528;API&#x7684;&#x4E00;&#x822C;&#x65B9;&#x6CD5;&#x3002;</p>
+<h2 id="&#x517C;&#x5BB9;&#x548C;&#x4F9D;&#x8D56;">&#x517C;&#x5BB9;&#x548C;&#x4F9D;&#x8D56;</h2>
+<p>&#x5F88;&#x591A;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5E38;&#x5E38;&#x63D0;&#x5230;&#x7684;&#x517C;&#x5BB9;&#x4E00;&#x4E2A;Mod&#xFF0C;&#x6BD4;&#x5982;&#x517C;&#x5BB9;IC2&#xFF0C;&#x5F80;&#x5F80;&#x6307;&#x7684;&#x662F;&#x4E24;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x60C5;&#x51B5;&#xFF1A;&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#x6307;&#x7684;&#x662F;&#x5236;&#x4F5C;&#x4E00;&#x4E2A;IC2&#x7684;&#x9644;&#x5C5E;Mod&#xFF0C;&#x800C;&#x7B2C;&#x4E8C;&#x79CD;&#x60C5;&#x51B5;&#x6307;&#x7684;&#x662F;&#x4EC5;&#x4EC5;&#x662F;&#x8BA9;&#x81EA;&#x5DF1;&#x7684;&#x65B9;&#x5757;&#x548C;&#x7269;&#x54C1;&#x517C;&#x5BB9;IC2&#x7684;&#x7CFB;&#x7EDF;&#x3002;&#x672C;&#x8282;&#x6559;&#x7A0B;&#x7740;&#x91CD;&#x4ECB;&#x7ECD;&#x7684;&#x662F;&#x7B2C;&#x4E8C;&#x79CD;&#x60C5;&#x51B5;&#x3002;&#x4E3A;&#x65B9;&#x4FBF;&#x533A;&#x5206;&#xFF0C;&#x540E;&#x9762;&#x7684;&#x90E8;&#x5206;&#xFF0C;&#x4F5C;&#x8005;&#x5C06;&#x628A;&#x7B2C;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#x63CF;&#x8FF0;&#x4E3A;&#x5236;&#x4F5C;&#x4E00;&#x4E2A;&#x201C;&#x4F9D;&#x8D56;&#x201D;IC2&#x7684;Mod&#xFF0C;&#x800C;&#x7B2C;&#x4E8C;&#x79CD;&#x60C5;&#x51B5;&#x63CF;&#x8FF0;&#x4E3A;&#x201C;&#x517C;&#x5BB9;&#x201D;IC2&#x3002;</p>
+<p>&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x517C;&#x5BB9;&#x8FD8;&#x662F;&#x4F9D;&#x8D56;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x505A;&#x7684;&#x4E00;&#x4EF6;&#x4E8B;&#x662F;&#xFF1A;&#x63A2;&#x6D4B;&#x5176;&#x517C;&#x5BB9;&#x6216;&#x4F9D;&#x8D56;&#x7684;Mod&#x662F;&#x5426;&#x5B58;&#x5728;&#x3002;Forge&#x7684;<code>net.minecraftforge.fml.common.Loader</code>&#x7C7B;&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x67E5;&#x770B;&#x4E00;&#x4E2A;Mod&#x662F;&#x5426;&#x88AB;&#x6211;&#x4EEC;&#x52A0;&#x8F7D;&#x7684;&#x901A;&#x7528;&#x65B9;&#x6CD5;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x4E00;&#x884C;&#x4EE3;&#x7801;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x68C0;&#x67E5;IC2&#x8FD9;&#x4E00;Mod&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF1A;</p>
+<pre><code class="lang-java">Loader.isModLoaded(<span class="hljs-string">&quot;IC2&quot;</span>);
+</code></pre>
+<p>&#x8FD9;&#x4E00;&#x65B9;&#x6CD5;&#x9700;&#x8981;&#x7684;&#x53C2;&#x6570;&#x81EA;&#x7136;&#x5C31;&#x662F;modid&#xFF0C;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x5982;&#x679C;&#x6709;Mod&#x60F3;&#x8981;&#x68C0;&#x67E5;&#x6211;&#x4EEC;&#x6B63;&#x5728;&#x7F16;&#x5199;&#x7684;Mod&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF0C;&#x90A3;&#x4E48;&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;&#x5E94;&#x8BE5;&#x662F;<code>fmltutor</code>&#x3002;</p>
+<p>&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x5341;&#x5206;&#x5E38;&#x89C1;&#x7684;&#x9700;&#x6C42;&#xFF0C;&#x5C31;&#x662F;&#x5728;&#x4E00;&#x4E2A;Mod&#x53D1;&#x73B0;Forge&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x5176;&#x4F9D;&#x8D56;&#x7684;Mod&#x65F6;&#xFF0C;Forge&#x5E94;&#x8BE5;&#x4F18;&#x96C5;&#x5730;&#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#xFF0C;&#x4EE5;&#x63D0;&#x9192;&#x7528;&#x6237;&#x6CA1;&#x6709;&#x5B89;&#x88C5;&#x524D;&#x7F6E;&#x3002;</p>
+<p>&#x7F16;&#x5199;&#x8FD9;&#x6837;&#x7684;&#x89C4;&#x5219;&#x5341;&#x5206;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;Mod&#x4E3B;&#x7C7B;&#x4E2D;<code>@Mod</code>&#x6CE8;&#x89E3;&#x91CC;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>dependencies</code>&#x7684;&#x5B57;&#x6BB5;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#x8BE5;&#x5B57;&#x6BB5;&#x4E2D;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E3A;&#x7531;&#x5206;&#x53F7;&#x5206;&#x9694;&#x7684;&#x82E5;&#x5E72;&#x7247;&#x6BB5;&#xFF0C;&#x6BCF;&#x4E2A;&#x7247;&#x6BB5;&#x90FD;&#x662F;<code>rule:modid@version</code>&#x7684;&#x683C;&#x5F0F;&#xFF1A;</p>
+<ul>
+<li><code>rule</code>&#x6709;&#x56DB;&#x79CD;&#xFF1A;<code>required-before</code>&#x3001;<code>required-after</code>&#x3001;<code>before</code>&#x3001;&#x548C;<code>after</code>&#x3002;&#x524D;&#x4E24;&#x79CD;&#x4EE5;<code>require</code>&#x5F00;&#x5934;&#xFF0C;&#x4EE3;&#x8868;Mod&#x8981;&#x6C42;&#x5176;&#x52A0;&#x8F7D;&#x987A;&#x5E8F;&#x4F4D;&#x4E8E;&#x88AB;&#x8981;&#x6C42;&#x7684;Mod&#x524D;&#xFF08;<code>required-before</code>&#xFF09;&#x6216;&#x540E;&#xFF08;<code>required-after</code>&#xFF09;&#xFF0C;&#x540C;&#x65F6;&#x88AB;&#x8981;&#x6C42;&#x7684;Mod&#x5FC5;&#x987B;&#x5B58;&#x5728;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#x5219;Forge&#x4F1A;&#x5F39;&#x51FA;&#x62A5;&#x9519;&#x3002;&#x800C;&#x540E;&#x4E24;&#x79CD;&#x5219;&#x4EE3;&#x8868;Mod&#x53EA;&#x662F;&#x5355;&#x7EAF;&#x5730;&#x8981;&#x6C42;&#x52A0;&#x8F7D;&#x987A;&#x5E8F;&#xFF0C;&#x800C;&#x4E0D;&#x4E00;&#x5B9A;&#x8981;&#x6C42;&#x88AB;&#x8981;&#x6C42;&#x7684;Mod&#x5FC5;&#x987B;&#x5B58;&#x5728;</li>
+<li><code>modid</code>&#x5C31;&#x662F;&#x88AB;&#x8981;&#x6C42;&#x7684;Mod&#x7684;modid</li>
+<li><code>version</code>&#x4EE3;&#x8868;&#x88AB;&#x8981;&#x6C42;&#x7684;Mod&#x7684;&#x7248;&#x672C;&#x8303;&#x56F4;&#xFF0C;&#x5177;&#x4F53;&#x89C4;&#x5219;&#x548C;<code>acceptedMinecraftVersions</code>&#x7684;&#x7EA6;&#x5B9A;&#x76F8;&#x540C;&#xFF0C;&#x4E0D;&#x719F;&#x6089;&#x7684;&#x8BFB;&#x8005;&#x8BF7;&#x53C2;&#x7167;1.2&#x8282;&#x7684;&#x5185;&#x5BB9;</li>
+</ul>
+<p><code>@version</code>&#x90E8;&#x5206;&#x6709;&#x65F6;&#x53EF;&#x4EE5;&#x88AB;&#x7701;&#x7565;&#xFF0C;&#x5373;Mod&#x5BF9;&#x88AB;&#x8981;&#x6C42;&#x7684;Mod&#x7684;&#x7248;&#x672C;&#x4E0D;&#x505A;&#x8981;&#x6C42;&#xFF0C;&#x6B64;&#x65F6;&#x4E3A;<code>rule:modid</code>&#x7684;&#x5F62;&#x5F0F;&#x3002;</p>
+<p>&#x6B64;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x4E24;&#x79CD;&#x6781;&#x5176;&#x7279;&#x6B8A;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x4EE3;&#x8868;&#x5176;&#x5E94;&#x4F4D;&#x4E8E;&#x6240;&#x6709;Mod&#x524D;&#x6216;&#x540E;&#xFF1A;<code>before:*</code>&#x548C;<code>after:*</code>&#x3002;<code>required-before</code>&#x548C;<code>required-after</code>&#x4E0D;&#x80FD;&#x7528;&#x5728;&#x8FD9;&#x91CC;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x6765;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#x5427;&#xFF01;&#x6BD4;&#x5982;&#x4E00;&#x4E2A;Mod&#x5982;&#x679C;&#x8981;&#x6C42;IC2&#x4E0D;&#x5F97;&#x5C0F;&#x4E8E;<code>2.3.262</code>&#x7248;&#x672C;&#xFF0C;&#x795E;&#x79D8;&#x65F6;&#x4EE3;5&#x4E0D;&#x5F97;&#x5C0F;&#x4E8E;<code>5.2.4</code>&#x7248;&#x672C;&#xFF0C;&#x4E14;&#x5E94;&#x8BE5;&#x52A0;&#x8F7D;&#x5728;&#x8FD9;&#x4E24;&#x4E2A;Mod&#x540E;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;Mod&#x7684;<code>@Mod</code>&#x6CE8;&#x89E3;&#x91CC;&#x5E94;&#x8BE5;&#x6709;&#x5982;&#x4E0B;&#x5B57;&#x6BB5;&#xFF1A;</p>
+<pre><code class="lang-java">dependencies = <span class="hljs-string">&quot;required-after:IC2@[2.3.262,);required-after:Thaumcraft@[5.2.4,)&quot;</span>
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x5B57;&#x6BB5;&#x7684;&#x53E6;&#x4E00;&#x4E2A;&#x5341;&#x5206;&#x6709;&#x7528;&#x7684;&#x7279;&#x6027;&#x662F;&#xFF1A;&#x5B83;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x4F9D;&#x8D56;Forge&#x7684;&#x6700;&#x4F4E;&#x7248;&#x672C;&#x3002;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;Mod&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;Forge&#x7684;&#x6700;&#x4F4E;&#x7248;&#x672C;&#x5176;&#x5B9E;&#x662F;&#x5B83;&#x7F16;&#x8BD1;&#x65F6;&#x6240;&#x4F7F;&#x7528;&#x7684;Forge&#x7248;&#x672C;&#x3002;&#x73B0;&#x5728;&#x4F7F;&#x7528;&#x7684;<code>11.15.1.2318</code>&#x7248;&#x672C;&#x5B9E;&#x5728;&#x662F;&#x592A;&#x65B0;&#x4E86;&#xFF0C;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4FEE;&#x6539;&#x8FD9;&#x4E00;&#x5B57;&#x6BB5;&#x8BA9;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;Forge&#x7248;&#x672C;&#x66F4;&#x591A;&#xFF0C;&#x6BD4;&#x5982;&#x8BA9;&#x5176;&#x517C;&#x5BB9;&#x5230;<code>11.15.1.1722</code>&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48;&#x4FEE;&#x6539;&#x540E;&#x7684;<code>@Mod</code>&#x6CE8;&#x89E3;&#x662F;&#x8FD9;&#x4E2A;&#x6837;&#x5B50;&#x7684;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/FMLTutor.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java"><span class="hljs-meta">@Mod</span>(modid = FMLTutor.MODID, name = FMLTutor.NAME, version = FMLTutor.VERSION, acceptedMinecraftVersions = <span class="hljs-string">&quot;1.8.9&quot;</span>, dependencies = <span class="hljs-string">&quot;required-after:Forge@[11.15.1.1722,)&quot;</span>)
+</code></pre>
+<h2 id="&#x5F15;&#x7528;&#x5176;&#x5B83;api">&#x5F15;&#x7528;&#x5176;&#x5B83;API</h2>
+<p>&#x4E00;&#x4E9B;&#x77E5;&#x540D;Mod&#x5728;&#x53D1;&#x5E03;&#x65F6;&#xFF0C;&#x4F1A;&#x5728;&#x5176;&#x53D1;&#x5E03;&#x9875;&#x9762;&#x540C;&#x65F6;&#x63D0;&#x4F9B;API&#x7684;&#x4E0B;&#x8F7D;&#x5730;&#x5740;&#xFF0C;&#x6BD4;&#x5982;&#x4F60;&#x53EF;&#x4EE5;&#x5728;<a href="http://jenkins.ic2.player.to/job/IC2_18/" target="_blank">IC2&#x7684;&#x5B98;&#x65B9;&#x6784;&#x5EFA;&#x7AD9;</a>&#x91CC;&#x627E;&#x5230;&#x6700;&#x65B0;&#x7684;&#x57FA;&#x4E8E;Minecraft&#x4E0D;&#x540C;&#x7248;&#x672C;&#x7684;API&#xFF0C;&#x5F53;&#x7136;&#x8FD9;&#x91CC;&#x4F5C;&#x8005;&#x63D0;&#x4F9B;&#x7684;&#x662F;1.8.9&#x7684;&#x3002;</p>
+<p>&#x4E0B;&#x8F7D;&#x540E;&#x8BF7;&#x5C06;API&#x7684;Jar&#x653E;&#x7F6E;&#x5728;&#x5DE5;&#x4F5C;&#x73AF;&#x5883;&#x6839;&#x76EE;&#x5F55;&#x4E0B;&#x7684;<strong><code>libs</code>&#x76EE;&#x5F55;</strong>&#xFF08;&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x8BF7;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#xFF09;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x5F53;&#x7136;&#xFF0C;&#x672C;&#x6559;&#x7A0B;&#x7684;&#x5B98;&#x65B9;&#x6E90;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;&#x91CC;&#x4E5F;&#x5185;&#x7F6E;&#x4E86;&#x8FD9;&#x4E00;&#x4E2A;API&#x3002;</p>
+<p>&#x4E0B;&#x8F7D;&#x5E76;&#x653E;&#x7F6E;&#x540E;API&#x540E;&#xFF0C;&#x91CD;&#x65B0;&#x914D;&#x7F6E;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#xFF0C;&#x4F60;&#x5C31;&#x53EF;&#x4EE5;&#x5F15;&#x7528;API&#x91CC;&#x7684;&#x4EE3;&#x7801;&#x4E86;&#x3002;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5B9E;&#x73B0;&#x4E00;&#x4E0B;IC2&#x7684;API&#x4E2D;&#x7684;<code>ic2.api.energy.tile.IEnergySink</code>&#x63A5;&#x53E3;&#xFF0C;&#x5BF9;<code>TileEntityMetalFurnace</code>&#x7C7B;&#x8FDB;&#x884C;&#x90E8;&#x5206;&#x91CD;&#x5199;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TileEntityMetalFurnace</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">TileEntity</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ITickable</span>, <span class="hljs-title">IEnergySink</span>
+</span></code></pre>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">double</span> receivedEnergyUnit = <span class="hljs-number">0</span>;
+</code></pre>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">readFromNBT</span><span class="hljs-params">(NBTTagCompound compound)</span>
+    </span>{
+        <span class="hljs-keyword">super</span>.readFromNBT(compound);
+        <span class="hljs-keyword">this</span>.upInventory.deserializeNBT(compound.getCompoundTag(<span class="hljs-string">&quot;UpInventory&quot;</span>));
+        <span class="hljs-keyword">this</span>.downInventory.deserializeNBT(compound.getCompoundTag(<span class="hljs-string">&quot;DownInventory&quot;</span>));
+        <span class="hljs-keyword">this</span>.receivedEnergyUnit = compound.getDouble(<span class="hljs-string">&quot;ReceivedEnergyUnit&quot;</span>);
+        <span class="hljs-keyword">this</span>.burnTime = compound.getInteger(<span class="hljs-string">&quot;BurnTime&quot;</span>);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">writeToNBT</span><span class="hljs-params">(NBTTagCompound compound)</span>
+    </span>{
+        <span class="hljs-keyword">super</span>.writeToNBT(compound);
+        compound.setTag(<span class="hljs-string">&quot;UpInventory&quot;</span>, <span class="hljs-keyword">this</span>.upInventory.serializeNBT());
+        compound.setTag(<span class="hljs-string">&quot;DownInventory&quot;</span>, <span class="hljs-keyword">this</span>.downInventory.serializeNBT());
+        compound.setDouble(<span class="hljs-string">&quot;ReceivedEnergyUnit&quot;</span>, <span class="hljs-keyword">this</span>.receivedEnergyUnit);
+        compound.setInteger(<span class="hljs-string">&quot;BurnTime&quot;</span>, <span class="hljs-keyword">this</span>.burnTime);
+    }
+</code></pre>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getRequiredEnergyPerTick</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-number">4.5</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getEnergyCapacity</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-number">4096</span>;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getDemandedEnergy</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> Math.max(<span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.getEnergyCapacity() - <span class="hljs-keyword">this</span>.receivedEnergyUnit);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getSinkTier</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">injectEnergy</span><span class="hljs-params">(EnumFacing directionFrom, <span class="hljs-keyword">double</span> amount, <span class="hljs-keyword">double</span> voltage)</span>
+    </span>{
+        <span class="hljs-keyword">this</span>.receivedEnergyUnit += amount;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">acceptsEnergyFrom</span><span class="hljs-params">(IEnergyEmitter iEnergyEmitter, EnumFacing enumFacing)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+</code></pre>
+<p>&#x5177;&#x4F53;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x8BF7;&#x53C2;&#x89C1;IC2&#x7684;API&#x6587;&#x6863;&#xFF0C;&#x5728;&#x6B64;&#x7565;&#x8FC7;&#x4E0D;&#x63D0;&#x3002;</p>
+<p>&#x540C;&#x65F6;IC2&#x8981;&#x6C42;&#x5176;&#x63A5;&#x5165;&#x7F51;&#x7EDC;&#x7684;&#x673A;&#x5668;&#x5E94;&#x8BE5;&#x5728;&#x542F;&#x7528;&#x548C;&#x505C;&#x7528;&#x65F6;&#x89E6;&#x53D1;&#x4E24;&#x4E2A;&#x4E8B;&#x4EF6;&#xFF0C;&#x6309;&#x7167;&#x5176;API&#x6587;&#x6863;&#xFF0C;&#x6211;&#x4EEC;&#x5BF9;&#x76F8;&#x5173;&#x65B9;&#x6CD5;&#x4E5F;&#x505A;&#x4E00;&#x4E0B;&#x4FEE;&#x6539;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> updated = <span class="hljs-keyword">false</span>;
+</code></pre>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">invalidate</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">super</span>.invalidate();
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.worldObj.isRemote &amp;&amp; Loader.isModLoaded(<span class="hljs-string">&quot;IC2&quot;</span>))
+        {
+            <span class="hljs-keyword">this</span>.onIC2MachineUnloaded();
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.worldObj.isRemote)
+        {
+            <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.updated &amp;&amp; Loader.isModLoaded(<span class="hljs-string">&quot;IC2&quot;</span>))
+            {
+                <span class="hljs-keyword">this</span>.onIC2MachineLoaded();
+                <span class="hljs-keyword">this</span>.updated = <span class="hljs-keyword">true</span>;
+            }
+
+            ItemStack itemStack = upInventory.extractItem(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-keyword">true</span>);
+            IBlockState state = <span class="hljs-keyword">this</span>.worldObj.getBlockState(pos);
+
+            <span class="hljs-keyword">if</span> (itemStack != <span class="hljs-keyword">null</span>)
+            {
+                ItemStack furnaceRecipeResult = FurnaceRecipes.instance().getSmeltingResult(itemStack);
+                <span class="hljs-keyword">if</span> (furnaceRecipeResult != <span class="hljs-keyword">null</span> &amp;&amp; downInventory.insertItem(<span class="hljs-number">0</span>, furnaceRecipeResult, <span class="hljs-keyword">true</span>) == <span class="hljs-keyword">null</span>)
+                {
+                    <span class="hljs-keyword">double</span> requiredEnergyPerTick = <span class="hljs-keyword">this</span>.getRequiredEnergyPerTick();
+                    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.receivedEnergyUnit &gt;= requiredEnergyPerTick)
+                    {
+                        <span class="hljs-keyword">this</span>.receivedEnergyUnit -= requiredEnergyPerTick;
+
+                        <span class="hljs-keyword">this</span>.worldObj.setBlockState(pos, state.withProperty(BlockMetalFurnace.BURNING, Boolean.TRUE));
+
+                        <span class="hljs-keyword">int</span> burnTotalTime = <span class="hljs-keyword">this</span>.getTotalBurnTime();
+
+                        <span class="hljs-keyword">if</span> (++<span class="hljs-keyword">this</span>.burnTime &gt;= burnTotalTime)
+                        {
+                            <span class="hljs-keyword">this</span>.burnTime = <span class="hljs-number">0</span>;
+                            itemStack = upInventory.extractItem(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-keyword">false</span>);
+                            furnaceRecipeResult = FurnaceRecipes.instance().getSmeltingResult(itemStack).copy();
+                            downInventory.insertItem(<span class="hljs-number">0</span>, furnaceRecipeResult, <span class="hljs-keyword">false</span>);
+                            <span class="hljs-keyword">this</span>.markDirty();
+                        }
+                    }
+                }
+            }
+            <span class="hljs-keyword">else</span>
+            {
+                <span class="hljs-keyword">this</span>.burnTime = <span class="hljs-number">0</span>;
+                <span class="hljs-keyword">this</span>.worldObj.setBlockState(pos, state.withProperty(BlockMetalFurnace.BURNING, Boolean.FALSE));
+            }
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            IBlockState blockState = <span class="hljs-keyword">this</span>.worldObj.getBlockState(<span class="hljs-keyword">this</span>.pos);
+            <span class="hljs-keyword">boolean</span> burning = blockState.getProperties().containsKey(BlockMetalFurnace.BURNING)
+                    &amp;&amp; blockState.getValue(BlockMetalFurnace.BURNING).booleanValue();
+            <span class="hljs-keyword">if</span> (burning || <span class="hljs-keyword">this</span>.rotationDegree &gt; <span class="hljs-number">0</span>)
+            {
+                <span class="hljs-keyword">this</span>.rotationDegree += <span class="hljs-number">11.25</span>;
+                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.rotationDegree &gt;= <span class="hljs-number">360.0</span>)
+                {
+                    <span class="hljs-keyword">this</span>.rotationDegree -= <span class="hljs-number">360.0</span>;
+                }
+                <span class="hljs-keyword">this</span>.worldObj.markBlockRangeForRenderUpdate(<span class="hljs-keyword">this</span>.pos, <span class="hljs-keyword">this</span>.pos);
+            }
+        }
+    }
+</code></pre>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onIC2MachineLoaded</span><span class="hljs-params">()</span>
+    </span>{
+        MinecraftForge.EVENT_BUS.post(<span class="hljs-keyword">new</span> EnergyTileLoadEvent(<span class="hljs-keyword">this</span>));
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onIC2MachineUnloaded</span><span class="hljs-params">()</span>
+    </span>{
+        MinecraftForge.EVENT_BUS.post(<span class="hljs-keyword">new</span> EnergyTileUnloadEvent(<span class="hljs-keyword">this</span>));
+    }
+</code></pre>
+<p>&#x73B0;&#x5728;&#x8FD9;&#x4E00;&#x4E2A;&#x7194;&#x7089;&#xFF0C;&#x5E94;&#x8BE5;&#x53EF;&#x4EE5;&#x6295;&#x5165;IC2&#x7684;EU&#x7F51;&#x7EDC;&#x4F7F;&#x7528;&#x4E86;&#x3002;</p>
+<h2 id="&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x52A0;&#x5165;&#x5176;&#x4ED6;mod">&#x5728;&#x8FD0;&#x884C;&#x65F6;&#x52A0;&#x5165;&#x5176;&#x4ED6;Mod</h2>
+<p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x9762;&#x4E34;&#x53E6;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;&#x6211;&#x4EEC;&#x4E0D;&#x7BA1;&#x662F;&#x8FD0;&#x884C;<code>runClient</code>&#x547D;&#x4EE4;&#xFF0C;&#x8FD8;&#x662F;&#x5728;IDE&#x4E2D;&#x8FD0;&#x884C;&#x6211;&#x4EEC;&#x7684;Minecraft&#xFF0C;&#x76EE;&#x524D;&#x7684;&#x60C5;&#x51B5;&#x662F;&#x90FD;&#x6CA1;&#x6709;IC2&#x8FD9;&#x4E2A;Mod&#x6DFB;&#x52A0;&#x5230;&#x5176;&#x4E2D;&#x3002;&#x770B;&#x8D77;&#x6765;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x5341;&#x5206;&#x7B80;&#x5355;&#x2014;&#x2014;&#x628A;IC2&#x7684;Mod&#x672C;&#x4F53;&#x4E0B;&#x8F7D;&#x4E0B;&#x6765;&#x52A0;&#x5230;<code>run/mods</code>&#x76EE;&#x5F55;&#x4E0B;&#x4E0D;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF1F;&#x5B9E;&#x9645;&#x4E0A;&#x5E76;&#x975E;&#x5982;&#x6B64;&#x3002;&#x56E0;&#x6B64;Minecraft&#x7684;&#x4EE3;&#x7801;&#x662F;&#x6DF7;&#x6DC6;&#x8FC7;&#x7684;&#xFF0C;&#x800C;MCP&#x91C7;&#x53D6;&#x4E86;&#x4E00;&#x79CD;&#x6781;&#x5176;&#x7279;&#x6B8A;&#x7684;&#x6DF7;&#x6DC6;&#x4E0E;&#x53CD;&#x6DF7;&#x6DC6;&#x7B56;&#x7565;&#xFF08;&#x5BF9;&#x6B64;&#x4E0D;&#x4E86;&#x89E3;&#x7684;&#x8BFB;&#x8005;&#x53EF;&#x4EE5;&#x53C2;&#x89C1;<a href="&#x9644;&#x5F55;B-&#x6DF7;&#x6DC6;&#x4E0E;&#x53CD;&#x5C04;.html">&#x9644;&#x5F55;</a>&#xFF09;&#xFF0C;&#x5728;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4E2D;&#x8FD0;&#x884C;&#x65F6;&#x4F7F;&#x7528;&#x7684;&#x662F;MCP Name&#xFF0C;&#x800C;&#x5B9E;&#x9645;&#x8FD0;&#x884C;&#x65F6;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4E0B;&#x8F7D;&#x5230;&#x7684;IC2&#x7684;Mod&#x672C;&#x4F53;&#x4F7F;&#x7528;&#x7684;&#x662F;Srg Name&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x653E;&#x7F6E;&#x5728;<code>run/mods</code>&#x76EE;&#x5F55;&#x4E0B;&#x7684;Mod&#x4E5F;&#x8981;&#x662F;MCP Name&#xFF0C;&#x5426;&#x5219;&#x662F;&#x8FD0;&#x884C;&#x4E0D;&#x4E86;&#x7684;&#x3002;</p>
+<p>&#x90E8;&#x5206;Mod&#x7684;&#x4F5C;&#x8005;&#x5728;&#x4E0B;&#x8F7D;&#x6E90;&#x4E2D;&#x540C;&#x65F6;&#x4E5F;&#x4F1A;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;<code>dev</code>&#x7248;&#x672C;&#xFF08;&#x800C;&#x975E;<code>universal</code>&#x7248;&#x672C;&#xFF09;&#x7684;Jar&#xFF08;&#x5B9E;&#x9645;&#x4E0A;&#x6211;&#x4EEC;&#x5728;&#x6784;&#x5EFA;Mod&#x65F6;&#x4E5F;&#x4F1A;&#x751F;&#x6210;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF09;&#xFF0C;&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5C06;&#x5176;&#x4E0B;&#x8F7D;&#x5E76;&#x653E;&#x7F6E;&#x5728;&#x5BF9;&#x5E94;&#x76EE;&#x5F55;&#x5C31;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x8FD0;&#x884C;&#x4E86;&#x3002;&#x4E0D;&#x8FC7;&#x6709;&#x7684;&#x65F6;&#x5019;Mod&#x4F5C;&#x8005;&#x5E76;&#x4E0D;&#x4F1A;&#x63D0;&#x4F9B;&#xFF0C;&#x800C;&#x6709;&#x7684;&#x65F6;&#x5019;Mod&#x4F5C;&#x8005;&#x7F16;&#x8BD1;&#x751F;&#x6210;&#x7684;<code>dev</code>&#x7248;&#x672C;&#x6240;&#x4F7F;&#x7528;&#x7684;MCP&#x6620;&#x5C04;&#x8868;&#x548C;&#x6211;&#x4EEC;&#x5728;&#x5F00;&#x53D1;Mod&#x65F6;&#x4F7F;&#x7528;&#x7684;&#x4E0D;&#x540C;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x6709;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5C06;<code>universal</code>&#x7248;&#x672C;&#x7684;Mod&#x624B;&#x52A8;&#x53CD;&#x6DF7;&#x6DC6;&#x6210;&#x9002;&#x7528;&#x4E8E;&#x81EA;&#x5DF1;&#x5F00;&#x53D1;&#x5DE5;&#x4F5C;&#x7684;<code>dev</code>&#x7248;&#x672C;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x5411;&#x8BFB;&#x8005;&#x4ECB;&#x7ECD;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<a href="https://github.com/octarine-noise/simpledeobf" target="_blank">simpledeobf</a>&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x8FD9;&#x4E2A;&#x5DE5;&#x5177;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x57FA;&#x4E8E;&#x6307;&#x5B9A;&#x7684;&#x6620;&#x5C04;&#x8868;&#x628A;&#x4E00;&#x4E2A;Jar&#x91CC;&#x7684;&#x53D8;&#x91CF;&#x65B9;&#x6CD5;&#x540D;&#x7B49;&#x66FF;&#x6362;&#x6210;&#x5BF9;&#x5E94;&#x7684;&#x540D;&#x79F0;&#x3002;<a href="https://github.com/octarine-noise/simpledeobf/releases" target="_blank">&#x5728;GitHub&#x4E0B;&#x8F7D;</a>&#x540E;&#xFF0C;&#x8FD0;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x628A;<code>industrialcraft-2-2.3.263-ex18.jar</code>&#x53CD;&#x6DF7;&#x6DC6;&#x5230;<code>industrialcraft-2-2.3.263-ex18-dev.jar</code>&#x8FD9;&#x4E00;&#x6587;&#x4EF6;&#xFF1A;</p>
+<pre><code>java -jar simpledeobf-0.6.jar --input industrialcraft-2-2.3.263-ex18.jar --output industrialcraft-2-2.3.263-ex18-dev.jar --mapFile .gradle/caches/minecraft/de/oceanlabs/mcp/mcp_stable/20/srgs/srg-mcp.srg
+</code></pre><p><code>--mapFile</code>&#x540E;&#x6307;&#x5B9A;&#x7684;&#x662F;&#x6620;&#x5C04;&#x8868;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x8BF7;&#x8BFB;&#x8005;&#x6839;&#x636E;&#x81EA;&#x5DF1;&#x7684;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x81EA;&#x884C;&#x9009;&#x62E9;&#x3002;</p>
+<p>&#x6700;&#x540E;&#x8BB0;&#x5F97;&#x6253;&#x5F00;Jar&#xFF0C;&#x5E76;&#x628A;<code>META-INF</code>&#x76EE;&#x5F55;&#x4E0B;<code>MANIFEST.MF</code>&#x4E4B;&#x5916;&#x7684;&#x6587;&#x4EF6;&#x5220;&#x9664;&#xFF0C;&#x4EE5;&#x8DF3;&#x8FC7;Forge&#x5BF9;Jar&#x7684;&#x9A8C;&#x8BC1;&#x3002;</p>
+<p>&#x5904;&#x7406;&#x540E;&#x7684;Mod&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7684;<code>dev</code>&#x7248;&#x672C;&#x4E86;&#xFF0C;&#x76F4;&#x63A5;&#x6254;&#x8FDB;<code>run/mods</code>&#x76EE;&#x5F55;&#x4E0B;&#x8FD0;&#x884C;&#xFF0C;&#x5C31;&#x4E00;&#x70B9;&#x95EE;&#x9898;&#x90FD;&#x6CA1;&#x6709;&#x4E86;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x8FD0;&#x884C;&#x6E38;&#x620F;&#xFF0C;&#x5728;&#x5730;&#x56FE;&#x4E2D;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x80FD;&#x91CF;&#x6E90;&#xFF08;&#x6BD4;&#x5982;&#x4E00;&#x5757;&#x5145;&#x6EE1;&#x7535;&#x7684;MFSU&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x628A;&#x81EA;&#x5DF1;&#x7684;&#x7194;&#x7089;&#x8FDE;&#x4E0A;&#x53BB;&#xFF0C;&#x5E94;&#x8BE5;&#x5C31;&#x53EF;&#x4EE5;&#x6CE8;&#x610F;&#x5230;&#x7194;&#x7089;&#x5DE5;&#x4F5C;&#x7684;&#x540C;&#x65F6;&#xFF0C;&#x80FD;&#x91CF;&#x6E90;&#x7684;&#x80FD;&#x91CF;&#x4E5F;&#x5728;&#x4E0D;&#x65AD;&#x51CF;&#x5C11;&#x4E86;&#x3002;</p>
+<h2 id="&#x5E94;&#x5BF9;&#x6CA1;&#x6709;api&#x7684;&#x60C5;&#x51B5;">&#x5E94;&#x5BF9;&#x6CA1;&#x6709;API&#x7684;&#x60C5;&#x51B5;</h2>
+<p>&#x5F88;&#x660E;&#x663E;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x4E00;&#x4E2A;API&#xFF0C;&#x53EA;&#x6709;IC2&#x8FD9;&#x4E00;Mod&#x5B58;&#x5728;&#x65F6;&#x624D;&#x4F1A;&#x6709;&#x63D0;&#x4F9B;&#xFF0C;&#x800C;&#x5982;&#x679C;IC2&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x90A3;&#x4E48;&#x52A0;&#x8F7D;&#x5728;Minecraft&#x4E2D;&#x7684;Java&#x5B57;&#x8282;&#x7801;&#xFF0C;&#x5F88;&#x53EF;&#x80FD;&#x5C31;&#x4E0D;&#x4F1A;&#x5305;&#x542B;&#x6709;IC2 API&#x4E86;&#x3002;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5F15;&#x7528;&#x7684;Mod&#x5C31;&#x4F1A;&#x51FA;&#x9519;&#xFF0C;&#x56E0;&#x4E3A;&#x627E;&#x4E0D;&#x5230;IC2&#x7684;API&#x76F8;&#x5173;&#x7684;&#x7C7B;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5305;&#x540D;&#x4EE5;<code>ic2.api</code>&#x5F00;&#x5934;&#x7684;&#x7C7B;&#x3002;</p>
+<p>&#x5F88;&#x591A;Mod&#x5BF9;&#x6B64;&#x7684;&#x505A;&#x6CD5;&#x662F;&#x628A;&#x4E00;&#x4E2A;API&#x7684;&#x76F8;&#x5173;&#x4EE3;&#x7801;&#x6216;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;&#x5185;&#x7F6E;&#xFF08;&#x53C8;&#x79F0;Shade&#xFF09;&#x8FDB;&#x81EA;&#x5DF1;&#x7684;Mod&#x3002;&#x867D;&#x7136;Forge&#x4F1A;&#x6CE8;&#x610F;&#x5230;&#x591A;&#x4E2A;Mod&#x90FD;Shade&#x4E86;&#x540C;&#x4E00;&#x4E2A;API&#xFF0C;Forge&#x4E5F;&#x4F1A;&#x5728;&#x5176;&#x4E2D;&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x5408;&#x9002;&#x7684;&#x52A0;&#x8F7D;&#x8FDB;JVM&#xFF0C;&#x4E0D;&#x8FC7;&#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x63A8;&#x8350;&#x8FD9;&#x4E48;&#x505A;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x7F3A;&#x70B9;&#x6709;&#x4EE5;&#x4E0B;&#x4E24;&#x4E2A;&#xFF1A;</p>
+<ul>
+<li>Mod&#x7684;API&#x53EF;&#x80FD;&#x968F;&#x65F6;&#x90FD;&#x4F1A;&#x66F4;&#x65B0;&#xFF0C;&#x800C;&#x4FDD;&#x8BC1;&#x8FD0;&#x884C;&#x65F6;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x6700;&#x65B0;&#x7248;&#x672C;&#x7684;API&#x7684;&#x5DE5;&#x4F5C;&#x5E94;&#x7531;&#x76F8;&#x5E94;&#x7684;Mod&#x5B8C;&#x6210;</li>
+<li>&#x628A;API&#x7684;&#x76F8;&#x5173;&#x4EE3;&#x7801;&#x6216;&#x4E8C;&#x8FDB;&#x5236;&#x6587;&#x4EF6;Shade&#x8FDB;Mod&#x7684;&#x505A;&#x6CD5;&#x4F1A;&#x4F7F;Mod&#x589E;&#x52A0;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x6587;&#x4EF6;&#x5927;&#x5C0F;</li>
+</ul>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x81EA;&#x7136;&#x662F;&#x6709;&#x7684;&#x3002;Forge&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x82E5;&#x5E72;&#x6CE8;&#x89E3;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x5728;&#x5BF9;&#x5E94;Mod&#x4E0D;&#x5B58;&#x5728;&#x65F6;&#x52A8;&#x6001;&#x79FB;&#x9664;&#x76F8;&#x5E94;&#x7684;&#x5B9E;&#x73B0;&#x3002;&#x76F8;&#x5173;&#x7684;&#x6240;&#x6709;&#x6CE8;&#x89E3;&#x90FD;&#x4F4D;&#x4E8E;<code>net.minecraftforge.fml.common.Optional</code>&#x7C7B;&#x4E0B;&#xFF0C;&#x5171;&#x6709;&#x4E09;&#x79CD;&#xFF1A;</p>
+<ul>
+<li><code>Optional.Method</code>&#x7528;&#x4E8E;&#x6CE8;&#x89E3;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x6807;&#x8BC6;&#x8BE5;&#x65B9;&#x6CD5;&#x5C06;&#x5728;&#x76F8;&#x5E94;Mod&#x4E0D;&#x5B58;&#x5728;&#x65F6;&#x79FB;&#x9664;</li>
+<li><code>Optional.Interface</code>&#x7528;&#x4E8E;&#x6CE8;&#x89E3;&#x4E00;&#x4E2A;&#x7C7B;&#xFF0C;&#x6807;&#x8BC6;&#x8BE5;&#x7C7B;&#x5C06;&#x5728;&#x76F8;&#x5E94;Mod&#x4E0D;&#x5B58;&#x5728;&#x65F6;&#x653E;&#x5F03;&#x5B9E;&#x73B0;&#x7279;&#x5B9A;&#x63A5;&#x53E3;</li>
+<li><p><code>Optional.InterfaceList</code>&#x7528;&#x4E8E;&#x6CE8;&#x89E3;&#x4E00;&#x4E2A;&#x7C7B;&#xFF0C;&#x5176;&#x5B58;&#x50A8;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#x7684;&#x5217;&#x8868;&#xFF0C;&#x6BCF;&#x4E2A;&#x63A5;&#x53E3;&#x7684;&#x60C5;&#x51B5;&#x548C;<code>Optional.Interface</code>&#x76F8;&#x540C;</p>
+</li>
+<li><p><code>Optional.Method</code>&#x548C;<code>Optional.Interface</code>&#x5206;&#x522B;&#x6709;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>modid</code>&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x7528;&#x4E8E;&#x6807;&#x8BC6;&#x76F8;&#x5E94;&#x7684;&#x65B9;&#x6CD5;&#x6216;&#x63A5;&#x53E3;&#x517C;&#x5BB9;&#x7684;Mod&#x662F;&#x4EC0;&#x4E48;</p>
+</li>
+<li><code>Optional.Interface</code>&#x591A;&#x51FA;&#x6765;&#x4E86;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>iface</code>&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x8BF7;&#x8F93;&#x5165;&#x76F8;&#x5E94;&#x7684;&#x63A5;&#x53E3;&#x5168;&#x540D;&#xFF08;&#x5E26;&#x5305;&#x540D;&#x7684;&#xFF09;</li>
+<li><code>Optional.Interface</code>&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>stripref</code>&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x5176;&#x4E3A;&#x4E00;&#x5E03;&#x5C14;&#x503C;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;<code>false</code>&#xFF0C;&#x5982;&#x679C;&#x4E3A;<code>true</code>&#xFF0C;&#x4EE3;&#x8868;Forge&#x4F1A;&#x5728;&#x76F8;&#x5E94;Mod&#x4E0D;&#x5B58;&#x5728;&#x65F6;&#x628A;&#x5B9E;&#x73B0;&#x8BE5;&#x63A5;&#x53E3;&#x65F6;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x6CD5;&#x4E00;&#x5E76;&#x62B9;&#x53BB;&#xFF0C;&#x672C;&#x6559;&#x7A0B;&#x91CC;&#x4E0D;&#x4F1A;&#x7528;&#x5230;&#x8FD9;&#x4E00;&#x5B57;&#x6BB5;&#xFF0C;&#x8BFB;&#x8005;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x60C5;&#x51B5;&#x81EA;&#x884C;&#x91C7;&#x7528;</li>
+</ul>
+<p>&#x90A3;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x8FD9;&#x4E9B;&#x6CE8;&#x89E3;&#x5462;&#xFF1F;&#x5176;&#x5B9E;&#x5224;&#x5B9A;&#x7684;&#x89C4;&#x5219;&#x5F88;&#x7B80;&#x5355;&#xFF1A;</p>
+<ul>
+<li>&#x6240;&#x6709;&#x7528;&#x5230;Mod&#x7684;&#x7279;&#x5B9A;API&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#xFF08;&#x5305;&#x62EC;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x3001;&#x8FD4;&#x56DE;&#x503C;&#x3001;&#x65B9;&#x6CD5;&#x4F53;&#x5185;&#x90E8;&#xFF09;&#x90FD;&#x5E94;&#x8BE5;&#x52A0;&#x4E0A;<code>Optional.Method</code>&#x6CE8;&#x89E3;</li>
+<li>&#x6240;&#x6709;&#x5B9E;&#x73B0;Mod&#x7684;&#x7279;&#x5B9A;API&#x63A5;&#x53E3;&#x7684;&#x7C7B;&#x90FD;&#x5E94;&#x8BE5;&#x52A0;&#x4E0A;<code>Optional.Interface</code>&#x6216;<code>Optional.InterfaceList</code>&#x6CE8;&#x89E3;&#xFF0C;&#x53EA;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x5143;&#x7D20;&#x7684;<code>Optional.InterfaceList</code>&#x6CE8;&#x89E3;&#x548C;<code>Optional.Interface</code>&#x6CE8;&#x89E3;&#x7B49;&#x4EF7;</li>
+</ul>
+<p>&#x90A3;&#x4E48;&#x5982;&#x679C;&#x7528;&#x5230;Mod&#x7684;&#x7279;&#x5B9A;API&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x5341;&#x5206;&#x91CD;&#x8981;&#xFF0C;&#x4E0D;&#x7BA1;&#x76F8;&#x5E94;&#x7684;Mod&#x662F;&#x5426;&#x5B58;&#x5728;&#x90FD;&#x8981;&#x6267;&#x884C;&#x5462;&#xFF0C;&#x6BD4;&#x5982;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (Loader.isModLoaded(<span class="hljs-string">&quot;IC2&quot;</span>))
+        {
+            <span class="hljs-keyword">this</span>.a.doSomeThing();
+            <span class="hljs-keyword">this</span>.b.doSomeThingElse();
+        }
+        <span class="hljs-comment">// something also important while IC2 does not exist</span>
+    }
+</code></pre>
+<p>&#x4E00;&#x4E2A;&#x5E38;&#x7528;&#x7684;&#x505A;&#x6CD5;&#x662F;&#x628A;&#x53EA;&#x4F1A;&#x5728;&#x76F8;&#x5E94;Mod&#x5B58;&#x5728;&#x65F6;&#x7684;&#x903B;&#x8F91;&#x5206;&#x79BB;&#x51FA;&#x6765;&#xFF0C;&#x5355;&#x72EC;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x5C31;&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (Loader.isModLoaded(<span class="hljs-string">&quot;IC2&quot;</span>))
+        {
+            <span class="hljs-keyword">this</span>.bar();
+        }
+        <span class="hljs-comment">// something also important while IC2 does not exist</span>
+    }
+
+    <span class="hljs-meta">@Optional</span>.Method(modid = <span class="hljs-string">&quot;IC2&quot;</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bar</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">this</span>.a.doSomeThing();
+        <span class="hljs-keyword">this</span>.b.doSomeThingElse();
+    }
+</code></pre>
+<p>&#x6839;&#x636E;JVM&#x89C4;&#x8303;&#xFF0C;&#x7C7B;&#x5B57;&#x8282;&#x7801;&#x4E2D;&#x76F8;&#x5173;&#x7C7B;&#x7684;&#x5408;&#x6CD5;&#x6027;&#x5728;&#x76F8;&#x5E94;&#x5BF9;&#x8C61;&#x521B;&#x5EFA;&#x65F6;&#x4FBF;&#x5DF2;&#x68C0;&#x67E5;&#x5B8C;&#x6210;&#xFF0C;&#x4F46;<strong>&#x65B9;&#x6CD5;&#x5F15;&#x7528;&#x7684;&#x5408;&#x6CD5;&#x6027;&#x53EA;&#x4F1A;&#x5728;&#x8BD5;&#x56FE;&#x6267;&#x884C;&#x8BE5;&#x65B9;&#x6CD5;&#x65F6;&#x624D;&#x4F1A;&#x68C0;&#x67E5;</strong>&#x3002;&#x6240;&#x4EE5;&#x5982;&#x679C;IC2&#x8FD9;&#x4E00;Mod&#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x90A3;&#x4E48;&#x76F8;&#x5E94;&#x7684;&#x6761;&#x4EF6;&#x5206;&#x652F;&#x4FBF;&#x4E0D;&#x4F1A;&#x6267;&#x884C;&#xFF0C;&#x76F8;&#x5E94;&#x65B9;&#x6CD5;&#x7684;&#x5408;&#x6CD5;&#x6027;&#x4E5F;&#x4FBF;&#x4E0D;&#x4F1A;&#x68C0;&#x67E5;&#x3002;&#x8FD9;&#x4E00;&#x7279;&#x6027;&#x5176;&#x5B9E;&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x5728;&#x5176;&#x5B83;&#x7684;&#x573A;&#x5408;&#xFF0C;&#x6BD4;&#x5982;<code>@SideOnly</code>&#x7B49;&#x3002;</p>
+<p>&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x4E4B;&#x524D;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#xFF0C;&#x4F5C;&#x8005;&#x628A;<code>onIC2MachineLoaded</code>&#x548C;<code>onIC2MachineUnloaded</code>&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x4ECE;<code>update</code>&#x548C;<code>invalidate</code>&#x8FD9;&#x4E24;&#x4E2A;&#x5728;TileEntity&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x4E2D;&#x5341;&#x5206;&#x91CD;&#x8981;&#x7684;&#x65B9;&#x6CD5;&#x4E2D;&#x5206;&#x79BB;&#x51FA;&#x6765;&#xFF0C;&#x4FBF;&#x4E5F;&#x662F;&#x51FA;&#x4E8E;&#x8FD9;&#x6837;&#x7684;&#x8003;&#x8651;&#x3002;</p>
+<p>&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x73B0;&#x5728;&#x628A;&#x8FD9;&#x4E00;&#x7279;&#x6027;&#x6DFB;&#x52A0;&#x5230;&#x6211;&#x4EEC;&#x7684;&#x4EE3;&#x7801;&#x4E0A;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java"><span class="hljs-meta">@Optional</span>.Interface(iface = <span class="hljs-string">&quot;ic2.api.energy.tile.IEnergySink&quot;</span>, modid = <span class="hljs-string">&quot;IC2&quot;</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TileEntityMetalFurnace</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">TileEntity</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ITickable</span>, <span class="hljs-title">IEnergySink</span>
+</span></code></pre>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Override</span>
+    <span class="hljs-meta">@Optional</span>.Method(modid = <span class="hljs-string">&quot;IC2&quot;</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">acceptsEnergyFrom</span><span class="hljs-params">(IEnergyEmitter iEnergyEmitter, EnumFacing enumFacing)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+</code></pre>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Optional</span>.Method(modid = <span class="hljs-string">&quot;IC2&quot;</span>)
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onIC2MachineLoaded</span><span class="hljs-params">()</span>
+    </span>{
+        MinecraftForge.EVENT_BUS.post(<span class="hljs-keyword">new</span> EnergyTileLoadEvent(<span class="hljs-keyword">this</span>));
+    }
+
+    <span class="hljs-meta">@Optional</span>.Method(modid = <span class="hljs-string">&quot;IC2&quot;</span>)
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onIC2MachineUnloaded</span><span class="hljs-params">()</span>
+    </span>{
+        MinecraftForge.EVENT_BUS.post(<span class="hljs-keyword">new</span> EnergyTileUnloadEvent(<span class="hljs-keyword">this</span>));
+    }
+</code></pre>
+<p>&#x5F88;&#x597D;&#xFF0C;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x7684;Mod&#x5C31;&#x7B97;&#x6CA1;&#x6709;IC2&#x7684;API&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x8FD0;&#x884C;&#x4E86;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="3.4.4-GUI中的数据同步.html" class="navigation navigation-prev " aria-label="Previous page: 3.4.4 GUI中的数据同步">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3.5.2-向其他Mod提供API.html" class="navigation navigation-next " aria-label="Next page: 3.5.2 向其他Mod提供API">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.5.1 使用其他Mod的API","level":"1.6.19","depth":2,"next":{"title":"3.5.2 向其他Mod提供API","level":"1.6.20","depth":2,"path":"3.5.2-向其他Mod提供API.md","ref":"3.5.2-向其他Mod提供API.md","articles":[]},"previous":{"title":"3.4.4 GUI中的数据同步","level":"1.6.18","depth":2,"path":"3.4.4-GUI中的数据同步.md","ref":"3.4.4-GUI中的数据同步.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default@1.0.5"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"FMLTutor","gitbook":"*","description":"Minecraft 1.8.9 FML Mod 开发教程"},"file":{"path":"3.5.1-使用其他Mod的API.md","mtime":"2020-11-04T05:04:23.770Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-04T06:29:21.625Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,1235 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.3.2 使用SimpleImpl同步数据 · FMLTutor</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3.3.3-世界附加数据存储.html" />
+    
+    
+    <link rel="prev" href="3.3.1-Capability系统与已有实体附加属性.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <a target="_blank" href="https://github.com/ustc-zzzz/fmltutor/tree/master">
+            
+                    
+                    源代码仓库（记得Star哦）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="0-绪论.html">
+            
+                <a href="0-绪论.html">
+            
+                    
+                    0 绪论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    1 基础部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="1.1-配置你的工作环境.html">
+            
+                <a href="1.1-配置你的工作环境.html">
+            
+                    
+                    1.1 配置你的工作环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="1.2-主类、代理和Mod信息.html">
+            
+                <a href="1.2-主类、代理和Mod信息.html">
+            
+                    
+                    1.2 主类、代理和Mod信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="1.3-第一个物品.html">
+            
+                <a href="1.3-第一个物品.html">
+            
+                    
+                    1.3 第一个物品
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="1.4-第一个方块.html">
+            
+                <a href="1.4-第一个方块.html">
+            
+                    
+                    1.4 第一个方块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="1.5-创造模式物品栏.html">
+            
+                <a href="1.5-创造模式物品栏.html">
+            
+                    
+                    1.5 创造模式物品栏
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                <a href="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                    
+                    1.6 第一份合成表、烧炼规则和燃料
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="1.7-本地化和国际化.html">
+            
+                <a href="1.7-本地化和国际化.html">
+            
+                    
+                    1.7 本地化和国际化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="1.8-创建一份配置文件.html">
+            
+                <a href="1.8-创建一份配置文件.html">
+            
+                    
+                    1.8 创建一份配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    2 初级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="2.1.1-注册已有的事件.html">
+            
+                <a href="2.1.1-注册已有的事件.html">
+            
+                    
+                    2.1.1 注册已有的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="2.1.2-自定义新的事件.html">
+            
+                <a href="2.1.2-自定义新的事件.html">
+            
+                    
+                    2.1.2 自定义新的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="2.2.1-新的工具.html">
+            
+                <a href="2.2.1-新的工具.html">
+            
+                    
+                    2.2.1 新的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="2.2.2-新的食物.html">
+            
+                <a href="2.2.2-新的食物.html">
+            
+                    
+                    2.2.2 新的食物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="2.2.3-新的盔甲.html">
+            
+                <a href="2.2.3-新的盔甲.html">
+            
+                    
+                    2.2.3 新的盔甲
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="2.3.1-新的伤害类型.html">
+            
+                <a href="2.3.1-新的伤害类型.html">
+            
+                    
+                    2.3.1 新的伤害类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="2.3.2-新的附魔属性.html">
+            
+                <a href="2.3.2-新的附魔属性.html">
+            
+                    
+                    2.3.2 新的附魔属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="2.3.3-新的药水效果.html">
+            
+                <a href="2.3.3-新的药水效果.html">
+            
+                    
+                    2.3.3 新的药水效果
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="2.4.1-热键绑定.html">
+            
+                <a href="2.4.1-热键绑定.html">
+            
+                    
+                    2.4.1 热键绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="2.4.2-成就系统.html">
+            
+                <a href="2.4.2-成就系统.html">
+            
+                    
+                    2.4.2 成就系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="2.4.3-系统命令.html">
+            
+                <a href="2.4.3-系统命令.html">
+            
+                    
+                    2.4.3 系统命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="2.4.4-声音系统.html">
+            
+                <a href="2.4.4-声音系统.html">
+            
+                    
+                    2.4.4 声音系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.13" data-path="2.5.1-在世界生成矿物.html">
+            
+                <a href="2.5.1-在世界生成矿物.html">
+            
+                    
+                    2.5.1 在世界生成矿物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.14" data-path="2.5.2-注册和使用矿物字典.html">
+            
+                <a href="2.5.2-注册和使用矿物字典.html">
+            
+                    
+                    2.5.2 注册和使用矿物字典
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.15" data-path="2.6.1-创建并注册一份流体.html">
+            
+                <a href="2.6.1-创建并注册一份流体.html">
+            
+                    
+                    2.6.1 创建并注册一份流体
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.16" data-path="2.6.2-为流体添加对应的桶.html">
+            
+                <a href="2.6.2-为流体添加对应的桶.html">
+            
+                    
+                    2.6.2 为流体添加对应的桶
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    3 高级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                <a href="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                    
+                    3.1.1 新的生物和对应的刷怪蛋
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="3.1.2-新的生物渲染模型.html">
+            
+                <a href="3.1.2-新的生物渲染模型.html">
+            
+                    
+                    3.1.2 新的生物渲染模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="3.1.3-生物的固有属性和自然生成.html">
+            
+                <a href="3.1.3-生物的固有属性和自然生成.html">
+            
+                    
+                    3.1.3 生物的固有属性和自然生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="3.1.4-生物的自动同步和数据存储.html">
+            
+                <a href="3.1.4-生物的自动同步和数据存储.html">
+            
+                    
+                    3.1.4 生物的自动同步和数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="3.1.5-为生物绑定AI.html">
+            
+                <a href="3.1.5-为生物绑定AI.html">
+            
+                    
+                    3.1.5 为生物绑定AI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="3.1.6-投掷物的注册和生成.html">
+            
+                <a href="3.1.6-投掷物的注册和生成.html">
+            
+                    
+                    3.1.6 投掷物的注册和生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="3.1.7-FakePlayer的获取与使用.html">
+            
+                <a href="3.1.7-FakePlayer的获取与使用.html">
+            
+                    
+                    3.1.7 FakePlayer的获取与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="3.2.1-BlockState和Metadata.html">
+            
+                <a href="3.2.1-BlockState和Metadata.html">
+            
+                    
+                    3.2.1 BlockState和Metadata
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="3.2.2-TileEntity与数据更新.html">
+            
+                <a href="3.2.2-TileEntity与数据更新.html">
+            
+                    
+                    3.2.2 TileEntity与数据更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="3.2.3-BlockState的简化映射.html">
+            
+                <a href="3.2.3-BlockState的简化映射.html">
+            
+                    
+                    3.2.3 BlockState的简化映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                <a href="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                    
+                    3.2.4 扩展BlockState和第三方模型格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                <a href="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                    
+                    3.3.1 Capability系统与已有实体附加属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.13" data-path="3.3.2-使用SimpleImpl同步数据.html">
+            
+                <a href="3.3.2-使用SimpleImpl同步数据.html">
+            
+                    
+                    3.3.2 使用SimpleImpl同步数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="3.3.3-世界附加数据存储.html">
+            
+                <a href="3.3.3-世界附加数据存储.html">
+            
+                    
+                    3.3.3 世界附加数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.15" data-path="3.4.1-创建一个新的GUI界面.html">
+            
+                <a href="3.4.1-创建一个新的GUI界面.html">
+            
+                    
+                    3.4.1 创建一个新的GUI界面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.16" data-path="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                <a href="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                    
+                    3.4.2 GUI界面的个性化与物品槽的添加
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.17" data-path="3.4.3-GUI界面中的交互.html">
+            
+                <a href="3.4.3-GUI界面中的交互.html">
+            
+                    
+                    3.4.3 GUI界面中的交互
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.18" data-path="3.4.4-GUI中的数据同步.html">
+            
+                <a href="3.4.4-GUI中的数据同步.html">
+            
+                    
+                    3.4.4 GUI中的数据同步
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.19" data-path="3.5.1-使用其他Mod的API.html">
+            
+                <a href="3.5.1-使用其他Mod的API.html">
+            
+                    
+                    3.5.1 使用其他Mod的API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.20" data-path="3.5.2-向其他Mod提供API.html">
+            
+                <a href="3.5.2-向其他Mod提供API.html">
+            
+                    
+                    3.5.2 向其他Mod提供API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    附录
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="附录A-配置Gradle的一些小技巧.html">
+            
+                <a href="附录A-配置Gradle的一些小技巧.html">
+            
+                    
+                    附录A 配置Gradle的一些小技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="附录B-混淆与反射.html">
+            
+                <a href="附录B-混淆与反射.html">
+            
+                    
+                    附录B 混淆与反射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="附录C-使用AccessTransformers.html">
+            
+                <a href="附录C-使用AccessTransformers.html">
+            
+                    
+                    附录C 使用AccessTransformers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="附录D-使用Scala编写Mod.html">
+            
+                <a href="附录D-使用Scala编写Mod.html">
+            
+                    
+                    附录D 使用Scala编写Mod
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >3.3.2 使用SimpleImpl同步数据</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x6982;&#x8FF0;">&#x6982;&#x8FF0;</h2>
+<p>Minecraft&#x548C;Forge&#x672C;&#x8EAB;&#x6258;&#x7BA1;&#x4E86;&#x5927;&#x90E8;&#x5206;&#x7684;&#x7F51;&#x7EDC;&#x540C;&#x6B65;&#x64CD;&#x4F5C;&#xFF0C;&#x4E0D;&#x8FC7;&#x5F88;&#x4E0D;&#x5E78;&#x7684;&#x662F;&#xFF0C;&#x8BF8;&#x5982;Capability&#x8FD9;&#x79CD;&#x81EA;&#x5B9A;&#x4E49;&#x6570;&#x636E;&#xFF0C;Forge&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x81EA;&#x52A8;&#x540C;&#x6B65;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x6240;&#x4EE5;&#x4ECD;&#x7136;&#x9700;&#x8981;&#x624B;&#x52A8;&#x540C;&#x6B65;&#x3002;&#x5728;&#x672C;&#x90E8;&#x5206;&#xFF0C;&#x4F5C;&#x8005;&#x5C06;&#x5E26;&#x9886;&#x8BFB;&#x8005;&#x4F53;&#x9A8C;Forge&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x79CD;&#x5341;&#x5206;&#x7B80;&#x5355;&#x65B9;&#x4FBF;&#x7684;&#x5F02;&#x6B65;&#x7F51;&#x7EDC;&#x6846;&#x67B6;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;SimpleImpl&#x3002;</p>
+<h2 id="&#x81EA;&#x5B9A;&#x4E49;&#x6570;&#x636E;&#x5305;">&#x81EA;&#x5B9A;&#x4E49;&#x6570;&#x636E;&#x5305;</h2>
+<p>&#x4F5C;&#x4E3A;&#x6F14;&#x793A;&#xFF0C;&#x8FD9;&#x91CC;&#x6559;&#x7A0B;&#x4F7F;&#x7528;&#x201C;&#x70ED;&#x952E;&#x7ED1;&#x5B9A;&#x201D;&#x4E00;&#x8282;&#x4E2D;&#x65B0;&#x6DFB;&#x52A0;&#x7684;&#x7528;&#x4E8E;&#x663E;&#x793A;&#x6E38;&#x620F;&#x65F6;&#x95F4;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5E76;&#x5BF9;&#x5176;&#x505A;&#x51FA;&#x4FEE;&#x6539;&#xFF0C;&#x4F7F;&#x5F97;&#x5B83;&#x53EF;&#x4EE5;&#x663E;&#x793A;&#x4E0A;&#x4E00;&#x8282;&#x65B0;&#x6DFB;&#x52A0;&#x7684;Capability&#x5BF9;&#x5E94;&#x5B58;&#x50A8;&#x7684;&#x4F4D;&#x7F6E;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@SideOnly</span>(Side.CLIENT)
+    <span class="hljs-meta">@SubscribeEvent</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onKeyInput</span><span class="hljs-params">(InputEvent.KeyInputEvent event)</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (KeyLoader.showTime.isPressed())
+        {
+            EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+            World world = Minecraft.getMinecraft().theWorld;
+            player.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentTranslation(<span class="hljs-string">&quot;chat.fmltutor.time&quot;</span>, world.getTotalWorldTime()));
+
+            <span class="hljs-keyword">if</span> (player.hasCapability(CapabilityLoader.positionHistory, <span class="hljs-keyword">null</span>))
+            {
+                player.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentTranslation(<span class="hljs-string">&quot;commands.position.history&quot;</span>));
+                IPositionHistory histories = player.getCapability(CapabilityLoader.positionHistory, <span class="hljs-keyword">null</span>);
+                <span class="hljs-keyword">for</span> (Vec3 vec3 : histories.getHistories())
+                {
+                    <span class="hljs-keyword">if</span> (vec3 != <span class="hljs-keyword">null</span>)
+                    {
+                        player.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentText(vec3.toString()));
+                    }
+                }
+            }
+        }
+    }
+</code></pre>
+<p>&#x4EE3;&#x7801;&#x672C;&#x8EAB;&#x5F88;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#xFF0C;&#x4E0D;&#x8FC7;&#x5F88;&#x4E0D;&#x5E78;&#x7684;&#x662F;&#x5728;&#x5B9E;&#x9645;&#x6D4B;&#x8BD5;&#x4E2D;&#xFF0C;&#x662F;&#x4EC0;&#x4E48;&#x4F4D;&#x7F6E;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#x90FD;&#x663E;&#x793A;&#x4E0D;&#x51FA;&#x6765;&#x7684;&#x3002;&#x8FD9;&#x91CC;&#x7684;&#x95EE;&#x9898;&#x5C31;&#x662F;&#xFF1A;&#x56E0;&#x4E3A;&#x5BF9;&#x4E8E;Capability&#x5BF9;&#x5E94;&#x7684;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x7684;&#x64CD;&#x4F5C;&#x662F;&#x5728;<strong>&#x670D;&#x52A1;&#x7AEF;</strong>&#x5B8C;&#x6210;&#x7684;&#xFF0C;&#x800C;&#x6309;&#x952E;&#x8FD9;&#x4E00;&#x884C;&#x4E3A;&#x662F;&#x5728;<strong>&#x5BA2;&#x6237;&#x7AEF;</strong>&#x5B8C;&#x6210;&#x7684;&#xFF0C;&#x81EA;&#x7136;<strong>&#x5BA2;&#x6237;&#x7AEF;&#x83B7;&#x53D6;&#x4E0D;&#x5230;&#x670D;&#x52A1;&#x7AEF;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x53CD;&#x4E4B;&#x4EA6;&#x7136;</strong>&#x3002;</p>
+<p>&#x7F51;&#x7EDC;&#x6570;&#x636E;&#x4F20;&#x8F93;&#x7684;&#x4E00;&#x5C42;&#x5C31;&#x662F;&#x6570;&#x636E;&#x5305;&#xFF08;Packet&#xFF09;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x505A;&#x7684;&#x4E5F;&#x5C31;&#x662F;&#x64CD;&#x7EB5;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5305;&#xFF0C;&#x800C;&#x6570;&#x636E;&#x5305;&#x7684;&#x672C;&#x8D28;&#x5C31;&#x662F;&#x5B57;&#x8282;&#x6D41;&#x3002;&#x76F4;&#x63A5;&#x64CD;&#x7EB5;&#x5B57;&#x8282;&#x6D41;&#x663E;&#x7136;&#x4E0D;&#x591F;&#x660E;&#x667A;&#xFF0C;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8F85;&#x52A9;&#x7C7B;&#x53BB;&#x5E8F;&#x5217;&#x5316;&#xFF08;Serialize&#xFF09;&#x548C;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#xFF08;Deserialize&#xFF09;&#x624D;&#x662F;&#x6BD4;&#x8F83;&#x660E;&#x667A;&#x7684;&#x9009;&#x62E9;&#x3002;Forge&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>IMessage</code>&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x6211;&#x4EEC;&#x9996;&#x5148;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#x3002;</p>
+<p>&#x65B0;&#x5EFA;&#x5305;<code>com.github.ustc_zzzz.fmltutor.network</code>&#xFF0C;&#x5E76;&#x5728;&#x5176;&#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;<code>MessagePositionHistory</code>&#x7C7B;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/network/MessagePositionHistory.java:</code></strong></p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.github.ustc_zzzz.fmltutor.network;
+
+<span class="hljs-keyword">import</span> io.netty.buffer.ByteBuf;
+<span class="hljs-keyword">import</span> net.minecraft.nbt.NBTTagCompound;
+<span class="hljs-keyword">import</span> net.minecraftforge.fml.common.network.ByteBufUtils;
+<span class="hljs-keyword">import</span> net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MessagePositionHistory</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IMessage</span>
+</span>{
+    <span class="hljs-keyword">public</span> NBTTagCompound nbt;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fromBytes</span><span class="hljs-params">(ByteBuf buf)</span>
+    </span>{
+        nbt = ByteBufUtils.readTag(buf);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">toBytes</span><span class="hljs-params">(ByteBuf buf)</span>
+    </span>{
+        ByteBufUtils.writeTag(buf, nbt);
+    }
+}
+</code></pre>
+<p><code>IMessage</code>&#x63A5;&#x58F0;&#x660E;&#x4E86;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x4ECE;<code>ByteBuf</code>&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x521A;&#x521A;&#x6211;&#x4EEC;&#x8BF4;&#x7684;&#x5B57;&#x8282;&#x6D41;&#x8BFB;&#x5165;&#x6570;&#x636E;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x628A;&#x6570;&#x636E;&#x5199;&#x5165;<code>ByteBuf</code>&#x3002;</p>
+<p><code>ByteBuf</code>&#x672C;&#x8EAB;&#x63D0;&#x4F9B;&#x4E86;&#x5F88;&#x591A;&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x5411;&#x5176;&#x4E2D;&#x5199;&#x5165;&#x6570;&#x636E;&#xFF0C;&#x5B83;&#x4EEC;&#x662F;&#x4E00;&#x4E32;&#x4EE5;<code>read</code>&#x548C;<code>write</code>&#x5F00;&#x5934;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x6574;&#x6570;&#x3001;&#x6D6E;&#x70B9;&#x6570;&#x3001;&#x5B57;&#x8282;&#x6570;&#x7EC4;&#x7B49;&#x7B49;&#xFF0C;&#x53EA;&#x8981;<strong>&#x6309;&#x987A;&#x5E8F;</strong>&#x8BFB;&#x5199;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x6BD4;&#x5982;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x5F80;&#x5176;&#x4E2D;&#x5199;&#x5165;&#x4E24;&#x4E2A;&#x6574;&#x6570;&#x548C;&#x4E00;&#x4E2A;&#x6D6E;&#x70B9;&#x6570;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x4F1A;&#x8FD9;&#x4E48;&#x505A;&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> numberA;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> numberB;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> numberC;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fromBytes</span><span class="hljs-params">(ByteBuf buf)</span>
+    </span>{
+        numberA = buf.readInt();
+        numberB = buf.readInt();
+        numberC = buf.readDouble();
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">toBytes</span><span class="hljs-params">(ByteBuf buf)</span>
+    </span>{
+        buf.writeInt(numberA);
+        buf.writeInt(numberB);
+        buf.writeDouble(numberC);
+    }
+</code></pre>
+<p>&#x4E0D;&#x8FC7;&#x6211;&#x4EEC;&#x4E5F;&#x53EF;&#x4EE5;&#x770B;&#x5F97;&#x51FA;&#x8FD9;&#x663E;&#x7136;&#x4E0D;&#x591F;&#x7528;&#xFF0C;&#x5F88;&#x591A;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x5199;&#x5165;&#x5B57;&#x7B26;&#x4E32;&#x3001;<code>ItemStack</code>&#x3001;&#x6216;&#x8005;&#x4E00;&#x4E2A;NBT&#x6807;&#x7B7E;&#xFF08;&#x672C;&#x8282;&#x6559;&#x7A0B;&#x7684;&#x60C5;&#x5F62;&#xFF09;&#x3002;&#x8FD9;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x5C31;&#x9700;&#x8981;&#x7528;&#x5230;Forge&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x7684;&#x5E2E;&#x52A9;&#x7C7B;<code>ByteBufUtils</code>&#x4E86;&#xFF0C;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x5DF2;&#x7ECF;&#x5C55;&#x793A;&#x4E86;&#x5982;&#x4F55;&#x4F7F;&#x7528;<code>ByteBufUtils</code>&#x7C7B;&#x5199;&#x5165;&#x4E00;&#x4E2A;<code>NBTTagCompound</code>&#x3002;</p>
+<p>&#x4E0A;&#x9762;&#x6211;&#x4EEC;&#x63D0;&#x5230;&#x4E86;&#x5BA2;&#x6237;&#x7AEF;&#x83B7;&#x53D6;&#x4E0D;&#x5230;&#x670D;&#x52A1;&#x7AEF;&#x7684;&#x6570;&#x636E;&#x8FD9;&#x4E00;&#x70B9;&#xFF0C;&#x81EA;&#x7136;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x670D;&#x52A1;&#x7AEF;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x6570;&#x636E;&#x5305;&#x6765;&#x89E3;&#x51B3;&#x8FD9;&#x4E00;&#x95EE;&#x9898;&#xFF0C;&#x540C;&#x65F6;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x5C31;&#x5FC5;&#x987B;&#x8981;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x7C7B;&#x6765;&#x5904;&#x7406;&#x670D;&#x52A1;&#x7AEF;&#x53D1;&#x8FC7;&#x6765;&#x7684;&#x5305;&#x3002;Forge&#x63D0;&#x4F9B;&#x7684;&#x63A5;&#x53E3;&#x662F;<code>IMessageHandler</code>&#xFF0C;&#x6211;&#x4EEC;&#x5728;<code>MessagePositionHistory</code>&#x4E2D;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5185;&#x90E8;&#x7C7B;&#xFF0C;&#x5E76;&#x5B9E;&#x73B0;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/network/MessagePositionHistory.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Handler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IMessageHandler</span>&lt;<span class="hljs-title">MessagePositionHistory</span>, <span class="hljs-title">IMessage</span>&gt;
+    </span>{
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> IMessage <span class="hljs-title">onMessage</span><span class="hljs-params">(MessagePositionHistory message, MessageContext ctx)</span>
+        </span>{
+            <span class="hljs-keyword">if</span> (ctx.side == Side.CLIENT)
+            {
+                <span class="hljs-keyword">final</span> NBTBase nbt = message.nbt.getTag(<span class="hljs-string">&quot;histories&quot;</span>);
+                Minecraft.getMinecraft().addScheduledTask(<span class="hljs-keyword">new</span> Runnable()
+                {
+                    <span class="hljs-meta">@Override</span>
+                    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span>
+                    </span>{
+                        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+                        <span class="hljs-keyword">if</span> (player.hasCapability(CapabilityLoader.positionHistory, <span class="hljs-keyword">null</span>))
+                        {
+                            IPositionHistory histories = player.getCapability(CapabilityLoader.positionHistory, <span class="hljs-keyword">null</span>);
+                            IStorage&lt;IPositionHistory&gt; storage = CapabilityLoader.positionHistory.getStorage();
+                            storage.readNBT(CapabilityLoader.positionHistory, histories, <span class="hljs-keyword">null</span>, nbt);
+                        }
+                    }
+                });
+            }
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+    }
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x5148;&#x6765;&#x8BF4;&#x8BF4;&#x4F34;&#x968F;<code>IMessageHandler</code>&#x7684;&#x4E24;&#x4E2A;&#x6CDB;&#x578B;&#x53C2;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Handler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IMessageHandler</span>&lt;<span class="hljs-title">MessagePositionHistory</span>, <span class="hljs-title">IMessage</span>&gt;
+</span></code></pre>
+<ul>
+<li>&#x9996;&#x5148;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x786E;&#x5B9A;&#x6536;&#x8FC7;&#x6765;&#x7684;&#x5305;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x7B2C;&#x4E00;&#x4E2A;&#x6CDB;&#x578B;&#x53C2;&#x6570;</li>
+<li>&#x4E00;&#x7AEF;&#x5728;&#x6536;&#x5230;&#x53E6;&#x4E00;&#x7AEF;&#x7684;&#x5305;&#x65F6;&#x5E38;&#x5E38;&#x4F1A;&#x6709;&#x628A;&#x5305;&#x53D1;&#x56DE;&#x53E6;&#x4E00;&#x7AEF;&#x7684;&#x9700;&#x8981;&#xFF0C;&#x8FD9;&#x4E2A;&#x53D1;&#x56DE;&#x7684;&#x5305;&#x7684;&#x7C7B;&#x578B;&#x5C31;&#x662F;&#x7B2C;&#x4E8C;&#x4E2A;&#x6CDB;&#x578B;&#x53C2;&#x6570;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x4E0D;&#x9700;&#x8981;&#x53D1;&#x56DE;&#x6570;&#x636E;&#x5305;</li>
+</ul>
+<p><code>onMessage</code>&#x65B9;&#x6CD5;&#x5C31;&#x662F;&#x7528;&#x4E8E;&#x5904;&#x7406;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x5305;&#xFF08;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF09;&#x7684;&#x3002;&#x5B83;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x5C31;&#x662F;&#x53D1;&#x56DE;&#x7684;&#x6570;&#x636E;&#x5305;&#x3002;&#x56E0;&#x4E3A;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x4E0D;&#x9700;&#x8981;&#x53D1;&#x56DE;&#x6570;&#x636E;&#x5305;&#xFF0C;&#x6240;&#x4EE5;&#x8FD4;&#x56DE;<code>null</code>&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x63A5;&#x7740;&#x8BB2;&#x4E00;&#x8BB2;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x3002;<code>MessageContext</code>&#x7C7B;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;<code>side</code>&#x53D8;&#x91CF;&#xFF0C;&#x7528;&#x4E8E;&#x5224;&#x5B9A;<strong>&#x63A5;&#x6536;&#x65B9;</strong>&#x662F;&#x5BA2;&#x6237;&#x7AEF;&#x8FD8;&#x662F;&#x670D;&#x52A1;&#x7AEF;&#xFF0C;&#x8FD9;&#x91CC;&#x81EA;&#x7136;&#x662F;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x4F46;&#x662F;&#x4E3A;&#x4E86;&#x4FDD;&#x9669;&#x6211;&#x4EEC;&#x8FD8;&#x662F;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;&#x6761;&#x4EF6;&#x5224;&#x65AD;&#x4E86;&#x4E0B;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x662F;&#x91CC;&#x9762;&#x7684;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-java">                <span class="hljs-keyword">final</span> NBTBase nbt = message.nbt.getTag(<span class="hljs-string">&quot;histories&quot;</span>);
+                Minecraft.getMinecraft().addScheduledTask(<span class="hljs-keyword">new</span> Runnable()
+                {
+                    <span class="hljs-meta">@Override</span>
+                    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span>
+                    </span>{
+                        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+                        <span class="hljs-keyword">if</span> (player.hasCapability(CapabilityLoader.positionHistory, <span class="hljs-keyword">null</span>))
+                        {
+                            IPositionHistory histories = player.getCapability(CapabilityLoader.positionHistory, <span class="hljs-keyword">null</span>);
+                            IStorage&lt;IPositionHistory&gt; storage = CapabilityLoader.positionHistory.getStorage();
+                            storage.readNBT(CapabilityLoader.positionHistory, histories, <span class="hljs-keyword">null</span>, nbt);
+                        }
+                    }
+                });
+</code></pre>
+<p>&#x8FD9;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#x81EA;&#x7136;&#x662F;&#x7528;&#x4E8E;&#x540C;&#x6B65;&#x6570;&#x636E;&#x5230;Capability&#x7684;&#x3002;&#x5269;&#x4E0B;&#x7684;&#x4EE3;&#x7801;&#x90FD;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x884C;&#x4EE3;&#x7801;&#x662F;&#x600E;&#x4E48;&#x4E00;&#x56DE;&#x4E8B;&#x5462;&#xFF1F;</p>
+<pre><code class="lang-java">                Minecraft.getMinecraft().addScheduledTask(<span class="hljs-keyword">new</span> Runnable()
+</code></pre>
+<p>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x4ECE;Minecraft 1.8&#x5F00;&#x59CB;&#xFF0C;Minecraft&#x7684;&#x6240;&#x6709;&#x7F51;&#x7EDC;&#x64CD;&#x4F5C;&#x90FD;&#x662F;&#x5728;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x7F51;&#x7EDC;&#x7EBF;&#x7A0B;&#x4E2D;&#x8FDB;&#x884C;&#xFF0C;&#x8FD9;&#x4F1A;&#x5BFC;&#x81F4;&#x5176;&#x6CA1;&#x6709;&#x529E;&#x6CD5;&#x548C;&#x6E38;&#x620F;&#x4E2D;&#x7684;&#x5927;&#x591A;&#x6570;&#x5BF9;&#x8C61;&#x4EA4;&#x4E92;&#x3002;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x8C03;&#x7528;<code>IThreadListener</code>&#x7684;<code>addScheduledTask</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5E76;&#x4F20;&#x5165;&#x4E00;&#x4E2A;<code>Runnable</code>&#x3002;&#x5BA2;&#x6237;&#x7AEF;&#x7684;<code>Minecraft</code>&#x7C7B;&#x5B9E;&#x73B0;&#x4E86;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x800C;&#x670D;&#x52A1;&#x7AEF;&#x7684;<code>MinecraftServer</code>&#x548C;<code>WorldServer</code>&#x7C7B;&#x5206;&#x522B;&#x5B9E;&#x73B0;&#x4E86;&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#x3002;</p>
+<h2 id="simplenetworkwrapper"><code>SimpleNetworkWrapper</code></h2>
+<p>&#x63A5;&#x4E0B;&#x6765;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x505A;&#x7684;&#x4E8B;&#x60C5;&#xFF0C;&#x5C31;&#x662F;&#x628A;&#x4E0A;&#x9762;&#x6211;&#x4EEC;&#x505A;&#x51FA;&#x6765;&#x7684;&#x8FD9;&#x4E9B;&#x4E1C;&#x897F;&#x5168;&#x90FD;&#x7ED1;&#x5B9A;&#x5230;&#x7279;&#x5B9A;&#x7684;&#x9891;&#x9053;&#xFF08;Channel&#xFF09;&#x4E0A;&#xFF0C;Forge&#x7B80;&#x5355;&#x5305;&#x88C5;&#x4E86;&#x4E00;&#x4E0B;&#x8FD9;&#x4E2A;&#x9891;&#x9053;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;<code>SimpleNetworkWrapper</code>&#x7C7B;&#x3002;</p>
+<p>&#x5728;&#x5305;<code>com.github.ustc_zzzz.fmltutor.network</code>&#x4E0B;&#x65B0;&#x5EFA;&#x7C7B;<code>NetworkLoader</code>&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/network/NetworkLoader.java:</code></strong></p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.github.ustc_zzzz.fmltutor.network;
+
+<span class="hljs-keyword">import</span> com.github.ustc_zzzz.fmltutor.FMLTutor;
+
+<span class="hljs-keyword">import</span> net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+<span class="hljs-keyword">import</span> net.minecraftforge.fml.common.network.NetworkRegistry;
+<span class="hljs-keyword">import</span> net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+<span class="hljs-keyword">import</span> net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+<span class="hljs-keyword">import</span> net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+<span class="hljs-keyword">import</span> net.minecraftforge.fml.relauncher.Side;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NetworkLoader</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SimpleNetworkWrapper instance = NetworkRegistry.INSTANCE.newSimpleChannel(FMLTutor.MODID);
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> nextID = <span class="hljs-number">0</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">NetworkLoader</span><span class="hljs-params">(FMLPreInitializationEvent event)</span>
+    </span>{
+        registerMessage(MessagePositionHistory.Handler.class, MessagePositionHistory.class, Side.CLIENT);
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> &lt;REQ extends IMessage, REPLY extends IMessage&gt; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">registerMessage</span><span class="hljs-params">(
+            Class&lt;? extends IMessageHandler&lt;REQ, REPLY&gt;&gt; messageHandler, Class&lt;REQ&gt; requestMessageType, Side side)</span>
+    </span>{
+        instance.registerMessage(messageHandler, requestMessageType, nextID++, side);
+    }
+}
+</code></pre>
+<p>&#x7B2C;&#x4E00;&#x4EF6;&#x4E8B;&#x5C31;&#x662F;&#x8C03;&#x7528;<code>NetworkRegistry</code>&#x7684;<code>newSimpleChannel</code>&#x65B9;&#x6CD5;&#xFF0C;&#x5E76;&#x4F20;&#x5165;Mod id&#x4EE5;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x7684;<code>SimpleNetworkWrapper</code>&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SimpleNetworkWrapper instance = NetworkRegistry.INSTANCE.newSimpleChannel(FMLTutor.MODID);
+</code></pre>
+<p>&#x7B2C;&#x4E8C;&#x4EF6;&#x4E8B;&#x5C31;&#x662F;&#x7528;<code>SimpleNetworkWrapper</code>&#x7684;<code>registerMessage</code>&#x65B9;&#x6CD5;&#x7ED1;&#x5B9A;<code>IMessage</code>&#x548C;&#x5176;&#x5BF9;&#x5E94;&#x7684;<code>IMessageHandler</code>&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x770B;&#x4E00;&#x4E0B;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x58F0;&#x660E;&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-keyword">public</span> &lt;REQ extends IMessage, REPLY extends IMessage&gt; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">registerMessage</span><span class="hljs-params">(
+            Class&lt;? extends IMessageHandler&lt;REQ, REPLY&gt;&gt; messageHandler, Class&lt;REQ&gt; requestMessageType, <span class="hljs-keyword">int</span> discriminator, Side side)</span>
+</span></code></pre>
+<ul>
+<li>&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;&#x7528;&#x4E8E;<strong>&#x53D1;&#x9001;</strong>&#x7684;<code>IMessage</code>&#x7684;class</li>
+<li>&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;&#x7528;&#x4E8E;<strong>&#x63A5;&#x6536;</strong>&#x7684;<code>IMessageHandler</code></li>
+<li>&#x7B2C;&#x56DB;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;<strong>&#x63A5;&#x6536;&#x65B9;&#x4E3A;&#x670D;&#x52A1;&#x7AEF;&#x8FD8;&#x662F;&#x5BA2;&#x6237;&#x7AEF;</strong>&#xFF0C;&#x8FD9;&#x91CC;&#x56E0;&#x4E3A;&#x662F;&#x5BA2;&#x6237;&#x7AEF;<strong>&#x63A5;&#x6536;</strong>&#xFF0C;&#x6240;&#x4EE5;&#x4F20;&#x5165;&#x4E00;&#x4E2A;<code>Side.CLIENT</code></li>
+<li>&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;&#x8FD9;&#x4E00;&#x9891;&#x9053;&#x7684;<strong>&#x552F;&#x4E00;</strong>id&#xFF0C;&#x4E00;&#x4E2A;&#x6BD4;&#x8F83;&#x597D;&#x7684;&#x505A;&#x6CD5;&#x662F;&#x9759;&#x6001;&#x5B58;&#x50A8;&#x4E0B;&#x4E00;&#x4E2A;id&#x7684;&#x503C;&#xFF0C;&#x6BCF;&#x6CE8;&#x518C;&#x4E00;&#x6B21;&#x5C31;&#x52A0;&#x4E00;&#xFF0C;&#x6B63;&#x5982;&#x4E0A;&#x9762;&#x63D0;&#x4F9B;&#x7684;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x4E00;&#x6837;&#xFF0C;&#x6559;&#x7A0B;&#x5C31;&#x662F;&#x8FD9;&#x4E48;&#x505A;&#x7684;</li>
+</ul>
+<p>&#x5982;&#x679C;&#x65E2;&#x6709;&#x670D;&#x52A1;&#x7AEF;&#x5411;&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x9001;&#x4FE1;&#x606F;&#x7684;&#x9700;&#x8981;&#xFF0C;&#x53C8;&#x6709;&#x5BA2;&#x6237;&#x7AEF;&#x5411;&#x670D;&#x52A1;&#x7AEF;&#x53D1;&#x9001;&#x4FE1;&#x606F;&#x7684;&#x9700;&#x8981;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>Side.CLIENT</code>&#x548C;<code>Side.SERVER</code>&#x6CE8;&#x518C;&#x4E24;&#x4E2A;<code>IMessageHandler</code>&#xFF0C;&#x4F46;&#x4ECD;&#x9700;&#x8981;&#x4FDD;&#x8BC1;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x8868;&#x793A;&#x7684;<strong>id&#x662F;&#x552F;&#x4E00;&#x7684;</strong>&#x3002;</p>
+<p>&#x6700;&#x540E;&#x6254;&#x8FDB;<code>CommonProxy</code>&#x7684;<strong><code>preInit</code>&#x9636;&#x6BB5;</strong>&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">preInit</span><span class="hljs-params">(FMLPreInitializationEvent event)</span>
+    </span>{
+        <span class="hljs-keyword">new</span> ConfigLoader(event);
+        <span class="hljs-keyword">new</span> CapabilityLoader(event);
+        <span class="hljs-keyword">new</span> CreativeTabsLoader(event);
+        <span class="hljs-keyword">new</span> FluidLoader(event);
+        <span class="hljs-keyword">new</span> ItemLoader(event);
+        <span class="hljs-keyword">new</span> BlockLoader(event);
+        <span class="hljs-keyword">new</span> OreDictionaryLoader(event);
+        <span class="hljs-keyword">new</span> PotionLoader(event);
+        <span class="hljs-keyword">new</span> EntityLoader(event);
+        <span class="hljs-keyword">new</span> TileEntityLoader(event);
+        <span class="hljs-keyword">new</span> NetworkLoader(event);
+    }
+</code></pre>
+<h2 id="&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;">&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;</h2>
+<p><code>IMessageHandler</code>&#x5DF2;&#x7ECF;&#x63A5;&#x7BA1;&#x4E86;&#x63A5;&#x6536;&#x6570;&#x636E;&#x5305;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x90A3;&#x4E48;&#x662F;&#x8C01;&#x63A5;&#x7BA1;&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;&#x7684;&#x4EFB;&#x52A1;&#x5462;&#xFF1F;</p>
+<p><code>SimpleNetworkWrapper</code>&#x63D0;&#x4F9B;&#x4E86;&#x82E5;&#x5E72;&#x4E2A;&#x65B9;&#x6CD5;&#x7528;&#x4E8E;&#x5BA2;&#x6237;&#x7AEF;&#x548C;&#x670D;&#x52A1;&#x7AEF;&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;&#xFF1A;</p>
+<ul>
+<li><code>sendToAll</code>&#x65B9;&#x6CD5;&#x7528;&#x4E8E;<strong>&#x670D;&#x52A1;&#x7AEF;</strong>&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;&#x7ED9;&#x6240;&#x6709;&#x73A9;&#x5BB6;</li>
+<li><code>sendTo</code>&#x65B9;&#x6CD5;&#x7528;&#x4E8E;<strong>&#x670D;&#x52A1;&#x7AEF;</strong>&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;&#x7ED9;&#x7279;&#x5B9A;&#x73A9;&#x5BB6;</li>
+<li><code>sendToAllAround</code>&#x65B9;&#x6CD5;&#x7528;&#x4E8E;<strong>&#x670D;&#x52A1;&#x7AEF;</strong>&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;&#x7ED9;&#x7279;&#x5B9A;&#x4F4D;&#x7F6E;&#x548C;&#x7279;&#x5B9A;&#x534A;&#x5F84;&#x786E;&#x5B9A;&#x7684;&#x8303;&#x56F4;&#x5185;&#x7684;&#x6240;&#x6709;&#x73A9;&#x5BB6;</li>
+<li><code>sendToDimension</code>&#x65B9;&#x6CD5;&#x7528;&#x4E8E;<strong>&#x670D;&#x52A1;&#x7AEF;</strong>&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;&#x7ED9;&#x7279;&#x5B9A;&#x7EF4;&#x5EA6;&#x7684;&#x6240;&#x6709;&#x73A9;&#x5BB6;</li>
+<li><code>sendToServer</code>&#x65B9;&#x6CD5;&#x7528;&#x4E8E;<strong>&#x5BA2;&#x6237;&#x7AEF;</strong>&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;&#x7ED9;&#x670D;&#x52A1;&#x5668;</li>
+</ul>
+<p>&#x8FD9;&#x91CC;&#x4F5C;&#x4E3A;&#x5B9E;&#x4F53;&#xFF08;<code>Entity</code>&#x7C7B;&#xFF09;&#x7684;<code>Capability</code>&#xFF0C;&#x5230;&#x5E95;&#x5E94;&#x8BE5;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;&#x5462;&#xFF1F;&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x5728;&#x5B9E;&#x4F53;&#x5728;&#x4E16;&#x754C;&#x4E0A;&#x751F;&#x6210;&#xFF08;&#x5BF9;&#x4E8E;&#x73A9;&#x5BB6;&#x662F;&#x8FDB;&#x5165;&#x4E16;&#x754C;&#xFF09;&#x7684;&#x65F6;&#x5019;&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/common/EventLoader.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@SubscribeEvent</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onEntityJoinWorld</span><span class="hljs-params">(EntityJoinWorldEvent event)</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (!event.world.isRemote &amp;&amp; event.entity <span class="hljs-keyword">instanceof</span> EntityPlayer)
+        {
+            EntityPlayerMP player = (EntityPlayerMP) event.entity;
+            <span class="hljs-keyword">if</span> (player.hasCapability(CapabilityLoader.positionHistory, <span class="hljs-keyword">null</span>))
+            {
+                MessagePositionHistory message = <span class="hljs-keyword">new</span> MessagePositionHistory();
+
+                IPositionHistory histories = player.getCapability(CapabilityLoader.positionHistory, <span class="hljs-keyword">null</span>);
+                IStorage&lt;IPositionHistory&gt; storage = CapabilityLoader.positionHistory.getStorage();
+
+                message.nbt = <span class="hljs-keyword">new</span> NBTTagCompound();
+                message.nbt.setTag(<span class="hljs-string">&quot;histories&quot;</span>, storage.writeNBT(CapabilityLoader.positionHistory, histories, <span class="hljs-keyword">null</span>));
+
+                NetworkLoader.instance.sendTo(message, player);
+            }
+        }
+    }
+</code></pre>
+<p>&#x8FD8;&#x6709;&#x5C31;&#x662F;&#x6570;&#x636E;&#x53D1;&#x751F;&#x53D8;&#x52A8;&#x7684;&#x65F6;&#x5019;&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;&#xFF08;&#x8FD9;&#x91CC;&#x5C31;&#x662F;&#x6267;&#x884C;&#x547D;&#x4EE4;&#x7684;&#x65F6;&#x5019;&#x53D1;&#x9001;&#xFF09;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/command/CommandPosition.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">processCommand</span><span class="hljs-params">(ICommandSender sender, String[] args)</span> <span class="hljs-keyword">throws</span> CommandException
+    </span>{
+        <span class="hljs-keyword">if</span> (args.length &gt; <span class="hljs-number">1</span>)
+        {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> WrongUsageException(<span class="hljs-string">&quot;commands.position.usage&quot;</span>);
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            EntityPlayerMP entityPlayerMP = args.length &gt; <span class="hljs-number">0</span> ? CommandBase.getPlayer(sender, args[<span class="hljs-number">0</span>])
+                    : CommandBase.getCommandSenderAsPlayer(sender);
+            Vec3 pos = entityPlayerMP.getPositionVector();
+
+            <span class="hljs-keyword">if</span> (entityPlayerMP == sender &amp;&amp; entityPlayerMP.hasCapability(CapabilityLoader.positionHistory, <span class="hljs-keyword">null</span>))
+            {
+                sender.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentTranslation(<span class="hljs-string">&quot;commands.position.history&quot;</span>));
+                IPositionHistory histories = entityPlayerMP.getCapability(CapabilityLoader.positionHistory, <span class="hljs-keyword">null</span>);
+                <span class="hljs-keyword">for</span> (Vec3 vec3 : histories.getHistories())
+                {
+                    <span class="hljs-keyword">if</span> (vec3 != <span class="hljs-keyword">null</span>)
+                    {
+                        sender.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentText(vec3.toString()));
+                    }
+                }
+                histories.pushHistory(pos);
+
+                MessagePositionHistory message = <span class="hljs-keyword">new</span> MessagePositionHistory();
+                IStorage&lt;IPositionHistory&gt; storage = CapabilityLoader.positionHistory.getStorage();
+
+                message.nbt = <span class="hljs-keyword">new</span> NBTTagCompound();
+                message.nbt.setTag(<span class="hljs-string">&quot;histories&quot;</span>, storage.writeNBT(CapabilityLoader.positionHistory, histories, <span class="hljs-keyword">null</span>));
+
+                NetworkLoader.instance.sendTo(message, entityPlayerMP);
+            }
+
+            sender.addChatMessage(<span class="hljs-keyword">new</span> ChatComponentTranslation(<span class="hljs-string">&quot;commands.position.success&quot;</span>, entityPlayerMP.getName(),
+                    pos, entityPlayerMP.worldObj.provider.getDimensionName()));
+        }
+    }
+</code></pre>
+<p>&#x6253;&#x5F00;&#x6E38;&#x620F;&#x8BD5;&#x8BD5;&#x5427;&#xFF5E;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="3.3.1-Capability系统与已有实体附加属性.html" class="navigation navigation-prev " aria-label="Previous page: 3.3.1 Capability系统与已有实体附加属性">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3.3.3-世界附加数据存储.html" class="navigation navigation-next " aria-label="Next page: 3.3.3 世界附加数据存储">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.3.2 使用SimpleImpl同步数据","level":"1.6.13","depth":2,"next":{"title":"3.3.3 世界附加数据存储","level":"1.6.14","depth":2,"path":"3.3.3-世界附加数据存储.md","ref":"3.3.3-世界附加数据存储.md","articles":[]},"previous":{"title":"3.3.1 Capability系统与已有实体附加属性","level":"1.6.12","depth":2,"path":"3.3.1-Capability系统与已有实体附加属性.md","ref":"3.3.1-Capability系统与已有实体附加属性.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default@1.0.5"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"FMLTutor","gitbook":"*","description":"Minecraft 1.8.9 FML Mod 开发教程"},"file":{"path":"3.3.2-使用SimpleImpl同步数据.md","mtime":"2016-08-10T09:00:58.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-04T06:29:21.625Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

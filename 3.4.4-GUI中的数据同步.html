@@ -1,0 +1,1325 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3.4.4 GUI中的数据同步 · FMLTutor</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3.5.1-使用其他Mod的API.html" />
+    
+    
+    <link rel="prev" href="3.4.3-GUI界面中的交互.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <a target="_blank" href="https://github.com/ustc-zzzz/fmltutor/tree/master">
+            
+                    
+                    源代码仓库（记得Star哦）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="0-绪论.html">
+            
+                <a href="0-绪论.html">
+            
+                    
+                    0 绪论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    1 基础部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="1.1-配置你的工作环境.html">
+            
+                <a href="1.1-配置你的工作环境.html">
+            
+                    
+                    1.1 配置你的工作环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="1.2-主类、代理和Mod信息.html">
+            
+                <a href="1.2-主类、代理和Mod信息.html">
+            
+                    
+                    1.2 主类、代理和Mod信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="1.3-第一个物品.html">
+            
+                <a href="1.3-第一个物品.html">
+            
+                    
+                    1.3 第一个物品
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="1.4-第一个方块.html">
+            
+                <a href="1.4-第一个方块.html">
+            
+                    
+                    1.4 第一个方块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="1.5-创造模式物品栏.html">
+            
+                <a href="1.5-创造模式物品栏.html">
+            
+                    
+                    1.5 创造模式物品栏
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                <a href="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                    
+                    1.6 第一份合成表、烧炼规则和燃料
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="1.7-本地化和国际化.html">
+            
+                <a href="1.7-本地化和国际化.html">
+            
+                    
+                    1.7 本地化和国际化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="1.8-创建一份配置文件.html">
+            
+                <a href="1.8-创建一份配置文件.html">
+            
+                    
+                    1.8 创建一份配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    2 初级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="2.1.1-注册已有的事件.html">
+            
+                <a href="2.1.1-注册已有的事件.html">
+            
+                    
+                    2.1.1 注册已有的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="2.1.2-自定义新的事件.html">
+            
+                <a href="2.1.2-自定义新的事件.html">
+            
+                    
+                    2.1.2 自定义新的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="2.2.1-新的工具.html">
+            
+                <a href="2.2.1-新的工具.html">
+            
+                    
+                    2.2.1 新的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="2.2.2-新的食物.html">
+            
+                <a href="2.2.2-新的食物.html">
+            
+                    
+                    2.2.2 新的食物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="2.2.3-新的盔甲.html">
+            
+                <a href="2.2.3-新的盔甲.html">
+            
+                    
+                    2.2.3 新的盔甲
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="2.3.1-新的伤害类型.html">
+            
+                <a href="2.3.1-新的伤害类型.html">
+            
+                    
+                    2.3.1 新的伤害类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="2.3.2-新的附魔属性.html">
+            
+                <a href="2.3.2-新的附魔属性.html">
+            
+                    
+                    2.3.2 新的附魔属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="2.3.3-新的药水效果.html">
+            
+                <a href="2.3.3-新的药水效果.html">
+            
+                    
+                    2.3.3 新的药水效果
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="2.4.1-热键绑定.html">
+            
+                <a href="2.4.1-热键绑定.html">
+            
+                    
+                    2.4.1 热键绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="2.4.2-成就系统.html">
+            
+                <a href="2.4.2-成就系统.html">
+            
+                    
+                    2.4.2 成就系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="2.4.3-系统命令.html">
+            
+                <a href="2.4.3-系统命令.html">
+            
+                    
+                    2.4.3 系统命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="2.4.4-声音系统.html">
+            
+                <a href="2.4.4-声音系统.html">
+            
+                    
+                    2.4.4 声音系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.13" data-path="2.5.1-在世界生成矿物.html">
+            
+                <a href="2.5.1-在世界生成矿物.html">
+            
+                    
+                    2.5.1 在世界生成矿物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.14" data-path="2.5.2-注册和使用矿物字典.html">
+            
+                <a href="2.5.2-注册和使用矿物字典.html">
+            
+                    
+                    2.5.2 注册和使用矿物字典
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.15" data-path="2.6.1-创建并注册一份流体.html">
+            
+                <a href="2.6.1-创建并注册一份流体.html">
+            
+                    
+                    2.6.1 创建并注册一份流体
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.16" data-path="2.6.2-为流体添加对应的桶.html">
+            
+                <a href="2.6.2-为流体添加对应的桶.html">
+            
+                    
+                    2.6.2 为流体添加对应的桶
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    3 高级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                <a href="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                    
+                    3.1.1 新的生物和对应的刷怪蛋
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="3.1.2-新的生物渲染模型.html">
+            
+                <a href="3.1.2-新的生物渲染模型.html">
+            
+                    
+                    3.1.2 新的生物渲染模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="3.1.3-生物的固有属性和自然生成.html">
+            
+                <a href="3.1.3-生物的固有属性和自然生成.html">
+            
+                    
+                    3.1.3 生物的固有属性和自然生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="3.1.4-生物的自动同步和数据存储.html">
+            
+                <a href="3.1.4-生物的自动同步和数据存储.html">
+            
+                    
+                    3.1.4 生物的自动同步和数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="3.1.5-为生物绑定AI.html">
+            
+                <a href="3.1.5-为生物绑定AI.html">
+            
+                    
+                    3.1.5 为生物绑定AI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="3.1.6-投掷物的注册和生成.html">
+            
+                <a href="3.1.6-投掷物的注册和生成.html">
+            
+                    
+                    3.1.6 投掷物的注册和生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="3.1.7-FakePlayer的获取与使用.html">
+            
+                <a href="3.1.7-FakePlayer的获取与使用.html">
+            
+                    
+                    3.1.7 FakePlayer的获取与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="3.2.1-BlockState和Metadata.html">
+            
+                <a href="3.2.1-BlockState和Metadata.html">
+            
+                    
+                    3.2.1 BlockState和Metadata
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="3.2.2-TileEntity与数据更新.html">
+            
+                <a href="3.2.2-TileEntity与数据更新.html">
+            
+                    
+                    3.2.2 TileEntity与数据更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="3.2.3-BlockState的简化映射.html">
+            
+                <a href="3.2.3-BlockState的简化映射.html">
+            
+                    
+                    3.2.3 BlockState的简化映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                <a href="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                    
+                    3.2.4 扩展BlockState和第三方模型格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                <a href="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                    
+                    3.3.1 Capability系统与已有实体附加属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="3.3.2-使用SimpleImpl同步数据.html">
+            
+                <a href="3.3.2-使用SimpleImpl同步数据.html">
+            
+                    
+                    3.3.2 使用SimpleImpl同步数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="3.3.3-世界附加数据存储.html">
+            
+                <a href="3.3.3-世界附加数据存储.html">
+            
+                    
+                    3.3.3 世界附加数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.15" data-path="3.4.1-创建一个新的GUI界面.html">
+            
+                <a href="3.4.1-创建一个新的GUI界面.html">
+            
+                    
+                    3.4.1 创建一个新的GUI界面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.16" data-path="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                <a href="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                    
+                    3.4.2 GUI界面的个性化与物品槽的添加
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.17" data-path="3.4.3-GUI界面中的交互.html">
+            
+                <a href="3.4.3-GUI界面中的交互.html">
+            
+                    
+                    3.4.3 GUI界面中的交互
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6.18" data-path="3.4.4-GUI中的数据同步.html">
+            
+                <a href="3.4.4-GUI中的数据同步.html">
+            
+                    
+                    3.4.4 GUI中的数据同步
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.19" data-path="3.5.1-使用其他Mod的API.html">
+            
+                <a href="3.5.1-使用其他Mod的API.html">
+            
+                    
+                    3.5.1 使用其他Mod的API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.20" data-path="3.5.2-向其他Mod提供API.html">
+            
+                <a href="3.5.2-向其他Mod提供API.html">
+            
+                    
+                    3.5.2 向其他Mod提供API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    附录
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="附录A-配置Gradle的一些小技巧.html">
+            
+                <a href="附录A-配置Gradle的一些小技巧.html">
+            
+                    
+                    附录A 配置Gradle的一些小技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="附录B-混淆与反射.html">
+            
+                <a href="附录B-混淆与反射.html">
+            
+                    
+                    附录B 混淆与反射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="附录C-使用AccessTransformers.html">
+            
+                <a href="附录C-使用AccessTransformers.html">
+            
+                    
+                    附录C 使用AccessTransformers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="附录D-使用Scala编写Mod.html">
+            
+                <a href="附录D-使用Scala编写Mod.html">
+            
+                    
+                    附录D 使用Scala编写Mod
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >3.4.4 GUI中的数据同步</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x6982;&#x8FF0;">&#x6982;&#x8FF0;</h2>
+<p>&#x8FD8;&#x8BB0;&#x5F97;&#x8FD9;&#x5F20;&#x56FE;&#x5417;&#xFF1F;</p>
+<p><img src="resources/gui_analysis.png" alt="gui_analysis"></p>
+<p>&#x672C;&#x8282;&#x5C06;&#x4ECB;&#x7ECD;&#x8FD9;&#x5F20;&#x56FE;&#x4E2D;&#x7684;&#x2464;&#x90E8;&#x5206;&#x3002;</p>
+<p>&#x6B64;&#x5916;&#xFF0C;&#x672C;&#x8282;&#x5C06;&#x5728;&#x4E4B;&#x95F4;&#x7684;&#x7AE0;&#x8282;&#x4E2D;&#x5236;&#x4F5C;&#x7684;&#x7194;&#x7089;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;GUI&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x5C06;TileEntity&#x4E2D;&#x7684;&#x6570;&#x636E;&#x5E94;&#x7528;&#x5230;GUI&#x4E2D;&#x3002;</p>
+<h2 id="&#x51C6;&#x5907;&#x5DE5;&#x4F5C;">&#x51C6;&#x5907;&#x5DE5;&#x4F5C;</h2>
+<p>&#x6211;&#x4EEC;&#x5148;&#x51C6;&#x5907;&#x4E00;&#x5F20;GUI&#x7684;&#x8D34;&#x56FE;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x8D77;&#x540D;&#x4E3A;<code>gui_metal_furnace.png</code>&#xFF0C;&#x653E;&#x5165;<code>assets.fmltutor.textures.gui.container</code>&#x76EE;&#x5F55;&#x4E0B;&#xFF1A;</p>
+<p><strong><code>src/main/resources/assets/fmltutor/textures/gui/container/gui_metal_furnace.png:</code></strong></p>
+<p><img src="resources/gui_metal_furnace.png" alt="gui_metal_furnace"></p>
+<p>&#xFF08;&#x597D;&#x50CF;&#x6CA1;&#x6709;&#x71C3;&#x6599;&#x69FD;&#xFF1F;&#x4E0D;&#x8981;&#x5728;&#x610F;&#x8FD9;&#x4E9B;&#x7EC6;&#x8282;&#xFF09;</p>
+<p>&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x7528;&#x4E8E;&#x7194;&#x7089;&#x7684;GUI&#x7684;&#x4EE3;&#x7801;&#x548C;&#x4E4B;&#x95F4;&#x4F7F;&#x7528;&#x7684;&#x793A;&#x4F8B;GUI&#x7684;&#x4EE3;&#x7801;&#x662F;&#x5341;&#x5206;&#x76F8;&#x8FD1;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x5148;&#x5728;&#x5305;<code>com.github.ustc_zzzz.fmltutor.inventory</code>&#x4E0B;&#x65B0;&#x5EFA;&#x7C7B;<code>ContainerMetalFurnace</code>&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerMetalFurnace.java:</code></strong></p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.github.ustc_zzzz.fmltutor.inventory;
+
+<span class="hljs-keyword">import</span> com.github.ustc_zzzz.fmltutor.tileentity.TileEntityMetalFurnace;
+
+<span class="hljs-keyword">import</span> net.minecraft.entity.player.EntityPlayer;
+<span class="hljs-keyword">import</span> net.minecraft.inventory.Container;
+<span class="hljs-keyword">import</span> net.minecraft.inventory.Slot;
+<span class="hljs-keyword">import</span> net.minecraft.item.ItemStack;
+<span class="hljs-keyword">import</span> net.minecraft.tileentity.TileEntity;
+<span class="hljs-keyword">import</span> net.minecraft.util.EnumFacing;
+<span class="hljs-keyword">import</span> net.minecraftforge.items.CapabilityItemHandler;
+<span class="hljs-keyword">import</span> net.minecraftforge.items.IItemHandler;
+<span class="hljs-keyword">import</span> net.minecraftforge.items.SlotItemHandler;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ContainerMetalFurnace</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Container</span>
+</span>{
+    <span class="hljs-keyword">private</span> IItemHandler upItems;
+    <span class="hljs-keyword">private</span> IItemHandler downItems;
+
+    <span class="hljs-keyword">protected</span> TileEntityMetalFurnace tileEntity;
+
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">int</span> burnTime = <span class="hljs-number">0</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ContainerMetalFurnace</span><span class="hljs-params">(EntityPlayer player, TileEntity tileEntity)</span>
+    </span>{
+        <span class="hljs-keyword">super</span>();
+
+        <span class="hljs-keyword">this</span>.upItems = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
+        <span class="hljs-keyword">this</span>.downItems = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
+
+        <span class="hljs-keyword">this</span>.addSlotToContainer(<span class="hljs-keyword">new</span> SlotItemHandler(<span class="hljs-keyword">this</span>.upItems, <span class="hljs-number">0</span>, <span class="hljs-number">56</span>, <span class="hljs-number">30</span>));
+        <span class="hljs-keyword">this</span>.addSlotToContainer(<span class="hljs-keyword">new</span> SlotItemHandler(<span class="hljs-keyword">this</span>.downItems, <span class="hljs-number">0</span>, <span class="hljs-number">110</span>, <span class="hljs-number">30</span>)
+        {
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isItemValid</span><span class="hljs-params">(ItemStack stack)</span>
+            </span>{
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+            }
+        });
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; ++i)
+        {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">9</span>; ++j)
+            {
+                <span class="hljs-keyword">this</span>.addSlotToContainer(<span class="hljs-keyword">new</span> Slot(player.inventory, j + i * <span class="hljs-number">9</span> + <span class="hljs-number">9</span>, <span class="hljs-number">8</span> + j * <span class="hljs-number">18</span>, <span class="hljs-number">74</span> + i * <span class="hljs-number">18</span>));
+            }
+        }
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">9</span>; ++i)
+        {
+            <span class="hljs-keyword">this</span>.addSlotToContainer(<span class="hljs-keyword">new</span> Slot(player.inventory, i, <span class="hljs-number">8</span> + i * <span class="hljs-number">18</span>, <span class="hljs-number">132</span>));
+        }
+
+        <span class="hljs-keyword">this</span>.tileEntity = (TileEntityMetalFurnace) tileEntity;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> ItemStack <span class="hljs-title">transferStackInSlot</span><span class="hljs-params">(EntityPlayer playerIn, <span class="hljs-keyword">int</span> index)</span>
+    </span>{
+        Slot slot = inventorySlots.get(index);
+
+        <span class="hljs-keyword">if</span> (slot == <span class="hljs-keyword">null</span> || !slot.getHasStack())
+        {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+
+        ItemStack newStack = slot.getStack(), oldStack = newStack.copy();
+
+        <span class="hljs-keyword">boolean</span> isMerged = <span class="hljs-keyword">false</span>;
+
+        <span class="hljs-keyword">if</span> (index == <span class="hljs-number">0</span> || index == <span class="hljs-number">1</span>)
+        {
+            isMerged = mergeItemStack(newStack, <span class="hljs-number">2</span>, <span class="hljs-number">38</span>, <span class="hljs-keyword">true</span>);
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">2</span> &amp;&amp; index &lt; <span class="hljs-number">29</span>)
+        {
+            isMerged = mergeItemStack(newStack, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-keyword">false</span>) || mergeItemStack(newStack, <span class="hljs-number">29</span>, <span class="hljs-number">38</span>, <span class="hljs-keyword">false</span>);
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (index &gt;= <span class="hljs-number">29</span> &amp;&amp; index &lt; <span class="hljs-number">38</span>)
+        {
+            isMerged = mergeItemStack(newStack, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-keyword">false</span>) || mergeItemStack(newStack, <span class="hljs-number">2</span>, <span class="hljs-number">29</span>, <span class="hljs-keyword">false</span>);
+        }
+
+        <span class="hljs-keyword">if</span> (!isMerged)
+        {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+
+        <span class="hljs-keyword">if</span> (newStack.stackSize == <span class="hljs-number">0</span>)
+        {
+            slot.putStack(<span class="hljs-keyword">null</span>);
+        }
+        <span class="hljs-keyword">else</span>
+        {
+            slot.onSlotChanged();
+        }
+
+        slot.onPickupFromSlot(playerIn, newStack);
+
+        <span class="hljs-keyword">return</span> oldStack;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">canInteractWith</span><span class="hljs-params">(EntityPlayer playerIn)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> playerIn.getDistanceSq(<span class="hljs-keyword">this</span>.tileEntity.getPos()) &lt;= <span class="hljs-number">64</span>;
+    }
+}
+</code></pre>
+<ul>
+<li>&#x7B2C;&#x4E00;&#x70B9;&#x533A;&#x522B;&#xFF0C;&#x662F;&#x6211;&#x4EEC;&#x5728;&#x8FD9;&#x4E2A;&#x7C7B;&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x4E2D;&#x52A0;&#x5165;&#x4E86;&#x4E00;&#x4E2A;<code>TileEntityMetalFurnace</code>&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x7528;&#x4E8E;&#x4F20;&#x5165;&#x6211;&#x4EEC;&#x4E4B;&#x524D;&#x5199;&#x7684;&#x91D1;&#x5C5E;&#x7194;&#x7089;&#x7684;TileEntity</li>
+<li>&#x7B2C;&#x4E8C;&#x70B9;&#x533A;&#x522B;&#xFF0C;&#x5C31;&#x662F;&#x8FD9;&#x91CC;&#x7684;<code>IItemHandler</code>&#xFF0C;&#x662F;&#x76F4;&#x63A5;&#x901A;&#x8FC7;<code>TileEntity</code>&#x83B7;&#x53D6;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x65B0;&#x521B;&#x5EFA;&#x7684;</li>
+<li>&#x7B2C;&#x4E09;&#x70B9;&#x533A;&#x522B;&#xFF0C;&#x5C31;&#x662F;<code>canInteractWith</code>&#x65B9;&#x6CD5;&#x88AB;&#x8BBE;&#x8BA1;&#x4E3A;&#x4E86;&#x73A9;&#x5BB6;&#x8DDD;&#x79BB;&#x7194;&#x7089;&#x4E0D;&#x8D85;&#x8FC7;64&#x683C;&#xFF0C;&#x8FD9;&#x5F80;&#x5F80;&#x4E5F;&#x662F;&#x7528;&#x4E8E;&#x65B9;&#x5757;&#x7684;GUI&#x7684;&#x60EF;&#x4F8B;</li>
+</ul>
+<p>&#x5269;&#x4E0B;&#x7684;&#x4EE3;&#x7801;&#x548C;&#x4E4B;&#x524D;&#x7684;GUI&#x7C7B;&#x4F3C;&#xFF0C;&#x8FD9;&#x91CC;&#x4E5F;&#x5C31;&#x4E0D;&#x8FC7;&#x591A;&#x89E3;&#x91CA;&#x4E86;&#x3002;&#x8FD9;&#x91CC;&#x8FD8;&#x6DFB;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;<code>burnTime</code>&#x53D8;&#x91CF;&#xFF0C;&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x540C;&#x6B65;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x7740;&#x624B;&#x5199;<code>GuiContainer</code>&#x3002;&#x5728;&#x5305;<code>com.github.ustc_zzzz.fmltutor.client.gui</code>&#xFF0C;&#x5E76;&#x5728;&#x5176;&#x4E2D;&#x65B0;&#x5EFA;&#x7C7B;<code>GuiMetalFurnace</code>&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiMetalFurnace.java:</code></strong></p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.github.ustc_zzzz.fmltutor.client.gui;
+
+<span class="hljs-keyword">import</span> com.github.ustc_zzzz.fmltutor.FMLTutor;
+<span class="hljs-keyword">import</span> com.github.ustc_zzzz.fmltutor.inventory.ContainerMetalFurnace;
+
+<span class="hljs-keyword">import</span> net.minecraft.client.gui.inventory.GuiContainer;
+<span class="hljs-keyword">import</span> net.minecraft.client.renderer.GlStateManager;
+<span class="hljs-keyword">import</span> net.minecraft.util.ResourceLocation;
+<span class="hljs-keyword">import</span> net.minecraftforge.fml.relauncher.Side;
+<span class="hljs-keyword">import</span> net.minecraftforge.fml.relauncher.SideOnly;
+
+<span class="hljs-meta">@SideOnly</span>(Side.CLIENT)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GuiMetalFurnace</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">GuiContainer</span>
+</span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String TEXTURE_PATH = FMLTutor.MODID + <span class="hljs-string">&quot;:&quot;</span> + <span class="hljs-string">&quot;textures/gui/container/gui_metal_furnace.png&quot;</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> ResourceLocation TEXTURE = <span class="hljs-keyword">new</span> ResourceLocation(TEXTURE_PATH);
+
+    <span class="hljs-keyword">protected</span> ContainerMetalFurnace inventory;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GuiMetalFurnace</span><span class="hljs-params">(ContainerMetalFurnace inventorySlotsIn)</span>
+    </span>{
+        <span class="hljs-keyword">super</span>(inventorySlotsIn);
+        <span class="hljs-keyword">this</span>.xSize = <span class="hljs-number">176</span>;
+        <span class="hljs-keyword">this</span>.ySize = <span class="hljs-number">156</span>;
+        <span class="hljs-keyword">this</span>.inventory = inventorySlotsIn;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawGuiContainerBackgroundLayer</span><span class="hljs-params">(<span class="hljs-keyword">float</span> partialTicks, <span class="hljs-keyword">int</span> mouseX, <span class="hljs-keyword">int</span> mouseY)</span>
+    </span>{
+        GlStateManager.color(<span class="hljs-number">1.0F</span>, <span class="hljs-number">1.0F</span>, <span class="hljs-number">1.0F</span>);
+
+        <span class="hljs-keyword">this</span>.mc.getTextureManager().bindTexture(TEXTURE);
+        <span class="hljs-keyword">int</span> offsetX = (<span class="hljs-keyword">this</span>.width - <span class="hljs-keyword">this</span>.xSize) / <span class="hljs-number">2</span>, offsetY = (<span class="hljs-keyword">this</span>.height - <span class="hljs-keyword">this</span>.ySize) / <span class="hljs-number">2</span>;
+
+        <span class="hljs-keyword">this</span>.drawTexturedModalRect(offsetX, offsetY, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.xSize, <span class="hljs-keyword">this</span>.ySize);
+
+        <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> draw progress bar</span>
+    }
+}
+</code></pre>
+<p>&#x8FD9;&#x91CC;&#x8FD8;&#x6709;&#x4E00;&#x70B9;&#xFF0C;&#x5C31;&#x662F;&#x7ED8;&#x5236;&#x8FDB;&#x5EA6;&#x6761;&#x5C1A;&#x672A;&#x5B8C;&#x6210;&#xFF0C;&#x4E0D;&#x8FC7;&#x4E0D;&#x8981;&#x7740;&#x6025;&#xFF0C;&#x8FDB;&#x5EA6;&#x6761;&#x6570;&#x636E;&#x7684;&#x5904;&#x7406;&#x4E5F;&#x662F;&#x672C;&#x90E8;&#x5206;&#x7684;&#x91CD;&#x70B9;&#x3002;</p>
+<p>&#x6700;&#x540E;&#x6211;&#x4EEC;&#x8C03;&#x6574;<code>GuiElementLoader</code>&#x7C7B;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/inventory/GuiElementLoader.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> GUI_DEMO = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> GUI_METAL_FURNACE = <span class="hljs-number">2</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GuiElementLoader</span><span class="hljs-params">()</span>
+    </span>{
+        NetworkRegistry.INSTANCE.registerGuiHandler(FMLTutor.instance, <span class="hljs-keyword">this</span>);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getServerGuiElement</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ID, EntityPlayer player, World world, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span> z)</span>
+    </span>{
+        <span class="hljs-keyword">switch</span> (ID)
+        {
+        <span class="hljs-keyword">case</span> GUI_DEMO:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ContainerDemo(player);
+        <span class="hljs-keyword">case</span> GUI_METAL_FURNACE:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ContainerMetalFurnace(player, world.getTileEntity(<span class="hljs-keyword">new</span> BlockPos(x, y, z)));
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getClientGuiElement</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ID, EntityPlayer player, World world, <span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">int</span> z)</span>
+    </span>{
+        <span class="hljs-keyword">switch</span> (ID)
+        {
+        <span class="hljs-keyword">case</span> GUI_DEMO:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> GuiContainerDemo(<span class="hljs-keyword">new</span> ContainerDemo(player));
+        <span class="hljs-keyword">case</span> GUI_METAL_FURNACE:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> GuiMetalFurnace(<span class="hljs-keyword">new</span> ContainerMetalFurnace(player, world.getTileEntity(<span class="hljs-keyword">new</span> BlockPos(x, y, z))));
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+    }
+</code></pre>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x91CD;&#x65B0;&#x8986;&#x5199;&#x5BF9;&#x5E94;&#x65B9;&#x5757;&#x7684;<code>onBlockActivated</code>&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onBlockActivated</span><span class="hljs-params">(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+            EnumFacing side, <span class="hljs-keyword">float</span> hitX, <span class="hljs-keyword">float</span> hitY, <span class="hljs-keyword">float</span> hitZ)</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (!worldIn.isRemote)
+        {
+            <span class="hljs-keyword">int</span> id = GuiElementLoader.GUI_METAL_FURNACE;
+            playerIn.openGui(FMLTutor.instance, id, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+</code></pre>
+<p>&#x73B0;&#x5728;&#x9664;&#x4E86;&#x8FDB;&#x5EA6;&#x6761;&#xFF0C;&#x4E00;&#x5207;&#x90FD;&#x5DF2;&#x7ECF;&#x5C31;&#x7EEA;&#x4E86;&#x3002;</p>
+<h2 id="&#x6570;&#x636E;&#x540C;&#x6B65;">&#x6570;&#x636E;&#x540C;&#x6B65;</h2>
+<p>&#x672C;&#x8282;&#x7684;&#x91CD;&#x70B9;&#x4E5F;&#x5C31;&#x5728;&#x4E8E;&#x6B64;&#xFF0C;&#x5373;&#x81EA;&#x5B9A;&#x4E49;&#x6570;&#x636E;&#x4ECE;&#x670D;&#x52A1;&#x7AEF;&#x4F20;&#x8F93;&#x81F3;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x540C;&#x6B65;&#x3002;</p>
+<p>&#x6BCF;&#x4E00;&#x4E2A;gametick&#x670D;&#x52A1;&#x7AEF;&#x90FD;&#x4F1A;&#x8BD5;&#x56FE;&#x627E;&#x5230;&#x6570;&#x636E;&#x53D8;&#x5316;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x66F4;&#x65B0;&#x5230;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x800C;&#x627E;&#x5230;&#x5E76;&#x66F4;&#x65B0;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5C31;&#x662F;<code>Container</code>&#x7C7B;&#x7684;<code>detectAndSendChanges</code>&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x4E3A;&#x65B9;&#x4FBF;&#x8D77;&#x89C1;&#xFF0C;&#x6211;&#x4EEC;&#x5148;&#x4E3A;TileEntity&#x52A0;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/tileentity/TileEntityMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getBurnTime</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.burnTime;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getTotalBurnTime</span><span class="hljs-params">()</span>
+    </span>{
+        IBlockState state = <span class="hljs-keyword">this</span>.worldObj.getBlockState(<span class="hljs-keyword">this</span>.pos);
+        <span class="hljs-keyword">switch</span> (state.getValue(BlockMetalFurnace.MATERIAL))
+        {
+        <span class="hljs-keyword">case</span> GOLD:
+            <span class="hljs-keyword">return</span> <span class="hljs-number">100</span>;
+        <span class="hljs-keyword">case</span> IRON:
+            <span class="hljs-keyword">return</span> <span class="hljs-number">150</span>;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-number">200</span>;
+        }
+    }
+</code></pre>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x8986;&#x5199;<code>ContainerMetalFurnace</code>&#x7C7B;&#x7684;<code>detectAndSendChanges</code>&#x65B9;&#x6CD5;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">detectAndSendChanges</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">super</span>.detectAndSendChanges();
+
+        <span class="hljs-keyword">this</span>.burnTime = tileEntity.getBurnTime();
+
+        <span class="hljs-keyword">for</span> (ICrafting i : <span class="hljs-keyword">this</span>.crafters)
+        {
+            i.sendProgressBarUpdate(<span class="hljs-keyword">this</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.burnTime);
+        }
+    }
+</code></pre>
+<p><code>Container</code>&#x7C7B;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>crafters</code>&#x7684;&#x5217;&#x8868;&#xFF0C;&#x7528;&#x4E8E;&#x8868;&#x793A;&#x76D1;&#x542C;&#x8BE5;<code>Container</code>&#x7684;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#xFF0C;&#x5982;&#x73A9;&#x5BB6;&#x7B49;&#x3002;&#x6211;&#x4EEC;&#x904D;&#x5386;&#x8FD9;&#x4E00;&#x5217;&#x8868;&#xFF0C;&#x5E76;&#x8C03;&#x7528;&#x5176;<code>sendProgressBarUpdate</code>&#x65B9;&#x6CD5;&#x53D1;&#x9001;&#x6570;&#x636E;&#x3002;</p>
+<ul>
+<li><code>sendProgressBarUpdate</code>&#x65B9;&#x6CD5;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x540C;&#x6B65;&#x6570;&#x636E;&#x7684;<code>Container</code>&#xFF0C;&#x8FD9;&#x91CC;&#x4F20;&#x5165;<code>this</code>&#x5C31;&#x53EF;&#x4EE5;&#x4E86;</li>
+<li><code>sendProgressBarUpdate</code>&#x65B9;&#x6CD5;&#x7684;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x6570;&#x636E;&#x7684;&#x6807;&#x8BC6;&#x7B26;&#xFF0C;&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x786C;&#x7F16;&#x7801;</li>
+<li><code>sendProgressBarUpdate</code>&#x65B9;&#x6CD5;&#x7684;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x7528;&#x4E8E;&#x6307;&#x5B9A;&#x4E00;&#x4E2A;&#x6574;&#x6570;&#x6570;&#x636E;</li>
+</ul>
+<p>&#x4E00;&#x4E2A;&#x5178;&#x578B;&#x7684;&#x540C;&#x6B65;&#x6570;&#x636E;&#x7684;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java">        <span class="hljs-keyword">int</span> data1;
+        <span class="hljs-keyword">int</span> data2;
+        <span class="hljs-keyword">int</span> data3;
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-keyword">for</span> (ICrafting i : <span class="hljs-keyword">this</span>.crafters)
+        {
+            i.sendProgressBarUpdate(<span class="hljs-keyword">this</span>, <span class="hljs-number">0</span>, data1);
+            i.sendProgressBarUpdate(<span class="hljs-keyword">this</span>, <span class="hljs-number">1</span>, data2);
+            i.sendProgressBarUpdate(<span class="hljs-keyword">this</span>, <span class="hljs-number">2</span>, data3);
+            <span class="hljs-comment">// ...</span>
+        }
+</code></pre>
+<p>&#x7136;&#x540E;&#x5BA2;&#x6237;&#x7AEF;&#x7684;<code>Container</code>&#x7C7B;&#x4F1A;&#x5728;&#x6BCF;&#x6B21;&#x63A5;&#x6536;&#x5230;&#x670D;&#x52A1;&#x7AEF;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;&#x540E;&#xFF0C;&#x8C03;&#x7528;<code>updateProgressBar</code>&#x65B9;&#x6CD5;&#x63A5;&#x6536;&#x6570;&#x636E;&#xFF08;&#x8BB0;&#x5F97;&#x52A0;&#x4E0A;<code>@SideOnly(Side.CLIENT)</code>&#x6CE8;&#x89E3;&#xFF0C;&#x56E0;&#x4E3A;&#x5176;&#x53EA;&#x4F5C;&#x7528;&#x4E8E;&#x5BA2;&#x6237;&#x7AEF;&#xFF09;&#xFF1A;</p>
+<p>&#x4E00;&#x4E2A;&#x5178;&#x578B;&#x7684;&#x63A5;&#x6536;&#x6570;&#x636E;&#x7684;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-meta">@SideOnly</span>(Side.CLIENT)
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateProgressBar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id, <span class="hljs-keyword">int</span> data)</span>
+    </span>{
+        <span class="hljs-keyword">super</span>.updateProgressBar(id, data);
+
+        <span class="hljs-keyword">int</span> data1;
+        <span class="hljs-keyword">int</span> data2;
+        <span class="hljs-keyword">int</span> data3;
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-keyword">switch</span> (id)
+        {
+        <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+            data1 = data;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+            data2 = data;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+            data3 = data;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">break</span>;
+        }
+    }
+</code></pre>
+<p>&#x8FD9;&#x662F;&#x6211;&#x4EEC;&#x7684;&#x793A;&#x4F8B;&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@SideOnly</span>(Side.CLIENT)
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateProgressBar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id, <span class="hljs-keyword">int</span> data)</span>
+    </span>{
+        <span class="hljs-keyword">super</span>.updateProgressBar(id, data);
+
+        <span class="hljs-keyword">switch</span> (id)
+        {
+        <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+            <span class="hljs-keyword">this</span>.burnTime = data;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">break</span>;
+        }
+    }
+</code></pre>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x7528;&#x4E8E;<code>GuiMetalFurnace</code>&#x83B7;&#x53D6;&#x6570;&#x636E;&#xFF0C;&#x4EE5;&#x786E;&#x5B9A;&#x8FDB;&#x5EA6;&#x6761;&#x5982;&#x4F55;&#x7ED8;&#x5236;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getBurnTime</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.burnTime;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getTotalBurnTime</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.tileEntity.getTotalBurnTime();
+    }
+</code></pre>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x7ED8;&#x5236;&#x8FDB;&#x5EA6;&#x6761;&#x4E86;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/client/gui/GuiMetalFurnace.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> totalBurnTime;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GuiMetalFurnace</span><span class="hljs-params">(ContainerMetalFurnace inventorySlotsIn)</span>
+    </span>{
+        <span class="hljs-keyword">super</span>(inventorySlotsIn);
+        <span class="hljs-keyword">this</span>.xSize = <span class="hljs-number">176</span>;
+        <span class="hljs-keyword">this</span>.ySize = <span class="hljs-number">156</span>;
+        <span class="hljs-keyword">this</span>.inventory = inventorySlotsIn;
+        <span class="hljs-keyword">this</span>.totalBurnTime = inventorySlotsIn.getTotalBurnTime();
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawGuiContainerBackgroundLayer</span><span class="hljs-params">(<span class="hljs-keyword">float</span> partialTicks, <span class="hljs-keyword">int</span> mouseX, <span class="hljs-keyword">int</span> mouseY)</span>
+    </span>{
+        GlStateManager.color(<span class="hljs-number">1.0F</span>, <span class="hljs-number">1.0F</span>, <span class="hljs-number">1.0F</span>);
+
+        <span class="hljs-keyword">this</span>.mc.getTextureManager().bindTexture(TEXTURE);
+        <span class="hljs-keyword">int</span> offsetX = (<span class="hljs-keyword">this</span>.width - <span class="hljs-keyword">this</span>.xSize) / <span class="hljs-number">2</span>, offsetY = (<span class="hljs-keyword">this</span>.height - <span class="hljs-keyword">this</span>.ySize) / <span class="hljs-number">2</span>;
+
+        <span class="hljs-keyword">this</span>.drawTexturedModalRect(offsetX, offsetY, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">this</span>.xSize, <span class="hljs-keyword">this</span>.ySize);
+
+        <span class="hljs-keyword">int</span> burnTime = <span class="hljs-keyword">this</span>.inventory.getBurnTime();
+        <span class="hljs-keyword">int</span> textureWidth = <span class="hljs-number">1</span> + (<span class="hljs-keyword">int</span>) Math.ceil(<span class="hljs-number">22.0</span> * burnTime / <span class="hljs-keyword">this</span>.totalBurnTime);
+        <span class="hljs-keyword">this</span>.drawTexturedModalRect(offsetX + <span class="hljs-number">79</span>, offsetY + <span class="hljs-number">30</span>, <span class="hljs-number">0</span>, <span class="hljs-number">156</span>, textureWidth, <span class="hljs-number">17</span>);
+    }
+</code></pre>
+<p>&#x5927;&#x529F;&#x544A;&#x6210;&#xFF01;&#x53EF;&#x4EE5;&#x6253;&#x5F00;&#x6E38;&#x620F;&#x8BD5;&#x8BD5;&#x4E86;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="3.4.3-GUI界面中的交互.html" class="navigation navigation-prev " aria-label="Previous page: 3.4.3 GUI界面中的交互">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3.5.1-使用其他Mod的API.html" class="navigation navigation-next " aria-label="Next page: 3.5.1 使用其他Mod的API">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3.4.4 GUI中的数据同步","level":"1.6.18","depth":2,"next":{"title":"3.5.1 使用其他Mod的API","level":"1.6.19","depth":2,"path":"3.5.1-使用其他Mod的API.md","ref":"3.5.1-使用其他Mod的API.md","articles":[]},"previous":{"title":"3.4.3 GUI界面中的交互","level":"1.6.17","depth":2,"path":"3.4.3-GUI界面中的交互.md","ref":"3.4.3-GUI界面中的交互.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default@1.0.5"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"FMLTutor","gitbook":"*","description":"Minecraft 1.8.9 FML Mod 开发教程"},"file":{"path":"3.4.4-GUI中的数据同步.md","mtime":"2016-11-09T09:16:32.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-04T06:29:21.625Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

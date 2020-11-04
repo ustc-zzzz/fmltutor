@@ -1,0 +1,1073 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>1.5 创造模式物品栏 · FMLTutor</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="1.6-第一份合成表、烧炼规则和燃料.html" />
+    
+    
+    <link rel="prev" href="1.4-第一个方块.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <a target="_blank" href="https://github.com/ustc-zzzz/fmltutor/tree/master">
+            
+                    
+                    源代码仓库（记得Star哦）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="0-绪论.html">
+            
+                <a href="0-绪论.html">
+            
+                    
+                    0 绪论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    1 基础部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="1.1-配置你的工作环境.html">
+            
+                <a href="1.1-配置你的工作环境.html">
+            
+                    
+                    1.1 配置你的工作环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="1.2-主类、代理和Mod信息.html">
+            
+                <a href="1.2-主类、代理和Mod信息.html">
+            
+                    
+                    1.2 主类、代理和Mod信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="1.3-第一个物品.html">
+            
+                <a href="1.3-第一个物品.html">
+            
+                    
+                    1.3 第一个物品
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="1.4-第一个方块.html">
+            
+                <a href="1.4-第一个方块.html">
+            
+                    
+                    1.4 第一个方块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.5" data-path="1.5-创造模式物品栏.html">
+            
+                <a href="1.5-创造模式物品栏.html">
+            
+                    
+                    1.5 创造模式物品栏
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                <a href="1.6-第一份合成表、烧炼规则和燃料.html">
+            
+                    
+                    1.6 第一份合成表、烧炼规则和燃料
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="1.7-本地化和国际化.html">
+            
+                <a href="1.7-本地化和国际化.html">
+            
+                    
+                    1.7 本地化和国际化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="1.8-创建一份配置文件.html">
+            
+                <a href="1.8-创建一份配置文件.html">
+            
+                    
+                    1.8 创建一份配置文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    2 初级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="2.1.1-注册已有的事件.html">
+            
+                <a href="2.1.1-注册已有的事件.html">
+            
+                    
+                    2.1.1 注册已有的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="2.1.2-自定义新的事件.html">
+            
+                <a href="2.1.2-自定义新的事件.html">
+            
+                    
+                    2.1.2 自定义新的事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="2.2.1-新的工具.html">
+            
+                <a href="2.2.1-新的工具.html">
+            
+                    
+                    2.2.1 新的工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="2.2.2-新的食物.html">
+            
+                <a href="2.2.2-新的食物.html">
+            
+                    
+                    2.2.2 新的食物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="2.2.3-新的盔甲.html">
+            
+                <a href="2.2.3-新的盔甲.html">
+            
+                    
+                    2.2.3 新的盔甲
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="2.3.1-新的伤害类型.html">
+            
+                <a href="2.3.1-新的伤害类型.html">
+            
+                    
+                    2.3.1 新的伤害类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="2.3.2-新的附魔属性.html">
+            
+                <a href="2.3.2-新的附魔属性.html">
+            
+                    
+                    2.3.2 新的附魔属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="2.3.3-新的药水效果.html">
+            
+                <a href="2.3.3-新的药水效果.html">
+            
+                    
+                    2.3.3 新的药水效果
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="2.4.1-热键绑定.html">
+            
+                <a href="2.4.1-热键绑定.html">
+            
+                    
+                    2.4.1 热键绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="2.4.2-成就系统.html">
+            
+                <a href="2.4.2-成就系统.html">
+            
+                    
+                    2.4.2 成就系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="2.4.3-系统命令.html">
+            
+                <a href="2.4.3-系统命令.html">
+            
+                    
+                    2.4.3 系统命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="2.4.4-声音系统.html">
+            
+                <a href="2.4.4-声音系统.html">
+            
+                    
+                    2.4.4 声音系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.13" data-path="2.5.1-在世界生成矿物.html">
+            
+                <a href="2.5.1-在世界生成矿物.html">
+            
+                    
+                    2.5.1 在世界生成矿物
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.14" data-path="2.5.2-注册和使用矿物字典.html">
+            
+                <a href="2.5.2-注册和使用矿物字典.html">
+            
+                    
+                    2.5.2 注册和使用矿物字典
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.15" data-path="2.6.1-创建并注册一份流体.html">
+            
+                <a href="2.6.1-创建并注册一份流体.html">
+            
+                    
+                    2.6.1 创建并注册一份流体
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.16" data-path="2.6.2-为流体添加对应的桶.html">
+            
+                <a href="2.6.2-为流体添加对应的桶.html">
+            
+                    
+                    2.6.2 为流体添加对应的桶
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    3 高级部分
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                <a href="3.1.1-新的生物和对应的刷怪蛋.html">
+            
+                    
+                    3.1.1 新的生物和对应的刷怪蛋
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="3.1.2-新的生物渲染模型.html">
+            
+                <a href="3.1.2-新的生物渲染模型.html">
+            
+                    
+                    3.1.2 新的生物渲染模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="3.1.3-生物的固有属性和自然生成.html">
+            
+                <a href="3.1.3-生物的固有属性和自然生成.html">
+            
+                    
+                    3.1.3 生物的固有属性和自然生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="3.1.4-生物的自动同步和数据存储.html">
+            
+                <a href="3.1.4-生物的自动同步和数据存储.html">
+            
+                    
+                    3.1.4 生物的自动同步和数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="3.1.5-为生物绑定AI.html">
+            
+                <a href="3.1.5-为生物绑定AI.html">
+            
+                    
+                    3.1.5 为生物绑定AI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="3.1.6-投掷物的注册和生成.html">
+            
+                <a href="3.1.6-投掷物的注册和生成.html">
+            
+                    
+                    3.1.6 投掷物的注册和生成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="3.1.7-FakePlayer的获取与使用.html">
+            
+                <a href="3.1.7-FakePlayer的获取与使用.html">
+            
+                    
+                    3.1.7 FakePlayer的获取与使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="3.2.1-BlockState和Metadata.html">
+            
+                <a href="3.2.1-BlockState和Metadata.html">
+            
+                    
+                    3.2.1 BlockState和Metadata
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="3.2.2-TileEntity与数据更新.html">
+            
+                <a href="3.2.2-TileEntity与数据更新.html">
+            
+                    
+                    3.2.2 TileEntity与数据更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.10" data-path="3.2.3-BlockState的简化映射.html">
+            
+                <a href="3.2.3-BlockState的简化映射.html">
+            
+                    
+                    3.2.3 BlockState的简化映射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.11" data-path="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                <a href="3.2.4-扩展BlockState和第三方模型格式.html">
+            
+                    
+                    3.2.4 扩展BlockState和第三方模型格式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.12" data-path="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                <a href="3.3.1-Capability系统与已有实体附加属性.html">
+            
+                    
+                    3.3.1 Capability系统与已有实体附加属性
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.13" data-path="3.3.2-使用SimpleImpl同步数据.html">
+            
+                <a href="3.3.2-使用SimpleImpl同步数据.html">
+            
+                    
+                    3.3.2 使用SimpleImpl同步数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.14" data-path="3.3.3-世界附加数据存储.html">
+            
+                <a href="3.3.3-世界附加数据存储.html">
+            
+                    
+                    3.3.3 世界附加数据存储
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.15" data-path="3.4.1-创建一个新的GUI界面.html">
+            
+                <a href="3.4.1-创建一个新的GUI界面.html">
+            
+                    
+                    3.4.1 创建一个新的GUI界面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.16" data-path="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                <a href="3.4.2-GUI界面的个性化与物品槽的添加.html">
+            
+                    
+                    3.4.2 GUI界面的个性化与物品槽的添加
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.17" data-path="3.4.3-GUI界面中的交互.html">
+            
+                <a href="3.4.3-GUI界面中的交互.html">
+            
+                    
+                    3.4.3 GUI界面中的交互
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.18" data-path="3.4.4-GUI中的数据同步.html">
+            
+                <a href="3.4.4-GUI中的数据同步.html">
+            
+                    
+                    3.4.4 GUI中的数据同步
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.19" data-path="3.5.1-使用其他Mod的API.html">
+            
+                <a href="3.5.1-使用其他Mod的API.html">
+            
+                    
+                    3.5.1 使用其他Mod的API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.20" data-path="3.5.2-向其他Mod提供API.html">
+            
+                <a href="3.5.2-向其他Mod提供API.html">
+            
+                    
+                    3.5.2 向其他Mod提供API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    附录
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="附录A-配置Gradle的一些小技巧.html">
+            
+                <a href="附录A-配置Gradle的一些小技巧.html">
+            
+                    
+                    附录A 配置Gradle的一些小技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="附录B-混淆与反射.html">
+            
+                <a href="附录B-混淆与反射.html">
+            
+                    
+                    附录B 混淆与反射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="附录C-使用AccessTransformers.html">
+            
+                <a href="附录C-使用AccessTransformers.html">
+            
+                    
+                    附录C 使用AccessTransformers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="附录D-使用Scala编写Mod.html">
+            
+                <a href="附录D-使用Scala编写Mod.html">
+            
+                    
+                    附录D 使用Scala编写Mod
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >1.5 创造模式物品栏</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x5C06;&#x4F60;&#x7684;&#x7269;&#x54C1;&#x548C;&#x65B9;&#x5757;&#x653E;&#x5165;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;">&#x5C06;&#x4F60;&#x7684;&#x7269;&#x54C1;&#x548C;&#x65B9;&#x5757;&#x653E;&#x5165;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;</h2>
+<p>&#x5176;&#x5B9E;&#x8FD9;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x8981;&#x5728;&#x7269;&#x54C1;&#x548C;&#x65B9;&#x5757;&#x521D;&#x59CB;&#x5316;&#x7684;&#x65F6;&#x5019;&#x52A0;&#x4E0A;&#x4E00;&#x53E5;&#x5C31;&#x597D;&#x4E86;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java:</code></strong></p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.github.ustc_zzzz.fmltutor.block;
+
+<span class="hljs-keyword">import</span> net.minecraft.block.Block;
+<span class="hljs-keyword">import</span> net.minecraft.block.material.Material;
+<span class="hljs-keyword">import</span> net.minecraft.creativetab.CreativeTabs;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BlockGrassBlock</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Block</span>
+</span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">BlockGrassBlock</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">super</span>(Material.ground);
+        <span class="hljs-keyword">this</span>.setUnlocalizedName(<span class="hljs-string">&quot;grassBlock&quot;</span>);
+        <span class="hljs-keyword">this</span>.setHardness(<span class="hljs-number">0.5F</span>);
+        <span class="hljs-keyword">this</span>.setStepSound(soundTypeGrass);
+        <span class="hljs-keyword">this</span>.setCreativeTab(CreativeTabs.tabBlock);
+    }
+}
+</code></pre>
+<p>&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x6700;&#x540E;&#x4E00;&#x53E5;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/block/BlockGrassBlock.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">        <span class="hljs-keyword">this</span>.setCreativeTab(CreativeTabs.tabBlock);
+</code></pre>
+<p>&#x628A;&#x8FD9;&#x4E2A;&#x65B9;&#x5757;&#x653E;&#x5230;&#x4E86;&#x540D;&#x4E3A;&#x201C;&#x65B9;&#x5757;&#x201D;&#x7684;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;&#x91CC;&#x3002;</p>
+<h2 id="&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;">&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;</h2>
+<p>Minecraft&#x7684;&#x6240;&#x6709;&#x7269;&#x54C1;&#x680F;&#x90FD;&#x662F;<code>CreativeTabs</code>&#x7C7B;&#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x6211;&#x4EEC;&#x9996;&#x5148;&#x65B0;&#x5EFA;&#x5305;<code>com.github.ustc_zzzz.fmltutor.creativetab</code>&#xFF0C;&#x5E76;&#x5728;&#x5176;&#x4E0B;&#x65B0;&#x5EFA;&#x7C7B;<code>CreativeTabsFMLTutor</code>&#xFF0C;&#x4F7F;&#x5176;&#x7EE7;&#x627F;<code>CreativeTabs</code>&#x7C7B;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/creativetab/CreativeTabsFMLTutor.java:</code></strong></p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.github.ustc_zzzz.fmltutor.creativetab;
+
+<span class="hljs-keyword">import</span> com.github.ustc_zzzz.fmltutor.item.ItemLoader;
+
+<span class="hljs-keyword">import</span> net.minecraft.creativetab.CreativeTabs;
+<span class="hljs-keyword">import</span> net.minecraft.item.Item;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreativeTabsFMLTutor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CreativeTabs</span>
+</span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CreativeTabsFMLTutor</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">super</span>(<span class="hljs-string">&quot;fmltutor&quot;</span>);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Item <span class="hljs-title">getTabIconItem</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> ItemLoader.goldenEgg;
+    }
+}
+</code></pre>
+<p><code>getTabIconItem</code>&#x65B9;&#x6CD5;&#xFF0C;&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;&#x4E0A;&#x663E;&#x793A;&#x7684;&#x7269;&#x54C1;&#x3002;</p>
+<p>&#x65B0;&#x5EFA;&#x5305;<code>com.github.ustc_zzzz.fmltutor.creativetab</code>&#x5E76;&#x5728;&#x5176;&#x4E0B;&#x65B0;&#x5EFA;&#x7C7B;<code>CreativeTabsLoader</code>&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/creativetab/CreativeTabsLoader.java:</code></strong></p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.github.ustc_zzzz.fmltutor.creativetab;
+
+<span class="hljs-keyword">import</span> net.minecraft.creativetab.CreativeTabs;
+<span class="hljs-keyword">import</span> net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreativeTabsLoader</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> CreativeTabs tabFMLTutor;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CreativeTabsLoader</span><span class="hljs-params">(FMLPreInitializationEvent event)</span>
+    </span>{
+        tabFMLTutor = <span class="hljs-keyword">new</span> CreativeTabsFMLTutor();
+    }
+}
+</code></pre>
+<p>&#x5E76;&#x5C06;&#x7269;&#x54C1;&#x6CE8;&#x518C;&#x8FDB;&#x53BB;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemGoldenEgg.java:</code></strong></p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.github.ustc_zzzz.fmltutor.item;
+
+<span class="hljs-keyword">import</span> com.github.ustc_zzzz.fmltutor.creativetab.CreativeTabsLoader;
+
+<span class="hljs-keyword">import</span> net.minecraft.item.Item;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ItemGoldenEgg</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Item</span>
+</span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ItemGoldenEgg</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">super</span>();
+        <span class="hljs-keyword">this</span>.setUnlocalizedName(<span class="hljs-string">&quot;goldenEgg&quot;</span>);
+        <span class="hljs-keyword">this</span>.setCreativeTab(CreativeTabsLoader.tabFMLTutor);
+    }
+}
+</code></pre>
+<p>&#x6700;&#x540E;&#x5728;<code>CommonProxy</code>&#x4E2D;&#x7684;<code>preInit</code>&#x9636;&#x6BB5;&#x6DFB;&#x52A0;&#x4EE3;&#x7801;&#xFF0C;&#x8BB0;&#x5F97;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;&#x7684;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x5B9A;&#x8981;&#x5728;&#x7269;&#x54C1;&#x548C;&#x65B9;&#x5757;&#x7684;&#x521D;&#x59CB;&#x5316;&#x4E4B;&#x524D;&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/common/CommonProxy.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">preInit</span><span class="hljs-params">(FMLPreInitializationEvent event)</span>
+    </span>{
+        <span class="hljs-keyword">new</span> CreativeTabsLoader(event);
+        <span class="hljs-keyword">new</span> ItemLoader(event);
+        <span class="hljs-keyword">new</span> BlockLoader(event);
+    }
+</code></pre>
+<p>&#x6253;&#x5F00;&#x6E38;&#x620F;&#xFF0C;&#x4F60;&#x662F;&#x4E0D;&#x662F;&#x770B;&#x5230;&#x4E86;&#x7269;&#x54C1;&#x88AB;&#x6CE8;&#x518C;&#x5230;&#x4E86;&#x65B0;&#x7684;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;&#xFF0C;&#x65B9;&#x5757;&#x88AB;&#x6CE8;&#x518C;&#x5230;&#x4E86;&#x201C;&#x65B9;&#x5757;&#x201D;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;&#x5462;&#xFF5E;</p>
+<h2 id="&#x4E2A;&#x6027;&#x5316;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;">&#x4E2A;&#x6027;&#x5316;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;</h2>
+<p><code>CreativeTab</code>&#x7C7B;&#x63D0;&#x4F9B;&#x4E86;<code>hasSearchBar</code>&#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x8BBE;&#x7F6E;&#x662F;&#x5426;&#x6709;&#x641C;&#x7D22;&#x6846;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x8986;&#x5199;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x8BBE;&#x7F6E;&#x4E3A;<code>true</code>&#xFF1A;</p>
+<p><strong><code>src/main/java/com/github/ustc_zzzz/fmltutor/creativetab/CreativeTabsFMLTutor.java&#xFF08;&#x90E8;&#x5206;&#xFF09;:</code></strong></p>
+<pre><code class="lang-java">    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">hasSearchBar</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x6253;&#x5F00;&#x7684;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;&#x4E0A;&#x770B;&#x5230;&#x641C;&#x7D22;&#x6846;&#x4E86;&#x3002;&#x540C;&#x65F6;&#x8FD8;&#x6709;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>getSearchbarWidth</code>&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x4E8E;&#x8BBE;&#x7F6E;&#x641C;&#x7D22;&#x6846;&#x7684;&#x5BBD;&#x5EA6;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x518D;&#x8FDB;&#x4E00;&#x6B65;&#xFF0C;&#x8BBE;&#x7F6E;&#x4E00;&#x4E0B;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;&#x7684;&#x80CC;&#x666F;&#x3002;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>setBackgroundImageName</code>&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;&#x6700;&#x7EC8;&#x4F1A;&#x548C;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x957F;&#x7684;&#x8DEF;&#x5F84;&#x63A5;&#x5408;&#xFF0C;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x5148;&#x8BBE;&#x7F6E;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CreativeTabsFMLTutor</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">super</span>(<span class="hljs-string">&quot;fmltutor&quot;</span>);
+        <span class="hljs-keyword">this</span>.setBackgroundImageName(<span class="hljs-string">&quot;fmltutor.png&quot;</span>);
+    }
+</code></pre>
+<p>&#x7136;&#x540E;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x65B0;&#x5EFA;&#x6587;&#x4EF6;&#x5939;<code>assets/minecraft/textures/gui/container/creative_inventory</code>&#xFF08;<strong>&#x6CE8;&#x610F;&#x8FD9;&#x91CC;&#x7684;&#x540D;&#x79F0;&#x662F;<code>minecraft</code>&#x4E0D;&#x662F;Mod id</strong>&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x4EE5;<code>tab_</code>&#x5F00;&#x5934;&#x7684;PNG&#x6587;&#x4EF6;&#xFF0C;&#x540D;&#x5B57;&#x7531;&#x521A;&#x521A;&#x8BBE;&#x7F6E;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x51B3;&#x5B9A;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x662F;<code>tab_fmltutor.png</code>&#xFF0C;&#x6CE8;&#x610F;&#xFF0C;&#x8FD9;&#x91CC;&#x7684;&#x56FE;&#x7247;&#x5C3A;&#x5BF8;&#x5927;&#x5C0F;&#x9700;&#x8981;&#x662F;256x256&#xFF0C;&#x5176;&#x4ED6;&#x7684;&#x5C3A;&#x5BF8;&#x5927;&#x5C0F;&#x4F1A;&#x51FA;&#x95EE;&#x9898;&#xFF0C;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x7684;&#x80CC;&#x666F;&#x653E;&#x7F6E;&#x5728;&#x5DE6;&#x4E0A;&#x89D2;&#xFF0C;&#x5176;&#x4ED6;&#x7684;&#x4F4D;&#x7F6E;&#x8BBE;&#x7F6E;&#x6210;&#x900F;&#x660E;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF1A;</p>
+<p><strong><code>src/main/resources/assets/minecraft/textures/gui/container/creative_inventory/tab_fmltutor.png</code></strong></p>
+<p><img src="resources/tab_fmltutor.png" alt="tab_fmltutor"></p>
+<p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x7531;&#x4E8E;&#x4F5C;&#x8005;&#x7684;&#x827A;&#x672F;&#x7EC6;&#x80DE;&#x6781;&#x5EA6;&#x7F3A;&#x4E4F;&#x800C;&#x5BFC;&#x81F4;&#x7684;&#x91D1;&#x5149;&#x95EA;&#x95EA;&#x71A0;&#x71A0;&#x751F;&#x8F89;&#x7684;&#x521B;&#x9020;&#x6A21;&#x5F0F;&#x7269;&#x54C1;&#x680F;&#x4E86;&#xFF1A;</p>
+<p><img src="resources/tab_fmltutor_analysis.png" alt="tab_fmltutor_analysis"></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1.4-第一个方块.html" class="navigation navigation-prev " aria-label="Previous page: 1.4 第一个方块">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="1.6-第一份合成表、烧炼规则和燃料.html" class="navigation navigation-next " aria-label="Next page: 1.6 第一份合成表、烧炼规则和燃料">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"1.5 创造模式物品栏","level":"1.4.5","depth":2,"next":{"title":"1.6 第一份合成表、烧炼规则和燃料","level":"1.4.6","depth":2,"path":"1.6-第一份合成表、烧炼规则和燃料.md","ref":"1.6-第一份合成表、烧炼规则和燃料.md","articles":[]},"previous":{"title":"1.4 第一个方块","level":"1.4.4","depth":2,"path":"1.4-第一个方块.md","ref":"1.4-第一个方块.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default@1.0.5"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"FMLTutor","gitbook":"*","description":"Minecraft 1.8.9 FML Mod 开发教程"},"file":{"path":"1.5-创造模式物品栏.md","mtime":"2016-08-10T09:00:58.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-11-04T06:29:21.625Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
