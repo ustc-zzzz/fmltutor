@@ -1,13 +1,12 @@
 # Minecraft 1.8.9 FML Mod 开发教程
 
-欢迎来到 Minecraft 1.8.9 FML Mod 开发教程的源代码仓库！
+欢迎来到本教程的源代码仓库！
 
-自2017年4月15日起，该教程源代码将以patch的方式维护。如果想要下载可用于构建Mod的教程示例源代码，
-请从[master分支](https://github.com/ustc-zzzz/fmltutor/tree/master)下载，该分支的代码根据所有维护的patch自动生成，
-因此请不要向master分支发起Pull Request。
+由于相关代码严重过时，本教程于2020年11月4日正式封存。
 
-教程的文字部分由[book分支](https://github.com/ustc-zzzz/fmltutor/tree/book)维护，如欲浏览真正的构建后的教程网页，
-请点击[这里](https://fmltutor.ustc-zzzz.net/)。
+如果对教程有疑问，可以通过电邮的方式联系本人：[zzzz@infstudio.net](mailto:zzzz@infstudio.net)。
+
+教程所属的代码仓库的`master`分支是根据所有维护的patch自动生成的，教程的文字部分由`book`分支维护，代码部分由`patch`分支维护。
 
 ## 版权声明
 
@@ -26,3 +25,6 @@
 <https://fmltutor.ustc-zzzz.net/>
 
 所有源代码使用[MIT协议](LICENSE)开源。
+
+感谢[Team CovertDragon](https://covertdragon.team/)，鉴于该团队为本教程提供的机房位于中华人民共和国香港特别行政区的阿里云服务器。
+
