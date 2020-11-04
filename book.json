@@ -1,3 +1,5 @@
 {
+    "title": "FMLTutor",
+    "description": "Minecraft 1.8.9 FML Mod 开发教程",
     "plugins": ["theme-default@1.0.5"]
 }
