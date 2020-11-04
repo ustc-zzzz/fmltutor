@@ -24,10 +24,11 @@ index dd8eb97..1c4bd03 100644
  import net.minecraftforge.event.entity.player.PlayerInteractEvent;
  import net.minecraftforge.fml.common.eventhandler.Cancelable;
  import net.minecraftforge.fml.common.eventhandler.EventBus;
-@@ -23,6 +28,23 @@ public class EventLoader
+@@ -22,6 +27,23 @@ public class EventLoader
+         EventLoader.EVENT_BUS.register(this);
      }
  
-     @SubscribeEvent
++    @SubscribeEvent
 +    public void onEntityInteract(EntityInteractEvent event)
 +    {
 +        EntityPlayer player = event.entityPlayer;
@@ -44,10 +45,9 @@ index dd8eb97..1c4bd03 100644
 +        }
 +    }
 +
-+    @SubscribeEvent
+     @SubscribeEvent
      public void onPlayerItemPickup(PlayerEvent.ItemPickupEvent event)
      {
-         if (event.player.isServerWorld())
 diff --git a/src/main/resources/assets/fmltutor/lang/en_US.lang b/src/main/resources/assets/fmltutor/lang/en_US.lang
 index b0325ae..d7d3310 100644
 --- a/src/main/resources/assets/fmltutor/lang/en_US.lang

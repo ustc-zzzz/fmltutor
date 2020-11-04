@@ -61,17 +61,18 @@ index 895f5f2..db50147 100644
      }
  
      private static void register(Block block, String name)
-@@ -32,9 +56,15 @@ public class BlockLoader
+@@ -31,10 +55,16 @@ public class BlockLoader
+         GameRegistry.registerBlock(block.setRegistryName(name));
      }
  
-     @SideOnly(Side.CLIENT)
++    @SideOnly(Side.CLIENT)
 +    private static void registerRender(Block block, int meta, String name)
 +    {
 +        ModelResourceLocation model = new ModelResourceLocation(name, "inventory");
 +        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), meta, model);
 +    }
 +
-+    @SideOnly(Side.CLIENT)
+     @SideOnly(Side.CLIENT)
      private static void registerRender(Block block)
      {
 -        ModelResourceLocation model = new ModelResourceLocation(block.getRegistryName(), "inventory");
@@ -229,17 +230,18 @@ diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java b/
 index 6cfdf3c..68e32f0 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
 +++ b/src/main/java/com/github/ustc_zzzz/fmltutor/item/ItemLoader.java
-@@ -59,9 +59,15 @@ public class ItemLoader
+@@ -58,10 +58,16 @@ public class ItemLoader
+         GameRegistry.registerItem(item.setRegistryName(name));
      }
  
-     @SideOnly(Side.CLIENT)
++    @SideOnly(Side.CLIENT)
 +    private static void registerRender(Item item, int meta, String name)
 +    {
 +        ModelResourceLocation model = new ModelResourceLocation(name, "inventory");
 +        ModelLoader.setCustomModelResourceLocation(item, meta, model);
 +    }
 +
-+    @SideOnly(Side.CLIENT)
+     @SideOnly(Side.CLIENT)
      private static void registerRender(Item item)
      {
 -        ModelResourceLocation model = new ModelResourceLocation(item.getRegistryName(), "inventory");

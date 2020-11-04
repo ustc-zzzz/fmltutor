@@ -2381,10 +2381,11 @@ index b665d70..2b55a1b 100644
          compound.setInteger("BurnTime", this.burnTime);
      }
  
-@@ -70,29 +83,57 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable
+@@ -69,30 +82,58 @@ public class TileEntityMetalFurnace extends TileEntity implements ITickable
+         return oldState.getBlock() != newState.getBlock();
      }
  
-     @Override
++    @Override
 +    public void invalidate()
 +    {
 +        super.invalidate();
@@ -2394,7 +2395,7 @@ index b665d70..2b55a1b 100644
 +        }
 +    }
 +
-+    @Override
+     @Override
      public void update()
      {
          if (!this.worldObj.isRemote)

@@ -45,10 +45,11 @@ index 2528922..7a72f58 100644
  import net.minecraft.world.World;
  
  public class EntityGoldenChicken extends EntityChicken
-@@ -20,6 +22,38 @@ public class EntityGoldenChicken extends EntityChicken
+@@ -19,6 +21,38 @@ public class EntityGoldenChicken extends EntityChicken
+         this.setSize(1.2F, 1.8F);
      }
  
-     @Override
++    @Override
 +    protected void entityInit()
 +    {
 +        super.entityInit();
@@ -80,7 +81,6 @@ index 2528922..7a72f58 100644
 +        return true;
 +    }
 +
-+    @Override
+     @Override
      protected void applyEntityAttributes()
      {
-         super.applyEntityAttributes();

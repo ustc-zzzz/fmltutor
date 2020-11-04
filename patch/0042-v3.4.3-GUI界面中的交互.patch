@@ -40,10 +40,11 @@ index b1e3cf8..7ca797e 100644
      }
  
      @Override
-@@ -84,6 +91,28 @@ public class GuiContainerDemo extends GuiContainer
+@@ -83,6 +90,28 @@ public class GuiContainerDemo extends GuiContainer
+         });
      }
  
-     @Override
++    @Override
 +    protected void actionPerformed(GuiButton button) throws IOException
 +    {
 +        ItemStack stack = this.ironSlot.getStack();
@@ -65,10 +66,9 @@ index b1e3cf8..7ca797e 100644
 +        this.ironSlot.putStack(amount == 0 ? null : new ItemStack(Items.iron_ingot, amount));
 +    }
 +
-+    @Override
+     @Override
      protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
      {
-         GlStateManager.color(1.0F, 1.0F, 1.0F);
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java b/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java
 index f4bb3f1..18a5896 100644
 --- a/src/main/java/com/github/ustc_zzzz/fmltutor/inventory/ContainerDemo.java

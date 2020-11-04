@@ -126,10 +126,11 @@ index b8ddc92..d8dcb1c 100644
          }
      }
  
-@@ -243,6 +262,27 @@ public class EventLoader
+@@ -242,6 +261,27 @@ public class EventLoader
+         }
      }
  
-     @SubscribeEvent
++    @SubscribeEvent
 +    public void onEntityJoinWorld(EntityJoinWorldEvent event)
 +    {
 +        if (!event.world.isRemote && event.entity instanceof EntityPlayer)
@@ -150,10 +151,9 @@ index b8ddc92..d8dcb1c 100644
 +        }
 +    }
 +
-+    @SubscribeEvent
+     @SubscribeEvent
      public void onPlayerClone(net.minecraftforge.event.entity.player.PlayerEvent.Clone event)
      {
-         Capability<IPositionHistory> capability = CapabilityLoader.positionHistory;
 diff --git a/src/main/java/com/github/ustc_zzzz/fmltutor/network/MessagePositionHistory.java b/src/main/java/com/github/ustc_zzzz/fmltutor/network/MessagePositionHistory.java
 new file mode 100644
 index 0000000..21282c9

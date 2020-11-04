@@ -27,19 +27,19 @@ index db50147..25d1a39 100644
          registerRender(grassBlock);
          registerRender(metalFurnace, 0, FMLTutor.MODID + ":" + "iron_furnace");
          registerRender(metalFurnace, 8, FMLTutor.MODID + ":" + "gold_furnace");
-@@ -56,6 +61,12 @@ public class BlockLoader
+@@ -55,6 +60,12 @@ public class BlockLoader
+         GameRegistry.registerBlock(block.setRegistryName(name));
      }
  
-     @SideOnly(Side.CLIENT)
++    @SideOnly(Side.CLIENT)
 +    private static void registerStateMapper(Block block, IStateMapper mapper)
 +    {
 +        ModelLoader.setCustomStateMapper(block, mapper);
 +    }
 +
-+    @SideOnly(Side.CLIENT)
+     @SideOnly(Side.CLIENT)
      private static void registerRender(Block block, int meta, String name)
      {
-         ModelResourceLocation model = new ModelResourceLocation(name, "inventory");
 diff --git a/src/main/resources/assets/fmltutor/blockstates/gold_furnace.json b/src/main/resources/assets/fmltutor/blockstates/gold_furnace.json
 new file mode 100644
 index 0000000..947716f

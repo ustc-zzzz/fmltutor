@@ -65,10 +65,11 @@ index 4db4b85..9c2c80d 100644
  import net.minecraftforge.fml.relauncher.Side;
  import net.minecraftforge.fml.relauncher.SideOnly;
  import net.minecraftforge.items.CapabilityItemHandler;
-@@ -72,6 +83,18 @@ public class BlockMetalFurnace extends BlockContainer
+@@ -71,6 +82,18 @@ public class BlockMetalFurnace extends BlockContainer
+                 .withProperty(BURNING, Boolean.FALSE).withProperty(MATERIAL, EnumMaterial.IRON));
      }
  
-     @Override
++    @Override
 +    public boolean isFullCube()
 +    {
 +        return false;
@@ -80,14 +81,14 @@ index 4db4b85..9c2c80d 100644
 +        return false;
 +    }
 +
-+    @Override
+     @Override
      public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
              EnumFacing side, float hitX, float hitY, float hitZ)
-     {
-@@ -128,9 +151,27 @@ public class BlockMetalFurnace extends BlockContainer
+@@ -127,10 +150,28 @@ public class BlockMetalFurnace extends BlockContainer
+         return facing | burning | material;
      }
  
-     @Override
++    @Override
 +    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos)
 +    {
 +        IExtendedBlockState oldState = (IExtendedBlockState) state;
@@ -103,7 +104,7 @@ index 4db4b85..9c2c80d 100644
 +        return oldState.withProperty(OBJModel.OBJProperty.instance, objState);
 +    }
 +
-+    @Override
+     @Override
      protected BlockState createBlockState()
      {
 -        return new BlockState(this, FACING, BURNING, MATERIAL);
