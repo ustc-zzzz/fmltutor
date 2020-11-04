@@ -30,7 +30,7 @@ jar {
 
 ## 转换修饰符
 
-在AT的配置文件中使用的是srgName，所以我们需要打开`mcp-srg.srg`来完成配置，这一映射表通常在个人用户文件夹下，下面是本教程中的对应位置：`.gradle/caches/minecraft/de/oceanlabs/mcp/mcp_stable/20/srgs/mcp-srg.srg`，关于srgName，以及后面提到的mcpName的更多信息，可以参见[这里](附录C-混淆与反射.html)。
+在AT的配置文件中使用的是srgName，所以我们需要打开`mcp-srg.srg`来完成配置，这一映射表通常在个人用户文件夹下，下面是本教程中的对应位置：`.gradle/caches/minecraft/de/oceanlabs/mcp/mcp_stable/20/srgs/mcp-srg.srg`，关于srgName，以及后面提到的mcpName的更多信息，可以参见[这里](附录B-混淆与反射.md)。
 
 以`net.minecraft.entity.Entity.fire`字段为例，在配置文件中添加以下内容：
 

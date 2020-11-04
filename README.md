@@ -1,10 +1,10 @@
 # Minecraft 1.8.9 FML Mod 开发教程
 
-**[蓝色](#)**的链接表示这部分已写完，**黑色**的文本表示正在填坑。。。
+由于相关代码严重过时，本教程于2020年11月4日正式封存。
 
-如果该教程和源代码存在问题，可以通过电邮的方式：[zzzz@infstudio.net](mailto:zzzz@infstudio.net)，或者发送[GitHub Issue](https://github.com/ustc-zzzz/fmltutor/issues)。
+如果对教程有疑问，可以通过电邮的方式联系本人：[zzzz@infstudio.net](mailto:zzzz@infstudio.net)。
 
-教程所属的代码仓库的`master`分支是根据所有维护的patch自动生成的，因此**请不要向`master`分支发送Pull Request**。教程的文字部分由`book`分支维护，代码部分由`patch`分支维护。如有必要，请向这两个分支发送Pull Request。
+教程所属的代码仓库的`master`分支是根据所有维护的patch自动生成的，教程的文字部分由`book`分支维护，代码部分由`patch`分支维护。
 
 ## 目录
 
@@ -57,7 +57,7 @@
 * [创建并注册一份流体](2.6.1-创建并注册一份流体.md)
 * [为流体添加对应的桶](2.6.2-为流体添加对应的桶.md)
 
-### 3 [中级部分](#3-中级部分)
+### 3 [高级部分](#3-高级部分)
 
 #### 3.1 [生物](#31-生物)
 
@@ -94,33 +94,12 @@
 * [使用其他Mod的API](3.5.1-使用其他Mod的API.md)
 * [向其他Mod提供API](3.5.2-向其他Mod提供API.md)
 
-### 4 高级部分
-
-#### 4.1 渲染器
-
-* Minecraft对OpenGL的包装
-* Tessellator的使用
-* TileEntity渲染器
-* 实体渲染器
-
-#### 4.2 世界生成
-
-* 生成一棵树
-* 新的生物群系
-* 新的世界
-
-#### 4.3 ASM与Coremod
-
-* 中立字节码与ASM
-* Coremod的制作
-
 ### [附录](#附录)
 
-* [事件列表](附录A-事件列表.md)
-* [配置Gradle的一些小技巧](附录B-配置Gradle的一些小技巧.md)
-* [混淆与反射](附录C-混淆与反射.md)
-* [使用AccessTransformers](附录D-使用AccessTransformers.md)
-* [使用Scala编写Mod](附录E-使用Scala编写Mod.md)
+* [配置Gradle的一些小技巧](附录A-配置Gradle的一些小技巧.md)
+* [混淆与反射](附录B-混淆与反射.md)
+* [使用AccessTransformers](附录C-使用AccessTransformers.md)
+* [使用Scala编写Mod](附录D-使用Scala编写Mod.md)
 
 ## 版权声明
 
