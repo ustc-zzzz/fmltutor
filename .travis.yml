@@ -1,9 +1,0 @@
-before_install:
-- git config --global user.email "deploy@travis-ci.org"
-- git config --global user.name "Travis CI Deployment Bot"
-script:
-- ./build.sh clean
-- ./build.sh build
-after_success:
-- cd files/
-- git push -f -q https://ustc-zzzz:$GITHUB_TOKEN@github.com/ustc-zzzz/fmltutor master:master
